@@ -1903,8 +1903,757 @@ print(f"Transfer - Acc: {history_transfer.history['val_accuracy'][-1]:.4f}, Time
         `,
         level: 'Beginner'
     },
-    { id: 'b9', title: 'Fine-Tuning Models', icon: '🎯', description: 'Customizing pre-trained models for specific tasks and domains.', readTime: '15 min' },
-    { id: 'b10', title: 'Embeddings and Vectors', icon: '📊', description: 'How AI represents words and concepts as numerical vectors.', readTime: '16 min' },
+{
+        id: 'b9',
+        title: 'Fine-Tuning Models',
+        icon: '🎯',
+        description: 'Customizing pre-trained models for specific tasks and domains.',
+        readTime: '22 min',
+        level: 'Beginner',
+        content: `
+            <h2>Fine-Tuning Models: Customizing AI for Your Needs</h2>
+            <p>Fine-tuning is the process of taking a pre-trained model and adapting it to perform specific tasks or work with domain-specific data. It's one of the most practical techniques in modern AI, enabling developers to create customized, high-performing models without the massive cost and complexity of training from scratch.</p>
+
+            <h3>What is Fine-Tuning?</h3>
+            <p>Fine-tuning involves continuing to train a pre-trained model on a smaller, task-specific dataset. The model retains its general knowledge while learning specialized patterns for your particular use case. Think of it like a doctor specializing after medical school—they keep their general medical knowledge but develop expertise in a specific area.</p>
+
+            <h3>Why Fine-Tune Instead of Training from Scratch?</h3>
+            <ul>
+                <li><strong>Massive Cost Savings:</strong> $100-1,000 vs $10,000-1,000,000+</li>
+                <li><strong>Time Efficiency:</strong> Hours/days vs weeks/months</li>
+                <li><strong>Data Efficiency:</strong> Hundreds of examples vs millions</li>
+                <li><strong>Better Performance:</strong> Often outperforms models trained from scratch on small datasets</li>
+                <li><strong>Accessibility:</strong> Can be done on consumer hardware or modest cloud resources</li>
+            </ul>
+
+            <h3>Complete Fine-Tuning Example with Hugging Face</h3>
+            <pre><code>
+from transformers import (
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+    Trainer,
+    TrainingArguments
+)
+from datasets import load_dataset
+import numpy as np
+
+# Step 1: Load pre-trained model and tokenizer
+model_name = 'bert-base-uncased'
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSequenceClassification.from_pretrained(
+    model_name,
+    num_labels=2  # binary classification
+)
+
+# Step 2: Prepare your dataset
+dataset = load_dataset('imdb')  # Or your custom dataset
+
+def tokenize_function(examples):
+    return tokenizer(
+        examples['text'],
+        padding='max_length',
+        truncation=True,
+        max_length=512
+    )
+
+tokenized_datasets = dataset.map(tokenize_function, batched=True)
+
+# Step 3: Define evaluation metrics
+from datasets import load_metric
+
+def compute_metrics(eval_pred):
+    metric = load_metric('accuracy')
+    logits, labels = eval_pred
+    predictions = np.argmax(logits, axis=-1)
+    return metric.compute(predictions=predictions, references=labels)
+
+# Step 4: Configure training
+training_args = TrainingArguments(
+    output_dir='./results',
+    num_train_epochs=3,
+    per_device_train_batch_size=16,
+    learning_rate=2e-5,  # Small learning rate is key!
+    warmup_steps=500,
+    weight_decay=0.01,
+    logging_steps=100,
+    evaluation_strategy='epoch',
+    save_strategy='epoch',
+    load_best_model_at_end=True
+)
+
+# Step 5: Create Trainer and fine-tune
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_datasets['train'],
+    eval_dataset=tokenized_datasets['test'],
+    compute_metrics=compute_metrics
+)
+
+# Fine-tune!
+trainer.train()
+
+# Step 6: Save and use
+model.save_pretrained('./my-finetuned-model')
+tokenizer.save_pretrained('./my-finetuned-model')
+            </code></pre>
+
+            <h3>Parameter-Efficient Fine-Tuning (PEFT)</h3>
+            <p>Modern technique that updates only a small fraction of parameters, saving time and memory:</p>
+
+            <h4>LoRA (Low-Rank Adaptation)</h4>
+            <pre><code>
+from peft import get_peft_model, LoraConfig, TaskType
+
+# Configure LoRA
+lora_config = LoraConfig(
+    task_type=TaskType.SEQ_CLS,
+    r=8,  # Rank of adaptation matrices
+    lora_alpha=32,
+    lora_dropout=0.1,
+    target_modules=['query', 'value']
+)
+
+# Apply LoRA - only 0.1% of parameters trainable!
+model = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased')
+model = get_peft_model(model, lora_config)
+
+model.print_trainable_parameters()
+# trainable params: 294,912 || all params: 109,483,778 || trainable%: 0.27
+
+# Train 100x faster, use 90% less memory!
+            </code></pre>
+
+            <h3>Fine-Tuning Vision Models</h3>
+            <pre><code>
+import timm
+import torch
+import torch.nn as nn
+from torchvision import transforms
+
+# Load pre-trained vision model
+model = timm.create_model('efficientnet_b0', pretrained=True, num_classes=10)
+
+# Freeze early layers, train only later ones
+for name, param in model.named_parameters():
+    if 'blocks.0' in name or 'blocks.1' in name:
+        param.requires_grad = False
+    else:
+        param.requires_grad = True
+
+# Optimizer with small learning rate
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
+criterion = nn.CrossEntropyLoss()
+
+# Training loop
+model.train()
+for epoch in range(10):
+    for images, labels in train_loader:
+        optimizer.zero_grad()
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+            </code></pre>
+
+            <h3>Best Practices</h3>
+
+            <h4>1. Use Small Learning Rates</h4>
+            <pre><code>
+# Too high: Destroys pre-trained knowledge
+learning_rate = 1e-1  # ❌ Way too high
+
+# Just right: Gentle adaptation
+learning_rate = 2e-5  # ✅ Good for BERT
+learning_rate = 1e-4  # ✅ Good for vision models
+            </code></pre>
+
+            <h4>2. Gradual Unfreezing</h4>
+            <pre><code>
+# Phase 1: Train only new layers (2 epochs)
+for param in base_model.parameters():
+    param.requires_grad = False
+train(epochs=2)
+
+# Phase 2: Unfreeze top layers (2 epochs)
+for layer in base_model.layers[-5:]:
+    for param in layer.parameters():
+        param.requires_grad = True
+train(epochs=2)
+
+# Phase 3: Fine-tune everything with lower LR (2 epochs)
+for param in base_model.parameters():
+    param.requires_grad = True
+optimizer = Adam(model.parameters(), lr=1e-6)  # Even lower!
+train(epochs=2)
+            </code></pre>
+
+            <h4>3. Data Augmentation</h4>
+            <p>Crucial when you have limited training data:</p>
+            <pre><code>
+from torchvision import transforms
+
+transform = transforms.Compose([
+    transforms.RandomResizedCrop(224),
+    transforms.RandomHorizontalFlip(),
+    transforms.RandomRotation(15),
+    transforms.ColorJitter(brightness=0.2, contrast=0.2),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                        std=[0.229, 0.224, 0.225])
+])
+            </code></pre>
+
+            <h4>4. Early Stopping</h4>
+            <pre><code>
+best_val_loss = float('inf')
+patience = 5
+patience_counter = 0
+
+for epoch in range(max_epochs):
+    train_loss = train_epoch()
+    val_loss = validate()
+
+    if val_loss < best_val_loss:
+        best_val_loss = val_loss
+        torch.save(model.state_dict(), 'best_model.pt')
+        patience_counter = 0
+    else:
+        patience_counter += 1
+        if patience_counter >= patience:
+            print("Early stopping!")
+            break
+
+# Load best model
+model.load_state_dict(torch.load('best_model.pt'))
+            </code></pre>
+
+            <h3>Domain-Specific Examples</h3>
+
+            <h4>Medical Text Analysis</h4>
+            <pre><code>
+# Fine-tune BioBERT for medical entity recognition
+model = AutoModelForTokenClassification.from_pretrained(
+    'dmis-lab/biobert-v1.1',
+    num_labels=9  # disease, symptom, medication, etc.
+)
+# Train on clinical notes, medical journals
+            </code></pre>
+
+            <h4>Legal Document Analysis</h4>
+            <pre><code>
+# Fine-tune for contract classification
+model = AutoModelForSequenceClassification.from_pretrained(
+    'nlpaueb/legal-bert-base-uncased',
+    num_labels=10  # contract types
+)
+# Train on legal contracts and documents
+            </code></pre>
+
+            <h4>Code Generation</h4>
+            <pre><code>
+# Fine-tune CodeT5 for your framework
+from transformers import AutoModelForSeq2SeqLM
+
+model = AutoModelForSeq2SeqLM.from_pretrained('Salesforce/codet5-base')
+# Train on your codebase: Input: docstring → Output: code
+            </code></pre>
+
+            <h3>Common Mistakes and Solutions</h3>
+            <ul>
+                <li><strong>Learning Rate Too High:</strong>
+                    <ul>
+                        <li>Symptom: Loss explodes or model forgets pre-training</li>
+                        <li>Solution: Use 2e-5 for BERT, 1e-4 for vision models</li>
+                    </ul>
+                </li>
+                <li><strong>Not Freezing Layers Initially:</strong>
+                    <ul>
+                        <li>Symptom: Overfitting with small datasets</li>
+                        <li>Solution: Start frozen, gradually unfreeze</li>
+                    </ul>
+                </li>
+                <li><strong>Insufficient Data Augmentation:</strong>
+                    <ul>
+                        <li>Symptom: Overfitting, poor generalization</li>
+                        <li>Solution: Heavy augmentation for small datasets</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Monitoring Fine-Tuning</h3>
+            <pre><code>
+import wandb
+
+# Initialize Weights & Biases
+wandb.init(project='my-finetuning')
+
+# Integrate with Trainer
+training_args = TrainingArguments(
+    ...
+    report_to='wandb',
+    logging_steps=10
+)
+
+# Automatic logging of metrics, gradients, model
+trainer.train()
+            </code></pre>
+
+            <h3>Cost and Resource Planning</h3>
+            <pre><code>
+# Small model (BERT-base) fine-tuning:
+# - Local GPU (RTX 3090): Free after purchase (~$1500)
+# - Google Colab Pro: $10/month
+# - AWS g5.xlarge: ~$1/hour × 5 hours = $5
+
+# Medium model (GPT-2 medium):
+# - AWS p3.2xlarge: ~$3/hour × 10 hours = $30
+
+# Large model (GPT-3.5):
+# - OpenAI API: $0.008/1K tokens training
+# - 10M tokens = $80
+            </code></pre>
+
+            <h3>Deploying Fine-Tuned Models</h3>
+            <pre><code>
+# Optimize for production
+from optimum.onnxruntime import ORTModelForSequenceClassification
+
+# Convert to ONNX
+model = ORTModelForSequenceClassification.from_pretrained(
+    './my-finetuned-model',
+    from_transformers=True
+)
+
+# Quantize to INT8
+from transformers import AutoQuantizationConfig
+quantization_config = AutoQuantizationConfig.from_pretrained("int8")
+model = model.quantize(quantization_config)
+
+# Result: 4x smaller, 2-4x faster inference!
+            </code></pre>
+
+            <h3>Real-World Success Stories</h3>
+            <ul>
+                <li><strong>Customer Service:</strong> Fine-tuned GPT-3.5 reduced response time by 70%, improved accuracy by 40%</li>
+                <li><strong>Medical Imaging:</strong> Fine-tuned ResNet achieved 95% accuracy with only 500 X-rays</li>
+                <li><strong>Legal Tech:</strong> Fine-tuned BERT classified contracts with 92% accuracy</li>
+                <li><strong>E-commerce:</strong> Fine-tuned CLIP improved product search relevance by 35%</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Fine-tuning is your gateway to production-quality AI without enterprise-scale resources. With just a few hundred examples and a few hours of training time, you can create specialized models that outperform general-purpose alternatives on your specific tasks. The key is starting with a good pre-trained model, using small learning rates, and following best practices for data preparation and training. Whether you're working with text, images, or code, fine-tuning is almost always your best path forward.</p>
+        `
+    },
+    {
+        id: 'b10',
+        title: 'Embeddings and Vectors',
+        icon: '📊',
+        description: 'How AI represents words and concepts as numerical vectors.',
+        readTime: '18 min',
+        level: 'Beginner',
+        content: `
+            <h2>Embeddings and Vectors: The Language of AI</h2>
+            <p>Embeddings are one of the most fundamental concepts in modern AI. They are the bridge that allows machines to work with human concepts like words, images, and ideas by representing them as numerical vectors in high-dimensional space. Understanding embeddings is crucial for working with any modern AI system.</p>
+
+            <h3>What Are Embeddings?</h3>
+            <p>An embedding is a dense vector representation of data. Instead of representing a word as a one-hot encoded vector (mostly zeros with one 1), embeddings represent it as a dense vector of real numbers where every dimension captures some aspect of meaning.</p>
+
+            <pre><code>
+# One-hot encoding (old way)
+"cat" → [0, 0, 0, 1, 0, 0, ..., 0]  # 10,000+ dimensions, mostly zeros
+
+# Embedding (modern way)
+"cat" → [0.2, -0.5, 0.8, 0.1, ..., -0.3]  # 300-1536 dimensions, all meaningful
+            </code></pre>
+
+            <h3>Why Embeddings Matter</h3>
+            <ul>
+                <li><strong>Semantic Meaning:</strong> Similar concepts have similar vectors</li>
+                <li><strong>Efficiency:</strong> Dense representation vs sparse one-hot</li>
+                <li><strong>Generalization:</strong> Captures relationships and analogies</li>
+                <li><strong>Transferability:</strong> Pre-trained embeddings work across tasks</li>
+                <li><strong>Mathematical Operations:</strong> Can do math with meaning</li>
+            </ul>
+
+            <h3>Word Embeddings: A Concrete Example</h3>
+            <pre><code>
+import numpy as np
+
+# Simplified 3D embedding visualization
+embeddings = {
+    'king': np.array([0.5, 0.3, 0.8]),
+    'queen': np.array([0.5, 0.3, -0.7]),
+    'man': np.array([0.3, 0.2, 0.9]),
+    'woman': np.array([0.3, 0.2, -0.8])
+}
+
+# Famous analogy: king - man + woman ≈ queen
+result = embeddings['king'] - embeddings['man'] + embeddings['woman']
+# Result very close to embeddings['queen']!
+
+# This works because vectors capture gender relationship
+            </code></pre>
+
+            <h3>Creating Embeddings with Python</h3>
+
+            <h4>Using OpenAI Embeddings</h4>
+            <pre><code>
+import openai
+
+# Get embedding for text
+response = openai.Embedding.create(
+    model="text-embedding-ada-002",
+    input="The quick brown fox jumps over the lazy dog"
+)
+
+embedding = response['data'][0]['embedding']
+print(f"Embedding dimension: {len(embedding)}")  # 1536
+print(f"First 5 values: {embedding[:5]}")
+
+# Use for similarity search, clustering, classification, etc.
+            </code></pre>
+
+            <h4>Using Sentence Transformers (Free, Open-Source)</h4>
+            <pre><code>
+from sentence_transformers import SentenceTransformer
+
+# Load pre-trained model
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Generate embeddings
+sentences = [
+    "I love machine learning",
+    "AI is fascinating",
+    "I enjoy pizza",
+]
+
+embeddings = model.encode(sentences)
+print(f"Shape: {embeddings.shape}")  # (3, 384)
+
+# Calculate similarity
+from sklearn.metrics.pairwise import cosine_similarity
+
+similarities = cosine_similarity(embeddings)
+print(similarities)
+# High similarity between sentences 1 and 2, lower for 3
+            </code></pre>
+
+            <h3>How Embeddings Are Learned</h3>
+
+            <h4>Word2Vec (Skip-gram Model)</h4>
+            <p>Predicts context words from a target word:</p>
+            <pre><code>
+# Training objective:
+# Given "cat", predict ["sat", "on", "the", "mat"]
+
+from gensim.models import Word2Vec
+
+# Train your own Word2Vec model
+sentences = [
+    ["the", "cat", "sat", "on", "mat"],
+    ["the", "dog", "ran", "in", "park"],
+    # ... many more sentences
+]
+
+model = Word2Vec(
+    sentences,
+    vector_size=100,  # Embedding dimension
+    window=5,         # Context window size
+    min_count=1,
+    workers=4
+)
+
+# Get vector for a word
+cat_vector = model.wv['cat']
+
+# Find similar words
+similar_words = model.wv.most_similar('cat', topn=5)
+# [('dog', 0.89), ('kitten', 0.85), ...]
+            </code></pre>
+
+            <h4>BERT Embeddings (Contextual)</h4>
+            <p>Unlike Word2Vec, BERT creates different embeddings based on context:</p>
+            <pre><code>
+from transformers import AutoTokenizer, AutoModel
+import torch
+
+tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
+model = AutoModel.from_pretrained('bert-base-uncased')
+
+# Same word, different contexts
+texts = [
+    "The bank is next to the river",  # bank = financial institution? river bank?
+    "I need to deposit money at the bank"
+]
+
+for text in texts:
+    inputs = tokenizer(text, return_tensors='pt')
+    outputs = model(**inputs)
+
+    # Extract embedding for "bank"
+    embeddings = outputs.last_hidden_state
+    # Shape: [1, sequence_length, 768]
+
+# The embedding for "bank" will be DIFFERENT in each context!
+            </code></pre>
+
+            <h3>Types of Embeddings</h3>
+
+            <h4>1. Word Embeddings</h4>
+            <ul>
+                <li><strong>Word2Vec:</strong> 100-300 dimensions, fast, static</li>
+                <li><strong>GloVe:</strong> Similar to Word2Vec, trained on global statistics</li>
+                <li><strong>FastText:</strong> Handles out-of-vocabulary words better</li>
+            </ul>
+
+            <h4>2. Sentence/Document Embeddings</h4>
+            <ul>
+                <li><strong>Universal Sentence Encoder:</strong> 512 dimensions</li>
+                <li><strong>Sentence-BERT:</strong> 384-768 dimensions, very popular</li>
+                <li><strong>OpenAI text-embedding-ada-002:</strong> 1536 dimensions</li>
+            </ul>
+
+            <h4>3. Image Embeddings</h4>
+            <pre><code>
+from transformers import CLIPProcessor, CLIPModel
+from PIL import Image
+
+# Load CLIP model
+model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+
+# Generate embedding for an image
+image = Image.open("cat.jpg")
+inputs = processor(images=image, return_tensors="pt")
+image_features = model.get_image_features(**inputs)
+
+# Shape: (1, 512) - a 512-dimensional vector representing the image!
+            </code></pre>
+
+            <h4>4. Multimodal Embeddings</h4>
+            <p>Same vector space for both images and text:</p>
+            <pre><code>
+# CLIP: Images and text in same embedding space
+image = Image.open("dog.jpg")
+text = "a photo of a dog"
+
+# Get embeddings
+image_inputs = processor(images=image, return_tensors="pt")
+text_inputs = processor(text=text, return_tensors="pt")
+
+image_features = model.get_image_features(**image_inputs)
+text_features = model.get_text_features(**text_inputs)
+
+# Compute similarity
+similarity = torch.cosine_similarity(image_features, text_features)
+# High similarity if text matches image!
+            </code></pre>
+
+            <h3>Practical Applications</h3>
+
+            <h4>1. Semantic Search</h4>
+            <pre><code>
+from sentence_transformers import SentenceTransformer, util
+
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Document corpus
+documents = [
+    "Python is a programming language",
+    "Machine learning uses algorithms",
+    "The weather is nice today",
+    "Deep learning is a subset of ML"
+]
+
+# Create embeddings
+doc_embeddings = model.encode(documents)
+
+# User query
+query = "What is AI?"
+query_embedding = model.encode(query)
+
+# Find most similar documents
+similarities = util.cos_sim(query_embedding, doc_embeddings)[0]
+best_match = similarities.argmax()
+
+print(f"Best match: {documents[best_match]}")
+# "Machine learning uses algorithms" or "Deep learning is a subset of ML"
+            </code></pre>
+
+            <h4>2. Recommendation System</h4>
+            <pre><code>
+# Movie recommendation based on descriptions
+movies = {
+    "Inception": "A thief who steals secrets from dreams",
+    "The Matrix": "A hacker discovers reality is a simulation",
+    "Frozen": "A princess with ice powers",
+    "Toy Story": "Toys come to life when humans aren't around"
+}
+
+# Create embeddings
+movie_names = list(movies.keys())
+descriptions = list(movies.values())
+movie_embeddings = model.encode(descriptions)
+
+# User likes "Inception"
+liked_movie = "Inception"
+liked_idx = movie_names.index(liked_movie)
+
+# Find similar movies
+similarities = cosine_similarity([movie_embeddings[liked_idx]], movie_embeddings)[0]
+similar_indices = similarities.argsort()[-3:-1][::-1]  # Top 2, excluding itself
+
+print(f"If you liked {liked_movie}, you might like:")
+for idx in similar_indices:
+    print(f"- {movie_names[idx]}")
+# Likely: "The Matrix" (similar themes)
+            </code></pre>
+
+            <h4>3. Clustering Documents</h4>
+            <pre><code>
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+from sklearn.manifold import TSNE
+
+# Embed documents
+doc_embeddings = model.encode(many_documents)
+
+# Cluster into groups
+num_clusters = 5
+kmeans = KMeans(n_clusters=num_clusters)
+clusters = kmeans.fit_predict(doc_embeddings)
+
+# Visualize with t-SNE (reduce to 2D)
+tsne = TSNE(n_components=2, random_state=42)
+embeddings_2d = tsne.fit_transform(doc_embeddings)
+
+plt.scatter(embeddings_2d[:, 0], embeddings_2d[:, 1], c=clusters)
+plt.colorbar()
+plt.show()
+            </code></pre>
+
+            <h3>Vector Databases for Embeddings</h3>
+
+            <h4>Using Pinecone</h4>
+            <pre><code>
+import pinecone
+
+# Initialize
+pinecone.init(api_key='YOUR_API_KEY', environment='us-west1-gcp')
+
+# Create index
+pinecone.create_index('my-embeddings', dimension=384)
+index = pinecone.Index('my-embeddings')
+
+# Insert embeddings
+index.upsert([
+    ('doc1', embedding1.tolist(), {'text': 'Document 1 text'}),
+    ('doc2', embedding2.tolist(), {'text': 'Document 2 text'}),
+])
+
+# Query
+query_embedding = model.encode("search query")
+results = index.query(query_embedding.tolist(), top_k=5)
+
+# Get top 5 most similar documents
+for match in results['matches']:
+    print(f"Score: {match['score']}, Text: {match['metadata']['text']}")
+            </code></pre>
+
+            <h4>Using ChromaDB (Open-Source)</h4>
+            <pre><code>
+import chromadb
+
+# Initialize client
+client = chromadb.Client()
+collection = client.create_collection("my_collection")
+
+# Add documents (automatic embedding)
+collection.add(
+    documents=["Doc 1 text", "Doc 2 text", "Doc 3 text"],
+    ids=["doc1", "doc2", "doc3"]
+)
+
+# Query
+results = collection.query(
+    query_texts=["search query"],
+    n_results=2
+)
+
+print(results['documents'])
+            </code></pre>
+
+            <h3>Measuring Similarity</h3>
+
+            <h4>Cosine Similarity (Most Common)</h4>
+            <pre><code>
+import numpy as np
+
+def cosine_similarity(vec1, vec2):
+    dot_product = np.dot(vec1, vec2)
+    norm1 = np.linalg.norm(vec1)
+    norm2 = np.linalg.norm(vec2)
+    return dot_product / (norm1 * norm2)
+
+# Values range from -1 (opposite) to 1 (identical)
+# Typically: >0.8 = very similar, 0.5-0.8 = somewhat similar
+            </code></pre>
+
+            <h4>Euclidean Distance</h4>
+            <pre><code>
+def euclidean_distance(vec1, vec2):
+    return np.linalg.norm(vec1 - vec2)
+
+# Lower is more similar
+# Values depend on embedding dimension and magnitude
+            </code></pre>
+
+            <h3>Best Practices</h3>
+
+            <h4>1. Choose the Right Model</h4>
+            <ul>
+                <li><strong>Speed priority:</strong> all-MiniLM-L6-v2 (384 dim)</li>
+                <li><strong>Quality priority:</strong> text-embedding-ada-002 (1536 dim)</li>
+                <li><strong>Multilingual:</strong> paraphrase-multilingual-MiniLM-L12-v2</li>
+                <li><strong>Code:</strong> microsoft/codebert-base</li>
+            </ul>
+
+            <h4>2. Normalize Embeddings</h4>
+            <pre><code>
+# Always normalize for cosine similarity
+def normalize(vec):
+    return vec / np.linalg.norm(vec)
+
+normalized_embedding = normalize(embedding)
+            </code></pre>
+
+            <h4>3. Batch Processing</h4>
+            <pre><code>
+# More efficient than one-by-one
+batch_size = 32
+all_embeddings = []
+
+for i in range(0, len(texts), batch_size):
+    batch = texts[i:i+batch_size]
+    batch_embeddings = model.encode(batch)
+    all_embeddings.append(batch_embeddings)
+
+embeddings = np.vstack(all_embeddings)
+            </code></pre>
+
+            <h3>Common Pitfalls</h3>
+            <ul>
+                <li><strong>Mismatch in embedding models:</strong> Don't compare embeddings from different models</li>
+                <li><strong>Ignoring context:</strong> Use contextual embeddings (BERT) when word meaning varies</li>
+                <li><strong>Not normalizing:</strong> Always normalize before cosine similarity</li>
+                <li><strong>Wrong similarity metric:</strong> Cosine for direction, Euclidean for magnitude</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Embeddings are the foundation of modern AI, transforming human concepts into mathematical representations that machines can process. Whether you're building search engines, recommendation systems, or any application requiring semantic understanding, embeddings are your essential tool. Understanding how to create, manipulate, and apply embeddings opens up a world of AI applications that would be impossible with traditional approaches.</p>
+        `
+    },
     { id: 'b11', title: 'Attention Mechanisms', icon: '👁️', description: 'The breakthrough that enabled modern AI to focus on relevant information.', readTime: '14 min' },
     { id: 'b12', title: 'Prompt Engineering Basics', icon: '💬', description: 'Crafting effective prompts to get better AI responses.', readTime: '12 min' },
     { id: 'b13', title: 'Temperature and Sampling', icon: '🌡️', description: 'Controlling randomness and creativity in AI outputs.', readTime: '11 min' },
