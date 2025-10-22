@@ -3,18 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenAI Academy - Master Generative AI from Beginner to Advanced</title>
-    <meta name="description" content="Comprehensive learning platform for Generative AI covering 100+ concepts, tutorials, FAQs, and interview questions">
+    <title>GenAI Academy - Master Generative AI from Beginner to Expert</title>
+    <meta name="description" content="The most comprehensive Generative AI learning platform with 105+ in-depth concepts, interactive tutorials, code playgrounds, and real-world projects">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
-        <div class="loading-spinner"></div>
-        <p>Loading GenAI Academy...</p>
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Loading GenAI Academy</h2>
+            <p>Preparing your learning experience...</p>
+            <div class="loading-progress">
+                <div class="loading-progress-bar" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Announcement Banner -->
+    <div class="announcement-banner" id="announcementBanner">
+        <div class="announcement-content">
+            <i class="fas fa-sparkles"></i>
+            <span>New: Interactive Code Playground now available! Try it out →</span>
+        </div>
+        <button class="announcement-close" onclick="closeAnnouncement()">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
 
     <!-- Header -->
@@ -26,116 +44,205 @@
                 <span></span>
             </button>
             <div class="logo">
-                <span class="logo-icon">🤖</span>
-                <span class="logo-text">GenAI Academy</span>
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="logo-content">
+                    <span class="logo-text">GenAI Academy</span>
+                    <span class="logo-tagline">Master AI from Zero to Hero</span>
+                </div>
             </div>
         </div>
+
         <div class="header-center">
-            <div class="search-bar">
-                <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <input type="text" id="searchInput" placeholder="Search 100+ GenAI concepts..." class="search-input">
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search 105+ concepts, tutorials, and exercises..." class="search-input">
+                    <div class="search-shortcuts">
+                        <kbd>Ctrl</kbd> + <kbd>K</kbd>
+                    </div>
+                </div>
                 <div class="search-results" id="searchResults"></div>
             </div>
         </div>
+
         <div class="header-right">
-            <button class="header-btn" id="themeToggle" title="Toggle Theme">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10 3V1M10 19v-2M17 10h2M1 10h2M15.66 15.66l1.41 1.41M2.93 2.93l1.41 1.41M15.66 4.34l1.41-1.41M2.93 17.07l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
-                </svg>
+            <button class="header-btn tooltip-container" id="themeToggle" title="Toggle Theme">
+                <i class="fas fa-moon theme-icon"></i>
+                <span class="tooltip">Toggle Theme</span>
             </button>
-            <button class="header-btn" id="progressBtn" title="Your Progress">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M10 5v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+
+            <button class="header-btn tooltip-container" id="notificationsBtn" title="Notifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+                <span class="tooltip">Notifications</span>
+            </button>
+
+            <button class="header-btn tooltip-container" id="progressBtn" title="Your Progress">
+                <i class="fas fa-chart-line"></i>
                 <span class="progress-badge" id="progressBadge">0%</span>
+                <span class="tooltip">Your Progress</span>
             </button>
-            <button class="header-btn" id="bookmarksBtn" title="Bookmarks">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M5 2h10a2 2 0 0 1 2 2v16l-7-4-7 4V4a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+
+            <button class="header-btn tooltip-container" id="bookmarksBtn" title="Bookmarks">
+                <i class="fas fa-bookmark"></i>
+                <span class="bookmark-count" id="bookmarkCount">0</span>
+                <span class="tooltip">Bookmarks</span>
             </button>
+
+            <button class="header-btn tooltip-container" id="notesBtn" title="My Notes">
+                <i class="fas fa-note-sticky"></i>
+                <span class="tooltip">My Notes</span>
+            </button>
+
+            <div class="user-menu">
+                <button class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <nav class="sidebar-nav">
+            <!-- Quick Start -->
             <div class="nav-section">
-                <div class="nav-section-title">Getting Started</div>
+                <div class="nav-section-title">
+                    <i class="fas fa-rocket"></i>
+                    Quick Start
+                </div>
                 <a href="#home" class="nav-item active" data-page="home">
-                    <span class="nav-icon">🏠</span>
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
                     <span class="nav-text">Home</span>
                 </a>
                 <a href="#roadmap" class="nav-item" data-page="roadmap">
-                    <span class="nav-icon">🗺️</span>
+                    <span class="nav-icon"><i class="fas fa-map"></i></span>
                     <span class="nav-text">Learning Roadmap</span>
+                </a>
+                <a href="#playground" class="nav-item" data-page="playground">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Code Playground</span>
+                    <span class="nav-badge badge-new">New</span>
                 </a>
             </div>
 
+            <!-- Concepts -->
             <div class="nav-section">
-                <div class="nav-section-title">Concepts</div>
+                <div class="nav-section-title">
+                    <i class="fas fa-book"></i>
+                    Core Concepts
+                </div>
                 <a href="#beginner" class="nav-item" data-page="beginner">
-                    <span class="nav-icon">🌱</span>
-                    <span class="nav-text">Beginner (30)</span>
-                    <span class="nav-badge">Easy</span>
+                    <span class="nav-icon"><i class="fas fa-seedling"></i></span>
+                    <span class="nav-text">Beginner</span>
+                    <span class="nav-count">30</span>
+                    <span class="nav-badge badge-green">Easy</span>
                 </a>
                 <a href="#intermediate" class="nav-item" data-page="intermediate">
-                    <span class="nav-icon">🚀</span>
-                    <span class="nav-text">Intermediate (40)</span>
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Intermediate</span>
+                    <span class="nav-count">40</span>
                     <span class="nav-badge badge-orange">Medium</span>
                 </a>
                 <a href="#advanced" class="nav-item" data-page="advanced">
-                    <span class="nav-icon">⚡</span>
-                    <span class="nav-text">Advanced (35)</span>
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Advanced</span>
+                    <span class="nav-count">35</span>
                     <span class="nav-badge badge-red">Hard</span>
                 </a>
             </div>
 
+            <!-- Learn & Practice -->
             <div class="nav-section">
-                <div class="nav-section-title">Learn & Practice</div>
+                <div class="nav-section-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    Learn & Practice
+                </div>
                 <a href="#tutorials" class="nav-item" data-page="tutorials">
-                    <span class="nav-icon">📚</span>
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
                     <span class="nav-text">Tutorials</span>
+                    <span class="nav-count">25+</span>
                 </a>
                 <a href="#exercises" class="nav-item" data-page="exercises">
-                    <span class="nav-icon">💪</span>
+                    <span class="nav-icon"><i class="fas fa-dumbbell"></i></span>
                     <span class="nav-text">Exercises</span>
+                    <span class="nav-count">50+</span>
+                </a>
+                <a href="#projects" class="nav-item" data-page="projects">
+                    <span class="nav-icon"><i class="fas fa-folder-open"></i></span>
+                    <span class="nav-text">Projects</span>
+                    <span class="nav-count">15+</span>
                 </a>
                 <a href="#quizzes" class="nav-item" data-page="quizzes">
-                    <span class="nav-icon">🎯</span>
+                    <span class="nav-icon"><i class="fas fa-clipboard-question"></i></span>
                     <span class="nav-text">Quizzes</span>
+                    <span class="nav-count">100+</span>
                 </a>
             </div>
 
+            <!-- Resources -->
             <div class="nav-section">
-                <div class="nav-section-title">Resources</div>
+                <div class="nav-section-title">
+                    <i class="fas fa-compass"></i>
+                    Resources
+                </div>
                 <a href="#faq" class="nav-item" data-page="faq">
-                    <span class="nav-icon">❓</span>
+                    <span class="nav-icon"><i class="fas fa-circle-question"></i></span>
                     <span class="nav-text">FAQ</span>
                 </a>
                 <a href="#interview" class="nav-item" data-page="interview">
-                    <span class="nav-icon">💼</span>
-                    <span class="nav-text">Interview Questions</span>
+                    <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
+                    <span class="nav-text">Interview Prep</span>
                 </a>
                 <a href="#glossary" class="nav-item" data-page="glossary">
-                    <span class="nav-icon">📖</span>
+                    <span class="nav-icon"><i class="fas fa-book-bookmark"></i></span>
                     <span class="nav-text">Glossary</span>
+                </a>
+                <a href="#resources" class="nav-item" data-page="resources">
+                    <span class="nav-icon"><i class="fas fa-link"></i></span>
+                    <span class="nav-text">External Resources</span>
+                </a>
+                <a href="#community" class="nav-item" data-page="community">
+                    <span class="nav-icon"><i class="fas fa-users"></i></span>
+                    <span class="nav-text">Community</span>
                 </a>
             </div>
         </nav>
 
+        <!-- Sidebar Footer -->
         <div class="sidebar-footer">
+            <!-- Learning Streak -->
+            <div class="streak-card">
+                <div class="streak-header">
+                    <i class="fas fa-fire"></i>
+                    <span>Learning Streak</span>
+                </div>
+                <div class="streak-value">
+                    <span class="streak-number" id="streakDays">0</span>
+                    <span class="streak-label">days</span>
+                </div>
+            </div>
+
+            <!-- Progress Card -->
             <div class="progress-card">
-                <div class="progress-card-title">Your Progress</div>
+                <div class="progress-card-header">
+                    <span class="progress-card-title">Your Progress</span>
+                    <span class="progress-percentage" id="sidebarProgressPercent">0%</span>
+                </div>
                 <div class="progress-bar">
                     <div class="progress-bar-fill" id="sidebarProgressBar" style="width: 0%"></div>
                 </div>
                 <div class="progress-stats">
-                    <span><span id="completedCount">0</span>/105 completed</span>
+                    <div class="progress-stat">
+                        <span class="progress-stat-value" id="completedCount">0</span>
+                        <span class="progress-stat-label">Completed</span>
+                    </div>
+                    <div class="progress-stat">
+                        <span class="progress-stat-value">105</span>
+                        <span class="progress-stat-label">Total</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,37 +250,174 @@
 
     <!-- Main Content -->
     <main class="main-content" id="mainContent">
-        <!-- Content will be dynamically loaded here -->
+        <!-- Content dynamically loaded here -->
     </main>
 
-    <!-- Modal for Concept Details -->
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab" id="fabMain">
+            <i class="fas fa-plus"></i>
+        </button>
+        <div class="fab-menu" id="fabMenu">
+            <button class="fab-item" onclick="openNoteModal()">
+                <i class="fas fa-note-sticky"></i>
+                <span>New Note</span>
+            </button>
+            <button class="fab-item" onclick="navigateTo('playground')">
+                <i class="fas fa-code"></i>
+                <span>Code Playground</span>
+            </button>
+            <button class="fab-item" onclick="exportProgress()">
+                <i class="fas fa-download"></i>
+                <span>Export Progress</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Modal: Concept Detail -->
     <div class="modal" id="conceptModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <div id="modalBody"></div>
+        <div class="modal-overlay" onclick="closeModal('conceptModal')"></div>
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title" id="conceptModalTitle">Concept</h2>
+                <div class="modal-actions">
+                    <button class="modal-action-btn" onclick="shareContent()" title="Share">
+                        <i class="fas fa-share-nodes"></i>
+                    </button>
+                    <button class="modal-action-btn" onclick="printContent()" title="Print">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <button class="modal-close" onclick="closeModal('conceptModal')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content loaded dynamically -->
+            </div>
         </div>
     </div>
 
-    <!-- Progress Modal -->
+    <!-- Modal: Progress Details -->
     <div class="modal" id="progressModal">
-        <div class="modal-overlay"></div>
+        <div class="modal-overlay" onclick="closeModal('progressModal')"></div>
         <div class="modal-content">
-            <button class="modal-close" id="progressModalClose">&times;</button>
-            <div id="progressModalBody"></div>
+            <div class="modal-header">
+                <h2 class="modal-title">Your Learning Progress</h2>
+                <button class="modal-close" onclick="closeModal('progressModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="progressModalBody"></div>
         </div>
     </div>
 
-    <!-- Bookmarks Modal -->
+    <!-- Modal: Bookmarks -->
     <div class="modal" id="bookmarksModal">
-        <div class="modal-overlay"></div>
+        <div class="modal-overlay" onclick="closeModal('bookmarksModal')"></div>
         <div class="modal-content">
-            <button class="modal-close" id="bookmarksModalClose">&times;</button>
-            <div id="bookmarksModalBody"></div>
+            <div class="modal-header">
+                <h2 class="modal-title">Your Bookmarks</h2>
+                <button class="modal-close" onclick="closeModal('bookmarksModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="bookmarksModalBody"></div>
         </div>
     </div>
 
+    <!-- Modal: Notes -->
+    <div class="modal" id="notesModal">
+        <div class="modal-overlay" onclick="closeModal('notesModal')"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">My Notes</h2>
+                <button class="btn btn-primary" onclick="openNoteModal()">
+                    <i class="fas fa-plus"></i> New Note
+                </button>
+                <button class="modal-close" onclick="closeModal('notesModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="notesModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Modal: Create/Edit Note -->
+    <div class="modal" id="noteEditorModal">
+        <div class="modal-overlay" onclick="closeModal('noteEditorModal')"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create Note</h2>
+                <button class="modal-close" onclick="closeModal('noteEditorModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="noteTitle">Title</label>
+                    <input type="text" id="noteTitle" class="form-input" placeholder="Enter note title...">
+                </div>
+                <div class="form-group">
+                    <label for="noteContent">Content</label>
+                    <textarea id="noteContent" class="form-textarea" rows="10" placeholder="Write your notes here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="noteTags">Tags (comma separated)</label>
+                    <input type="text" id="noteTags" class="form-input" placeholder="ai, machine-learning, tutorial">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeModal('noteEditorModal')">Cancel</button>
+                    <button class="btn btn-primary" onclick="saveNote()">
+                        <i class="fas fa-save"></i> Save Note
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Quiz -->
+    <div class="modal" id="quizModal">
+        <div class="modal-overlay" onclick="closeModal('quizModal')"></div>
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title" id="quizModalTitle">Quiz</h2>
+                <button class="modal-close" onclick="closeModal('quizModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="quizModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Modal: Notifications -->
+    <div class="modal" id="notificationsModal">
+        <div class="modal-overlay" onclick="closeModal('notificationsModal')"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Notifications</h2>
+                <button class="btn btn-secondary btn-sm" onclick="clearAllNotifications()">
+                    Clear All
+                </button>
+                <button class="modal-close" onclick="closeModal('notificationsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="notificationsModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
     <script src="data.js"></script>
+    <script src="utils.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
