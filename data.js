@@ -3135,10 +3135,1085 @@ analyze_attention(text, model, tokenizer)
             <p>Attention mechanisms transformed AI by enabling models to selectively focus on relevant information, process sequences in parallel, and capture long-range dependencies. From powering language models like GPT and BERT to enabling breakthroughs in computer vision, speech recognition, and multi-modal AI, attention has become the foundational building block of modern deep learning. Understanding how attention works—from the basic scaled dot-product to multi-head attention and transformers—is essential for anyone working with state-of-the-art AI systems.</p>
         `
     },
-    { id: 'b12', title: 'Prompt Engineering Basics', icon: '💬', description: 'Crafting effective prompts to get better AI responses.', readTime: '12 min' },
-    { id: 'b13', title: 'Temperature and Sampling', icon: '🌡️', description: 'Controlling randomness and creativity in AI outputs.', readTime: '11 min' },
-    { id: 'b14', title: 'Context Windows', icon: '🪟', description: 'Understanding AI memory limits and how to work with them.', readTime: '10 min' },
-    { id: 'b15', title: 'Model Parameters', icon: '⚖️', description: 'What model size means and why it matters.', readTime: '12 min' },
+    {
+        id: 'b12',
+        title: 'Prompt Engineering Basics',
+        icon: '💬',
+        description: 'Crafting effective prompts to get better AI responses.',
+        readTime: '12 min',
+        level: 'Beginner',
+        content: `
+            <h2>Prompt Engineering: The Art of Talking to AI</h2>
+            <p>Prompt engineering is the practice of crafting effective inputs to get the best outputs from AI models. It's become a crucial skill as LLMs like GPT-4 and Claude power more applications. A well-crafted prompt can mean the difference between useless gibberish and exactly what you need.</p>
+
+            <h3>Why Prompt Engineering Matters</h3>
+            <p>Large language models are incredibly powerful but need clear instructions. They don't "understand" in the human sense—they predict text based on patterns. Good prompts guide the model toward useful, accurate responses.</p>
+
+            <h3>Basic Principles</h3>
+
+            <h4>1. Be Clear and Specific</h4>
+            <pre><code>
+❌ Bad: "Write about dogs"
+✅ Good: "Write a 200-word informative paragraph about Golden Retriever temperament and care requirements for first-time dog owners"
+            </code></pre>
+
+            <h4>2. Provide Context</h4>
+            <pre><code>
+❌ Bad: "Explain quantum computing"
+✅ Good: "I'm a high school student with basic physics knowledge. Explain quantum computing using simple analogies, focusing on why it's different from regular computers"
+            </code></pre>
+
+            <h4>3. Specify Format</h4>
+            <pre><code>
+❌ Bad: "List programming languages"
+✅ Good: "Create a markdown table of the top 5 programming languages for web development, with columns for: Language, Primary Use, Difficulty Level, Popular Frameworks"
+            </code></pre>
+
+            <h3>Core Techniques</h3>
+
+            <h4>Zero-Shot Prompting</h4>
+            <p>Give instructions without examples:</p>
+            <pre><code>
+Prompt: "Classify the sentiment of this review as positive, negative, or neutral: 'The product works okay but shipping was slow.'"
+
+Response: "Neutral - Mixed feedback with both functional satisfaction and delivery criticism"
+            </code></pre>
+
+            <h4>Few-Shot Prompting</h4>
+            <p>Provide examples to guide the model:</p>
+            <pre><code>
+Prompt: "Extract company name and location from text.
+
+Example 1:
+Text: 'Apple Inc. is headquartered in Cupertino, California'
+Output: {company: 'Apple Inc.', location: 'Cupertino, California'}
+
+Example 2:
+Text: 'Microsoft operates from Redmond, Washington'
+Output: {company: 'Microsoft', location: 'Redmond, Washington'}
+
+Now extract from:
+Text: 'Tesla is based in Austin, Texas'
+Output:"
+
+Response: {company: 'Tesla', location: 'Austin, Texas'}
+            </code></pre>
+
+            <h4>Chain-of-Thought (CoT)</h4>
+            <p>Ask the model to show its reasoning:</p>
+            <pre><code>
+Prompt: "Solve this step-by-step:
+If a train travels 120 miles in 2 hours, and then 180 miles in 3 hours, what's the average speed for the entire journey?"
+
+Response:
+"Let me work through this step-by-step:
+
+Step 1: Calculate total distance
+- First segment: 120 miles
+- Second segment: 180 miles
+- Total distance: 120 + 180 = 300 miles
+
+Step 2: Calculate total time
+- First segment: 2 hours
+- Second segment: 3 hours
+- Total time: 2 + 3 = 5 hours
+
+Step 3: Calculate average speed
+- Average speed = Total distance / Total time
+- Average speed = 300 miles / 5 hours = 60 mph
+
+Answer: The average speed is 60 miles per hour."
+            </code></pre>
+
+            <h3>Role Prompting</h3>
+            <p>Assign the AI a specific role or persona:</p>
+            <pre><code>
+"You are an experienced Python developer specializing in data science. A junior developer asks: 'Should I use pandas or SQL for data analysis?' Provide detailed advice considering performance, learning curve, and use cases."
+            </code></pre>
+
+            <h3>Prompt Patterns</h3>
+
+            <h4>Instruction + Context + Input</h4>
+            <pre><code>
+[Instruction]: Translate the following English text to Spanish
+[Context]: This is for a professional business email
+[Input]: "We appreciate your patience and will update you soon"
+            </code></pre>
+
+            <h4>Template with Variables</h4>
+            <pre><code>
+Generate a product description for:
+- Product: {product_name}
+- Key features: {features}
+- Target audience: {audience}
+- Tone: {tone}
+
+Example:
+Product: SmartWatch Pro
+Key features: Heart rate monitoring, GPS, 7-day battery
+Target audience: Fitness enthusiasts
+Tone: Energetic and motivating
+            </code></pre>
+
+            <h3>Advanced Techniques</h3>
+
+            <h4>Delimiters for Clarity</h4>
+            <pre><code>
+Summarize the text between triple quotes in one sentence:
+
+"""
+[Long text here spanning multiple paragraphs about climate change, renewable energy, and global policy...]
+"""
+            </code></pre>
+
+            <h4>Constraints and Requirements</h4>
+            <pre><code>
+Write a Python function that:
+- Takes a list of numbers as input
+- Returns the median value
+- Handles empty lists with appropriate error
+- Includes docstring
+- Uses type hints
+- Is less than 15 lines of code
+            </code></pre>
+
+            <h4>Output Format Specification</h4>
+            <pre><code>
+Extract information and return as JSON:
+Text: "John Smith, age 35, works as a Software Engineer at Google in Mountain View"
+
+Required format:
+{
+  "name": "",
+  "age": 0,
+  "occupation": "",
+  "company": "",
+  "location": ""
+}
+            </code></pre>
+
+            <h3>Common Pitfalls</h3>
+
+            <ul>
+                <li><strong>Too Vague:</strong> "Tell me about AI" vs "Explain the difference between supervised and unsupervised learning with real-world examples"</li>
+                <li><strong>Conflicting Instructions:</strong> "Be brief but comprehensive" - choose one priority</li>
+                <li><strong>Assuming Knowledge:</strong> The model doesn't remember previous conversations (unless using chat history)</li>
+                <li><strong>No Format Guidance:</strong> Specify if you want bullet points, paragraphs, code, JSON, etc.</li>
+            </ul>
+
+            <h3>Practical Example: Code Generation</h3>
+            <pre><code>
+❌ Weak Prompt:
+"Create a login function"
+
+✅ Strong Prompt:
+"Create a Python function for user login with these requirements:
+- Function name: authenticate_user
+- Parameters: username (str), password (str), user_database (dict)
+- Returns: tuple of (success: bool, message: str)
+- Include password hashing comparison
+- Handle cases: user not found, wrong password, successful login
+- Add comprehensive docstring
+- Include type hints
+- Add 3 example uses in comments"
+            </code></pre>
+
+            <h3>Testing and Iteration</h3>
+            <pre><code>
+# Start simple
+v1: "Explain neural networks"
+
+# Add specificity
+v2: "Explain neural networks for beginners"
+
+# Add context
+v3: "I'm a web developer learning ML. Explain neural networks using analogies to web concepts"
+
+# Add format
+v4: "I'm a web developer learning ML. Explain neural networks using analogies to web concepts. Structure as: 1) Simple analogy, 2) Key components, 3) How it works, 4) Common uses"
+            </code></pre>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li><strong>Start Simple:</strong> Begin with a basic prompt, then refine</li>
+                <li><strong>Be Explicit:</strong> Don't assume the model knows what you want</li>
+                <li><strong>Use Examples:</strong> Show, don't just tell (few-shot learning)</li>
+                <li><strong>Specify Length:</strong> "In 3 sentences" or "approximately 200 words"</li>
+                <li><strong>Request Verification:</strong> "Double-check your answer" or "Verify with step-by-step reasoning"</li>
+                <li><strong>Iterate:</strong> Refine prompts based on outputs</li>
+            </ol>
+
+            <h3>Prompt Templates for Common Tasks</h3>
+
+            <h4>Code Review</h4>
+            <pre><code>
+Review this [LANGUAGE] code for:
+- Bugs and errors
+- Performance issues
+- Security vulnerabilities
+- Best practice violations
+- Readability improvements
+
+Code:
+```
+[CODE HERE]
+```
+
+Provide specific line-by-line feedback with suggestions.
+            </code></pre>
+
+            <h4>Data Analysis</h4>
+            <pre><code>
+Analyze this dataset and provide:
+1. Summary statistics
+2. Key insights (3-5 points)
+3. Potential issues or anomalies
+4. Recommendations for next steps
+
+Data: [CSV or JSON]
+            </code></pre>
+
+            <h3>Conclusion</h3>
+            <p>Prompt engineering is both an art and a science. The key is being clear, specific, and iterative. Start with basic instructions, add context and examples, specify formats, and refine based on results. As AI models improve, good prompting skills become increasingly valuable for getting accurate, useful outputs efficiently.</p>
+        `
+    },
+    {
+        id: 'b13',
+        title: 'Temperature and Sampling',
+        icon: '🌡️',
+        description: 'Controlling randomness and creativity in AI outputs.',
+        readTime: '10 min',
+        level: 'Beginner',
+        content: `
+            <h2>Temperature and Sampling: Controlling AI Creativity</h2>
+            <p>When AI generates text, it doesn't just pick the most likely next word. It uses sampling strategies to balance between predictability and creativity. Temperature and other sampling parameters are the dials that control this balance.</p>
+
+            <h3>How Text Generation Works</h3>
+            <p>At each step, the model produces a probability distribution over all possible next tokens:</p>
+            <pre><code>
+Input: "The cat sat on the"
+Model probabilities:
+- "mat": 45%
+- "floor": 25%
+- "chair": 15%
+- "roof": 8%
+- "table": 5%
+- [other tokens]: 2%
+            </code></pre>
+
+            <h3>Temperature: The Creativity Dial</h3>
+            <p>Temperature (T) controls how "confident" the model is in its predictions. It's applied to the logits (raw scores) before converting to probabilities.</p>
+
+            <h4>Formula:</h4>
+            <pre><code>
+probability(token_i) = exp(logit_i / T) / Σ exp(logit_j / T)
+            </code></pre>
+
+            <h4>Temperature Values:</h4>
+            <ul>
+                <li><strong>T = 0:</strong> Greedy decoding - always pick highest probability (deterministic)</li>
+                <li><strong>T = 0.1-0.7:</strong> Low temperature - focused, predictable, factual</li>
+                <li><strong>T = 0.8-1.0:</strong> Moderate - balanced creativity and coherence</li>
+                <li><strong>T = 1.5-2.0:</strong> High - very creative, more random, can be incoherent</li>
+            </ul>
+
+            <h3>Visual Example</h3>
+            <pre><code>
+Original probabilities: [0.5, 0.3, 0.15, 0.05]
+
+Temperature = 0.5 (Low):
+[0.65, 0.25, 0.08, 0.02]  # More peaked, less random
+
+Temperature = 1.0 (Normal):
+[0.5, 0.3, 0.15, 0.05]    # Original distribution
+
+Temperature = 2.0 (High):
+[0.35, 0.30, 0.22, 0.13]  # Flatter, more random
+            </code></pre>
+
+            <h3>Practical Examples</h3>
+
+            <h4>Temperature = 0 (Deterministic)</h4>
+            <pre><code>
+Prompt: "The capital of France is"
+Output: "Paris." (same every time)
+
+Use cases:
+- Factual questions
+- Code generation
+- Translation
+- Data extraction
+            </code></pre>
+
+            <h4>Temperature = 0.7 (Balanced)</h4>
+            <pre><code>
+Prompt: "Write a story opening:"
+Output: "The old lighthouse stood alone on the rocky cliff, its beam cutting through the morning fog. Sarah had been its keeper for three years, but today felt different."
+
+Use cases:
+- General writing
+- Conversations
+- Creative tasks with coherence needs
+            </code></pre>
+
+            <h4>Temperature = 1.5 (Creative)</h4>
+            <pre><code>
+Prompt: "Describe a sunset:"
+Output: "Tangerine whispers melted across the horizon, painting the clouds in rebellious purples and impossible golds, while the sun—that ancient clockmaker—descended into the waiting arms of twilight."
+
+Use cases:
+- Poetry
+- Brainstorming
+- Creative fiction
+- Experimental writing
+            </code></pre>
+
+            <h3>Other Sampling Parameters</h3>
+
+            <h4>Top-K Sampling</h4>
+            <p>Only consider the K most likely tokens:</p>
+            <pre><code>
+top_k = 50  # Only sample from top 50 tokens
+
+Example:
+All tokens: 50,000
+After top_k=50: Only consider 50 most likely
+Prevents very unlikely tokens from being selected
+            </code></pre>
+
+            <h4>Top-P (Nucleus) Sampling</h4>
+            <p>Sample from smallest set of tokens whose cumulative probability exceeds P:</p>
+            <pre><code>
+top_p = 0.9  # Consider tokens that make up 90% probability mass
+
+Token probabilities: [0.4, 0.3, 0.15, 0.1, 0.05, ...]
+Cumulative: [0.4, 0.7, 0.85, 0.95, ...]
+With top_p=0.9: Consider first 4 tokens only (cumsum = 0.95)
+
+Dynamic cutoff adapts to probability distribution!
+            </code></pre>
+
+            <h4>Combining Parameters</h4>
+            <pre><code>
+import openai
+
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "Write a haiku"}],
+    temperature=0.8,      # Moderate creativity
+    top_p=0.95,          # Nucleus sampling
+    max_tokens=50,       # Response length limit
+    frequency_penalty=0.3, # Reduce repetition
+    presence_penalty=0.3   # Encourage new topics
+)
+            </code></pre>
+
+            <h3>Repetition Penalties</h3>
+
+            <h4>Frequency Penalty</h4>
+            <p>Reduces probability of tokens based on how often they've appeared:</p>
+            <pre><code>
+frequency_penalty = 0.5  # Range: -2.0 to 2.0
+
+Positive: Penalize frequent tokens (reduce repetition)
+Negative: Encourage frequent tokens (increase repetition)
+            </code></pre>
+
+            <h4>Presence Penalty</h4>
+            <p>Penalizes tokens that have appeared at all (regardless of count):</p>
+            <pre><code>
+presence_penalty = 0.6  # Range: -2.0 to 2.0
+
+Positive: Encourage new topics/words
+Negative: Stay on same topics
+            </code></pre>
+
+            <h3>Parameter Combinations for Different Use Cases</h3>
+
+            <h4>Factual Q&A</h4>
+            <pre><code>
+temperature = 0.0
+top_p = 1.0
+frequency_penalty = 0.0
+presence_penalty = 0.0
+
+Goal: Deterministic, accurate, focused
+            </code></pre>
+
+            <h4>Creative Writing</h4>
+            <pre><code>
+temperature = 0.9
+top_p = 0.95
+frequency_penalty = 0.5
+presence_penalty = 0.3
+
+Goal: Creative, varied, interesting, coherent
+            </code></pre>
+
+            <h4>Code Generation</h4>
+            <pre><code>
+temperature = 0.2
+top_p = 0.95
+frequency_penalty = 0.0
+presence_penalty = 0.0
+
+Goal: Correct, consistent, following best practices
+            </code></pre>
+
+            <h4>Brainstorming</h4>
+            <pre><code>
+temperature = 1.2
+top_p = 0.98
+frequency_penalty = 0.8
+presence_penalty = 0.6
+
+Goal: Diverse ideas, avoid repetition, explore widely
+            </code></pre>
+
+            <h3>Implementing Sampling in PyTorch</h3>
+            <pre><code>
+import torch
+import torch.nn.functional as F
+
+def sample_with_temperature(logits, temperature=1.0, top_k=0, top_p=1.0):
+    """
+    Sample next token with temperature and top-k/top-p filtering
+
+    Args:
+        logits: (vocab_size,) unnormalized log probabilities
+        temperature: Sampling temperature
+        top_k: Keep only top k tokens (0 = disabled)
+        top_p: Nucleus sampling threshold
+    """
+    # Apply temperature
+    logits = logits / temperature
+
+    # Top-K filtering
+    if top_k > 0:
+        top_k_logits, top_k_indices = torch.topk(logits, top_k)
+        logits = torch.full_like(logits, float('-inf'))
+        logits[top_k_indices] = top_k_logits
+
+    # Top-P (nucleus) filtering
+    if top_p < 1.0:
+        sorted_logits, sorted_indices = torch.sort(logits, descending=True)
+        cumulative_probs = torch.cumsum(F.softmax(sorted_logits, dim=-1), dim=-1)
+
+        # Remove tokens with cumulative probability above threshold
+        sorted_indices_to_remove = cumulative_probs > top_p
+        sorted_indices_to_remove[1:] = sorted_indices_to_remove[:-1].clone()
+        sorted_indices_to_remove[0] = 0
+
+        logits[sorted_indices[sorted_indices_to_remove]] = float('-inf')
+
+    # Sample from distribution
+    probs = F.softmax(logits, dim=-1)
+    next_token = torch.multinomial(probs, num_samples=1)
+
+    return next_token
+
+# Example usage
+vocab_size = 50000
+logits = torch.randn(vocab_size)  # Model output
+
+token = sample_with_temperature(
+    logits,
+    temperature=0.8,
+    top_k=50,
+    top_p=0.95
+)
+            </code></pre>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li><strong>Start Conservative:</strong> Begin with temperature=0.7, adjust based on results</li>
+                <li><strong>Match Task to Temperature:</strong> Factual=low, Creative=high</li>
+                <li><strong>Use Top-P over Top-K:</strong> More adaptive to context</li>
+                <li><strong>Combine Parameters:</strong> Temperature + top_p + penalties work well together</li>
+                <li><strong>Test Thoroughly:</strong> Generate multiple samples to see variance</li>
+            </ol>
+
+            <h3>Common Issues</h3>
+            <ul>
+                <li><strong>Temperature too high:</strong> Incoherent, nonsensical outputs</li>
+                <li><strong>Temperature too low:</strong> Repetitive, boring, predictable</li>
+                <li><strong>High penalties:</strong> Forced topic switching, unnatural flow</li>
+                <li><strong>Low top_p:</strong> Limited vocabulary, repetitive phrases</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Temperature and sampling parameters give you fine-grained control over AI creativity and randomness. Low temperature for facts and code, high temperature for creative writing, and moderate for general use. Combine with top-p sampling and penalties to fine-tune the balance between creativity and coherence for your specific use case.</p>
+        `
+    },
+    {
+        id: 'b14',
+        title: 'Context Windows',
+        icon: '🪟',
+        description: 'Understanding AI memory limits and how to work with them.',
+        readTime: '10 min',
+        level: 'Beginner',
+        content: `
+            <h2>Context Windows: AI's Memory Limits</h2>
+            <p>Context window is the maximum amount of text (measured in tokens) that a language model can process at once. It's like the model's "working memory"—everything it can "see" and consider when generating a response.</p>
+
+            <h3>What is a Context Window?</h3>
+            <p>The context window includes:</p>
+            <ul>
+                <li><strong>Input prompt:</strong> Your question or instruction</li>
+                <li><strong>Conversation history:</strong> Previous messages (in chat applications)</li>
+                <li><strong>System prompts:</strong> Background instructions to the model</li>
+                <li><strong>Response:</strong> The model's generated output</li>
+            </ul>
+
+            <h3>Context Window Sizes</h3>
+            <pre><code>
+Model Comparison:
+
+GPT-3.5 Turbo:      4,096 tokens  (~3,000 words)
+GPT-3.5 Turbo-16k: 16,384 tokens  (~12,000 words)
+GPT-4:              8,192 tokens  (~6,000 words)
+GPT-4-32k:         32,768 tokens  (~24,000 words)
+GPT-4 Turbo:      128,000 tokens  (~96,000 words)
+Claude 2:         100,000 tokens  (~75,000 words)
+Claude 3:         200,000 tokens  (~150,000 words)
+Gemini 1.5 Pro: 1,000,000 tokens  (~700,000 words)
+            </code></pre>
+
+            <h3>Why Context Windows Matter</h3>
+
+            <h4>1. Conversation Length</h4>
+            <pre><code>
+With 4K context:
+- Short conversations (10-15 exchanges)
+- Loses early messages when limit reached
+
+With 100K context:
+- Very long conversations (hundreds of exchanges)
+- Remember entire conversation history
+            </code></pre>
+
+            <h4>2. Document Processing</h4>
+            <pre><code>
+Task: Analyze a research paper
+
+4K tokens:  Can handle ~3 pages
+16K tokens: Can handle ~12 pages
+100K tokens: Can handle entire book chapters
+1M tokens: Can process multiple books
+            </code></pre>
+
+            <h4>3. Code Analysis</h4>
+            <pre><code>
+4K context:   Single file (~200 lines)
+32K context:  Multiple files (~2000 lines)
+100K context: Entire small codebase
+            </code></pre>
+
+            <h3>What Happens When You Exceed the Limit?</h3>
+
+            <h4>Option 1: Truncation (Most Common)</h4>
+            <pre><code>
+# Oldest messages are dropped
+Conversation: [msg1, msg2, msg3, msg4, msg5]
+Context limit reached → [msg3, msg4, msg5]
+
+# Model forgets msg1 and msg2!
+            </code></pre>
+
+            <h4>Option 2: Error</h4>
+            <pre><code>
+{
+  "error": {
+    "message": "This model's maximum context length is 4096 tokens. However, your messages resulted in 5234 tokens.",
+    "type": "invalid_request_error"
+  }
+}
+            </code></pre>
+
+            <h3>Managing Context Windows</h3>
+
+            <h4>1. Count Tokens Before Sending</h4>
+            <pre><code>
+import tiktoken
+
+def count_tokens(text, model="gpt-4"):
+    encoding = tiktoken.encoding_for_model(model)
+    return len(encoding.encode(text))
+
+text = "Your long document here..."
+token_count = count_tokens(text)
+
+max_tokens = 8192  # GPT-4 limit
+remaining = max_tokens - token_count
+
+print(f"Text uses {token_count} tokens")
+print(f"Room for {remaining} tokens in response")
+            </code></pre>
+
+            <h4>2. Sliding Window for Long Conversations</h4>
+            <pre><code>
+def manage_conversation(messages, max_tokens=4096):
+    """Keep conversation within token limit"""
+    total_tokens = 0
+    kept_messages = []
+
+    # Always keep system message
+    if messages[0]["role"] == "system":
+        kept_messages.append(messages[0])
+        total_tokens += count_tokens(messages[0]["content"])
+
+    # Add messages from newest to oldest
+    for msg in reversed(messages[1:]):
+        msg_tokens = count_tokens(msg["content"])
+        if total_tokens + msg_tokens < max_tokens - 500:  # Reserve 500 for response
+            kept_messages.insert(1, msg)  # Insert after system message
+            total_tokens += msg_tokens
+        else:
+            break
+
+    return kept_messages
+
+# Usage
+conversation = [
+    {"role": "system", "content": "You are a helpful assistant"},
+    {"role": "user", "content": "Message 1"},
+    {"role": "assistant", "content": "Response 1"},
+    # ... many more messages
+]
+
+managed = manage_conversation(conversation, max_tokens=4096)
+            </code></pre>
+
+            <h4>3. Summarization for Long Documents</h4>
+            <pre><code>
+def process_long_document(document, chunk_size=3000):
+    """Process document in chunks with summarization"""
+
+    # Split into chunks
+    chunks = split_into_chunks(document, chunk_size)
+    summaries = []
+
+    # Summarize each chunk
+    for chunk in chunks:
+        summary = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{
+                "role": "user",
+                "content": f"Summarize this concisely:\n\n{chunk}"
+            }]
+        )
+        summaries.append(summary.choices[0].message.content)
+
+    # Final synthesis
+    combined_summary = "\n\n".join(summaries)
+    final_analysis = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{
+            "role": "user",
+            "content": f"Based on these summaries, provide a comprehensive analysis:\n\n{combined_summary}"
+        }]
+    )
+
+    return final_analysis.choices[0].message.content
+            </code></pre>
+
+            <h4>4. Retrieval-Augmented Generation (RAG)</h4>
+            <pre><code>
+# Instead of sending entire document:
+# 1. Split document into chunks
+# 2. Create embeddings for chunks
+# 3. Store in vector database
+# 4. Retrieve only relevant chunks for query
+
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Index document
+chunks = split_document(large_document, chunk_size=500)
+embeddings = model.encode(chunks)
+# Store in vector DB (Pinecone, ChromaDB, etc.)
+
+# Query time
+query = "What does the document say about X?"
+query_embedding = model.encode(query)
+# Retrieve top 5 most relevant chunks
+relevant_chunks = vector_db.search(query_embedding, top_k=5)
+
+# Only send relevant context to LLM
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[{
+        "role": "user",
+        "content": f"Context:\n{relevant_chunks}\n\nQuestion: {query}"
+    }]
+)
+            </code></pre>
+
+            <h3>Strategies for Different Use Cases</h3>
+
+            <h4>Long Conversations</h4>
+            <ul>
+                <li>Keep system prompt + recent N messages</li>
+                <li>Periodically summarize old messages</li>
+                <li>Store full history externally, only send summary + recent</li>
+            </ul>
+
+            <h4>Document Analysis</h4>
+            <ul>
+                <li>Use models with large context (Claude, Gemini)</li>
+                <li>Implement RAG for precise retrieval</li>
+                <li>Chunk-summarize-synthesize pipeline</li>
+            </ul>
+
+            <h4>Code Review</h4>
+            <ul>
+                <li>Send only relevant files/functions</li>
+                <li>Provide file structure + specific code sections</li>
+                <li>Use multiple API calls for different parts</li>
+            </ul>
+
+            <h3>Monitoring Context Usage</h3>
+            <pre><code>
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=messages
+)
+
+# Check token usage
+usage = response['usage']
+print(f"Prompt tokens: {usage['prompt_tokens']}")
+print(f"Completion tokens: {usage['completion_tokens']}")
+print(f"Total tokens: {usage['total_tokens']}")
+
+# Warning if approaching limit
+if usage['total_tokens'] > 7000:  # GPT-4 8K limit
+    print("⚠️ Approaching context limit!")
+            </code></pre>
+
+            <h3>Cost Implications</h3>
+            <pre><code>
+# Pricing example (GPT-4)
+# Input: $0.03 per 1K tokens
+# Output: $0.06 per 1K tokens
+
+Long context = more tokens = higher cost
+
+Example:
+- 4K input + 500 output = $0.15
+- 30K input + 500 output = $0.93
+
+Use larger contexts only when necessary!
+            </code></pre>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li><strong>Choose Right Model:</strong> Match context needs to model capability</li>
+                <li><strong>Monitor Usage:</strong> Track token counts in responses</li>
+                <li><strong>Implement Truncation:</strong> Handle gracefully when limits approached</li>
+                <li><strong>Use RAG:</strong> For large knowledge bases, retrieve selectively</li>
+                <li><strong>Summarize Proactively:</strong> Compress old conversation history</li>
+                <li><strong>Reserve Space:</strong> Leave room for response (500-1000 tokens)</li>
+            </ol>
+
+            <h3>Conclusion</h3>
+            <p>Context windows define what AI can "remember" and process. Understanding these limits helps you design better applications, manage costs, and ensure your AI systems work reliably. Use the right model for your needs, implement smart context management, and leverage techniques like RAG for large-scale document processing.</p>
+        `
+    },
+    {
+        id: 'b15',
+        title: 'Model Parameters',
+        icon: '⚖️',
+        description: 'What model size means and why it matters.',
+        readTime: '11 min',
+        level: 'Beginner',
+        content: `
+            <h2>Model Parameters: Size Matters (But Not Always)</h2>
+            <p>When you hear "GPT-4 has 1.76 trillion parameters" or "LLaMA 7B", those numbers refer to the model's parameters—the learned weights that enable AI to function. Understanding parameters helps you choose the right model for your needs.</p>
+
+            <h3>What are Parameters?</h3>
+            <p>Parameters are the numbers (weights and biases) that a neural network learns during training. Think of them as the "knowledge" stored in the model.</p>
+
+            <pre><code>
+Simple example:
+y = w₁*x₁ + w₂*x₂ + b
+
+This has 3 parameters: w₁, w₂, b
+
+Modern LLMs:
+- Billions to trillions of these weights
+- Organized in layers (attention, feed-forward, etc.)
+- Each parameter is typically a 16-bit or 32-bit number
+            </code></pre>
+
+            <h3>Parameter Count Examples</h3>
+            <pre><code>
+Small Models:
+- DistilBERT: 66M parameters
+- GPT-2 Small: 117M parameters
+- BERT Base: 110M parameters
+
+Medium Models:
+- GPT-2 Medium: 345M parameters
+- BERT Large: 340M parameters
+- RoBERTa Base: 125M parameters
+
+Large Models:
+- GPT-2 Large: 774M parameters
+- GPT-3 Small: 1.3B parameters
+- LLaMA 7B: 7B parameters
+
+Huge Models:
+- GPT-3: 175B parameters
+- LLaMA 70B: 70B parameters
+- GPT-4: ~1.76T parameters (estimated)
+- Gemini Ultra: Unknown (very large)
+            </code></pre>
+
+            <h3>What More Parameters Enable</h3>
+
+            <h4>1. Better Understanding</h4>
+            <p>Larger models can capture more nuanced patterns:</p>
+            <pre><code>
+Small model (100M):
+Q: "What's the capital of France?"
+A: "Paris" ✓
+
+Q: "Explain quantum entanglement"
+A: "Particles linked..." (basic, may be inaccurate)
+
+Large model (175B):
+Q: "Explain quantum entanglement"
+A: "When two particles become entangled, measuring one instantaneously affects the other regardless of distance. This apparent 'spooky action at a distance' (Einstein's term) doesn't violate relativity because no information travels faster than light..." ✓ (detailed, accurate)
+            </code></pre>
+
+            <h4>2. Emergent Capabilities</h4>
+            <p>Certain abilities only appear at scale:</p>
+            <ul>
+                <li><strong>Few-shot learning:</strong> Learn from examples (emerges ~13B parameters)</li>
+                <li><strong>Chain-of-thought reasoning:</strong> Multi-step logic (emerges ~100B)</li>
+                <li><strong>Code understanding:</strong> Complex programming (scales with size)</li>
+            </ul>
+
+            <h4>3. Better Generalization</h4>
+            <p>Larger models handle edge cases and rare scenarios better</p>
+
+            <h3>Parameter Count vs Memory Usage</h3>
+            <pre><code>
+Memory required = Parameters × Bytes_per_parameter
+
+Precision formats:
+- FP32 (32-bit): 4 bytes per parameter
+- FP16 (16-bit): 2 bytes per parameter
+- INT8 (8-bit): 1 byte per parameter
+- INT4 (4-bit): 0.5 bytes per parameter
+
+Examples:
+7B model in FP16:  7B × 2 bytes = 14 GB
+70B model in FP16: 70B × 2 bytes = 140 GB
+175B model in INT8: 175B × 1 byte = 175 GB
+
+Plus: Overhead for activations, gradients during training!
+            </code></pre>
+
+            <h3>Inference Requirements</h3>
+            <pre><code>
+Model Size | FP16 Memory | Recommended GPU
+-----------|-------------|----------------
+7B         | 14 GB       | RTX 4090 (24GB)
+13B        | 26 GB       | A100 (40GB)
+70B        | 140 GB      | 4× A100 (40GB each)
+175B       | 350 GB      | 8× A100 or cloud API
+            </code></pre>
+
+            <h3>Training Requirements</h3>
+            <p>Training needs 3-4x more memory than inference:</p>
+            <pre><code>
+For each parameter, you need:
+- Model weights
+- Gradients
+- Optimizer states (Adam: 2 copies of parameters)
+
+7B model training:
+- Weights: 14 GB
+- Gradients: 14 GB
+- Optimizer: 28 GB
+Total: ~56 GB minimum
+
+This is why training large models requires:
+- Multiple high-end GPUs
+- Techniques like gradient checkpointing
+- Sometimes model parallelism
+            </code></pre>
+
+            <h3>Does Bigger Always Mean Better?</h3>
+
+            <h4>Not Necessarily!</h4>
+            <pre><code>
+Small model advantages:
+✓ Faster inference
+✓ Lower cost
+✓ Can run locally
+✓ Lower latency
+✓ Easier to fine-tune
+
+Large model advantages:
+✓ Better at complex tasks
+✓ More knowledgeable
+✓ Better reasoning
+✓ Handles rare cases
+✓ More versatile
+            </code></pre>
+
+            <h4>Task-Dependent Performance</h4>
+            <pre><code>
+Simple classification:
+- 100M model: 95% accuracy
+- 175B model: 96% accuracy
+Difference: 1% for 1750x more parameters!
+
+Complex reasoning:
+- 100M model: 45% accuracy
+- 175B model: 85% accuracy
+Difference: 40% - Worth it!
+            </code></pre>
+
+            <h3>Efficient Alternatives to Huge Models</h3>
+
+            <h4>1. Distillation</h4>
+            <p>Train small model to mimic large model:</p>
+            <pre><code>
+DistilBERT: 66M parameters
+- 40% smaller than BERT
+- 97% of BERT's performance
+- 60% faster
+
+Teacher-Student training:
+Large model (teacher) generates predictions
+Small model (student) learns to match them
+Result: Compact model with similar quality
+            </code></pre>
+
+            <h4>2. Quantization</h4>
+            <p>Reduce precision of parameters:</p>
+            <pre><code>
+7B model:
+- FP16: 14 GB, 100% quality
+- INT8: 7 GB, 98% quality
+- INT4: 3.5 GB, 95% quality
+
+70B model:
+- FP16: 140 GB (needs 4× A100)
+- INT4: 35 GB (fits on 1× A100!)
+            </code></pre>
+
+            <h4>3. Mixture of Experts (MoE)</h4>
+            <p>Only activate subset of parameters:</p>
+            <pre><code>
+GPT-4 (rumored MoE):
+- Total: 1.76T parameters
+- Active per token: ~220B parameters
+- Benefit: Huge capacity, manageable inference cost
+            </code></pre>
+
+            <h3>Choosing the Right Model Size</h3>
+
+            <h4>Decision Framework:</h4>
+            <pre><code>
+Use Small Models (100M-1B) when:
+- Task is well-defined and narrow
+- Speed matters more than quality
+- Running on device/edge
+- Budget constrained
+- Fine-tuning for specific domain
+
+Use Medium Models (1B-13B) when:
+- Balanced quality and speed needed
+- General purpose applications
+- Have moderate GPU resources
+- Self-hosting requirements
+
+Use Large Models (70B-175B+) when:
+- Complex reasoning required
+- Maximum quality needed
+- Few-shot learning important
+- Can afford cloud API costs
+- Handling diverse, unpredictable tasks
+            </code></pre>
+
+            <h3>Practical Examples</h3>
+
+            <h4>Sentiment Analysis</h4>
+            <pre><code>
+Good choice: 100M-1B model
+- Simple classification task
+- Can fine-tune on your data
+- Fast, cheap inference
+- 95%+ accuracy achievable
+
+Example: DistilBERT fine-tuned
+- 66M parameters
+- 10ms inference time
+- $0.0001 per request (self-hosted)
+            </code></pre>
+
+            <h4>Code Generation</h4>
+            <pre><code>
+Good choice: 13B-70B model
+- Complex task needing understanding
+- Benefits from large knowledge
+- Worth the extra cost/time
+
+Example: CodeLlama 34B
+- 34B parameters
+- High-quality code generation
+- Can run on single A100
+            </code></pre>
+
+            <h4>General Chatbot</h4>
+            <pre><code>
+Good choice: API (GPT-4, Claude)
+- Needs broad knowledge
+- Varied user queries
+- Quality critical
+- Updates handled by provider
+
+Alternative: LLaMA 70B self-hosted
+- If data privacy crucial
+- Have infrastructure
+- Can manage updates
+            </code></pre>
+
+            <h3>Cost Comparison</h3>
+            <pre><code>
+Running 7B model (self-hosted):
+- GPU: RTX 4090 ($1,600)
+- Power: ~$50/month
+- Total first year: ~$2,200
+- Unlimited requests!
+
+Using GPT-4 API:
+- $0.03 per 1K tokens (input)
+- 1M requests × 500 tokens = $15,000/month
+- Total first year: $180,000
+
+Break-even: ~150K requests for self-hosted
+
+But: GPT-4 is much more capable!
+            </code></pre>
+
+            <h3>Future Trends</h3>
+            <ul>
+                <li><strong>Sparse Models:</strong> Trillion parameters, billion active</li>
+                <li><strong>Efficient Architectures:</strong> Better performance per parameter</li>
+                <li><strong>Specialized Models:</strong> Smaller, task-optimized</li>
+                <li><strong>On-Device AI:</strong> Billions of parameters on phones</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Model parameters indicate capacity but don't tell the whole story. Consider your specific needs: accuracy requirements, latency constraints, budget, and infrastructure. Often, a well-fine-tuned smaller model outperforms a generic larger one for specific tasks. The key is matching model size to your actual needs, not just choosing the biggest available.</p>
+        `
+    },
     { id: 'b16', title: 'Supervised vs Unsupervised Learning', icon: '📚', description: 'Different approaches to teaching AI systems.', readTime: '13 min' },
     { id: 'b17', title: 'Data Preprocessing', icon: '🧹', description: 'Preparing data for AI training and inference.', readTime: '14 min' },
     { id: 'b18', title: 'Overfitting and Underfitting', icon: '⚖️', description: 'Finding the right balance in model complexity.', readTime: '13 min' },
