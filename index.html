@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAI Academy - Master Generative AI from Beginner to Advanced</title>
+    <meta name="description" content="Comprehensive learning platform for Generative AI covering 100+ concepts, tutorials, FAQs, and interview questions">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Loading GenAI Academy...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <span class="logo-text">GenAI Academy</span>
+            </div>
+        </div>
+        <div class="header-center">
+            <div class="search-bar">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search 100+ GenAI concepts..." class="search-input">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="header-btn" id="themeToggle" title="Toggle Theme">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 3V1M10 19v-2M17 10h2M1 10h2M15.66 15.66l1.41 1.41M2.93 2.93l1.41 1.41M15.66 4.34l1.41-1.41M2.93 17.07l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </button>
+            <button class="header-btn" id="progressBtn" title="Your Progress">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M10 5v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="progress-badge" id="progressBadge">0%</span>
+            </button>
+            <button class="header-btn" id="bookmarksBtn" title="Bookmarks">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 2h10a2 2 0 0 1 2 2v16l-7-4-7 4V4a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Getting Started</div>
+                <a href="#home" class="nav-item active" data-page="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="#roadmap" class="nav-item" data-page="roadmap">
+                    <span class="nav-icon">🗺️</span>
+                    <span class="nav-text">Learning Roadmap</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Concepts</div>
+                <a href="#beginner" class="nav-item" data-page="beginner">
+                    <span class="nav-icon">🌱</span>
+                    <span class="nav-text">Beginner (30)</span>
+                    <span class="nav-badge">Easy</span>
+                </a>
+                <a href="#intermediate" class="nav-item" data-page="intermediate">
+                    <span class="nav-icon">🚀</span>
+                    <span class="nav-text">Intermediate (40)</span>
+                    <span class="nav-badge badge-orange">Medium</span>
+                </a>
+                <a href="#advanced" class="nav-item" data-page="advanced">
+                    <span class="nav-icon">⚡</span>
+                    <span class="nav-text">Advanced (35)</span>
+                    <span class="nav-badge badge-red">Hard</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Learn & Practice</div>
+                <a href="#tutorials" class="nav-item" data-page="tutorials">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">Tutorials</span>
+                </a>
+                <a href="#exercises" class="nav-item" data-page="exercises">
+                    <span class="nav-icon">💪</span>
+                    <span class="nav-text">Exercises</span>
+                </a>
+                <a href="#quizzes" class="nav-item" data-page="quizzes">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-text">Quizzes</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Resources</div>
+                <a href="#faq" class="nav-item" data-page="faq">
+                    <span class="nav-icon">❓</span>
+                    <span class="nav-text">FAQ</span>
+                </a>
+                <a href="#interview" class="nav-item" data-page="interview">
+                    <span class="nav-icon">💼</span>
+                    <span class="nav-text">Interview Questions</span>
+                </a>
+                <a href="#glossary" class="nav-item" data-page="glossary">
+                    <span class="nav-icon">📖</span>
+                    <span class="nav-text">Glossary</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="progress-card">
+                <div class="progress-card-title">Your Progress</div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="sidebarProgressBar" style="width: 0%"></div>
+                </div>
+                <div class="progress-stats">
+                    <span><span id="completedCount">0</span>/105 completed</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Content will be dynamically loaded here -->
+    </main>
+
+    <!-- Modal for Concept Details -->
+    <div class="modal" id="conceptModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Progress Modal -->
+    <div class="modal" id="progressModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="progressModalClose">&times;</button>
+            <div id="progressModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Bookmarks Modal -->
+    <div class="modal" id="bookmarksModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="bookmarksModalClose">&times;</button>
+            <div id="bookmarksModalBody"></div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

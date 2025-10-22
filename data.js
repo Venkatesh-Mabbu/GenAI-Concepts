@@ -1,0 +1,1488 @@
+// ===== GenAI Concepts Database =====
+const genAIConcepts = {
+    beginner: [
+        {
+            id: 'b1',
+            title: 'What is Artificial Intelligence?',
+            icon: '🤖',
+            description: 'Understanding the fundamentals of AI and its various branches including machine learning, deep learning, and generative AI.',
+            content: `
+                <h2>Introduction to Artificial Intelligence</h2>
+                <p>Artificial Intelligence (AI) represents one of the most transformative technological developments of our era. At its core, AI is the simulation of human intelligence processes by machines, particularly computer systems. These processes include learning, reasoning, problem-solving, perception, and language understanding.</p>
+
+                <h3>The Evolution of AI</h3>
+                <p>The journey of AI began in the 1950s when Alan Turing proposed the famous "Turing Test" to measure machine intelligence. Since then, AI has evolved through several phases:</p>
+                <ul>
+                    <li><strong>Symbolic AI (1950s-1980s):</strong> Early AI systems relied on explicitly programmed rules and symbolic logic to solve problems.</li>
+                    <li><strong>Machine Learning Era (1980s-2010s):</strong> Systems began learning from data rather than following hardcoded rules.</li>
+                    <li><strong>Deep Learning Revolution (2010s):</strong> Neural networks with multiple layers enabled breakthrough performance in computer vision and natural language processing.</li>
+                    <li><strong>Generative AI Era (2020s):</strong> Models capable of creating new content, from text to images to music, have emerged.</li>
+                </ul>
+
+                <h3>Types of AI</h3>
+                <p>AI can be categorized into three main types based on capabilities:</p>
+                <ul>
+                    <li><strong>Narrow AI (Weak AI):</strong> Designed to perform specific tasks, such as facial recognition, voice assistants, or recommendation systems. This is the most common form of AI today.</li>
+                    <li><strong>General AI (Strong AI):</strong> Hypothetical AI that possesses human-like intelligence and can understand, learn, and apply knowledge across various domains.</li>
+                    <li><strong>Superintelligent AI:</strong> A theoretical form of AI that would surpass human intelligence in all aspects.</li>
+                </ul>
+
+                <h3>Key Branches of AI</h3>
+                <p>Modern AI encompasses several interconnected fields:</p>
+                <ul>
+                    <li><strong>Machine Learning:</strong> Algorithms that learn patterns from data without explicit programming.</li>
+                    <li><strong>Natural Language Processing:</strong> Enabling computers to understand, interpret, and generate human language.</li>
+                    <li><strong>Computer Vision:</strong> Teaching machines to interpret and understand visual information.</li>
+                    <li><strong>Robotics:</strong> Creating intelligent machines that can interact with the physical world.</li>
+                    <li><strong>Expert Systems:</strong> AI systems that emulate human expert decision-making in specific domains.</li>
+                </ul>
+
+                <h3>How AI Works</h3>
+                <p>At a fundamental level, AI systems work through:</p>
+                <ol>
+                    <li><strong>Data Collection:</strong> Gathering relevant information from various sources.</li>
+                    <li><strong>Data Processing:</strong> Cleaning and organizing data for analysis.</li>
+                    <li><strong>Pattern Recognition:</strong> Identifying trends and relationships in data.</li>
+                    <li><strong>Learning:</strong> Adjusting algorithms based on patterns discovered.</li>
+                    <li><strong>Prediction/Decision Making:</strong> Using learned patterns to make decisions or predictions on new data.</li>
+                </ol>
+
+                <h3>Real-World Applications</h3>
+                <p>AI has transformed numerous industries:</p>
+                <ul>
+                    <li><strong>Healthcare:</strong> Disease diagnosis, drug discovery, personalized treatment plans</li>
+                    <li><strong>Finance:</strong> Fraud detection, algorithmic trading, risk assessment</li>
+                    <li><strong>Transportation:</strong> Autonomous vehicles, route optimization, traffic management</li>
+                    <li><strong>Entertainment:</strong> Content recommendations, game AI, creative tools</li>
+                    <li><strong>Customer Service:</strong> Chatbots, virtual assistants, automated support systems</li>
+                </ul>
+
+                <h3>Ethical Considerations</h3>
+                <p>As AI becomes more prevalent, several ethical concerns must be addressed:</p>
+                <ul>
+                    <li>Privacy and data security</li>
+                    <li>Algorithmic bias and fairness</li>
+                    <li>Job displacement and economic impact</li>
+                    <li>Transparency and explainability</li>
+                    <li>Accountability and responsibility</li>
+                </ul>
+
+                <h3>The Future of AI</h3>
+                <p>The future of AI holds immense promise, with ongoing research focusing on making AI more efficient, accessible, and aligned with human values. Key areas of development include:</p>
+                <ul>
+                    <li>More energy-efficient AI models</li>
+                    <li>Improved explainability and interpretability</li>
+                    <li>Better handling of edge cases and rare scenarios</li>
+                    <li>Enhanced human-AI collaboration</li>
+                    <li>Development of more general-purpose AI systems</li>
+                </ul>
+
+                <h3>Getting Started with AI</h3>
+                <p>For those interested in learning AI, the recommended path includes:</p>
+                <ol>
+                    <li>Strong foundation in mathematics (linear algebra, calculus, statistics)</li>
+                    <li>Programming skills (Python is the most common language)</li>
+                    <li>Understanding of algorithms and data structures</li>
+                    <li>Hands-on experience with AI frameworks and tools</li>
+                    <li>Continuous learning through projects and research</li>
+                </ol>
+
+                <h3>Conclusion</h3>
+                <p>Artificial Intelligence is not just a technological advancement; it's a fundamental shift in how we interact with technology and solve complex problems. As we continue to develop and refine AI systems, understanding its principles, capabilities, and limitations becomes increasingly important for everyone, not just technologists. The journey into AI is an exciting one, filled with opportunities to innovate and make meaningful contributions to society.</p>
+            `,
+            readTime: '15 min',
+            level: 'Beginner'
+        },
+        {
+            id: 'b2',
+            title: 'Introduction to Machine Learning',
+            icon: '🧠',
+            description: 'Learn the basics of machine learning, including supervised, unsupervised, and reinforcement learning paradigms.',
+            content: `
+                <h2>Understanding Machine Learning</h2>
+                <p>Machine Learning (ML) is a subset of artificial intelligence that focuses on creating systems that can learn and improve from experience without being explicitly programmed. It's the technology behind many of today's most exciting applications, from recommendation systems to autonomous vehicles.</p>
+
+                <h3>What Makes Machine Learning Different?</h3>
+                <p>Traditional programming requires explicit instructions for every possible scenario. Machine Learning, however, enables computers to learn patterns from data and make decisions based on those patterns. This fundamental shift allows us to solve problems that would be impossible or impractical to solve with traditional programming.</p>
+
+                <h3>The Three Main Types of Machine Learning</h3>
+
+                <h4>1. Supervised Learning</h4>
+                <p>Supervised learning is the most common type of machine learning. In this approach, the algorithm learns from labeled training data, making predictions based on input-output pairs.</p>
+                <ul>
+                    <li><strong>Classification:</strong> Predicting discrete categories (e.g., spam or not spam, cat or dog)</li>
+                    <li><strong>Regression:</strong> Predicting continuous values (e.g., house prices, temperature)</li>
+                </ul>
+                <p><strong>Common Algorithms:</strong> Linear Regression, Logistic Regression, Decision Trees, Random Forests, Support Vector Machines (SVM), Neural Networks</p>
+
+                <h4>2. Unsupervised Learning</h4>
+                <p>Unsupervised learning works with unlabeled data, finding hidden patterns and structures without predefined categories.</p>
+                <ul>
+                    <li><strong>Clustering:</strong> Grouping similar data points together (e.g., customer segmentation)</li>
+                    <li><strong>Dimensionality Reduction:</strong> Reducing the number of features while preserving important information</li>
+                    <li><strong>Anomaly Detection:</strong> Identifying unusual patterns in data</li>
+                </ul>
+                <p><strong>Common Algorithms:</strong> K-Means, Hierarchical Clustering, DBSCAN, Principal Component Analysis (PCA), Autoencoders</p>
+
+                <h4>3. Reinforcement Learning</h4>
+                <p>Reinforcement learning involves an agent learning to make decisions by interacting with an environment, receiving rewards or penalties for actions taken.</p>
+                <p><strong>Key Concepts:</strong> Agent, Environment, State, Action, Reward, Policy</p>
+                <p><strong>Applications:</strong> Game playing, robotics, autonomous vehicles, resource management</p>
+
+                <h3>The Machine Learning Workflow</h3>
+                <ol>
+                    <li><strong>Problem Definition:</strong> Clearly define what you're trying to predict or understand</li>
+                    <li><strong>Data Collection:</strong> Gather relevant, high-quality data</li>
+                    <li><strong>Data Exploration & Preprocessing:</strong> Understand your data, handle missing values, normalize features</li>
+                    <li><strong>Feature Engineering:</strong> Create meaningful features that help the model learn</li>
+                    <li><strong>Model Selection:</strong> Choose appropriate algorithms based on your problem</li>
+                    <li><strong>Training:</strong> Feed data to the algorithm so it can learn patterns</li>
+                    <li><strong>Evaluation:</strong> Assess model performance using appropriate metrics</li>
+                    <li><strong>Hyperparameter Tuning:</strong> Optimize model parameters for better performance</li>
+                    <li><strong>Deployment:</strong> Put the model into production</li>
+                    <li><strong>Monitoring & Maintenance:</strong> Track performance and update as needed</li>
+                </ol>
+
+                <h3>Key Concepts in Machine Learning</h3>
+
+                <h4>Overfitting and Underfitting</h4>
+                <p><strong>Overfitting:</strong> When a model learns the training data too well, including its noise and outliers, performing poorly on new data.</p>
+                <p><strong>Underfitting:</strong> When a model is too simple to capture the underlying patterns in the data.</p>
+                <p><strong>The Goal:</strong> Find the right balance (bias-variance tradeoff) for optimal generalization.</p>
+
+                <h4>Training, Validation, and Test Sets</h4>
+                <ul>
+                    <li><strong>Training Set:</strong> Data used to train the model (typically 60-80%)</li>
+                    <li><strong>Validation Set:</strong> Data used to tune hyperparameters and prevent overfitting (10-20%)</li>
+                    <li><strong>Test Set:</strong> Data used to evaluate final model performance (10-20%)</li>
+                </ul>
+
+                <h4>Evaluation Metrics</h4>
+                <p><strong>For Classification:</strong></p>
+                <ul>
+                    <li>Accuracy: Percentage of correct predictions</li>
+                    <li>Precision: True positives / (True positives + False positives)</li>
+                    <li>Recall: True positives / (True positives + False negatives)</li>
+                    <li>F1-Score: Harmonic mean of precision and recall</li>
+                    <li>ROC-AUC: Area under the receiver operating characteristic curve</li>
+                </ul>
+                <p><strong>For Regression:</strong></p>
+                <ul>
+                    <li>Mean Absolute Error (MAE)</li>
+                    <li>Mean Squared Error (MSE)</li>
+                    <li>Root Mean Squared Error (RMSE)</li>
+                    <li>R-squared (R²)</li>
+                </ul>
+
+                <h3>Popular Machine Learning Libraries</h3>
+                <ul>
+                    <li><strong>Scikit-learn:</strong> Comprehensive library for traditional ML algorithms</li>
+                    <li><strong>TensorFlow:</strong> Google's framework for deep learning</li>
+                    <li><strong>PyTorch:</strong> Facebook's flexible deep learning framework</li>
+                    <li><strong>Keras:</strong> High-level neural networks API</li>
+                    <li><strong>XGBoost:</strong> Optimized gradient boosting library</li>
+                </ul>
+
+                <h3>Real-World Applications</h3>
+                <ul>
+                    <li><strong>Image Recognition:</strong> Facebook's photo tagging, Google Photos organization</li>
+                    <li><strong>Natural Language Processing:</strong> Siri, Alexa, Google Translate</li>
+                    <li><strong>Recommendation Systems:</strong> Netflix, Amazon, Spotify recommendations</li>
+                    <li><strong>Fraud Detection:</strong> Credit card fraud detection, insurance claim analysis</li>
+                    <li><strong>Medical Diagnosis:</strong> Cancer detection, disease prediction</li>
+                    <li><strong>Autonomous Vehicles:</strong> Self-driving cars, drones</li>
+                </ul>
+
+                <h3>Best Practices</h3>
+                <ol>
+                    <li>Start with simple models before moving to complex ones</li>
+                    <li>Ensure you have enough quality data</li>
+                    <li>Use cross-validation for robust evaluation</li>
+                    <li>Feature engineering often matters more than algorithm choice</li>
+                    <li>Regularization helps prevent overfitting</li>
+                    <li>Always validate on unseen data</li>
+                    <li>Document your experiments and results</li>
+                    <li>Consider computational costs and deployment constraints</li>
+                </ol>
+
+                <h3>Common Challenges</h3>
+                <ul>
+                    <li><strong>Data Quality:</strong> Missing values, outliers, noise</li>
+                    <li><strong>Imbalanced Datasets:</strong> When some classes have very few examples</li>
+                    <li><strong>Feature Selection:</strong> Choosing the most relevant features</li>
+                    <li><strong>Interpretability:</strong> Understanding why models make certain predictions</li>
+                    <li><strong>Scalability:</strong> Handling large datasets efficiently</li>
+                </ul>
+
+                <h3>The Path Forward</h3>
+                <p>Machine Learning is a vast field that combines computer science, statistics, and domain expertise. Success in ML requires:</p>
+                <ul>
+                    <li>Strong mathematical foundation</li>
+                    <li>Programming proficiency</li>
+                    <li>Understanding of algorithms and their limitations</li>
+                    <li>Practical experience with real-world datasets</li>
+                    <li>Continuous learning and experimentation</li>
+                </ul>
+
+                <p>As you progress in your machine learning journey, you'll discover that the field is constantly evolving, with new algorithms, techniques, and applications emerging regularly. The key is to build a strong foundation in the fundamentals while staying curious and adaptable to new developments.</p>
+            `,
+            readTime: '18 min',
+            level: 'Beginner'
+        },
+        {
+            id: 'b3',
+            title: 'What is Generative AI?',
+            icon: '✨',
+            description: 'Explore the exciting world of generative AI and how it creates new content from learned patterns.',
+            content: `
+                <h2>Understanding Generative AI</h2>
+                <p>Generative AI represents a paradigm shift in artificial intelligence, moving from systems that merely recognize and classify to systems that create. It's the technology behind tools like ChatGPT, DALL-E, Midjourney, and countless other applications that are transforming how we create content, solve problems, and interact with technology.</p>
+
+                <h3>What Makes AI "Generative"?</h3>
+                <p>Generative AI refers to artificial intelligence systems that can create new content—whether text, images, audio, video, or code—that is similar to but distinct from the data they were trained on. Unlike traditional AI that focuses on analysis and prediction, generative AI synthesizes new outputs.</p>
+
+                <h3>The Evolution to Generative AI</h3>
+                <p>The journey to modern generative AI includes several key milestones:</p>
+                <ul>
+                    <li><strong>Early Neural Networks (1980s-1990s):</strong> Basic networks that could learn simple patterns</li>
+                    <li><strong>Autoencoders (2000s):</strong> Networks that learned to compress and reconstruct data</li>
+                    <li><strong>GANs - Generative Adversarial Networks (2014):</strong> Revolutionary architecture where two networks compete</li>
+                    <li><strong>Transformer Architecture (2017):</strong> Attention mechanisms that transformed NLP</li>
+                    <li><strong>Large Language Models (2018-present):</strong> GPT series, BERT, and others that can understand and generate human-like text</li>
+                    <li><strong>Diffusion Models (2020-present):</strong> New approach powering state-of-the-art image generation</li>
+                </ul>
+
+                <h3>Core Technologies Behind Generative AI</h3>
+
+                <h4>1. Generative Adversarial Networks (GANs)</h4>
+                <p>GANs consist of two neural networks competing against each other:</p>
+                <ul>
+                    <li><strong>Generator:</strong> Creates fake data trying to fool the discriminator</li>
+                    <li><strong>Discriminator:</strong> Tries to distinguish real data from generated data</li>
+                </ul>
+                <p>This adversarial process leads to increasingly realistic generated content.</p>
+                <p><strong>Applications:</strong> Image generation, style transfer, image-to-image translation, super-resolution</p>
+
+                <h4>2. Variational Autoencoders (VAEs)</h4>
+                <p>VAEs learn to encode data into a compressed representation and then decode it back, enabling generation of new samples from the learned distribution.</p>
+                <p><strong>Advantages:</strong> More stable training than GANs, better at learning data distributions</p>
+                <p><strong>Applications:</strong> Image generation, anomaly detection, data compression</p>
+
+                <h4>3. Transformer Models</h4>
+                <p>Transformers use attention mechanisms to understand relationships in sequential data.</p>
+                <p><strong>Key Innovation:</strong> Self-attention allows the model to weigh the importance of different parts of the input</p>
+                <p><strong>Applications:</strong> Text generation, translation, summarization, question answering</p>
+
+                <h4>4. Diffusion Models</h4>
+                <p>Diffusion models learn to gradually denoise data, starting from random noise and iteratively refining it into coherent outputs.</p>
+                <p><strong>Advantages:</strong> High-quality outputs, stable training, diverse generation</p>
+                <p><strong>Applications:</strong> Image generation (DALL-E 2, Stable Diffusion, Midjourney), audio generation</p>
+
+                <h3>Types of Generative AI</h3>
+
+                <h4>Text Generation</h4>
+                <p>Large Language Models (LLMs) can generate human-like text for various purposes:</p>
+                <ul>
+                    <li>Content writing and copywriting</li>
+                    <li>Code generation and debugging</li>
+                    <li>Conversation and chatbots</li>
+                    <li>Translation and summarization</li>
+                    <li>Creative writing (stories, poems, scripts)</li>
+                </ul>
+                <p><strong>Examples:</strong> GPT-4, Claude, Gemini, LLaMA</p>
+
+                <h4>Image Generation</h4>
+                <p>AI systems that create images from text descriptions or other inputs:</p>
+                <ul>
+                    <li>Text-to-image generation</li>
+                    <li>Image editing and manipulation</li>
+                    <li>Style transfer</li>
+                    <li>Image inpainting and outpainting</li>
+                    <li>Super-resolution</li>
+                </ul>
+                <p><strong>Examples:</strong> DALL-E 3, Midjourney, Stable Diffusion, Adobe Firefly</p>
+
+                <h4>Audio Generation</h4>
+                <p>Creating music, speech, and sound effects:</p>
+                <ul>
+                    <li>Text-to-speech synthesis</li>
+                    <li>Music composition</li>
+                    <li>Voice cloning</li>
+                    <li>Sound effect generation</li>
+                </ul>
+                <p><strong>Examples:</strong> ElevenLabs, Murf.ai, MusicLM, Jukebox</p>
+
+                <h4>Video Generation</h4>
+                <p>Creating and editing video content:</p>
+                <ul>
+                    <li>Text-to-video generation</li>
+                    <li>Video editing and enhancement</li>
+                    <li>Animation creation</li>
+                    <li>Deepfakes (for legitimate purposes)</li>
+                </ul>
+                <p><strong>Examples:</strong> Runway, Pika, Synthesia</p>
+
+                <h4>Code Generation</h4>
+                <p>AI systems that write and debug code:</p>
+                <ul>
+                    <li>Code completion and suggestion</li>
+                    <li>Entire function/program generation</li>
+                    <li>Code explanation and documentation</li>
+                    <li>Bug detection and fixing</li>
+                </ul>
+                <p><strong>Examples:</strong> GitHub Copilot, Amazon CodeWhisperer, Tabnine</p>
+
+                <h3>How Generative AI Works</h3>
+                <ol>
+                    <li><strong>Training Phase:</strong>
+                        <ul>
+                            <li>Model learns patterns from massive datasets</li>
+                            <li>Adjusts billions of parameters to minimize prediction errors</li>
+                            <li>Develops understanding of relationships and structures in data</li>
+                        </ul>
+                    </li>
+                    <li><strong>Generation Phase:</strong>
+                        <ul>
+                            <li>Takes input (prompt, parameters, or random noise)</li>
+                            <li>Uses learned patterns to generate new content</li>
+                            <li>Refines output based on constraints and objectives</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>Key Capabilities</h3>
+                <ul>
+                    <li><strong>Creativity:</strong> Generating novel ideas and content</li>
+                    <li><strong>Understanding Context:</strong> Grasping nuanced meanings and relationships</li>
+                    <li><strong>Multimodal Processing:</strong> Working across text, images, audio</li>
+                    <li><strong>Adaptation:</strong> Adjusting outputs based on feedback</li>
+                    <li><strong>Personalization:</strong> Tailoring content to specific needs</li>
+                </ul>
+
+                <h3>Real-World Applications</h3>
+                <ul>
+                    <li><strong>Content Creation:</strong> Marketing copy, blog posts, social media content</li>
+                    <li><strong>Design:</strong> Logos, graphics, product mockups</li>
+                    <li><strong>Software Development:</strong> Code generation, testing, documentation</li>
+                    <li><strong>Education:</strong> Personalized tutoring, content generation, assessment</li>
+                    <li><strong>Healthcare:</strong> Drug discovery, medical imaging, patient interaction</li>
+                    <li><strong>Entertainment:</strong> Game content, character generation, storylines</li>
+                    <li><strong>Business:</strong> Report generation, data analysis, customer service</li>
+                </ul>
+
+                <h3>Limitations and Challenges</h3>
+                <ul>
+                    <li><strong>Hallucinations:</strong> Generating plausible but incorrect information</li>
+                    <li><strong>Bias:</strong> Reflecting biases present in training data</li>
+                    <li><strong>Lack of True Understanding:</strong> Pattern matching without genuine comprehension</li>
+                    <li><strong>Computational Cost:</strong> Requiring significant computing resources</li>
+                    <li><strong>Copyright and Ownership:</strong> Questions about AI-generated content rights</li>
+                    <li><strong>Quality Control:</strong> Ensuring consistency and accuracy</li>
+                    <li><strong>Ethical Concerns:</strong> Deepfakes, misinformation, job displacement</li>
+                </ul>
+
+                <h3>Ethical Considerations</h3>
+                <p>As generative AI becomes more powerful, important ethical questions arise:</p>
+                <ul>
+                    <li>How do we prevent misuse for creating misleading content?</li>
+                    <li>What are the copyright implications of AI-generated content?</li>
+                    <li>How do we ensure AI systems don't perpetuate harmful biases?</li>
+                    <li>What happens to creative professionals as AI becomes more capable?</li>
+                    <li>How do we maintain authenticity in an age of AI-generated content?</li>
+                </ul>
+
+                <h3>The Future of Generative AI</h3>
+                <p>Generative AI is rapidly evolving, with several exciting trends:</p>
+                <ul>
+                    <li><strong>Multimodal Models:</strong> Single models handling text, images, audio, and video</li>
+                    <li><strong>Improved Control:</strong> More precise control over generated outputs</li>
+                    <li><strong>Efficiency:</strong> Smaller, faster models that can run on consumer hardware</li>
+                    <li><strong>Personalization:</strong> Models that adapt to individual users and contexts</li>
+                    <li><strong>Integration:</strong> Seamless incorporation into everyday tools and workflows</li>
+                </ul>
+
+                <h3>Getting Started with Generative AI</h3>
+                <p>To work with generative AI:</p>
+                <ol>
+                    <li>Understand the basics of neural networks and deep learning</li>
+                    <li>Learn about specific architectures (Transformers, GANs, Diffusion Models)</li>
+                    <li>Experiment with available tools and APIs</li>
+                    <li>Practice prompt engineering for better outputs</li>
+                    <li>Stay updated on the latest developments</li>
+                    <li>Consider ethical implications in your applications</li>
+                </ol>
+
+                <h3>Conclusion</h3>
+                <p>Generative AI represents a fundamental shift in how we interact with technology and create content. While it brings tremendous opportunities for productivity and creativity, it also raises important questions about authenticity, ownership, and societal impact. Understanding generative AI—its capabilities, limitations, and implications—is increasingly important for everyone, whether you're a developer, creator, business person, or simply a curious individual navigating our AI-augmented world.</p>
+            `,
+            readTime: '20 min',
+            level: 'Beginner'
+        }
+        // Additional beginner concepts will be added in continuation
+    ],
+    intermediate: [],
+    advanced: []
+};
+
+// Continuing with more beginner concepts...
+genAIConcepts.beginner.push(...[
+    {
+        id: 'b4',
+        title: 'Neural Networks Fundamentals',
+        icon: '🕸️',
+        description: 'Deep dive into the building blocks of deep learning - neurons, layers, and how they process information.',
+        content: `
+            <h2>Neural Networks: The Foundation of Modern AI</h2>
+            <p>Neural networks are the backbone of modern artificial intelligence, inspired by the human brain's structure. They've enabled breakthroughs in computer vision, natural language processing, and generative AI.</p>
+
+            <h3>What is a Neural Network?</h3>
+            <p>A neural network is a computational model consisting of interconnected nodes (neurons) organized in layers. Each connection has a weight that adjusts during training, allowing the network to learn patterns from data.</p>
+
+            <h3>Biological Inspiration</h3>
+            <p>While not perfect replicas of biological brains, neural networks draw inspiration from:</p>
+            <ul>
+                <li><strong>Neurons:</strong> Basic processing units that receive inputs and generate outputs</li>
+                <li><strong>Synapses:</strong> Connections between neurons with varying strengths (weights)</li>
+                <li><strong>Activation:</strong> Neurons fire when stimulation exceeds a threshold</li>
+            </ul>
+
+            <h3>Architecture of a Neural Network</h3>
+            <h4>1. Input Layer</h4>
+            <p>Receives raw data (images, text, numbers). Each neuron represents one feature of the input.</p>
+
+            <h4>2. Hidden Layers</h4>
+            <p>Process and transform the input data. Deep networks have multiple hidden layers, each learning increasingly complex features:</p>
+            <ul>
+                <li>First layer: Simple features (edges, colors, basic patterns)</li>
+                <li>Middle layers: Combinations of simple features</li>
+                <li>Deeper layers: High-level abstractions and concepts</li>
+            </ul>
+
+            <h4>3. Output Layer</h4>
+            <p>Produces the final prediction or classification. The number of neurons depends on the task (e.g., 10 neurons for digit classification 0-9).</p>
+
+            <h3>How a Neuron Works</h3>
+            <pre><code>
+Output = Activation(Sum(Inputs × Weights) + Bias)
+
+Example:
+Input1 * Weight1 + Input2 * Weight2 + ... + Bias → Activation Function → Output
+            </code></pre>
+
+            <h3>Activation Functions</h3>
+            <p>Activation functions introduce non-linearity, enabling networks to learn complex patterns:</p>
+
+            <h4>Common Activation Functions:</h4>
+            <ul>
+                <li><strong>ReLU (Rectified Linear Unit):</strong> f(x) = max(0, x)
+                    <ul>
+                        <li>Most popular for hidden layers</li>
+                        <li>Computationally efficient</li>
+                        <li>Helps with gradient flow</li>
+                    </ul>
+                </li>
+                <li><strong>Sigmoid:</strong> f(x) = 1 / (1 + e^(-x))
+                    <ul>
+                        <li>Outputs between 0 and 1</li>
+                        <li>Good for binary classification output</li>
+                    </ul>
+                </li>
+                <li><strong>Tanh:</strong> f(x) = (e^x - e^(-x)) / (e^x + e^(-x))
+                    <ul>
+                        <li>Outputs between -1 and 1</li>
+                        <li>Zero-centered, often better than sigmoid</li>
+                    </ul>
+                </li>
+                <li><strong>Softmax:</strong> Converts logits to probabilities
+                    <ul>
+                        <li>Used in output layer for multi-class classification</li>
+                        <li>Outputs sum to 1</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Training Process: Backpropagation</h3>
+            <ol>
+                <li><strong>Forward Pass:</strong>
+                    <ul>
+                        <li>Input data flows through the network</li>
+                        <li>Each layer computes outputs based on current weights</li>
+                        <li>Final layer produces a prediction</li>
+                    </ul>
+                </li>
+                <li><strong>Calculate Loss:</strong>
+                    <ul>
+                        <li>Compare prediction to actual target</li>
+                        <li>Loss function quantifies the error</li>
+                    </ul>
+                </li>
+                <li><strong>Backward Pass:</strong>
+                    <ul>
+                        <li>Calculate gradients of loss with respect to weights</li>
+                        <li>Propagate error backward through network</li>
+                        <li>Use chain rule to compute gradients</li>
+                    </ul>
+                </li>
+                <li><strong>Update Weights:</strong>
+                    <ul>
+                        <li>Adjust weights to minimize loss</li>
+                        <li>Use optimization algorithm (e.g., SGD, Adam)</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Loss Functions</h3>
+            <p><strong>For Regression:</strong></p>
+            <ul>
+                <li>Mean Squared Error (MSE)</li>
+                <li>Mean Absolute Error (MAE)</li>
+                <li>Huber Loss</li>
+            </ul>
+            <p><strong>For Classification:</strong></p>
+            <ul>
+                <li>Binary Cross-Entropy</li>
+                <li>Categorical Cross-Entropy</li>
+                <li>Sparse Categorical Cross-Entropy</li>
+            </ul>
+
+            <h3>Optimization Algorithms</h3>
+            <ul>
+                <li><strong>SGD (Stochastic Gradient Descent):</strong> Basic but effective</li>
+                <li><strong>Momentum:</strong> Accelerates SGD by accumulating velocity</li>
+                <li><strong>Adam:</strong> Adaptive learning rates, most popular choice</li>
+                <li><strong>RMSprop:</strong> Adapts learning rate for each parameter</li>
+                <li><strong>AdaGrad:</strong> Adapts learning rate based on historical gradients</li>
+            </ul>
+
+            <h3>Key Hyperparameters</h3>
+            <ul>
+                <li><strong>Learning Rate:</strong> Step size for weight updates (typically 0.001-0.1)</li>
+                <li><strong>Batch Size:</strong> Number of samples per gradient update (32, 64, 128, 256)</li>
+                <li><strong>Epochs:</strong> Number of complete passes through training data</li>
+                <li><strong>Number of Layers:</strong> Network depth</li>
+                <li><strong>Number of Neurons:</strong> Width of each layer</li>
+                <li><strong>Dropout Rate:</strong> Fraction of neurons to randomly disable (regularization)</li>
+            </ul>
+
+            <h3>Types of Neural Networks</h3>
+            <ul>
+                <li><strong>Feedforward Neural Networks (FNN):</strong> Information flows in one direction</li>
+                <li><strong>Convolutional Neural Networks (CNN):</strong> Specialized for image data</li>
+                <li><strong>Recurrent Neural Networks (RNN):</strong> Process sequential data</li>
+                <li><strong>Long Short-Term Memory (LSTM):</strong> Advanced RNN for long sequences</li>
+                <li><strong>Transformer Networks:</strong> Attention-based architecture</li>
+            </ul>
+
+            <h3>Common Challenges</h3>
+            <ul>
+                <li><strong>Vanishing Gradients:</strong> Gradients become too small in deep networks
+                    <ul>
+                        <li>Solutions: ReLU activation, skip connections, batch normalization</li>
+                    </ul>
+                </li>
+                <li><strong>Exploding Gradients:</strong> Gradients become too large
+                    <ul>
+                        <li>Solutions: Gradient clipping, proper weight initialization</li>
+                    </ul>
+                </li>
+                <li><strong>Overfitting:</strong> Model learns training data too well
+                    <ul>
+                        <li>Solutions: Dropout, regularization, more data, data augmentation</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li>Start with simple architectures and gradually increase complexity</li>
+                <li>Use proper weight initialization (Xavier/He initialization)</li>
+                <li>Normalize input data (standardization or min-max scaling)</li>
+                <li>Monitor both training and validation loss</li>
+                <li>Use batch normalization for stable training</li>
+                <li>Implement early stopping to prevent overfitting</li>
+                <li>Experiment with different architectures and hyperparameters</li>
+                <li>Use pre-trained models when possible (transfer learning)</li>
+            </ol>
+
+            <h3>Building Your First Neural Network</h3>
+            <pre><code>
+import tensorflow as tf
+from tensorflow import keras
+
+# Simple feedforward network
+model = keras.Sequential([
+    keras.layers.Dense(128, activation='relu', input_shape=(784,)),
+    keras.layers.Dropout(0.2),
+    keras.layers.Dense(64, activation='relu'),
+    keras.layers.Dropout(0.2),
+    keras.layers.Dense(10, activation='softmax')
+])
+
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+model.fit(x_train, y_train, epochs=10, validation_split=0.2)
+            </code></pre>
+
+            <h3>The Future of Neural Networks</h3>
+            <p>Neural networks continue to evolve with:</p>
+            <ul>
+                <li>More efficient architectures requiring less computation</li>
+                <li>Better understanding of how and why they work</li>
+                <li>Improved interpretability and explainability</li>
+                <li>Novel architectures for specific domains</li>
+                <li>Integration with other AI techniques</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Neural networks are powerful tools that have revolutionized AI. Understanding their fundamentals—from individual neurons to complex architectures—is essential for anyone working in modern AI. While they can seem complex at first, the basic principles are straightforward, and with practice, you'll develop intuition for designing and training effective neural networks.</p>
+        `,
+        readTime: '16 min',
+        level: 'Beginner'
+    },
+    {
+        id: 'b5',
+        title: 'Large Language Models (LLMs)',
+        icon: '📝',
+        description: 'Understanding the architecture and capabilities of models like GPT, BERT, and their applications.',
+        content: `
+            <h2>Large Language Models: The AI Language Revolution</h2>
+            <p>Large Language Models (LLMs) represent one of the most significant breakthroughs in artificial intelligence, enabling machines to understand and generate human-like text at an unprecedented scale and quality.</p>
+
+            <h3>What are Large Language Models?</h3>
+            <p>LLMs are neural networks trained on massive amounts of text data to understand and generate language. They learn patterns, grammar, facts, reasoning abilities, and even some common-sense knowledge from their training data.</p>
+
+            <h3>Key Characteristics</h3>
+            <ul>
+                <li><strong>Scale:</strong> Billions or trillions of parameters (trainable weights)</li>
+                <li><strong>Training Data:</strong> Trained on massive text corpora (books, websites, articles)</li>
+                <li><strong>Capabilities:</strong> Can perform diverse language tasks without task-specific training</li>
+                <li><strong>Architecture:</strong> Typically based on the Transformer architecture</li>
+            </ul>
+
+            <h3>The Transformer Revolution</h3>
+            <p>The Transformer architecture, introduced in 2017's "Attention Is All You Need" paper, became the foundation for modern LLMs.</p>
+
+            <h4>Key Innovations:</h4>
+            <ul>
+                <li><strong>Self-Attention Mechanism:</strong> Allows the model to weigh the importance of different words in context</li>
+                <li><strong>Parallel Processing:</strong> Unlike RNNs, can process entire sequences simultaneously</li>
+                <li><strong>Positional Encoding:</strong> Maintains word order information</li>
+                <li><strong>Multi-Head Attention:</strong> Learns different types of relationships simultaneously</li>
+            </ul>
+
+            <h3>Evolution of LLMs</h3>
+            <h4>Generation 1: Early Transformers (2017-2018)</h4>
+            <ul>
+                <li><strong>Original Transformer:</strong> 65M parameters, primarily for translation</li>
+                <li><strong>GPT-1:</strong> 117M parameters, demonstrated generative pre-training</li>
+                <li><strong>BERT:</strong> 340M parameters, bidirectional understanding</li>
+            </ul>
+
+            <h4>Generation 2: Scaling Up (2019-2020)</h4>
+            <ul>
+                <li><strong>GPT-2:</strong> 1.5B parameters, impressive text generation</li>
+                <li><strong>T5:</strong> 11B parameters, unified text-to-text framework</li>
+                <li><strong>RoBERTa:</strong> Optimized BERT training</li>
+            </ul>
+
+            <h4>Generation 3: Massive Scale (2020-2022)</h4>
+            <ul>
+                <li><strong>GPT-3:</strong> 175B parameters, few-shot learning capabilities</li>
+                <li><strong>PaLM:</strong> 540B parameters, improved reasoning</li>
+                <li><strong>Gopher:</strong> 280B parameters, strong retrieval abilities</li>
+            </ul>
+
+            <h4>Generation 4: Optimization & Alignment (2022-Present)</h4>
+            <ul>
+                <li><strong>GPT-4:</strong> Multimodal, improved reasoning and reliability</li>
+                <li><strong>Claude:</strong> Focused on helpfulness, harmlessness, and honesty</li>
+                <li><strong>LLaMA:</strong> Open-source efficient models</li>
+                <li><strong>Gemini:</strong> Google's multimodal AI</li>
+            </ul>
+
+            <h3>How LLMs Work</h3>
+
+            <h4>Training Process:</h4>
+            <ol>
+                <li><strong>Data Collection:</strong> Gather massive text datasets (web pages, books, code)</li>
+                <li><strong>Pre-training:</strong> Train model to predict next tokens (words/subwords)
+                    <ul>
+                        <li>Unsupervised learning from raw text</li>
+                        <li>Learns language patterns, facts, and reasoning</li>
+                        <li>Computationally expensive (millions of dollars)</li>
+                    </ul>
+                </li>
+                <li><strong>Fine-tuning:</strong> Adapt model for specific tasks
+                    <ul>
+                        <li>Supervised fine-tuning on task-specific data</li>
+                        <li>Instruction tuning for following instructions</li>
+                    </ul>
+                </li>
+                <li><strong>Alignment:</strong> Make model behavior safe and useful
+                    <ul>
+                        <li>Reinforcement Learning from Human Feedback (RLHF)</li>
+                        <li>Constitutional AI</li>
+                        <li>Direct Preference Optimization (DPO)</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>Inference (Generation):</h4>
+            <ol>
+                <li>Receive input prompt</li>
+                <li>Tokenize input into subword units</li>
+                <li>Process through transformer layers</li>
+                <li>Generate probability distribution over possible next tokens</li>
+                <li>Sample next token (with temperature, top-k, top-p)</li>
+                <li>Repeat until completion signal or max length</li>
+            </ol>
+
+            <h3>Key Capabilities</h3>
+            <ul>
+                <li><strong>Text Generation:</strong> Creating coherent, contextually appropriate text</li>
+                <li><strong>Question Answering:</strong> Providing informative responses</li>
+                <li><strong>Summarization:</strong> Condensing long texts into key points</li>
+                <li><strong>Translation:</strong> Converting between languages</li>
+                <li><strong>Code Generation:</strong> Writing and debugging code</li>
+                <li><strong>Reasoning:</strong> Following logical chains of thought</li>
+                <li><strong>Task Completion:</strong> Following complex instructions</li>
+                <li><strong>Creative Writing:</strong> Generating stories, poems, dialogue</li>
+            </ul>
+
+            <h3>Prompt Engineering</h3>
+            <p>Crafting effective prompts is crucial for getting good results from LLMs:</p>
+
+            <h4>Basic Techniques:</h4>
+            <ul>
+                <li><strong>Clear Instructions:</strong> Be specific about what you want</li>
+                <li><strong>Context Provision:</strong> Give relevant background information</li>
+                <li><strong>Format Specification:</strong> Specify desired output format</li>
+                <li><strong>Examples (Few-Shot):</strong> Provide examples of desired behavior</li>
+            </ul>
+
+            <h4>Advanced Techniques:</h4>
+            <ul>
+                <li><strong>Chain-of-Thought:</strong> Ask model to explain reasoning step-by-step</li>
+                <li><strong>Role Playing:</strong> Assign the model a specific persona</li>
+                <li><strong>Constraints:</strong> Define boundaries and limitations</li>
+                <li><strong>Iteration:</strong> Refine prompts based on outputs</li>
+            </ul>
+
+            <h3>Popular LLMs and Their Strengths</h3>
+
+            <h4>GPT-4 (OpenAI)</h4>
+            <ul>
+                <li>Strengths: Broad knowledge, creative tasks, code generation</li>
+                <li>Use cases: General purpose, ChatGPT, development tools</li>
+            </ul>
+
+            <h4>Claude (Anthropic)</h4>
+            <ul>
+                <li>Strengths: Long context, analysis, careful reasoning</li>
+                <li>Use cases: Document analysis, complex reasoning, safer interactions</li>
+            </ul>
+
+            <h4>Gemini (Google)</h4>
+            <ul>
+                <li>Strengths: Multimodal understanding, integration with Google services</li>
+                <li>Use cases: Search, analysis, creative tasks</li>
+            </ul>
+
+            <h4>LLaMA (Meta)</h4>
+            <ul>
+                <li>Strengths: Open-source, efficient, customizable</li>
+                <li>Use cases: Research, custom applications, on-premise deployment</li>
+            </ul>
+
+            <h3>Limitations and Challenges</h3>
+            <ul>
+                <li><strong>Hallucinations:</strong> Generating false or nonsensical information confidently</li>
+                <li><strong>Knowledge Cutoff:</strong> Limited to training data up to a certain date</li>
+                <li><strong>Reasoning Limitations:</strong> Can make logical errors, especially in complex scenarios</li>
+                <li><strong>Bias:</strong> Can reflect biases in training data</li>
+                <li><strong>Context Window:</strong> Limited by maximum input/output length</li>
+                <li><strong>Computational Cost:</strong> Expensive to train and run</li>
+                <li><strong>Lack of Grounding:</strong> No real-world experience or verification</li>
+            </ul>
+
+            <h3>Applications Across Industries</h3>
+
+            <h4>Software Development</h4>
+            <ul>
+                <li>Code generation and completion</li>
+                <li>Bug detection and fixing</li>
+                <li>Documentation generation</li>
+                <li>Code review and refactoring</li>
+            </ul>
+
+            <h4>Content Creation</h4>
+            <ul>
+                <li>Blog posts and articles</li>
+                <li>Marketing copy</li>
+                <li>Social media content</li>
+                <li>Creative writing</li>
+            </ul>
+
+            <h4>Customer Service</h4>
+            <ul>
+                <li>Chatbots and virtual assistants</li>
+                <li>Automated email responses</li>
+                <li>FAQ systems</li>
+                <li>Sentiment analysis</li>
+            </ul>
+
+            <h4>Education</h4>
+            <ul>
+                <li>Personalized tutoring</li>
+                <li>Content generation</li>
+                <li>Assessment creation</li>
+                <li>Language learning</li>
+            </ul>
+
+            <h4>Research</h4>
+            <ul>
+                <li>Literature review</li>
+                <li>Hypothesis generation</li>
+                <li>Data analysis explanation</li>
+                <li>Writing assistance</li>
+            </ul>
+
+            <h3>Technical Considerations</h3>
+
+            <h4>Deployment Options:</h4>
+            <ul>
+                <li><strong>API Services:</strong> OpenAI API, Anthropic API (easiest, most expensive)</li>
+                <li><strong>Managed Services:</strong> AWS Bedrock, Azure OpenAI (enterprise-grade)</li>
+                <li><strong>Self-Hosted:</strong> LLaMA, Mistral (full control, requires infrastructure)</li>
+            </ul>
+
+            <h4>Optimization Techniques:</h4>
+            <ul>
+                <li><strong>Quantization:</strong> Reducing precision to save memory</li>
+                <li><strong>Distillation:</strong> Creating smaller models that mimic larger ones</li>
+                <li><strong>Pruning:</strong> Removing unnecessary connections</li>
+                <li><strong>Caching:</strong> Storing common responses</li>
+            </ul>
+
+            <h3>Future Directions</h3>
+            <ul>
+                <li><strong>Multimodality:</strong> Better integration of text, images, audio, video</li>
+                <li><strong>Efficiency:</strong> Smaller models with equivalent capabilities</li>
+                <li><strong>Reasoning:</strong> Improved logical and mathematical reasoning</li>
+                <li><strong>Factuality:</strong> Better grounding in verified information</li>
+                <li><strong>Personalization:</strong> Models that adapt to individual users</li>
+                <li><strong>Agent Capabilities:</strong> LLMs that can use tools and take actions</li>
+            </ul>
+
+            <h3>Best Practices for Working with LLMs</h3>
+            <ol>
+                <li>Always verify factual information from reliable sources</li>
+                <li>Use clear, specific prompts for better results</li>
+                <li>Implement safety guardrails for production systems</li>
+                <li>Monitor costs and optimize usage patterns</li>
+                <li>Keep user data private and secure</li>
+                <li>Stay updated on model capabilities and limitations</li>
+                <li>Test thoroughly before deployment</li>
+                <li>Have human oversight for critical applications</li>
+            </ol>
+
+            <h3>Conclusion</h3>
+            <p>Large Language Models represent a paradigm shift in how we interact with computers and process information. They're powerful tools that can enhance productivity, creativity, and problem-solving across countless domains. However, they're not magic—understanding their capabilities, limitations, and proper use is essential for leveraging them effectively while avoiding pitfalls. As LLMs continue to evolve, staying informed about best practices and emerging techniques will be crucial for anyone working with these transformative technologies.</p>
+        `,
+        readTime: '22 min',
+        level: 'Beginner'
+    }
+]);
+
+// Continue adding more beginner concepts with full content
+genAIConcepts.beginner.push(...[
+    {
+        id: 'b6',
+        title: 'Tokens and Tokenization',
+        icon: '🔤',
+        description: 'Understanding how text is broken down into tokens for processing by AI models.',
+        content: `
+            <h2>Tokens and Tokenization in AI</h2>
+            <p>Tokenization is a fundamental process in natural language processing and generative AI. It's how we convert human-readable text into a format that machines can understand and process. Think of it as breaking down language into digestible chunks that an AI model can work with.</p>
+
+            <h3>What are Tokens?</h3>
+            <p>Tokens are the basic units of text that AI models process. They can be:</p>
+            <ul>
+                <li><strong>Words:</strong> "hello", "world", "AI"</li>
+                <li><strong>Subwords:</strong> "un", "break", "able" (from "unbreakable")</li>
+                <li><strong>Characters:</strong> Individual letters or symbols</li>
+                <li><strong>Special symbols:</strong> Punctuation, spaces, or control characters</li>
+            </ul>
+
+            <p>Most modern AI models use subword tokenization, which strikes a balance between vocabulary size and flexibility.</p>
+
+            <h3>Why Tokenization Matters</h3>
+            <ul>
+                <li><strong>Model Input:</strong> Neural networks can't directly process text—they need numbers</li>
+                <li><strong>Vocabulary Management:</strong> Limits the number of unique tokens a model needs to understand</li>
+                <li><strong>Handling Unknown Words:</strong> Subword tokenization can represent rare or new words</li>
+                <li><strong>Cost Calculation:</strong> API pricing is typically based on token count</li>
+                <li><strong>Context Window:</strong> Model capacity is measured in tokens</li>
+            </ul>
+
+            <h3>Types of Tokenization</h3>
+
+            <h4>1. Word-Level Tokenization</h4>
+            <p>Splits text at word boundaries (spaces, punctuation).</p>
+            <pre><code>
+Input: "AI is amazing!"
+Tokens: ["AI", "is", "amazing", "!"]
+            </code></pre>
+            <p><strong>Pros:</strong> Simple, intuitive<br>
+            <strong>Cons:</strong> Huge vocabulary, can't handle unknown words</p>
+
+            <h4>2. Character-Level Tokenization</h4>
+            <p>Treats each character as a token.</p>
+            <pre><code>
+Input: "AI"
+Tokens: ["A", "I"]
+            </code></pre>
+            <p><strong>Pros:</strong> Small vocabulary, no unknown words<br>
+            <strong>Cons:</strong> Long sequences, loses word meaning</p>
+
+            <h4>3. Subword Tokenization</h4>
+            <p>Most popular approach, used by GPT, BERT, and other modern models.</p>
+
+            <h5>BPE (Byte Pair Encoding)</h5>
+            <p>Used by GPT models. Iteratively merges most frequent character pairs.</p>
+            <pre><code>
+Input: "unbreakable"
+Tokens: ["un", "break", "able"]
+            </code></pre>
+
+            <h5>WordPiece</h5>
+            <p>Used by BERT. Similar to BPE but optimizes for likelihood.</p>
+
+            <h5>SentencePiece</h5>
+            <p>Language-independent tokenization treating text as Unicode characters.</p>
+
+            <h3>How Tokenization Works in Practice</h3>
+            <pre><code>
+Example with GPT-style tokenization:
+
+Input: "I love learning about AI!"
+
+Steps:
+1. Text → ["I", " love", " learning", " about", " AI", "!"]
+2. Convert to token IDs → [40, 1842, 4673, 546, 9552, 0]
+3. Model processes IDs
+4. Output IDs → [27, 1354, 2847, ...]
+5. Decode back to text → "AI is fascinating because..."
+            </code></pre>
+
+            <h3>Token Count Examples</h3>
+            <p>Understanding token counts is crucial for working with AI:</p>
+            <ul>
+                <li>"Hello" → 1 token</li>
+                <li>"Hello, world!" → 4 tokens ["Hello", ",", " world", "!"]</li>
+                <li>"unbelievable" → 2-3 tokens ["un", "believ", "able"] or ["un", "believable"]</li>
+                <li>"🤖" → 1-2 tokens (emojis can be multiple tokens)</li>
+            </ul>
+
+            <h3>Rule of Thumb</h3>
+            <p>In English:</p>
+            <ul>
+                <li>1 token ≈ 4 characters</li>
+                <li>1 token ≈ ¾ of a word</li>
+                <li>100 tokens ≈ 75 words</li>
+                <li>1000 tokens ≈ 750 words</li>
+            </ul>
+
+            <h3>Special Tokens</h3>
+            <p>Models use special tokens for specific purposes:</p>
+            <ul>
+                <li><strong>[CLS]:</strong> Classification token (BERT)</li>
+                <li><strong>[SEP]:</strong> Separator between sentences</li>
+                <li><strong>[PAD]:</strong> Padding for batch processing</li>
+                <li><strong>[UNK]:</strong> Unknown token</li>
+                <li><strong>[BOS]:</strong> Beginning of sequence</li>
+                <li><strong>[EOS]:</strong> End of sequence</li>
+            </ul>
+
+            <h3>Context Windows and Tokens</h3>
+            <p>Models have maximum token limits:</p>
+            <ul>
+                <li><strong>GPT-3.5:</strong> 4,096 or 16,384 tokens</li>
+                <li><strong>GPT-4:</strong> 8,192 or 32,768 tokens (some versions: 128k)</li>
+                <li><strong>Claude:</strong> 100,000+ tokens</li>
+                <li><strong>Gemini:</strong> Up to 1 million tokens</li>
+            </ul>
+
+            <h3>Tokenization in Different Languages</h3>
+            <p>Token counts vary by language:</p>
+            <ul>
+                <li><strong>English:</strong> Most efficient (models trained primarily on English)</li>
+                <li><strong>Romance Languages:</strong> Slightly more tokens</li>
+                <li><strong>Asian Languages:</strong> Can be 2-3x more tokens per word</li>
+                <li><strong>Arabic, Hebrew:</strong> More tokens due to different scripts</li>
+            </ul>
+
+            <h3>Practical Implications</h3>
+
+            <h4>Cost Management</h4>
+            <p>Since pricing is per token:</p>
+            <ul>
+                <li>Concise prompts save money</li>
+                <li>Consider token counts when choosing languages</li>
+                <li>Batch similar requests to optimize cost</li>
+            </ul>
+
+            <h4>Context Window Management</h4>
+            <pre><code>
+# Example: Estimating if text fits in context
+max_tokens = 4096
+prompt_tokens = 500
+response_tokens = 500
+conversation_history_tokens = 2000
+
+available = max_tokens - prompt_tokens - response_tokens
+fits = conversation_history_tokens <= available  # True/False
+            </code></pre>
+
+            <h4>Prompt Engineering</h4>
+            <p>Effective prompts consider tokenization:</p>
+            <ul>
+                <li>Shorter prompts → more tokens for response</li>
+                <li>Clear formatting → better model understanding</li>
+                <li>Consider token efficiency in examples</li>
+            </ul>
+
+            <h3>Tools for Tokenization</h3>
+            <ul>
+                <li><strong>tiktoken:</strong> OpenAI's tokenization library</li>
+                <li><strong>Hugging Face Tokenizers:</strong> Fast tokenization for various models</li>
+                <li><strong>SentencePiece:</strong> Google's tokenization library</li>
+                <li><strong>Online Tools:</strong> OpenAI Tokenizer, Hugging Face spaces</li>
+            </ul>
+
+            <h3>Example Code</h3>
+            <pre><code>
+# Using tiktoken for GPT models
+import tiktoken
+
+encoding = tiktoken.encoding_for_model("gpt-4")
+tokens = encoding.encode("Hello, how are you?")
+print(f"Token IDs: {tokens}")
+print(f"Token count: {len(tokens)}")
+
+# Decode back to text
+text = encoding.decode(tokens)
+print(f"Decoded: {text}")
+            </code></pre>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li><strong>Monitor Token Usage:</strong> Track tokens to optimize costs and performance</li>
+                <li><strong>Estimate Before Sending:</strong> Calculate token counts to avoid API errors</li>
+                <li><strong>Be Concise:</strong> Every token counts toward limits and costs</li>
+                <li><strong>Consider Batching:</strong> Process multiple items efficiently</li>
+                <li><strong>Test Different Phrasings:</strong> Sometimes rewording saves tokens</li>
+            </ol>
+
+            <h3>Common Issues</h3>
+            <ul>
+                <li><strong>Token Limit Exceeded:</strong> Reduce input or split into multiple requests</li>
+                <li><strong>Unexpected Costs:</strong> Long conversations accumulate tokens quickly</li>
+                <li><strong>Context Loss:</strong> Conversations exceeding limits lose early messages</li>
+                <li><strong>Language Efficiency:</strong> Non-English text uses more tokens</li>
+            </ul>
+
+            <h3>Future of Tokenization</h3>
+            <p>Research is improving tokenization:</p>
+            <ul>
+                <li>More efficient tokenizers for multilingual support</li>
+                <li>Better handling of code and structured data</li>
+                <li>Reduced token counts for the same content</li>
+                <li>Dynamic tokenization based on context</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Tokenization is a crucial bridge between human language and AI models. Understanding how it works helps you write better prompts, manage costs, optimize performance, and work more effectively with AI systems. Whether you're using APIs, building applications, or just trying to understand AI better, knowledge of tokenization is invaluable.</p>
+        `,
+        readTime: '12 min',
+        level: 'Beginner'
+    },
+    {
+        id: 'b7',
+        title: 'Training vs Inference',
+        icon: '⚙️',
+        description: 'Understanding the two main phases of working with AI models and their distinct characteristics.',
+        content: `
+            <h2>Training vs Inference: Two Phases of AI</h2>
+            <p>Working with AI models involves two distinct phases: training and inference. Understanding the difference is crucial for anyone working with AI, as they require different resources, have different characteristics, and serve different purposes.</p>
+
+            <h3>What is Training?</h3>
+            <p>Training is the process of teaching an AI model to perform a task by showing it many examples. During training, the model learns patterns from data by adjusting billions of parameters (weights) to minimize errors.</p>
+
+            <h4>The Training Process:</h4>
+            <ol>
+                <li><strong>Data Collection:</strong> Gather large datasets (millions to trillions of examples)</li>
+                <li><strong>Initialization:</strong> Set initial random weights in the model</li>
+                <li><strong>Forward Pass:</strong> Feed data through the model to get predictions</li>
+                <li><strong>Calculate Loss:</strong> Measure how wrong the predictions are</li>
+                <li><strong>Backward Pass:</strong> Calculate gradients (how to adjust weights)</li>
+                <li><strong>Update Weights:</strong> Modify parameters to reduce loss</li>
+                <li><strong>Repeat:</strong> Do this millions of times with different data</li>
+            </ol>
+
+            <h4>Training Characteristics:</h4>
+            <ul>
+                <li><strong>Time:</strong> Days to months (sometimes years for large models)</li>
+                <li><strong>Cost:</strong> Expensive (thousands to millions of dollars)</li>
+                <li><strong>Compute:</strong> Requires powerful GPUs/TPUs in clusters</li>
+                <li><strong>Memory:</strong> Needs massive RAM and storage</li>
+                <li><strong>Energy:</strong> High power consumption</li>
+                <li><strong>Frequency:</strong> Done once or periodically</li>
+                <li><strong>Goal:</strong> Create a model that generalizes well</li>
+            </ul>
+
+            <h4>Example Training Scenarios:</h4>
+            <ul>
+                <li><strong>GPT-4:</strong> Trained on hundreds of billions of tokens, cost estimated at $50-100 million</li>
+                <li><strong>Stable Diffusion:</strong> Trained on billions of images for weeks</li>
+                <li><strong>Small Custom Model:</strong> Might train on your laptop in hours</li>
+            </ul>
+
+            <h3>What is Inference?</h3>
+            <p>Inference is using a trained model to make predictions on new, unseen data. This is the "production" phase where the model does useful work.</p>
+
+            <h4>The Inference Process:</h4>
+            <ol>
+                <li><strong>Load Model:</strong> Load the trained model with its learned weights</li>
+                <li><strong>Preprocess Input:</strong> Format the input data appropriately</li>
+                <li><strong>Forward Pass:</strong> Run data through the model (no backward pass!)</li>
+                <li><strong>Generate Output:</strong> Produce prediction or generation</li>
+                <li><strong>Postprocess:</strong> Format output for end users</li>
+            </ol>
+
+            <h4>Inference Characteristics:</h4>
+            <ul>
+                <li><strong>Time:</strong> Milliseconds to seconds</li>
+                <li><strong>Cost:</strong> Much cheaper per query</li>
+                <li><strong>Compute:</strong> Can run on consumer hardware or cloud</li>
+                <li><strong>Memory:</strong> Less memory needed than training</li>
+                <li><strong>Energy:</strong> Much lower power consumption</li>
+                <li><strong>Frequency:</strong> Continuous, millions of times per day</li>
+                <li><strong>Goal:</strong> Fast, accurate predictions</li>
+            </ul>
+
+            <h4>Example Inference Scenarios:</h4>
+            <ul>
+                <li><strong>ChatGPT Response:</strong> Typically 1-5 seconds</li>
+                <li><strong>Image Classification:</strong> Milliseconds</li>
+                <li><strong>Real-time Translation:</strong> Near-instantaneous</li>
+            </ul>
+
+            <h3>Key Differences</h3>
+
+            <table style="width: 100%; border-collapse: collapse; margin: 2rem 0;">
+                <tr style="background: var(--bg-secondary);">
+                    <th style="padding: 1rem; text-align: left; border-bottom: 2px solid var(--border-color);">Aspect</th>
+                    <th style="padding: 1rem; text-align: left; border-bottom: 2px solid var(--border-color);">Training</th>
+                    <th style="padding: 1rem; text-align: left; border-bottom: 2px solid var(--border-color);">Inference</th>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);"><strong>Purpose</strong></td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">Learn patterns from data</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">Make predictions</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);"><strong>Duration</strong></td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">Days to months</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">Milliseconds to seconds</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);"><strong>Cost</strong></td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">$1,000s - $millions</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">$0.0001 - $0.10 per query</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);"><strong>Compute</strong></td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">Requires clusters of GPUs</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">Single GPU or CPU</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);"><strong>Memory</strong></td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">100s of GB</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">10s of GB</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);"><strong>Frequency</strong></td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">Once or periodic</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">Continuous</td>
+                </tr>
+            </table>
+
+            <h3>Types of Training</h3>
+
+            <h4>1. Pre-training</h4>
+            <p>Training a model from scratch on massive datasets.</p>
+            <ul>
+                <li>Used for foundation models (GPT, BERT)</li>
+                <li>Requires enormous resources</li>
+                <li>Done by large organizations</li>
+            </ul>
+
+            <h4>2. Fine-tuning</h4>
+            <p>Adapting a pre-trained model to a specific task.</p>
+            <ul>
+                <li>Much cheaper than pre-training</li>
+                <li>Can be done on consumer hardware</li>
+                <li>Most common approach for custom applications</li>
+            </ul>
+
+            <h4>3. Transfer Learning</h4>
+            <p>Using knowledge from one task to improve performance on another.</p>
+            <ul>
+                <li>Start with pre-trained model</li>
+                <li>Adjust for new domain or task</li>
+                <li>Significantly reduces training time and data requirements</li>
+            </ul>
+
+            <h3>Optimization Techniques</h3>
+
+            <h4>Training Optimizations:</h4>
+            <ul>
+                <li><strong>Mixed Precision Training:</strong> Use FP16 instead of FP32 for faster computation</li>
+                <li><strong>Gradient Accumulation:</strong> Simulate larger batches on limited memory</li>
+                <li><strong>Distributed Training:</strong> Spread training across multiple GPUs/machines</li>
+                <li><strong>Data Parallelism:</strong> Different GPUs process different data batches</li>
+                <li><strong>Model Parallelism:</strong> Split model across multiple GPUs</li>
+            </ul>
+
+            <h4>Inference Optimizations:</h4>
+            <ul>
+                <li><strong>Quantization:</strong> Reduce precision (FP32 → INT8) for faster inference</li>
+                <li><strong>Pruning:</strong> Remove unnecessary weights</li>
+                <li><strong>Knowledge Distillation:</strong> Create smaller models that mimic larger ones</li>
+                <li><strong>Batching:</strong> Process multiple requests together</li>
+                <li><strong>Caching:</strong> Store common responses</li>
+                <li><strong>Model Compilation:</strong> Optimize for specific hardware</li>
+            </ul>
+
+            <h3>Resource Requirements</h3>
+
+            <h4>For Training Large Models:</h4>
+            <pre><code>
+GPT-3 Training Estimate:
+- GPUs: 10,000+ NVIDIA V100s
+- Time: Several weeks
+- Data: 300 billion tokens
+- Cost: $4-12 million
+- Power: Megawatts
+
+Your Custom Model:
+- GPUs: 1-8 consumer GPUs
+- Time: Hours to days
+- Data: Thousands to millions of examples
+- Cost: $100-$10,000
+- Power: 300-2,400W
+            </code></pre>
+
+            <h4>For Inference:</h4>
+            <pre><code>
+Cloud API (OpenAI, Anthropic):
+- No infrastructure needed
+- Pay per token
+- ~$0.002-$0.12 per 1K tokens
+
+Self-Hosted Small Model:
+- 1 GPU or powerful CPU
+- Free after initial setup
+- Maintenance overhead
+
+Mobile Inference:
+- Optimized tiny models
+- Runs on smartphones
+- Minimal power consumption
+            </code></pre>
+
+            <h3>Practical Considerations</h3>
+
+            <h4>When to Train:</h4>
+            <ul>
+                <li>Need highly specialized behavior</li>
+                <li>Have proprietary data</li>
+                <li>Require data privacy (on-premise)</li>
+                <li>Long-term cost justifies training investment</li>
+            </ul>
+
+            <h4>When to Use Pre-trained Models:</h4>
+            <ul>
+                <li>General-purpose tasks</li>
+                <li>Limited resources</li>
+                <li>Quick prototyping</li>
+                <li>Leveraging latest research</li>
+            </ul>
+
+            <h3>The Economics</h3>
+
+            <p><strong>Training Cost Example:</strong></p>
+            <ul>
+                <li>Training a GPT-4 scale model: $50-100M</li>
+                <li>Fine-tuning on AWS: $50-5,000</li>
+                <li>Training on Google Colab: Free-$50</li>
+            </ul>
+
+            <p><strong>Inference Cost Example:</strong></p>
+            <ul>
+                <li>ChatGPT query: $0.002-$0.02</li>
+                <li>Self-hosted inference: $0.0001-$0.001 (after setup)</li>
+                <li>Mobile inference: Essentially free</li>
+            </ul>
+
+            <h3>Workflow in Practice</h3>
+
+            <h4>Typical AI Application Lifecycle:</h4>
+            <ol>
+                <li><strong>Research Phase:</strong> Experiment with pre-trained models via APIs</li>
+                <li><strong>Prototype:</strong> Build proof-of-concept using existing models</li>
+                <li><strong>Evaluation:</strong> Determine if custom training is needed</li>
+                <li><strong>Training (if needed):</strong> Fine-tune or train custom model</li>
+                <li><strong>Deployment:</strong> Optimize model for inference</li>
+                <li><strong>Production:</strong> Serve predictions to users</li>
+                <li><strong>Monitoring:</strong> Track performance and costs</li>
+                <li><strong>Iteration:</strong> Retrain periodically with new data</li>
+            </ol>
+
+            <h3>Common Misconceptions</h3>
+            <ul>
+                <li><strong>Myth:</strong> "You need to train your own model"
+                    <ul><li><strong>Reality:</strong> Most applications work fine with pre-trained models via API</li></ul>
+                </li>
+                <li><strong>Myth:</strong> "Inference is free"
+                    <ul><li><strong>Reality:</strong> At scale, inference costs can exceed training costs</li></ul>
+                </li>
+                <li><strong>Myth:</strong> "Training once is enough"
+                    <ul><li><strong>Reality:</strong> Models need periodic retraining to stay current</li></ul>
+                </li>
+                <li><strong>Myth:</strong> "Bigger models are always better"
+                    <ul><li><strong>Reality:</strong> Smaller, optimized models often work better for specific tasks</li></ul>
+                </li>
+            </ul>
+
+            <h3>Future Trends</h3>
+            <ul>
+                <li><strong>More Efficient Training:</strong> New techniques reducing costs by 10-100x</li>
+                <li><strong>Faster Inference:</strong> Hardware and software optimizations</li>
+                <li><strong>Edge Deployment:</strong> Running powerful models on phones and IoT devices</li>
+                <li><strong>Continuous Learning:</strong> Models that update during inference</li>
+                <li><strong>AutoML:</strong> Automated training and optimization</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Understanding the distinction between training and inference is fundamental to working with AI. Training is the expensive, time-consuming process of creating a model, while inference is the fast, frequent use of that model. Most developers will spend far more time on inference optimization than training, and many will never need to train a model from scratch. The key is knowing when each approach is appropriate and how to optimize for your specific use case.</p>
+        `,
+        readTime: '14 min',
+        level: 'Beginner'
+    }
+]);
+
+// Add more beginner concepts (abbreviated for space, but structure shown)
+// In production, each would have full 2000+ word content
+const additionalBeginnerConcepts = [
+    { id: 'b8', title: 'Transfer Learning', icon: '🔄', description: 'Leveraging pre-trained models to solve new tasks efficiently.', readTime: '13 min' },
+    { id: 'b9', title: 'Fine-Tuning Models', icon: '🎯', description: 'Customizing pre-trained models for specific tasks and domains.', readTime: '15 min' },
+    { id: 'b10', title: 'Embeddings and Vectors', icon: '📊', description: 'How AI represents words and concepts as numerical vectors.', readTime: '16 min' },
+    { id: 'b11', title: 'Attention Mechanisms', icon: '👁️', description: 'The breakthrough that enabled modern AI to focus on relevant information.', readTime: '14 min' },
+    { id: 'b12', title: 'Prompt Engineering Basics', icon: '💬', description: 'Crafting effective prompts to get better AI responses.', readTime: '12 min' },
+    { id: 'b13', title: 'Temperature and Sampling', icon: '🌡️', description: 'Controlling randomness and creativity in AI outputs.', readTime: '11 min' },
+    { id: 'b14', title: 'Context Windows', icon: '🪟', description: 'Understanding AI memory limits and how to work with them.', readTime: '10 min' },
+    { id: 'b15', title: 'Model Parameters', icon: '⚖️', description: 'What model size means and why it matters.', readTime: '12 min' },
+    { id: 'b16', title: 'Supervised vs Unsupervised Learning', icon: '📚', description: 'Different approaches to teaching AI systems.', readTime: '13 min' },
+    { id: 'b17', title: 'Data Preprocessing', icon: '🧹', description: 'Preparing data for AI training and inference.', readTime: '14 min' },
+    { id: 'b18', title: 'Overfitting and Underfitting', icon: '⚖️', description: 'Finding the right balance in model complexity.', readTime: '13 min' },
+    { id: 'b19', title: 'Gradient Descent', icon: '⛰️', description: 'The fundamental optimization algorithm in AI.', readTime: '15 min' },
+    { id: 'b20', title: 'Backpropagation', icon: '🔙', description: 'How neural networks learn from their mistakes.', readTime: '16 min' },
+    { id: 'b21', title: 'Loss Functions', icon: '📉', description: 'Measuring and minimizing prediction errors.', readTime: '12 min' },
+    { id: 'b22', title: 'Activation Functions', icon: '⚡', description: 'Adding non-linearity to neural networks.', readTime: '11 min' },
+    { id: 'b23', title: 'Batch Normalization', icon: '📊', description: 'Stabilizing and accelerating neural network training.', readTime: '13 min' },
+    { id: 'b24', title: 'Dropout Regularization', icon: '🎲', description: 'Preventing overfitting through random deactivation.', readTime: '12 min' },
+    { id: 'b25', title: 'Convolutional Neural Networks', icon: '🖼️', description: 'Specialized architecture for image processing.', readTime: '17 min' },
+    { id: 'b26', title: 'Recurrent Neural Networks', icon: '🔁', description: 'Processing sequential data like text and time series.', readTime: '15 min' },
+    { id: 'b27', title: 'Image Classification', icon: '🏷️', description: 'Teaching AI to recognize and categorize images.', readTime: '14 min' },
+    { id: 'b28', title: 'Natural Language Processing', icon: '🗣️', description: 'Enabling AI to understand and generate human language.', readTime: '16 min' },
+    { id: 'b29', title: 'Sentiment Analysis', icon: '😊', description: 'Determining emotions and opinions in text.', readTime: '12 min' },
+    { id: 'b30', title: 'Named Entity Recognition', icon: '🏢', description: 'Identifying and classifying entities in text.', readTime: '13 min' }
+].map(concept => ({
+    ...concept,
+    level: 'Beginner',
+    content: `<h2>${concept.title}</h2><p>Comprehensive content for ${concept.title} coming soon. This concept covers ${concept.description.toLowerCase()}</p>`
+}));
+
+genAIConcepts.beginner.push(...additionalBeginnerConcepts);
+
+// Intermediate Concepts
+genAIConcepts.intermediate = [
+    {
+        id: 'i1',
+        title: 'Advanced Prompt Engineering',
+        icon: '🎨',
+        description: 'Master advanced techniques for crafting highly effective prompts.',
+        readTime: '18 min',
+        level: 'Intermediate',
+        content: `<h2>Advanced Prompt Engineering</h2><p>Deep dive into sophisticated prompting techniques that maximize AI performance...</p>`
+    },
+    {
+        id: 'i2',
+        title: 'Chain-of-Thought Prompting',
+        icon: '🔗',
+        description: 'Teaching AI to show its reasoning process for better results.',
+        readTime: '16 min',
+        level: 'Intermediate',
+        content: `<h2>Chain-of-Thought Prompting</h2><p>Understanding how step-by-step reasoning improves AI outputs...</p>`
+    }
+    // Additional intermediate concepts would follow similar pattern
+];
+
+// Advanced Concepts
+genAIConcepts.advanced = [
+    {
+        id: 'a1',
+        title: 'Reinforcement Learning from Human Feedback',
+        icon: '🎓',
+        description: 'Training AI systems to align with human preferences and values.',
+        readTime: '22 min',
+        level: 'Advanced',
+        content: `<h2>RLHF: Aligning AI with Human Values</h2><p>Exploring the technique behind ChatGPT and other aligned models...</p>`
+    }
+    // Additional advanced concepts would follow
+];
+
+// Add placeholder concepts for remaining slots
+// In production, each would have full detailed content
+for (let i = 3; i <= 40; i++) {
+    genAIConcepts.intermediate.push({
+        id: `i${i}`,
+        title: `Intermediate Concept ${i}`,
+        icon: '🚀',
+        description: `Advanced topic ${i} for intermediate learners in GenAI.`,
+        readTime: `${Math.floor(Math.random() * 10 + 12)} min`,
+        level: 'Intermediate',
+        content: `<h2>Intermediate Concept ${i}</h2><p>Detailed content would be here...</p>`
+    });
+}
+
+for (let i = 2; i <= 35; i++) {
+    genAIConcepts.advanced.push({
+        id: `a${i}`,
+        title: `Advanced Concept ${i}`,
+        icon: '⚡',
+        description: `Cutting-edge topic ${i} for advanced GenAI practitioners.`,
+        readTime: `${Math.floor(Math.random() * 10 + 18)} min`,
+        level: 'Advanced',
+        content: `<h2>Advanced Concept ${i}</h2><p>Detailed content would be here...</p>`
+    });
+}
+
+// Export data structure
+window.genAIConcepts = genAIConcepts;
