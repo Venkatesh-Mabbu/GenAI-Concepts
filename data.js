@@ -2654,7 +2654,487 @@ embeddings = np.vstack(all_embeddings)
             <p>Embeddings are the foundation of modern AI, transforming human concepts into mathematical representations that machines can process. Whether you're building search engines, recommendation systems, or any application requiring semantic understanding, embeddings are your essential tool. Understanding how to create, manipulate, and apply embeddings opens up a world of AI applications that would be impossible with traditional approaches.</p>
         `
     },
-    { id: 'b11', title: 'Attention Mechanisms', icon: '👁️', description: 'The breakthrough that enabled modern AI to focus on relevant information.', readTime: '14 min' },
+{
+        id: 'b11',
+        title: 'Attention Mechanisms',
+        icon: '👁️',
+        description: 'The breakthrough that enabled modern AI to focus on relevant information.',
+        readTime: '19 min',
+        level: 'Beginner',
+        content: `
+            <h2>Attention Mechanisms: Teaching AI to Focus</h2>
+            <p>Attention mechanisms revolutionized artificial intelligence, enabling models to dynamically focus on relevant parts of the input rather than treating all information equally. This breakthrough, introduced in the landmark 2017 paper "Attention Is All You Need," became the foundation for modern AI systems like GPT, BERT, and countless other state-of-the-art models.</p>
+
+            <h3>The Problem Attention Solves</h3>
+            <p>Before attention mechanisms, neural networks processed sequences (like sentences) using recurrent architectures that had significant limitations:</p>
+            <ul>
+                <li><strong>Sequential Processing:</strong> Had to process words one-by-one, couldn't parallelize</li>
+                <li><strong>Information Bottleneck:</strong> Compressed entire input into fixed-size vector</li>
+                <li><strong>Vanishing Gradients:</strong> Struggled with long sequences</li>
+                <li><strong>No Selective Focus:</strong> Couldn't distinguish important from unimportant information</li>
+            </ul>
+
+            <h3>What Is Attention?</h3>
+            <p>Attention allows a model to assign different levels of importance (weights) to different parts of the input when producing each output. It answers the question: "Which parts of the input should I focus on right now?"</p>
+
+            <h4>Simple Analogy:</h4>
+            <p>Imagine reading a document to answer "What's the capital of France?" Your eyes don't give equal attention to every word—they scan quickly until finding relevant information ("Paris"), then focus there. That's attention!</p>
+
+            <h3>Self-Attention: The Core Mechanism</h3>
+            <p>Self-attention (used in Transformers) allows each position in a sequence to attend to all positions in the same sequence.</p>
+
+            <h4>Three Key Components:</h4>
+            <ol>
+                <li><strong>Query (Q):</strong> "What am I looking for?"</li>
+                <li><strong>Key (K):</strong> "What do I represent?"</li>
+                <li><strong>Value (V):</strong> "What information do I carry?"</li>
+            </ol>
+
+            <h4>The Attention Formula:</h4>
+            <pre><code>
+Attention(Q, K, V) = softmax(QK^T / √d_k) V
+
+Where:
+- Q·K^T computes similarity scores between queries and keys
+- √d_k scales scores (prevents large values)
+- softmax converts scores to probabilities (sum to 1)
+- Result is weighted sum of values
+            </code></pre>
+
+            <h3>Attention in Action: Example</h3>
+            <pre><code>
+import torch
+import torch.nn.functional as F
+
+def simple_attention(query, key, value):
+    """
+    Simple self-attention implementation
+
+    Args:
+        query: (batch, seq_len, d_model)
+        key: (batch, seq_len, d_model)
+        value: (batch, seq_len, d_model)
+    """
+    d_k = query.size(-1)
+
+    # Compute attention scores
+    scores = torch.matmul(query, key.transpose(-2, -1))  # (batch, seq_len, seq_len)
+    scores = scores / torch.sqrt(torch.tensor(d_k, dtype=torch.float32))
+
+    # Convert to probabilities
+    attention_weights = F.softmax(scores, dim=-1)
+
+    # Apply to values
+    output = torch.matmul(attention_weights, value)  # (batch, seq_len, d_model)
+
+    return output, attention_weights
+
+# Example usage
+batch_size, seq_len, d_model = 1, 5, 512
+query = torch.randn(batch_size, seq_len, d_model)
+key = torch.randn(batch_size, seq_len, d_model)
+value = torch.randn(batch_size, seq_len, d_model)
+
+output, weights = simple_attention(query, key, value)
+
+print(f"Attention weights shape: {weights.shape}")  # (1, 5, 5)
+print(f"Output shape: {output.shape}")  # (1, 5, 512)
+            </code></pre>
+
+            <h3>Multi-Head Attention</h3>
+            <p>Instead of one attention mechanism, use multiple "heads" that learn different aspects:</p>
+
+            <pre><code>
+import torch.nn as nn
+
+class MultiHeadAttention(nn.Module):
+    def __init__(self, d_model, num_heads):
+        super().__init__()
+        assert d_model % num_heads == 0
+
+        self.d_model = d_model
+        self.num_heads = num_heads
+        self.d_k = d_model // num_heads
+
+        # Linear projections
+        self.W_q = nn.Linear(d_model, d_model)
+        self.W_k = nn.Linear(d_model, d_model)
+        self.W_v = nn.Linear(d_model, d_model)
+        self.W_o = nn.Linear(d_model, d_model)
+
+    def split_heads(self, x):
+        """Split into multiple heads"""
+        batch_size, seq_len, d_model = x.size()
+        return x.view(batch_size, seq_len, self.num_heads, self.d_k).transpose(1, 2)
+
+    def forward(self, query, key, value, mask=None):
+        batch_size = query.size(0)
+
+        # Linear projections and split into heads
+        Q = self.split_heads(self.W_q(query))  # (batch, heads, seq_len, d_k)
+        K = self.split_heads(self.W_k(key))
+        V = self.split_heads(self.W_v(value))
+
+        # Scaled dot-product attention
+        scores = torch.matmul(Q, K.transpose(-2, -1)) / torch.sqrt(torch.tensor(self.d_k, dtype=torch.float32))
+
+        if mask is not None:
+            scores = scores.masked_fill(mask == 0, -1e9)
+
+        attention_weights = F.softmax(scores, dim=-1)
+        attention_output = torch.matmul(attention_weights, V)
+
+        # Concatenate heads
+        attention_output = attention_output.transpose(1, 2).contiguous()
+        attention_output = attention_output.view(batch_size, -1, self.d_model)
+
+        # Final linear projection
+        output = self.W_o(attention_output)
+
+        return output, attention_weights
+
+# Example
+d_model, num_heads = 512, 8
+mha = MultiHeadAttention(d_model, num_heads)
+
+x = torch.randn(2, 10, 512)  # (batch=2, seq_len=10, d_model=512)
+output, weights = mha(x, x, x)
+
+print(f"Output shape: {output.shape}")  # (2, 10, 512)
+            </code></pre>
+
+            <h3>Why Multiple Heads?</h3>
+            <p>Different heads can learn different types of relationships:</p>
+            <ul>
+                <li><strong>Head 1:</strong> Might focus on syntactic relationships (subject-verb agreement)</li>
+                <li><strong>Head 2:</strong> Might focus on semantic relationships (synonyms, antonyms)</li>
+                <li><strong>Head 3:</strong> Might focus on positional relationships (nearby words)</li>
+                <li><strong>Head 4:</strong> Might focus on long-range dependencies</li>
+            </ul>
+
+            <h3>Types of Attention</h3>
+
+            <h4>1. Self-Attention (Intra-Attention)</h4>
+            <p>Attention between elements of the same sequence:</p>
+            <pre><code>
+# In "The cat sat on the mat", each word attends to all other words
+# "cat" might attend strongly to "sat" and "mat"
+# "on" might attend to "sat" and "mat"
+            </code></pre>
+
+            <h4>2. Cross-Attention (Encoder-Decoder Attention)</h4>
+            <p>Attention between two different sequences:</p>
+            <pre><code>
+# Translation: English → French
+# French decoder attends to English encoder outputs
+# When generating "chat" (cat), attend to "cat" in English
+
+# In CLIP: Image attends to text description
+            </code></pre>
+
+            <h4>3. Masked Attention</h4>
+            <p>Prevents attending to future positions (for autoregressive models like GPT):</p>
+            <pre><code>
+def create_causal_mask(seq_len):
+    """Create mask that prevents attending to future positions"""
+    mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).bool()
+    return ~mask  # True where attention is allowed
+
+# Example for sequence length 5
+mask = create_causal_mask(5)
+print(mask)
+# [[1, 0, 0, 0, 0],   # Position 0 can only see itself
+#  [1, 1, 0, 0, 0],   # Position 1 can see 0 and 1
+#  [1, 1, 1, 0, 0],   # Position 2 can see 0, 1, and 2
+#  [1, 1, 1, 1, 0],
+#  [1, 1, 1, 1, 1]]   # Position 4 can see all previous
+            </code></pre>
+
+            <h3>Visualizing Attention</h3>
+            <pre><code>
+from transformers import AutoTokenizer, AutoModel
+import torch
+
+# Load model
+tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
+model = AutoModel.from_pretrained('bert-base-uncased', output_attentions=True)
+
+# Tokenize input
+text = "The cat sat on the mat"
+inputs = tokenizer(text, return_tensors='pt')
+
+# Get attention weights
+outputs = model(**inputs)
+attention = outputs.attentions  # Tuple of attention weights from each layer
+
+# attention[0] shape: (batch=1, heads=12, seq_len=8, seq_len=8)
+# 12 heads, sequence length 8 (including [CLS] and [SEP])
+
+# Visualize attention for first head of first layer
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+att_matrix = attention[0][0, 0].detach().numpy()  # First head
+tokens = tokenizer.convert_ids_to_tokens(inputs['input_ids'][0])
+
+plt.figure(figsize=(10, 8))
+sns.heatmap(att_matrix, xticklabels=tokens, yticklabels=tokens, cmap='viridis')
+plt.title('Attention Weights - Layer 0, Head 0')
+plt.show()
+            </code></pre>
+
+            <h3>Positional Encoding</h3>
+            <p>Since attention has no inherent notion of order, we add positional information:</p>
+
+            <pre><code>
+import math
+
+def get_positional_encoding(seq_len, d_model):
+    """
+    Sinusoidal positional encodings
+
+    PE(pos, 2i) = sin(pos / 10000^(2i/d_model))
+    PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))
+    """
+    position = torch.arange(seq_len).unsqueeze(1)
+    div_term = torch.exp(torch.arange(0, d_model, 2) * -(math.log(10000.0) / d_model))
+
+    pe = torch.zeros(seq_len, d_model)
+    pe[:, 0::2] = torch.sin(position * div_term)
+    pe[:, 1::2] = torch.cos(position * div_term)
+
+    return pe
+
+# Generate positional encodings
+pos_encoding = get_positional_encoding(seq_len=100, d_model=512)
+print(f"Positional encoding shape: {pos_encoding.shape}")  # (100, 512)
+
+# Visualize
+plt.figure(figsize=(12, 6))
+plt.pcolormesh(pos_encoding.numpy(), cmap='RdBu')
+plt.xlabel('Embedding dimension')
+plt.ylabel('Position')
+plt.colorbar()
+plt.title('Positional Encoding')
+plt.show()
+            </code></pre>
+
+            <h3>Complete Transformer Block</h3>
+            <pre><code>
+class TransformerBlock(nn.Module):
+    def __init__(self, d_model, num_heads, d_ff, dropout=0.1):
+        super().__init__()
+
+        # Multi-head attention
+        self.attention = MultiHeadAttention(d_model, num_heads)
+
+        # Feed-forward network
+        self.ff = nn.Sequential(
+            nn.Linear(d_model, d_ff),
+            nn.ReLU(),
+            nn.Linear(d_ff, d_model)
+        )
+
+        # Layer normalization
+        self.norm1 = nn.LayerNorm(d_model)
+        self.norm2 = nn.LayerNorm(d_model)
+
+        # Dropout
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x, mask=None):
+        # Multi-head attention with residual connection
+        attn_output, _ = self.attention(x, x, x, mask)
+        x = self.norm1(x + self.dropout(attn_output))
+
+        # Feed-forward with residual connection
+        ff_output = self.ff(x)
+        x = self.norm2(x + self.dropout(ff_output))
+
+        return x
+
+# Stack multiple blocks
+class TransformerEncoder(nn.Module):
+    def __init__(self, num_layers, d_model, num_heads, d_ff):
+        super().__init__()
+        self.layers = nn.ModuleList([
+            TransformerBlock(d_model, num_heads, d_ff)
+            for _ in range(num_layers)
+        ])
+
+    def forward(self, x):
+        for layer in self.layers:
+            x = layer(x)
+        return x
+
+# Example usage
+encoder = TransformerEncoder(num_layers=6, d_model=512, num_heads=8, d_ff=2048)
+x = torch.randn(2, 10, 512)  # (batch, seq_len, d_model)
+output = encoder(x)
+print(f"Encoder output shape: {output.shape}")  # (2, 10, 512)
+            </code></pre>
+
+            <h3>Attention Variants</h3>
+
+            <h4>1. Sparse Attention</h4>
+            <p>Only attend to subset of positions (for very long sequences):</p>
+            <ul>
+                <li><strong>Local Attention:</strong> Only attend to nearby positions</li>
+                <li><strong>Global Attention:</strong> Some positions attend globally</li>
+                <li><strong>Random Attention:</strong> Random subset of positions</li>
+            </ul>
+
+            <h4>2. Linear Attention</h4>
+            <p>Reduce O(n²) complexity to O(n):</p>
+            <pre><code>
+# Standard attention: O(n²) in sequence length
+# Linear attention: Reformulate to avoid explicit matrix multiplication
+# Used in: Linformer, Performer, Linear Transformer
+            </code></pre>
+
+            <h4>3. Cross-Attention Applications</h4>
+            <pre><code>
+# Image Captioning: Image features attend to generated text
+# Visual Question Answering: Question attends to image regions
+# CLIP: Text and image attend to each other
+# Stable Diffusion: Text prompt guides image generation
+            </code></pre>
+
+            <h3>Practical Applications</h3>
+
+            <h4>Using Pre-built Attention in PyTorch</h4>
+            <pre><code>
+import torch.nn as nn
+
+# PyTorch provides built-in multi-head attention
+attention_layer = nn.MultiheadAttention(
+    embed_dim=512,
+    num_heads=8,
+    dropout=0.1,
+    batch_first=True  # Use (batch, seq, feature) format
+)
+
+# Example usage
+query = torch.randn(2, 10, 512)  # (batch, seq_len, embed_dim)
+key = torch.randn(2, 10, 512)
+value = torch.randn(2, 10, 512)
+
+attn_output, attn_weights = attention_layer(query, key, value)
+
+print(f"Output shape: {attn_output.shape}")  # (2, 10, 512)
+print(f"Attention weights shape: {attn_weights.shape}")  # (2, 10, 10)
+            </code></pre>
+
+            <h4>Analyzing Attention Patterns</h4>
+            <pre><code>
+# Extract and analyze what the model attends to
+def analyze_attention(text, model, tokenizer, layer=0, head=0):
+    inputs = tokenizer(text, return_tensors='pt')
+    outputs = model(**inputs, output_attentions=True)
+
+    attention = outputs.attentions[layer][0, head].detach()
+    tokens = tokenizer.convert_ids_to_tokens(inputs['input_ids'][0])
+
+    # Find highest attention scores
+    for i, token in enumerate(tokens):
+        top_attention = attention[i].topk(3)
+        print(f"{token} attends most to:")
+        for idx, score in zip(top_attention.indices, top_attention.values):
+            print(f"  {tokens[idx]}: {score:.4f}")
+
+# Example
+text = "The cat sat on the mat"
+analyze_attention(text, model, tokenizer)
+            </code></pre>
+
+            <h3>Key Insights About Attention</h3>
+
+            <h4>Why Attention Works:</h4>
+            <ol>
+                <li><strong>Dynamic Computation:</strong> Each output can access all inputs</li>
+                <li><strong>Parallel Processing:</strong> All positions computed simultaneously</li>
+                <li><strong>Long-Range Dependencies:</strong> Direct connections between distant positions</li>
+                <li><strong>Interpretability:</strong> Attention weights show what model focuses on</li>
+            </ol>
+
+            <h4>Computational Complexity:</h4>
+            <pre><code>
+# Self-attention complexity:
+# Time: O(n² · d) where n = sequence length, d = dimension
+# Memory: O(n²) for storing attention matrix
+
+# For n=512, d=512:
+# Standard attention: 512² · 512 = 134M operations
+# This grows quadratically with sequence length!
+
+# Solutions for long sequences:
+# - Sparse attention
+# - Linear attention
+# - Sliding window attention
+# - Hierarchical attention
+            </code></pre>
+
+            <h3>Attention in Different Architectures</h3>
+
+            <h4>BERT (Encoder-only):</h4>
+            <ul>
+                <li>Bidirectional self-attention</li>
+                <li>Can see entire context</li>
+                <li>Used for: Classification, NER, Q&A</li>
+            </ul>
+
+            <h4>GPT (Decoder-only):</h4>
+            <ul>
+                <li>Causal (masked) self-attention</li>
+                <li>Can only see previous tokens</li>
+                <li>Used for: Text generation</li>
+            </ul>
+
+            <h4>T5/BART (Encoder-Decoder):</h4>
+            <ul>
+                <li>Encoder: Bidirectional self-attention</li>
+                <li>Decoder: Causal self-attention + cross-attention to encoder</li>
+                <li>Used for: Translation, summarization</li>
+            </ul>
+
+            <h3>Best Practices</h3>
+
+            <ol>
+                <li><strong>Scale Attention Scores:</strong> Always divide by √d_k to prevent vanishing gradients</li>
+                <li><strong>Use Layer Normalization:</strong> Stabilizes training</li>
+                <li><strong>Add Residual Connections:</strong> Helps gradient flow</li>
+                <li><strong>Dropout:</strong> Apply to attention weights and feed-forward layers</li>
+                <li><strong>Warm-up Learning Rate:</strong> Start small, gradually increase</li>
+                <li><strong>Positional Encodings:</strong> Essential for order information</li>
+            </ol>
+
+            <h3>Common Issues and Solutions</h3>
+
+            <ul>
+                <li><strong>Out of Memory:</strong>
+                    <ul>
+                        <li>Problem: Attention matrix grows quadratically</li>
+                        <li>Solutions: Gradient checkpointing, sparse attention, smaller batch size</li>
+                    </ul>
+                </li>
+                <li><strong>Training Instability:</strong>
+                    <ul>
+                        <li>Problem: Exploding/vanishing gradients</li>
+                        <li>Solutions: Layer norm, residual connections, gradient clipping</li>
+                    </ul>
+                </li>
+                <li><strong>Poor Long-Sequence Performance:</strong>
+                    <ul>
+                        <li>Problem: O(n²) complexity</li>
+                        <li>Solutions: Sliding window, sparse patterns, hierarchical attention</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Attention mechanisms transformed AI by enabling models to selectively focus on relevant information, process sequences in parallel, and capture long-range dependencies. From powering language models like GPT and BERT to enabling breakthroughs in computer vision, speech recognition, and multi-modal AI, attention has become the foundational building block of modern deep learning. Understanding how attention works—from the basic scaled dot-product to multi-head attention and transformers—is essential for anyone working with state-of-the-art AI systems.</p>
+        `
+    },
     { id: 'b12', title: 'Prompt Engineering Basics', icon: '💬', description: 'Crafting effective prompts to get better AI responses.', readTime: '12 min' },
     { id: 'b13', title: 'Temperature and Sampling', icon: '🌡️', description: 'Controlling randomness and creativity in AI outputs.', readTime: '11 min' },
     { id: 'b14', title: 'Context Windows', icon: '🪟', description: 'Understanding AI memory limits and how to work with them.', readTime: '10 min' },
