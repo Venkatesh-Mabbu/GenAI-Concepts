@@ -1387,10 +1387,522 @@ Mobile Inference:
     }
 ]);
 
-// Add more beginner concepts (abbreviated for space, but structure shown)
-// In production, each would have full 2000+ word content
+// Continue with more fully detailed beginner concepts
 const additionalBeginnerConcepts = [
-    { id: 'b8', title: 'Transfer Learning', icon: '🔄', description: 'Leveraging pre-trained models to solve new tasks efficiently.', readTime: '13 min' },
+    {
+        id: 'b8',
+        title: 'Transfer Learning',
+        icon: '🔄',
+        description: 'Leveraging pre-trained models to solve new tasks efficiently.',
+        readTime: '20 min',
+        content: `
+            <h2>Transfer Learning: Standing on the Shoulders of Giants</h2>
+            <p>Transfer learning is one of the most powerful techniques in modern machine learning and AI. Instead of training a model from scratch for every new task, transfer learning allows us to leverage knowledge learned from one task to improve performance on another related task. This approach has revolutionized AI development, making sophisticated models accessible to teams without massive computational resources.</p>
+
+            <h3>What is Transfer Learning?</h3>
+            <p>Transfer learning is the practice of taking a model trained on one task and repurposing it for a different but related task. Think of it like a professional athlete switching sports—they don't start from zero. Their existing fitness, coordination, and strategic thinking transfer to the new sport, giving them a significant head start over complete beginners.</p>
+
+            <h3>Why Transfer Learning Matters</h3>
+            <p>Training large AI models from scratch is:</p>
+            <ul>
+                <li><strong>Expensive:</strong> Can cost millions of dollars in compute resources</li>
+                <li><strong>Time-Consuming:</strong> May take weeks or months even with powerful hardware</li>
+                <li><strong>Data-Hungry:</strong> Requires massive datasets (millions to billions of examples)</li>
+                <li><strong>Environmentally Costly:</strong> Consumes enormous amounts of energy</li>
+                <li><strong>Expertise-Intensive:</strong> Demands specialized knowledge and experience</li>
+            </ul>
+
+            <p>Transfer learning addresses all these challenges by allowing us to start with models that have already learned general patterns and features.</p>
+
+            <h3>How Transfer Learning Works</h3>
+
+            <h4>The Core Concept</h4>
+            <p>Neural networks learn hierarchical representations:</p>
+            <ul>
+                <li><strong>Early Layers:</strong> Learn general, low-level features (edges, colors, textures in images; basic grammar in text)</li>
+                <li><strong>Middle Layers:</strong> Learn mid-level patterns (shapes, object parts; phrase structures)</li>
+                <li><strong>Later Layers:</strong> Learn task-specific, high-level features (specific objects; semantic meaning)</li>
+            </ul>
+
+            <p>The insight: Early and middle layer features are often useful across many different tasks! Only the final layers need to be task-specific.</p>
+
+            <h3>Transfer Learning Strategies</h3>
+
+            <h4>1. Feature Extraction (Frozen Base)</h4>
+            <p>Use a pre-trained model as a fixed feature extractor:</p>
+            <pre><code>
+import tensorflow as tf
+from tensorflow.keras.applications import ResNet50
+from tensorflow.keras.layers import Dense, GlobalAveragePooling2D
+from tensorflow.keras.models import Model
+
+# Load pre-trained ResNet50 (trained on ImageNet)
+base_model = ResNet50(
+    weights='imagenet',
+    include_top=False,  # Remove classification head
+    input_shape=(224, 224, 3)
+)
+
+# Freeze all layers in base model
+base_model.trainable = False
+
+# Add custom classification head
+x = base_model.output
+x = GlobalAveragePooling2D()(x)
+x = Dense(256, activation='relu')(x)
+predictions = Dense(10, activation='softmax')(x)  # 10 classes
+
+# Create final model
+model = Model(inputs=base_model.input, outputs=predictions)
+
+model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# Train only the new layers
+model.fit(train_data, train_labels, epochs=10)
+            </code></pre>
+
+            <p><strong>When to use:</strong> Limited training data, very different task from pre-training</p>
+            <p><strong>Advantages:</strong> Fast training, prevents overfitting, requires less data</p>
+            <p><strong>Disadvantages:</strong> May not achieve optimal performance</p>
+
+            <h4>2. Fine-Tuning</h4>
+            <p>Unfreeze some or all layers and continue training:</p>
+            <pre><code>
+# Start with feature extraction model (from above)
+# Then unfreeze layers and fine-tune
+
+# Unfreeze the base model
+base_model.trainable = True
+
+# Optionally, freeze early layers and fine-tune only later layers
+fine_tune_at = 100  # Freeze first 100 layers
+
+for layer in base_model.layers[:fine_tune_at]:
+    layer.trainable = False
+
+# Recompile with lower learning rate (important!)
+model.compile(
+    optimizer=tf.keras.optimizers.Adam(learning_rate=1e-5),
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# Fine-tune the model
+model.fit(
+    train_data,
+    train_labels,
+    epochs=10,
+    validation_data=(val_data, val_labels)
+)
+            </code></pre>
+
+            <p><strong>When to use:</strong> Sufficient training data, task related to pre-training task</p>
+            <p><strong>Advantages:</strong> Better performance than feature extraction</p>
+            <p><strong>Disadvantages:</strong> Requires more data, risk of overfitting, longer training</p>
+
+            <h4>3. Domain Adaptation</h4>
+            <p>Adapt model from one domain to another (e.g., synthetic to real images, formal to colloquial text):</p>
+            <pre><code>
+# Domain adaptation example for sentiment analysis
+from transformers import AutoModelForSequenceClassification, Trainer
+
+# Load model pre-trained on formal reviews
+model = AutoModelForSequenceClassification.from_pretrained(
+    'bert-base-uncased',
+    num_labels=2
+)
+
+# Fine-tune on social media text (different domain)
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=social_media_dataset,
+    eval_dataset=eval_dataset
+)
+
+trainer.train()
+            </code></pre>
+
+            <h3>Popular Pre-trained Models</h3>
+
+            <h4>Computer Vision</h4>
+            <ul>
+                <li><strong>ResNet:</strong> Deep residual networks, 18-152 layers
+                    <ul>
+                        <li>Use case: General image classification, feature extraction</li>
+                        <li>Trained on: ImageNet (1.2M images, 1000 categories)</li>
+                    </ul>
+                </li>
+                <li><strong>EfficientNet:</strong> Balanced scaling of depth, width, resolution
+                    <ul>
+                        <li>Use case: Resource-efficient image recognition</li>
+                        <li>Better accuracy-to-size ratio than ResNet</li>
+                    </ul>
+                </li>
+                <li><strong>Vision Transformer (ViT):</strong> Transformer architecture for images
+                    <ul>
+                        <li>Use case: State-of-the-art image classification</li>
+                        <li>Requires more data but achieves better performance</li>
+                    </ul>
+                </li>
+                <li><strong>YOLO, Faster R-CNN:</strong> Object detection models
+                    <ul>
+                        <li>Use case: Detecting and localizing objects in images</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>Natural Language Processing</h4>
+            <ul>
+                <li><strong>BERT:</strong> Bidirectional encoder representations
+                    <ul>
+                        <li>Use case: Text classification, NER, question answering</li>
+                        <li>Variants: RoBERTa, ALBERT, DistilBERT</li>
+                    </ul>
+                </li>
+                <li><strong>GPT:</strong> Generative pre-trained transformer
+                    <ul>
+                        <li>Use case: Text generation, completion, few-shot learning</li>
+                        <li>Versions: GPT-2, GPT-3, GPT-4</li>
+                    </ul>
+                </li>
+                <li><strong>T5:</strong> Text-to-text transfer transformer
+                    <ul>
+                        <li>Use case: Universal text tasks (translation, summarization, etc.)</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Complete Transfer Learning Workflow</h3>
+
+            <h4>Step 1: Choose a Pre-trained Model</h4>
+            <p>Consider:</p>
+            <ul>
+                <li>Task similarity to your problem</li>
+                <li>Model size and inference speed requirements</li>
+                <li>Available pre-trained weights</li>
+                <li>Community support and documentation</li>
+            </ul>
+
+            <h4>Step 2: Prepare Your Dataset</h4>
+            <pre><code>
+import tensorflow as tf
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+# Match preprocessing to pre-trained model
+datagen = ImageDataGenerator(
+    rescale=1./255,
+    validation_split=0.2,
+    rotation_range=20,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    horizontal_flip=True
+)
+
+train_generator = datagen.flow_from_directory(
+    'data/train',
+    target_size=(224, 224),  # Match pre-trained model input
+    batch_size=32,
+    class_mode='categorical',
+    subset='training'
+)
+
+validation_generator = datagen.flow_from_directory(
+    'data/train',
+    target_size=(224, 224),
+    batch_size=32,
+    class_mode='categorical',
+    subset='validation'
+)
+            </code></pre>
+
+            <h4>Step 3: Modify Model Architecture</h4>
+            <pre><code>
+from tensorflow.keras.applications import MobileNetV2
+
+# Load base model
+base_model = MobileNetV2(
+    input_shape=(224, 224, 3),
+    include_top=False,
+    weights='imagenet'
+)
+
+# Add custom layers
+model = tf.keras.Sequential([
+    base_model,
+    tf.keras.layers.GlobalAveragePooling2D(),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(num_classes, activation='softmax')
+])
+            </code></pre>
+
+            <h4>Step 4: Training Strategy</h4>
+            <pre><code>
+# Phase 1: Train only new layers
+base_model.trainable = False
+
+model.compile(
+    optimizer=tf.keras.optimizers.Adam(lr=1e-3),
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+history1 = model.fit(
+    train_generator,
+    epochs=10,
+    validation_data=validation_generator
+)
+
+# Phase 2: Fine-tune entire model
+base_model.trainable = True
+
+model.compile(
+    optimizer=tf.keras.optimizers.Adam(lr=1e-5),  # Lower learning rate!
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+history2 = model.fit(
+    train_generator,
+    epochs=10,
+    validation_data=validation_generator
+)
+            </code></pre>
+
+            <h3>NLP Transfer Learning with Hugging Face</h3>
+            <pre><code>
+from transformers import (
+    AutoTokenizer,
+    AutoModelForSequenceClassification,
+    TrainingArguments,
+    Trainer
+)
+from datasets import load_dataset
+
+# Load pre-trained model and tokenizer
+model_name = 'bert-base-uncased'
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSequenceClassification.from_pretrained(
+    model_name,
+    num_labels=2  # Binary classification
+)
+
+# Prepare data
+dataset = load_dataset('imdb')
+
+def tokenize_function(examples):
+    return tokenizer(
+        examples['text'],
+        padding='max_length',
+        truncation=True,
+        max_length=512
+    )
+
+tokenized_datasets = dataset.map(tokenize_function, batched=True)
+
+# Set up training
+training_args = TrainingArguments(
+    output_dir='./results',
+    num_train_epochs=3,
+    per_device_train_batch_size=16,
+    per_device_eval_batch_size=64,
+    warmup_steps=500,
+    weight_decay=0.01,
+    logging_dir='./logs',
+    evaluation_strategy='epoch'
+)
+
+# Train
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_datasets['train'],
+    eval_dataset=tokenized_datasets['test']
+)
+
+trainer.train()
+            </code></pre>
+
+            <h3>Best Practices</h3>
+
+            <h4>1. Learning Rate Matters</h4>
+            <ul>
+                <li><strong>New layers:</strong> Higher learning rate (1e-3 to 1e-4)</li>
+                <li><strong>Fine-tuning:</strong> Much lower learning rate (1e-5 to 1e-6)</li>
+                <li><strong>Why:</strong> Pre-trained weights are already good; large updates can destroy learned features</li>
+            </ul>
+
+            <h4>2. Gradual Unfreezing</h4>
+            <pre><code>
+# Gradually unfreeze layers from top to bottom
+def unfreeze_top_n_layers(model, n):
+    for layer in model.layers[:-n]:
+        layer.trainable = False
+    for layer in model.layers[-n:]:
+        layer.trainable = True
+
+# Start with top 10 layers
+unfreeze_top_n_layers(base_model, 10)
+model.fit(data, epochs=5)
+
+# Then top 20 layers
+unfreeze_top_n_layers(base_model, 20)
+model.fit(data, epochs=5)
+
+# Finally, all layers
+base_model.trainable = True
+model.fit(data, epochs=5)
+            </code></pre>
+
+            <h4>3. Data Augmentation</h4>
+            <p>Essential when fine-tuning with limited data:</p>
+            <pre><code>
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+augmentation = ImageDataGenerator(
+    rotation_range=20,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True,
+    fill_mode='nearest'
+)
+            </code></pre>
+
+            <h4>4. Monitor for Overfitting</h4>
+            <pre><code>
+# Use early stopping
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
+
+callbacks = [
+    EarlyStopping(
+        monitor='val_loss',
+        patience=5,
+        restore_best_weights=True
+    ),
+    ReduceLROnPlateau(
+        monitor='val_loss',
+        factor=0.5,
+        patience=3
+    )
+]
+
+model.fit(data, callbacks=callbacks)
+            </code></pre>
+
+            <h3>Common Pitfalls</h3>
+
+            <ul>
+                <li><strong>Wrong Input Size:</strong> Ensure your data matches pre-trained model's expected input shape</li>
+                <li><strong>Incorrect Preprocessing:</strong> Use the same preprocessing as the pre-trained model</li>
+                <li><strong>Learning Rate Too High:</strong> Can destroy pre-trained features</li>
+                <li><strong>Forgetting to Freeze:</strong> Training all layers immediately can lead to overfitting</li>
+                <li><strong>Mismatch in Normalization:</strong> Different models use different normalization schemes</li>
+            </ul>
+
+            <h3>Transfer Learning Beyond Supervised Learning</h3>
+
+            <h4>Self-Supervised Pre-training</h4>
+            <p>Modern approach: Pre-train on massive unlabeled data, then fine-tune on small labeled datasets:</p>
+            <ul>
+                <li><strong>BERT:</strong> Masked language modeling</li>
+                <li><strong>SimCLR:</strong> Contrastive learning for images</li>
+                <li><strong>CLIP:</strong> Image-text contrastive learning</li>
+            </ul>
+
+            <h4>Few-Shot Learning</h4>
+            <p>Adapt with very few examples (GPT-3 style):</p>
+            <pre><code>
+# Example with GPT-3 API
+import openai
+
+# Few-shot prompt
+prompt = """
+Translate English to French:
+English: Hello
+French: Bonjour
+
+English: Goodbye
+French: Au revoir
+
+English: Thank you
+French:"""
+
+response = openai.Completion.create(
+    model="text-davinci-003",
+    prompt=prompt,
+    max_tokens=10
+)
+# Response: " Merci"
+            </code></pre>
+
+            <h3>Real-World Applications</h3>
+
+            <h4>Medical Imaging</h4>
+            <p>Use ImageNet pre-trained models for X-ray or MRI analysis:</p>
+            <ul>
+                <li>Start with ResNet trained on natural images</li>
+                <li>Fine-tune on medical images (much smaller dataset)</li>
+                <li>Achieve competitive performance with fraction of data needed</li>
+            </ul>
+
+            <h4>Custom Chatbots</h4>
+            <p>Fine-tune GPT or BERT on company-specific conversations:</p>
+            <ul>
+                <li>Start with general language understanding</li>
+                <li>Adapt to domain-specific terminology</li>
+                <li>Learn company policies and procedures</li>
+            </ul>
+
+            <h4>Product Classification</h4>
+            <p>E-commerce product categorization:</p>
+            <ul>
+                <li>Use EfficientNet pre-trained on ImageNet</li>
+                <li>Fine-tune on product images</li>
+                <li>Deploy for automatic product tagging</li>
+            </ul>
+
+            <h3>Measuring Transfer Learning Success</h3>
+            <pre><code>
+# Compare transfer learning vs training from scratch
+import time
+
+# From scratch
+model_scratch = create_model_architecture()
+start = time.time()
+history_scratch = model_scratch.fit(data, epochs=100)
+time_scratch = time.time() - start
+
+# Transfer learning
+model_transfer = create_transfer_model()
+start = time.time()
+history_transfer = model_transfer.fit(data, epochs=20)
+time_transfer = time.time() - start
+
+print(f"From Scratch - Acc: {history_scratch.history['val_accuracy'][-1]:.4f}, Time: {time_scratch:.0f}s")
+print(f"Transfer - Acc: {history_transfer.history['val_accuracy'][-1]:.4f}, Time: {time_transfer:.0f}s")
+            </code></pre>
+
+            <h3>Future Directions</h3>
+            <ul>
+                <li><strong>Foundation Models:</strong> Massive models pre-trained on diverse data</li>
+                <li><strong>Adapter Layers:</strong> Small trainable modules inserted into frozen models</li>
+                <li><strong>Prompt Tuning:</strong> Learn optimal prompts instead of model weights</li>
+                <li><strong>Meta-Learning:</strong> Models that learn how to adapt quickly</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Transfer learning has democratized AI development, making state-of-the-art performance accessible without massive resources. By leveraging pre-trained models, you can build production-quality AI systems with limited data and compute. The key is understanding when and how to apply transfer learning, choosing the right pre-trained model, and following best practices for fine-tuning. Whether you're working with images, text, audio, or other modalities, transfer learning is likely your best starting point for most AI projects.</p>
+        `,
+        level: 'Beginner'
+    },
     { id: 'b9', title: 'Fine-Tuning Models', icon: '🎯', description: 'Customizing pre-trained models for specific tasks and domains.', readTime: '15 min' },
     { id: 'b10', title: 'Embeddings and Vectors', icon: '📊', description: 'How AI represents words and concepts as numerical vectors.', readTime: '16 min' },
     { id: 'b11', title: 'Attention Mechanisms', icon: '👁️', description: 'The breakthrough that enabled modern AI to focus on relevant information.', readTime: '14 min' },
