@@ -8320,7 +8320,353 @@ genAIConcepts.intermediate = [
         description: 'Master advanced techniques for crafting highly effective prompts.',
         readTime: '18 min',
         level: 'Intermediate',
-        content: `<h2>Advanced Prompt Engineering</h2><p>Deep dive into sophisticated prompting techniques that maximize AI performance...</p>`
+        content: `
+            <h2>Advanced Prompt Engineering</h2>
+            <p>Prompt engineering is the art and science of crafting inputs that elicit desired outputs from large language models. While basic prompting works for simple tasks, advanced techniques can dramatically improve accuracy, consistency, and control over AI outputs. This concept explores sophisticated strategies used by experts to maximize LLM performance.</p>
+
+            <h3>Core Principles of Effective Prompts</h3>
+            <ul>
+                <li><strong>Clarity:</strong> Be specific and unambiguous about what you want</li>
+                <li><strong>Context:</strong> Provide relevant background information</li>
+                <li><strong>Constraints:</strong> Define boundaries and requirements</li>
+                <li><strong>Examples:</strong> Show the model what good outputs look like</li>
+                <li><strong>Format:</strong> Specify the desired output structure</li>
+            </ul>
+
+            <h3>Advanced Technique 1: Few-Shot Learning</h3>
+            <p>Few-shot prompting provides examples to guide the model's behavior:</p>
+            <pre><code>
+# Zero-shot (no examples)
+prompt = "Translate to French: Hello, how are you?"
+
+# One-shot (one example)
+prompt = """
+English: Good morning
+French: Bonjour
+
+English: Hello, how are you?
+French:"""
+
+# Few-shot (multiple examples)
+prompt = """
+Classify the sentiment of these reviews:
+
+Review: "This product is amazing! Best purchase ever."
+Sentiment: Positive
+
+Review: "Terrible quality, broke after one day."
+Sentiment: Negative
+
+Review: "It's okay, nothing special."
+Sentiment: Neutral
+
+Review: "I absolutely love this! Game changer for my workflow."
+Sentiment:"""
+            </code></pre>
+
+            <h3>Advanced Technique 2: Role Prompting</h3>
+            <p>Assign a specific role or persona to the model for expert-level responses:</p>
+            <pre><code>
+# Basic prompt
+"Explain quantum computing"
+
+# With role
+"You are a Nobel Prize-winning physicist with 30 years of experience in quantum mechanics. Explain quantum computing to a computer science undergraduate who knows classical computing well but has minimal physics background."
+
+# With multiple roles
+"You are both a senior software architect and a security expert. Review this authentication code and provide feedback on both the architecture design and security implications."
+            </code></pre>
+
+            <h3>Advanced Technique 3: Structured Output Formatting</h3>
+            <p>Guide the model to produce consistently formatted outputs:</p>
+            <pre><code>
+prompt = """
+Extract information from this job posting and format as JSON:
+
+Job Posting:
+"Senior Python Developer needed at TechCorp. 5+ years experience, $120k-150k salary. Remote position. Apply by June 30th."
+
+Output format:
+{
+  "position": "job title",
+  "company": "company name",
+  "experience": "years required",
+  "salary": "salary range",
+  "location": "work location",
+  "deadline": "application deadline"
+}
+
+JSON Output:"""
+
+# The model will now produce structured JSON output
+            </code></pre>
+
+            <h3>Advanced Technique 4: Constraint-Based Prompting</h3>
+            <p>Define explicit constraints to control output characteristics:</p>
+            <pre><code>
+prompt = """
+Write a product description for noise-canceling headphones.
+
+Constraints:
+- Exactly 100 words
+- Include these keywords: "immersive", "battery life", "comfort"
+- Target audience: business professionals
+- Tone: professional but approachable
+- Include one specific technical specification
+- End with a call-to-action
+
+Product Description:"""
+            </code></pre>
+
+            <h3>Advanced Technique 5: Multi-Step Reasoning</h3>
+            <p>Break complex tasks into explicit steps:</p>
+            <pre><code>
+prompt = """
+Analyze this customer complaint and provide a response.
+
+Complaint: "I ordered the blue widget 2 weeks ago but received a red one. I've called customer service 3 times but nobody follows up."
+
+Step 1: Identify all issues mentioned in the complaint
+Step 2: Assess the severity and priority of each issue
+Step 3: Draft an empathetic response that addresses each issue
+Step 4: Include concrete next steps and timeline
+
+Begin your analysis:"""
+            </code></pre>
+
+            <h3>Advanced Technique 6: Temperature and Parameter Control</h3>
+            <pre><code>
+from openai import OpenAI
+client = OpenAI()
+
+# Creative writing: higher temperature for variety
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "Write a unique story opening"}],
+    temperature=0.9,  # More creative/random
+    top_p=0.95
+)
+
+# Factual Q&A: lower temperature for consistency
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "What is the capital of France?"}],
+    temperature=0.1,  # More focused/deterministic
+    top_p=0.1
+)
+
+# Code generation: moderate temperature
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "Write a function to reverse a string"}],
+    temperature=0.5,  # Balance between creativity and correctness
+    max_tokens=500
+)
+            </code></pre>
+
+            <h3>Advanced Technique 7: System Message Engineering</h3>
+            <pre><code>
+# Weak system message
+messages = [
+    {"role": "system", "content": "You are a helpful assistant"},
+    {"role": "user", "content": "Help me write a business email"}
+]
+
+# Strong system message with detailed instructions
+messages = [
+    {
+        "role": "system",
+        "content": """You are a professional business communication expert with 15 years of experience in corporate settings.
+
+        Your writing style:
+        - Concise and clear
+        - Professional but warm
+        - Action-oriented
+        - Uses active voice
+        - Structured with clear sections
+
+        When writing emails:
+        1. Start with appropriate greeting
+        2. State purpose in first sentence
+        3. Provide necessary context
+        4. Include specific next steps
+        5. End with professional closing
+
+        Always consider:
+        - Recipient's seniority and relationship
+        - Cultural context if international
+        - Time sensitivity
+        - Appropriate tone for the situation"""
+    },
+    {"role": "user", "content": "Draft an email to reschedule a meeting with my CEO"}
+]
+            </code></pre>
+
+            <h3>Advanced Technique 8: Iterative Refinement</h3>
+            <pre><code>
+# First iteration: broad request
+prompt1 = "Explain neural networks"
+
+# Second iteration: refine based on first response
+prompt2 = """Your explanation of neural networks was good, but too technical.
+Simplify it for a 10-year-old using analogies. Focus on:
+1. What they do
+2. How they learn
+3. One real-world example
+
+Keep it under 150 words."""
+
+# Third iteration: ask for specific aspect
+prompt3 = "Now explain specifically how the 'learning' part works, using the analogy of learning to ride a bike."
+            </code></pre>
+
+            <h3>Advanced Technique 9: Negative Prompting</h3>
+            <p>Explicitly state what you DON'T want:</p>
+            <pre><code>
+prompt = """
+Write a technical blog post about Docker.
+
+Include:
+- What Docker is
+- Key benefits
+- Basic example
+
+Do NOT:
+- Use marketing language or hype
+- Include installation instructions
+- Assume reader knows Linux
+- Use unexplained jargon
+- Write more than 400 words
+- Include code longer than 10 lines
+
+Blog Post:"""
+            </code></pre>
+
+            <h3>Advanced Technique 10: Meta-Prompting</h3>
+            <p>Ask the model to improve its own prompts:</p>
+            <pre><code>
+prompt = """
+I want to use an LLM to analyze customer reviews and extract:
+- Overall sentiment
+- Specific product features mentioned
+- Suggestions for improvement
+
+My current prompt is:
+"Analyze this review: [REVIEW TEXT]"
+
+Suggest 3 improved prompts that would give more structured, actionable results. For each, explain why it's better."""
+            </code></pre>
+
+            <h3>Real-World Application: Customer Support Automation</h3>
+            <pre><code>
+system_message = """You are an expert customer support agent for TechGadgets Inc.
+
+Product Knowledge:
+- SmartWatch Pro: $299, 7-day battery, waterproof
+- Wireless Earbuds: $149, 24hr battery, noise cancellation
+- Fitness Tracker: $99, 14-day battery, basic features
+
+Policies:
+- 30-day return policy
+- 1-year warranty
+- Free shipping over $100
+- Price match within 7 days
+
+Response Style:
+1. Acknowledge the customer's issue empathetically
+2. Provide clear, specific solutions
+3. Include relevant links/SKUs when appropriate
+4. Offer proactive suggestions
+5. End with verification question
+
+Never:
+- Make up information
+- Promise things outside policy
+- Be defensive or argumentative"""
+
+user_message = """
+Customer complaint: "My SmartWatch Pro battery only lasts 3 days, not 7 like advertised. This is false advertising!"
+"""
+
+# Model will generate appropriate, policy-compliant response
+            </code></pre>
+
+            <h3>Measuring Prompt Effectiveness</h3>
+            <pre><code>
+import openai
+import json
+
+def evaluate_prompts(prompts, test_cases, model="gpt-4"):
+    """Compare multiple prompt variations"""
+    results = {}
+
+    for prompt_name, prompt_template in prompts.items():
+        scores = []
+
+        for test_input, expected_output in test_cases:
+            # Generate response
+            response = openai.ChatCompletion.create(
+                model=model,
+                messages=[{
+                    "role": "user",
+                    "content": prompt_template.format(input=test_input)
+                }],
+                temperature=0.3
+            )
+
+            output = response.choices[0].message.content
+
+            # Score based on criteria
+            score = calculate_score(output, expected_output)
+            scores.append(score)
+
+        results[prompt_name] = {
+            "average_score": sum(scores) / len(scores),
+            "consistency": calculate_consistency(scores)
+        }
+
+    return results
+
+# Example usage
+prompts = {
+    "basic": "Classify sentiment: {input}",
+    "few_shot": "Examples:\nPositive: 'Great!'\nNegative: 'Bad!'\n\nClassify: {input}",
+    "detailed": "Analyze the sentiment (Positive/Negative/Neutral) of this text, considering context and tone: {input}"
+}
+
+test_cases = [
+    ("I love this!", "Positive"),
+    ("Terrible experience", "Negative"),
+    ("It's okay", "Neutral")
+]
+
+results = evaluate_prompts(prompts, test_cases)
+print(json.dumps(results, indent=2))
+            </code></pre>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li>Test prompts with multiple examples to ensure consistency</li>
+                <li>Start simple and add complexity only when needed</li>
+                <li>Be specific about format, length, and style requirements</li>
+                <li>Use examples that closely match your use case</li>
+                <li>Iterate based on actual outputs—prompt engineering is experimental</li>
+                <li>Document successful prompts for reuse</li>
+                <li>Consider cost vs. quality tradeoffs with different models</li>
+            </ol>
+
+            <h3>Common Pitfalls</h3>
+            <ul>
+                <li><strong>Over-prompting:</strong> Too many instructions can confuse the model</li>
+                <li><strong>Ambiguity:</strong> Vague language leads to inconsistent outputs</li>
+                <li><strong>Assuming knowledge:</strong> Don't assume the model knows your specific context</li>
+                <li><strong>Ignoring failures:</strong> Analyze bad outputs to improve prompts</li>
+                <li><strong>No version control:</strong> Track prompt changes and their effects</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Advanced prompt engineering transforms LLMs from general-purpose tools into specialized, reliable systems. By combining techniques like few-shot learning, role prompting, structured formatting, and iterative refinement, you can achieve consistent, high-quality results. The key is systematic experimentation—test variations, measure results, and continuously refine based on real-world performance.</p>
+        `
     },
     {
         id: 'i2',
@@ -8329,9 +8675,433 @@ genAIConcepts.intermediate = [
         description: 'Teaching AI to show its reasoning process for better results.',
         readTime: '16 min',
         level: 'Intermediate',
-        content: `<h2>Chain-of-Thought Prompting</h2><p>Understanding how step-by-step reasoning improves AI outputs...</p>`
+        content: `
+            <h2>Chain-of-Thought (CoT) Prompting</h2>
+            <p>Chain-of-Thought prompting is a technique that dramatically improves language model performance on complex reasoning tasks by encouraging the model to break down problems step-by-step. Instead of jumping directly to an answer, the model explicitly shows its reasoning process, leading to more accurate and explainable results.</p>
+
+            <h3>The Power of Explicit Reasoning</h3>
+            <p>Research shows that CoT prompting can improve performance on complex tasks by 20-50%, especially for:</p>
+            <ul>
+                <li>Mathematical word problems</li>
+                <li>Commonsense reasoning</li>
+                <li>Multi-step logical deduction</li>
+                <li>Symbolic manipulation</li>
+                <li>Strategic planning</li>
+            </ul>
+
+            <h3>Basic Chain-of-Thought Prompting</h3>
+            <pre><code>
+# Without CoT (direct answer)
+prompt = """
+Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls.
+Each can has 3 tennis balls. How many tennis balls does he have now?
+
+A:"""
+
+# Model output: "11"  (might be wrong without showing work)
+
+# With CoT (step-by-step reasoning)
+prompt = """
+Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls.
+Each can has 3 tennis balls. How many tennis balls does he have now?
+
+A: Let's think step by step.
+1) Roger starts with 5 tennis balls
+2) He buys 2 cans
+3) Each can has 3 balls, so 2 cans = 2 × 3 = 6 balls
+4) Total = starting balls + new balls = 5 + 6 = 11 balls
+
+Therefore, Roger has 11 tennis balls."""
+            </code></pre>
+
+            <h3>Few-Shot Chain-of-Thought</h3>
+            <p>Provide examples that demonstrate step-by-step reasoning:</p>
+            <pre><code>
+prompt = """
+Q: A juggler can juggle 16 balls. Half of the balls are golf balls,
+and half of the golf balls are blue. How many blue golf balls are there?
+
+A: Let's think step by step.
+1) Total balls: 16
+2) Half are golf balls: 16 ÷ 2 = 8 golf balls
+3) Half of golf balls are blue: 8 ÷ 2 = 4 blue golf balls
+Answer: 4
+
+Q: A store had 20 oranges in a bin. If the store added 35 more oranges,
+and then sold 17 of them, how many oranges would there be?
+
+A: Let's think step by step.
+1) Started with: 20 oranges
+2) Added: 35 oranges
+3) Total after adding: 20 + 35 = 55 oranges
+4) Sold: 17 oranges
+5) Remaining: 55 - 17 = 38 oranges
+Answer: 38
+
+Q: Leah had 32 chocolates and her sister had 42. If they ate 35,
+how many pieces do they have left in total?
+
+A: Let's think step by step."""
+
+# Model will now follow the pattern and show its work
+            </code></pre>
+
+            <h3>Zero-Shot Chain-of-Thought</h3>
+            <p>Amazingly, just adding "Let's think step by step" can activate CoT reasoning without examples:</p>
+            <pre><code>
+# Zero-shot CoT with magic phrase
+prompt = """
+Q: If a train travels 120 miles in 2 hours, then 180 miles in the next 3 hours,
+what is the average speed for the entire journey?
+
+A: Let's think step by step."""
+
+# Model output:
+# 1) First segment: 120 miles in 2 hours = 120/2 = 60 mph
+# 2) Second segment: 180 miles in 3 hours = 180/3 = 60 mph
+# 3) Total distance: 120 + 180 = 300 miles
+# 4) Total time: 2 + 3 = 5 hours
+# 5) Average speed = Total distance / Total time = 300/5 = 60 mph
+# Answer: 60 mph
+            </code></pre>
+
+            <h3>Structured Chain-of-Thought</h3>
+            <p>Enforce a specific reasoning structure:</p>
+            <pre><code>
+prompt = """
+Analyze whether this startup will likely succeed.
+
+Startup: "GroceryDrone - delivering groceries via autonomous drones in 15 minutes"
+
+Use this analysis framework:
+
+1. MARKET ANALYSIS
+   - Market size
+   - Competition
+   - Customer need
+
+2. BUSINESS MODEL
+   - Revenue streams
+   - Cost structure
+   - Scalability
+
+3. FEASIBILITY
+   - Technical challenges
+   - Regulatory hurdles
+   - Resource requirements
+
+4. CONCLUSION
+   - Success likelihood (High/Medium/Low)
+   - Key factors
+   - Biggest risks
+
+Analysis:"""
+            </code></pre>
+
+            <h3>CoT for Code Generation</h3>
+            <pre><code>
+prompt = """
+Write a Python function to find the longest palindromic substring.
+
+Let's approach this step by step:
+
+1. UNDERSTAND THE PROBLEM
+   - Input: a string
+   - Output: longest substring that reads same forwards/backwards
+   - Example: "babad" -> "bab" or "aba"
+
+2. ALGORITHM DESIGN
+   - Approach: expand around center
+   - For each character, treat it as center
+   - Expand outward while characters match
+   - Track longest palindrome found
+
+3. IMPLEMENTATION
+   - Helper function to expand around center
+   - Handle odd-length palindromes (single center)
+   - Handle even-length palindromes (two centers)
+   - Track maximum length and position
+
+4. CODE:
+
+```python
+def longest_palindrome(s: str) -> str:
+    if not s:
+        return ""
+
+    def expand_around_center(left: int, right: int) -> int:
+        # Expand while characters match and in bounds
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        # Return length of palindrome
+        return right - left - 1
+
+    start = 0
+    max_len = 0
+
+    for i in range(len(s)):
+        # Odd length palindromes (single center)
+        len1 = expand_around_center(i, i)
+        # Even length palindromes (two centers)
+        len2 = expand_around_center(i, i + 1)
+
+        # Get maximum length
+        current_len = max(len1, len2)
+
+        # Update longest if needed
+        if current_len > max_len:
+            max_len = current_len
+            start = i - (current_len - 1) // 2
+
+    return s[start:start + max_len]
+```
+
+5. COMPLEXITY ANALYSIS
+   - Time: O(n²) where n is string length
+   - Space: O(1) - only using a few variables
+"""
+            </code></pre>
+
+            <h3>Self-Consistency Chain-of-Thought</h3>
+            <p>Generate multiple reasoning paths and take the majority answer:</p>
+            <pre><code>
+from openai import OpenAI
+from collections import Counter
+
+client = OpenAI()
+
+def self_consistency_cot(question, num_samples=5):
+    """Generate multiple CoT responses and return most common answer"""
+
+    prompt = f"""
+Q: {question}
+
+A: Let's think step by step."""
+
+    answers = []
+
+    for _ in range(num_samples):
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7  # Higher temp for diversity
+        )
+
+        full_response = response.choices[0].message.content
+
+        # Extract final answer (last line typically)
+        final_answer = full_response.strip().split('\n')[-1]
+        answers.append(final_answer)
+
+    # Return most common answer
+    most_common = Counter(answers).most_common(1)[0]
+    return {
+        "final_answer": most_common[0],
+        "confidence": most_common[1] / num_samples,
+        "all_answers": answers
     }
-    // Additional intermediate concepts would follow similar pattern
+
+# Example usage
+question = "If you have 3 apples and buy twice as many, then give away 4, how many do you have?"
+result = self_consistency_cot(question)
+
+print(f"Answer: {result['final_answer']}")
+print(f"Confidence: {result['confidence']:.0%}")
+print(f"All responses: {result['all_answers']}")
+            </code></pre>
+
+            <h3>Least-to-Most Prompting</h3>
+            <p>Break complex problems into simpler sub-problems:</p>
+            <pre><code>
+# Step 1: Decompose the problem
+decomposition_prompt = """
+Problem: Build a web scraper that extracts product prices from an e-commerce site,
+stores them in a database, and sends alerts when prices drop below a threshold.
+
+Break this into sub-problems from easiest to hardest:
+
+Sub-problems:"""
+
+# Model output:
+# 1. Send an email alert (basic Python)
+# 2. Check if price is below threshold (simple comparison)
+# 3. Store data in database (SQL operations)
+# 4. Extract price from HTML (web scraping, regex)
+# 5. Handle pagination and multiple products (loops, error handling)
+# 6. Schedule regular checks (cron jobs or task scheduling)
+# 7. Handle anti-scraping measures (headers, delays, proxies)
+
+# Step 2: Solve each sub-problem
+solution_prompt = """
+Sub-problem 1: Send an email alert
+
+Let's solve this step by step:
+
+1. Import smtplib for sending emails
+2. Set up email credentials (use environment variables)
+3. Create email message with price info
+4. Send via SMTP
+
+Code:
+[solution for sub-problem 1]
+
+Sub-problem 2: Check if price is below threshold
+[continues with each sub-problem]
+"""
+            </code></pre>
+
+            <h3>Chain-of-Thought for Classification</h3>
+            <pre><code>
+prompt = """
+Classify this customer review as Positive, Negative, or Neutral.
+
+Review: "The camera quality is amazing, but the battery life is disappointing.
+Overall, I'd still recommend it for photography enthusiasts."
+
+Let's analyze step by step:
+
+1. POSITIVE SIGNALS
+   - "camera quality is amazing" - strong positive
+   - "I'd still recommend it" - positive recommendation
+   - "photography enthusiasts" - acknowledges target audience fit
+
+2. NEGATIVE SIGNALS
+   - "battery life is disappointing" - clear negative
+
+3. CONTEXT ANALYSIS
+   - Main purpose (photography) is praised
+   - Secondary feature (battery) is criticized
+   - Final recommendation is positive despite flaw
+
+4. OVERALL TONE
+   - Balanced but leaning positive
+   - "still recommend" suggests positives outweigh negatives
+
+CLASSIFICATION: Positive
+
+CONFIDENCE: Medium-High (the recommendation is clear, but the negative aspect prevents very high confidence)"""
+            </code></pre>
+
+            <h3>Error Detection with Chain-of-Thought</h3>
+            <pre><code>
+prompt = """
+Review this code for bugs:
+
+```python
+def calculate_average(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total / len(numbers)
+
+result = calculate_average([])
+print(result)
+```
+
+Let's check step by step:
+
+1. FUNCTION LOGIC
+   - Sums all numbers: ✓ Correct
+   - Divides by count: ✓ Formula correct
+
+2. EDGE CASES
+   - Empty list: ❌ PROBLEM!
+     * len([]) = 0
+     * Division by zero → ZeroDivisionError
+
+3. NULL/NONE VALUES
+   - No explicit None handling
+   - Could fail if list contains None
+
+4. TYPE CHECKING
+   - No validation that elements are numbers
+   - Could fail with TypeError
+
+5. BUGS FOUND:
+   a) Division by zero when list is empty
+   b) No type validation
+   c) No None handling
+
+6. SUGGESTED FIX:
+```python
+def calculate_average(numbers):
+    if not numbers:
+        return 0  # or raise ValueError("Empty list")
+
+    if not all(isinstance(n, (int, float)) for n in numbers if n is not None):
+        raise TypeError("All elements must be numbers")
+
+    valid_numbers = [n for n in numbers if n is not None]
+
+    if not valid_numbers:
+        return 0
+
+    return sum(valid_numbers) / len(valid_numbers)
+```
+"""
+            </code></pre>
+
+            <h3>When to Use Chain-of-Thought</h3>
+
+            <h4>✅ Use CoT when:</h4>
+            <ul>
+                <li>Problem requires multiple reasoning steps</li>
+                <li>Accuracy is more important than speed</li>
+                <li>You need explainable outputs</li>
+                <li>Model is making errors on complex tasks</li>
+                <li>Domain requires showing work (education, verification)</li>
+            </ul>
+
+            <h4>❌ Skip CoT when:</h4>
+            <ul>
+                <li>Simple lookup or fact-based questions</li>
+                <li>Speed/cost is critical (CoT uses more tokens)</li>
+                <li>Problem is already solved reliably without it</li>
+                <li>Output length constraints are strict</li>
+            </ul>
+
+            <h3>Optimizing Chain-of-Thought Performance</h3>
+            <pre><code>
+# 1. Use XML tags for structure
+prompt = """
+<question>
+How many days until Christmas if today is October 15th?
+</question>
+
+<reasoning>
+Step 1: <current_date>October 15</current_date>
+Step 2: <target_date>December 25</target_date>
+Step 3: <calculation>
+  - Days left in October: 31 - 15 = 16 days
+  - Days in November: 30 days
+  - Days until Dec 25: 25 days
+  - Total: 16 + 30 + 25 = 71 days
+</calculation>
+</reasoning>
+
+<answer>71 days</answer>
+"""
+
+# 2. Use numbered steps for clarity
+# 3. Ask for confidence levels
+# 4. Request verification of answer
+            </code></pre>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li>Start with zero-shot CoT ("Let's think step by step")</li>
+                <li>Add few-shot examples if zero-shot is insufficient</li>
+                <li>Use clear step indicators (numbers, bullet points)</li>
+                <li>Ask model to verify its own answer at the end</li>
+                <li>For critical tasks, use self-consistency with multiple samples</li>
+                <li>Provide domain-specific reasoning frameworks when applicable</li>
+            </ol>
+
+            <h3>Conclusion</h3>
+            <p>Chain-of-Thought prompting is one of the most effective techniques for improving LLM performance on complex reasoning tasks. By encouraging explicit step-by-step thinking, CoT not only improves accuracy but also provides transparent, verifiable reasoning. Whether using zero-shot ("Let's think step by step"), few-shot examples, or structured frameworks, CoT transforms opaque model outputs into clear, logical progressions—making AI more reliable and trustworthy for real-world applications.</p>
+        `
+    }
 ];
 
 // Advanced Concepts
