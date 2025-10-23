@@ -3347,7 +3347,7 @@ v4: "I'm a web developer learning ML. Explain neural networks using analogies to
 
             <h4>Code Review</h4>
             <pre><code>
-Review this [LANGUAGE] code for:
+Review this Python code for:
 - Bugs and errors
 - Performance issues
 - Security vulnerabilities
@@ -3355,9 +3355,13 @@ Review this [LANGUAGE] code for:
 - Readability improvements
 
 Code:
-```
-[CODE HERE]
-```
+\`\`\`python
+def calculate_total(items):
+    total = 0
+    for item in items:
+        total += item.price
+    return total
+\`\`\`
 
 Provide specific line-by-line feedback with suggestions.
             </code></pre>
@@ -8824,7 +8828,7 @@ Let's approach this step by step:
 
 4. CODE:
 
-```python
+
 def longest_palindrome(s: str) -> str:
     if not s:
         return ""
@@ -8855,7 +8859,7 @@ def longest_palindrome(s: str) -> str:
             start = i - (current_len - 1) // 2
 
     return s[start:start + max_len]
-```
+
 
 5. COMPLEXITY ANALYSIS
    - Time: O(n²) where n is string length
@@ -8988,7 +8992,7 @@ CONFIDENCE: Medium-High (the recommendation is clear, but the negative aspect pr
 prompt = """
 Review this code for bugs:
 
-```python
+
 def calculate_average(numbers):
     total = 0
     for num in numbers:
@@ -8997,7 +9001,7 @@ def calculate_average(numbers):
 
 result = calculate_average([])
 print(result)
-```
+
 
 Let's check step by step:
 
@@ -9024,7 +9028,7 @@ Let's check step by step:
    c) No None handling
 
 6. SUGGESTED FIX:
-```python
+
 def calculate_average(numbers):
     if not numbers:
         return 0  # or raise ValueError("Empty list")
@@ -9038,7 +9042,7 @@ def calculate_average(numbers):
         return 0
 
     return sum(valid_numbers) / len(valid_numbers)
-```
+
 """
             </code></pre>
 
@@ -9101,8 +9105,7 @@ Step 3: <calculation>
             <h3>Conclusion</h3>
             <p>Chain-of-Thought prompting is one of the most effective techniques for improving LLM performance on complex reasoning tasks. By encouraging explicit step-by-step thinking, CoT not only improves accuracy but also provides transparent, verifiable reasoning. Whether using zero-shot ("Let's think step by step"), few-shot examples, or structured frameworks, CoT transforms opaque model outputs into clear, logical progressions—making AI more reliable and trustworthy for real-world applications.</p>
         `
-    }
-// Remaining Intermediate Concepts (i3-i40)
+    },
     {
         id: 'i3',
         title: 'Few-Shot vs Zero-Shot Learning',
