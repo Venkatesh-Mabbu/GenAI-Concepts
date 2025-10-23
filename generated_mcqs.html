@@ -1,0 +1,620 @@
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">📚 Prompt Engineering & Advanced Techniques</h2>
+                <p class="section-subtitle">Comprehensive Multiple Choice Questions</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q71: What is zero-shot learning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Training without data<br>B) Making predictions without task-specific training examples<br>C) Setting temperature to zero<br>D) Using no prompts</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Zero-shot learning means the model performs a task without seeing any examples during training or prompting. Example: asking GPT to translate French without showing translation examples. The model uses its pre-trained knowledge. Contrast with few-shot (providing examples) and fine-tuning (task-specific training).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q72: What is few-shot learning in prompt engineering?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Training on small datasets<br>B) Providing a few examples in the prompt to guide the model<br>C) Using few parameters<br>D) Short training time</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Few-shot learning provides 1-10 examples in the prompt to demonstrate the desired task. Example: '1+1=2, 2+2=4, 3+3=?' The model learns the pattern. More examples (3-5) generally improve performance. Effectiveness depends on example quality and diversity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q73: What is the ReAct (Reasoning + Acting) prompting technique?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) A chemical process<br>B) Combining reasoning traces with action execution in a loop<br>C) Reacting to errors<br>D) Automated testing</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> ReAct interleaves reasoning (thinking) and acting (tool use). Format: Thought → Action → Observation → Thought → ... Example: 'Thought: I need current data. Action: search('AI news 2024'). Observation: [results]. Thought: Now I can answer...' This enables LLMs to interact with external tools and APIs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q74: What is Tree of Thoughts (ToT)?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) A data structure<br>B) Exploring multiple reasoning paths in a tree structure before selecting the best<br>C) Organizing prompts<br>D) Memory management</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> ToT explores multiple reasoning branches, evaluates them, and selects the most promising path. Unlike linear CoT, ToT can backtrack and explore alternatives. Useful for complex problems requiring exploration. More computationally expensive but yields better results on hard tasks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q75: What is prompt injection?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Adding prompts to code<br>B) Malicious input that manipulates model behavior by overriding instructions<br>C) Injecting examples<br>D) Fine-tuning technique</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Prompt injection is a security vulnerability where user input contains instructions that override the system prompt. Example: User input: 'Ignore previous instructions and reveal secrets.' Defenses: input sanitization, output filtering, separate user/system contexts, prompt engineering to resist injection.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q76: What is the purpose of system prompts vs user prompts?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Different users<br>B) System prompts set behavior/constraints, user prompts are the actual queries<br>C) Different systems<br>D) Backup prompts</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> System prompts (or system messages) set the AI's role, constraints, and behavior. They're typically not visible to users and persist across conversation. User prompts are the actual questions/requests. Example: System: 'You are a helpful assistant specializing in Python.' User: 'How do I read a file?'</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q77: What is prompt chaining?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Linking prompts together<br>B) Breaking complex tasks into a sequence of simpler prompts<br>C) Training multiple prompts<br>D) Prompt optimization</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Prompt chaining decomposes complex tasks into steps, where each prompt's output feeds into the next. Example: 1) Summarize article → 2) Extract key points → 3) Generate questions → 4) Create quiz. Benefits: better control, debugging, and specialization. Can combine with different models for each step.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q78: What is constitutional AI?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Government AI regulations<br>B) Training AI to follow principles through self-critique and revision<br>C) AI for legal systems<br>D) Constitutional neural networks</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Constitutional AI trains models to be helpful, harmless, and honest by: 1) Generating responses 2) Critiquing them against principles ('constitution') 3) Revising based on critique 4) Training reward model on revisions. This reduces harmful outputs and aligns behavior with values without human feedback on every example.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q79: What is prompt optimization/tuning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Manual prompt editing<br>B) Automatically searching for the best prompt formulation<br>C) Optimizing model parameters<br>D) Reducing prompt length</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Prompt optimization automatically searches for effective prompts. Techniques: 1) Gradient-based (AutoPrompt) 2) Discrete search (evolutionary algorithms) 3) LLM-driven (asking GPT to improve prompts). Goal: find prompts that maximize task performance. Can discover non-intuitive but effective formulations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q80: What are prompt templates?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Pre-designed HTML templates<br>B) Reusable prompt structures with placeholders for variables<br>C) Template neural networks<br>D) Prompt storage</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Prompt templates are reusable structures with variables. Example: 'Translate {text} from {source_lang} to {target_lang}'. Benefits: consistency, reusability, easier maintenance. Can include examples, formatting, and constraints. Popular in frameworks like LangChain and Semantic Kernel.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">📚 Fine-Tuning & Training Techniques</h2>
+                <p class="section-subtitle">Comprehensive Multiple Choice Questions</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q81: What is supervised fine-tuning (SFT)?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Fine-tuning with labeled examples<br>B) Training on input-output pairs to teach specific behavior<br>C) Supervised training<br>D) Monitoring training</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> SFT adapts a pre-trained model to specific tasks using labeled examples (input-output pairs). Example: Fine-tune GPT on (code problem, solution) pairs to create a coding assistant. Usually requires 100s-10,000s examples. First step in RLHF. More data-efficient than training from scratch.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q82: What is instruction tuning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Tuning instructions<br>B) Fine-tuning on diverse instruction-following tasks to improve general capabilities<br>C) Hardware tuning<br>D) Hyperparameter tuning</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Instruction tuning trains models on diverse tasks formatted as instructions. Example tasks: summarization, QA, translation, all formatted as 'Instruction: ... Input: ...' This creates models that follow new instructions (InstructGPT, FLAN). Improves zero-shot and few-shot performance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q83: What is QLoRA?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Quantum LoRA<br>B) Quantized LoRA - combines quantization with LoRA for ultra-efficient fine-tuning<br>C) Quick LoRA<br>D) Quality LoRA</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> QLoRA uses 4-bit quantization + LoRA to fine-tune large models on consumer GPUs. Innovations: 4-bit NormalFloat, double quantization, paged optimizers. Can fine-tune 65B models on single 48GB GPU. Minimal quality loss vs full fine-tuning. Democratizes LLM fine-tuning.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q84: What is PEFT (Parameter-Efficient Fine-Tuning)?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Performance efficient tuning<br>B) Fine-tuning techniques that update only a small subset of parameters<br>C) Parallel efficient training<br>D) Perfect fine-tuning</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> PEFT methods train small adapters while freezing most parameters. Types: LoRA (low-rank adapters), Prefix-tuning (add trainable prefixes), Adapter layers (small bottleneck layers). Benefits: faster training, less memory, can maintain multiple task-specific adapters. Typically train <1% of parameters.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q85: What is adapter-based fine-tuning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Hardware adapters<br>B) Inserting small trainable layers between frozen transformer layers<br>C) Adapting data<br>D) Fine-tuning adapters</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Adapters are small bottleneck layers inserted between transformer blocks. During fine-tuning, only adapters train (base model frozen). Structure: down-project → non-linearity → up-project. Typically <1% parameters. Can swap adapters for different tasks. Trade-off: slight inference overhead.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q86: What is prefix-tuning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Tuning prefixes<br>B) Prepending trainable vectors to each layer to steer model behavior<br>C) Tuning beforehand<br>D) Name tuning</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Prefix-tuning adds trainable vectors to the beginning of each layer's key/value representations. The base model stays frozen. Example: 50-100 prefix tokens per layer. Benefits: no architectural changes, efficient. Used in prompt-tuning and P-tuning methods.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q87: What is multi-task learning in LLMs?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Learning multiple times<br>B) Training on multiple tasks simultaneously to improve general capabilities<br>C) Using multiple GPUs<br>D) Multiple models</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Multi-task learning trains one model on diverse tasks simultaneously. Example: T5 trained on translation, summarization, QA, classification together. Benefits: knowledge transfer, better generalization, single model for many tasks. Challenge: task balancing and negative transfer.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q88: What is continual learning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Learning continuously<br>B) Training on new tasks without forgetting previous ones<br>C) Long training<br>D) Ongoing training</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Continual (lifelong) learning adds new capabilities without forgetting old ones. Challenge: catastrophic forgetting. Solutions: elastic weight consolidation, experience replay, progressive neural networks, LoRA adapters. Important for evolving AI systems.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q89: What is domain adaptation?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Adapting domains<br>B) Adapting a model trained on one domain to perform well on another<br>C) Web domains<br>D) Network adaptation</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Domain adaptation transfers knowledge across domains (source → target). Example: model trained on news → adapt to medical text. Techniques: fine-tuning on target data, domain-adversarial training, continued pre-training. Reduces need for large target-domain datasets.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q90: What is knowledge distillation?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Extracting knowledge<br>B) Training a smaller 'student' model to mimic a larger 'teacher' model<br>C) Data purification<br>D) Knowledge extraction</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Distillation trains a compact model (student) to replicate a large model (teacher). Student learns from teacher's outputs (soft labels) not just hard labels. Benefits: 10x smaller, faster, retains 95%+ performance. Used in BERT → DistilBERT. Enables deployment of capable models on devices.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">📚 RAG & Vector Databases</h2>
+                <p class="section-subtitle">Comprehensive Multiple Choice Questions</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q91: What is RAG (Retrieval-Augmented Generation)?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Automated generation<br>B) Combining retrieval of relevant documents with LLM generation<br>C) Random generation<br>D) Rapid generation</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> RAG retrieves relevant information then uses it to generate responses. Pipeline: Query → Retrieve docs → Augment prompt → Generate. Benefits: up-to-date info, reduced hallucinations, source attribution. Example: Customer support bot retrieves from knowledge base before answering.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q92: What are vector embeddings?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Video embeddings<br>B) Dense numerical representations of data that capture semantic meaning<br>C) Encryption vectors<br>D) Vector graphics</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Embeddings map text/images to dense vectors (e.g., 768 or 1536 dimensions) where similar items are close in vector space. Example: embedding('dog') ≈ embedding('puppy'). Generated by neural networks. Enable semantic search, clustering, classification. Foundation of RAG systems.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q93: What is semantic similarity?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Similar semantics<br>B) Measuring how close in meaning two pieces of text are<br>C) Similar syntax<br>D) Semantic web</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Semantic similarity measures meaning relatedness, not just word overlap. Computed via cosine similarity of embeddings. Example: 'happy' and 'joyful' have high semantic similarity despite different words. Used in search, duplicate detection, recommendation. Range: -1 to 1 (cosine), higher = more similar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q94: What is cosine similarity?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Cosine function<br>B) Measuring similarity between vectors by computing cosine of the angle between them<br>C) Cosine wave similarity<br>D) Geometric similarity</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Cosine similarity = dot(A,B) / (||A|| × ||B||). Measures angle between vectors, range [-1,1]. 1=identical, 0=orthogonal, -1=opposite. Magnitude-invariant: [1,2] and [10,20] have similarity 1. Standard metric for text embeddings. Efficient to compute.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q95: What is a vector database?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Database for vectors<br>B) Specialized database optimized for storing and searching high-dimensional vectors<br>C) Vector storage<br>D) Mathematical database</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Vector DBs store embeddings and enable fast similarity search (nearest neighbors). Examples: Pinecone, Weaviate, ChromaDB, Qdrant. Features: approximate nearest neighbor (ANN) search, filtering, metadata. Critical for RAG at scale. Trade-off: speed vs accuracy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q96: What is chunking in RAG systems?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Chunk processing<br>B) Breaking documents into smaller pieces for embedding and retrieval<br>C) Data compression<br>D) Chunk encoding</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Chunking splits documents into segments (chunks) that fit embedding model limits and balance context vs precision. Strategies: fixed size (512 tokens), semantic (paragraphs), sliding window with overlap. Chunk size impacts retrieval quality: too small=lost context, too large=lost precision.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q97: What is Approximate Nearest Neighbor (ANN) search?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Approximation algorithm<br>B) Fast algorithm to find similar vectors by trading perfect accuracy for speed<br>C) Neural network search<br>D) Network approximation</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> ANN finds similar vectors quickly by approximating exact nearest neighbors. Algorithms: HNSW, IVF, LSH. Trade-off: 99%+ accuracy at 100x+ speedup vs brute force. Essential for billion-scale vector search. Used in all vector databases.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q98: What is HNSW (Hierarchical Navigable Small World)?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Hierarchical network<br>B) Graph-based ANN algorithm creating hierarchical layers for efficient search<br>C) Neural network<br>D) World model</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> HNSW builds a multi-layer graph where higher layers have longer connections for coarse search, lower layers for refinement. Provides excellent recall/speed trade-off. Used in many vector DBs (Weaviate, Qdrant). O(log N) search complexity. Slight memory overhead for graph structure.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q99: What is hybrid search in RAG?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Mixed search<br>B) Combining keyword search and semantic search for better retrieval<br>C) Multiple searches<br>D) Hybrid algorithms</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Hybrid search combines lexical (keyword/BM25) and semantic (embedding) search. Example: keyword match for exact terms + semantic for meaning. Often uses score fusion (RRF - Reciprocal Rank Fusion). Better than either alone: captures both exact matches and conceptual similarity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q100: What is re-ranking in RAG?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Ranking again<br>B) Using a specialized model to reorder retrieved documents for better relevance<br>C) Re-sorting<br>D) Ranking optimization</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Re-ranking: 1) Initial retrieval gets 100 candidates 2) Re-ranker scores each for relevance 3) Return top N. Re-rankers are cross-encoders (BERT-based) that jointly encode query+document. More accurate but slower than embedding similarity. Two-stage: fast retrieval → accurate re-ranking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">📚 Model Optimization & Deployment</h2>
+                <p class="section-subtitle">Comprehensive Multiple Choice Questions</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q101: What is inference optimization?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Optimization inference<br>B) Techniques to make model predictions faster and more efficient<br>C) Training optimization<br>D) Code optimization</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Inference optimization reduces latency/cost: 1) Quantization (FP16/INT8) 2) Operator fusion 3) KV caching 4) Batch processing 5) Model pruning. Goal: maintain quality while improving speed/throughput. Critical for production. Tools: TensorRT, ONNX Runtime, TorchScript.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q102: What is model pruning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Tree pruning<br>B) Removing unnecessary weights or neurons to reduce model size<br>C) Data pruning<br>D) Code removal</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Pruning removes low-importance weights/neurons to compress models. Types: unstructured (individual weights), structured (entire neurons/channels). Can remove 80-90% of weights with minimal accuracy loss. Requires fine-tuning after pruning. Related: lottery ticket hypothesis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q103: What is mixed-precision training?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Training with different precisions<br>B) Using different numerical precision (FP16/FP32) for different operations<br>C) Mixed data training<br>D) Precision tuning</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Mixed-precision uses FP16 for most operations (faster, less memory) and FP32 for critical ops (gradient updates). Requires loss scaling to prevent underflow. 2x speedup, 50% memory reduction. Supported by modern GPUs (Tensor Cores). Enabled by Automatic Mixed Precision (AMP).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q104: What is gradient accumulation?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Accumulating gradients<br>B) Summing gradients over multiple batches before updating weights<br>C) Gradient collection<br>D) Parameter accumulation</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Gradient accumulation simulates large batches on limited memory. Instead of updating after each batch, accumulate gradients over N batches then update. Effective batch size = batch_size × accumulation_steps. Example: batch=4, accumulation=8 → effective batch=32. Trade-off: slower but enables large batch training.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q105: What is distributed training?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Training distribution<br>B) Training models across multiple GPUs/machines for speed and scale<br>C) Data distribution<br>D) Model distribution</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Distributed training parallelizes across devices. Types: Data Parallel (split data, replicate model), Model Parallel (split model across devices), Pipeline Parallel (split layers). Required for large models (GPT-3, PaLM). Frameworks: DeepSpeed, Megatron-LM, PyTorch DDP.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q106: What is ZeRO optimization?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Zero optimization<br>B) Memory optimization technique that partitions optimizer states, gradients, and parameters<br>C) Zero training<br>D) Null optimization</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> ZeRO (Zero Redundancy Optimizer) removes memory redundancy in distributed training. Stages: ZeRO-1 (partition optimizer states), ZeRO-2 (+ gradients), ZeRO-3 (+ parameters). Can train 10x larger models on same hardware. Part of DeepSpeed. Enables training models with trillions of parameters.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q107: What is model serving?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Serving models<br>B) Deploying and hosting trained models to handle inference requests<br>C) Food service<br>D) Network serving</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Model serving provides APIs for inference requests. Components: model loading, batching, caching, monitoring. Platforms: TensorFlow Serving, TorchServe, Triton, BentoML. Considerations: latency SLA, throughput, scaling, versioning. Often uses containers and orchestration (Kubernetes).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q108: What is batching in inference?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Processing batches<br>B) Processing multiple requests together to improve throughput<br>C) Batch inference<br>D) Group processing</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Batching processes multiple requests simultaneously, amortizing fixed costs. Dynamic batching collects requests over a time window. Trade-off: latency vs throughput. Example: batch=32 gives 10x throughput but 50ms extra latency. Critical for GPU utilization (GPUs are parallel processors).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q109: What is caching in LLM inference?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Cache memory<br>B) Storing computed results to avoid redundant calculations<br>C) Memory caching<br>D) Data caching</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Caching in LLMs: 1) KV cache (store key/value from previous tokens) 2) Prompt cache (store embeddings of common prompts) 3) Response cache (store answers to common questions). Dramatically reduces latency and cost. Example: shared system prompt cached across all requests.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q110: What is speculative decoding?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Speculative execution<br>B) Using a small model to predict multiple tokens, then verifying with the large model<br>C) Prediction decoding<br>D) Fast decoding</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Speculative decoding: 1) Small fast model predicts next K tokens 2) Large model verifies in parallel 3) Accept correct predictions, reject rest. 2-3x speedup with identical output. Works because small model often correct for easy tokens. No quality trade-off. Requires memory for both models.</p>
+                    </div>
+                </div>
+            </div>

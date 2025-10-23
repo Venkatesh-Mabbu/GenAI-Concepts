@@ -2093,6 +2093,931 @@ Fine-tuned model: Great at medical topics
                     </div>
                 </div>
             </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">🧠 AI Fundamentals - Multiple Choice Questions</h2>
+                <p class="section-subtitle">Core AI and Machine Learning Concepts</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q21: What is the primary goal of Artificial Intelligence?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) To replace all human workers<br>B) To create machines that can perform tasks requiring human intelligence<br>C) To build robots<br>D) To process large datasets</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> AI aims to create systems that can perform tasks that typically require human intelligence, such as visual perception, speech recognition, decision-making, and language translation. It's not about replacing workers or just processing data, but about enabling intelligent behavior in machines.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q22: Which type of machine learning uses labeled training data?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Unsupervised learning<br>B) Supervised learning<br>C) Reinforcement learning<br>D) Transfer learning</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Supervised learning uses labeled training data where each example has an input and corresponding correct output. The model learns to map inputs to outputs. Examples include classification (spam detection) and regression (price prediction). Unsupervised learning uses unlabeled data, while reinforcement learning uses rewards/penalties.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q23: What does "training a model" mean in machine learning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Teaching humans to use AI<br>B) Adjusting model parameters to minimize error on training data<br>C) Running the model on test data<br>D) Installing software dependencies</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Training involves feeding data to a model and adjusting its internal parameters (weights and biases) to minimize the difference between predicted and actual outputs. This process uses optimization algorithms like gradient descent to find the best parameter values.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q24: What is overfitting in machine learning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Model performs well on training data but poorly on new data<br>B) Model performs poorly on all data<br>C) Model trains too quickly<br>D) Model uses too little memory</p>
+                        <p><strong>✅ Correct Answer: A</strong></p>
+                        <p><strong>Explanation:</strong> Overfitting occurs when a model learns the training data too well, including its noise and peculiarities, resulting in poor generalization to new, unseen data. It's like memorizing test answers instead of understanding concepts. Solutions include regularization, dropout, and using more training data.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q25: What is the difference between classification and regression?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Classification predicts categories, regression predicts continuous values<br>B) Classification is unsupervised, regression is supervised<br>C) Classification uses neural networks, regression uses linear models<br>D) There is no difference</p>
+                        <p><strong>✅ Correct Answer: A</strong></p>
+                        <p><strong>Explanation:</strong> Classification predicts discrete categories (e.g., spam/not spam, cat/dog/bird), while regression predicts continuous numerical values (e.g., house price, temperature). Both are supervised learning tasks, and both can use various algorithms including neural networks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q26: What is a neural network inspired by?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Computer circuits<br>B) The human brain and its neurons<br>C) Mathematical equations<br>D) Quantum mechanics</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Neural networks are inspired by biological neural networks in the human brain. They consist of interconnected nodes (neurons) organized in layers, where each connection has a weight. Information flows through the network, and neurons activate based on weighted inputs, similar to how biological neurons fire.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q27: What is the purpose of a validation set in machine learning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) To train the model<br>B) To tune hyperparameters and prevent overfitting<br>C) To test final model performance<br>D) To clean the data</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> The validation set is used during training to tune hyperparameters (learning rate, number of layers, etc.) and monitor for overfitting. It's distinct from the training set (used to learn parameters) and test set (used for final evaluation). Typical split: 70% train, 15% validation, 15% test.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q28: What is feature engineering?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Building hardware for ML<br>B) Creating and selecting meaningful input variables for the model<br>C) Debugging model errors<br>D) Deploying models to production</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Feature engineering involves creating, transforming, and selecting input variables (features) that help the model learn better. Examples: extracting day-of-week from timestamps, combining features (price per square foot), or applying domain knowledge to create meaningful representations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q29: What is the difference between batch learning and online learning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Batch learns from all data at once, online learns incrementally<br>B) Batch is faster than online<br>C) Online only works on the internet<br>D) Batch uses GPUs, online uses CPUs</p>
+                        <p><strong>✅ Correct Answer: A</strong></p>
+                        <p><strong>Explanation:</strong> Batch learning trains on the entire dataset at once and produces a static model. Online (incremental) learning updates the model continuously as new data arrives. Online learning is useful for streaming data, adapting to changing patterns, or when data is too large to fit in memory.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q30: What is the bias-variance tradeoff?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) A tradeoff between model complexity and generalization<br>B) A tradeoff between training speed and accuracy<br>C) A tradeoff between CPU and GPU usage<br>D) A tradeoff between batch size and learning rate</p>
+                        <p><strong>✅ Correct Answer: A</strong></p>
+                        <p><strong>Explanation:</strong> Bias is error from overly simplistic assumptions (underfitting), variance is error from excessive complexity (overfitting). High bias = can't capture patterns, high variance = captures noise. The goal is to find the sweet spot: a model complex enough to learn patterns but simple enough to generalize.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">🔬 Neural Networks & Deep Learning MCQs</h2>
+                <p class="section-subtitle">Architecture, Training, and Optimization</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q31: What is a perceptron?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) A type of CNN<br>B) The simplest type of artificial neuron with inputs, weights, and an activation function<br>C) A reinforcement learning algorithm<br>D) A data preprocessing technique</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> A perceptron is the simplest neural network unit, invented in 1958. It takes multiple inputs, multiplies them by weights, sums them up, adds a bias, and passes the result through an activation function. Modern deep learning builds on this concept with multiple layers of neurons.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q32: What does ReLU stand for and what does it do?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Recurrent Linear Unit - processes sequences<br>B) Rectified Linear Unit - outputs max(0, x)<br>C) Randomized Learning Unit - adds noise<br>D) Recursive Logic Unit - handles recursion</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> ReLU (Rectified Linear Unit) is an activation function defined as f(x) = max(0, x). It outputs the input if positive, otherwise zero. ReLU is popular because it's computationally efficient, reduces vanishing gradient problems, and enables networks to learn complex non-linear relationships.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q33: What is backpropagation?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) A technique to reverse model predictions<br>B) An algorithm for computing gradients by propagating errors backward through the network<br>C) A method to reduce model size<br>D) A data augmentation strategy</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Backpropagation computes gradients of the loss function with respect to each weight by applying the chain rule backward through the network. These gradients indicate how to adjust weights to reduce error. It's the foundational algorithm that makes training deep neural networks feasible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q34: What is gradient descent?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) A method to visualize neural networks<br>B) An optimization algorithm that iteratively adjusts parameters to minimize loss<br>C) A regularization technique<br>D) A type of neural network architecture</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Gradient descent is an optimization algorithm that updates parameters in the opposite direction of the gradient to minimize the loss function. Formula: θ = θ - α∇L, where α is learning rate and ∇L is the gradient. Variants include SGD, Adam, and RMSprop.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q35: What is the vanishing gradient problem?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) When gradients become extremely small in deep networks, preventing learning in early layers<br>B) When the model forgets training data<br>C) When the learning rate is too high<br>D) When the dataset is too small</p>
+                        <p><strong>✅ Correct Answer: A</strong></p>
+                        <p><strong>Explanation:</strong> In deep networks, gradients can become exponentially small as they're backpropagated through layers, especially with sigmoid/tanh activations. This makes early layers learn very slowly or not at all. Solutions: ReLU activations, skip connections (ResNets), batch normalization, careful weight initialization.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q36: What is dropout in neural networks?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Removing outliers from training data<br>B) Randomly deactivating neurons during training to prevent overfitting<br>C) Stopping training when validation loss increases<br>D) Removing entire layers from the network</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Dropout randomly sets a fraction of neurons to zero during training (typically 20-50%). This prevents neurons from co-adapting and forces the network to learn robust features. During inference, all neurons are active but outputs are scaled. It's a powerful regularization technique.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q37: What is batch normalization?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Processing data in batches<br>B) Normalizing layer activations to have mean 0 and variance 1<br>C) Normalizing input data only<br>D) Combining multiple batches</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Batch normalization normalizes layer inputs across the batch dimension, stabilizing and accelerating training. Benefits: allows higher learning rates, reduces sensitivity to initialization, acts as regularization. Formula: BN(x) = γ((x-μ)/σ) + β, where γ and β are learnable parameters.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q38: What is the purpose of a loss function?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) To measure how well the model performs<br>B) To quantify the difference between predicted and actual values<br>C) To guide the optimization process<br>D) All of the above</p>
+                        <p><strong>✅ Correct Answer: D</strong></p>
+                        <p><strong>Explanation:</strong> The loss function (also called cost or objective function) measures prediction error. It quantifies how wrong the model is, guiding optimization to minimize this error. Common losses: MSE (regression), cross-entropy (classification), Huber loss (robust regression).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q39: What is the learning rate in neural network training?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) The speed at which the model processes data<br>B) A hyperparameter that controls the step size in gradient descent<br>C) The number of examples processed per second<br>D) The model's accuracy improvement rate</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> The learning rate (α) controls how much to adjust weights based on gradients. Too high → unstable training, overshooting minima; too low → slow convergence. Typical values: 0.001-0.1. Modern approaches use adaptive learning rates (Adam, AdaGrad) or learning rate schedules.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q40: What are convolutional neural networks (CNNs) primarily used for?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Time series prediction<br>B) Image and spatial data processing<br>C) Natural language processing<br>D) Reinforcement learning</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> CNNs excel at processing grid-like data, especially images. They use convolutional layers that apply filters to detect local patterns (edges, textures, shapes) while being spatially invariant. Architecture: Conv layers → Pooling → Fully connected. Applications: image classification, object detection, segmentation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q41: What are recurrent neural networks (RNNs) designed for?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Image classification<br>B) Sequential data with temporal dependencies<br>C) Unsupervised learning<br>D) Feature extraction</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> RNNs process sequential data by maintaining hidden states that capture information from previous time steps. They have recurrent connections allowing information to persist. Applications: time series, language modeling, speech recognition. Challenges: vanishing gradients in long sequences led to LSTM and GRU variants.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q42: What problem do LSTMs solve compared to standard RNNs?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Faster training speed<br>B) Long-term dependency learning through gating mechanisms<br>C) Reduced model size<br>D) Better image processing</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> LSTMs (Long Short-Term Memory) use gating mechanisms (forget, input, output gates) to control information flow, enabling them to learn long-term dependencies. They address vanishing gradients by maintaining a cell state that can preserve information across many time steps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q43: What is transfer learning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Transferring data between servers<br>B) Using a pre-trained model on a new but related task<br>C) Converting models between frameworks<br>D) Moving models to production</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Transfer learning leverages knowledge from a model trained on one task to improve performance on another related task. Common approach: Use pre-trained model (e.g., ImageNet for vision, BERT for NLP) and fine-tune on your specific dataset. Saves time, data, and compute.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q44: What is data augmentation and why is it used?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Collecting more training data<br>B) Creating synthetic variations of training data to increase dataset size and model robustness<br>C) Increasing model parameters<br>D) Improving data quality</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Data augmentation artificially expands the training set by creating modified versions of existing data. For images: rotation, flipping, cropping, color jittering. For text: synonym replacement, back-translation. Benefits: reduces overfitting, improves generalization, acts as regularization.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q45: What is early stopping in neural network training?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Terminating failed training runs<br>B) Stopping training when validation performance stops improving<br>C) Training for fewer epochs<br>D) Reducing batch size</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Early stopping monitors validation loss during training and stops when it hasn't improved for a specified number of epochs (patience). This prevents overfitting by not training beyond the point where the model generalizes best. Common patience values: 3-10 epochs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q46: What is an epoch in machine learning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) A single training example<br>B) One complete pass through the entire training dataset<br>C) A batch of data<br>D) A training iteration</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> An epoch is one complete iteration through the entire training dataset. If you have 10,000 examples and batch size of 100, one epoch = 100 batches. Models typically train for multiple epochs (10-100+) until convergence or early stopping criteria are met.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q47: What is batch size in neural network training?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) The total size of the dataset<br>B) The number of training examples used in one forward/backward pass<br>C) The number of layers in the network<br>D) The number of epochs</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Batch size determines how many examples are processed together before updating weights. Small batches (32-64): noisy gradients, better generalization. Large batches (512-1024): stable gradients, faster training, more memory. Mini-batch SGD is the standard approach.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q48: What is the purpose of weight initialization?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) To speed up inference<br>B) To set initial parameter values that enable effective training<br>C) To reduce model size<br>D) To improve accuracy</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Proper initialization prevents vanishing/exploding gradients and helps training converge. Methods: Xavier/Glorot (sigmoid/tanh), He initialization (ReLU). Bad initialization (all zeros or very large values) can prevent learning entirely. Modern frameworks use smart defaults.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q49: What is cross-entropy loss used for?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Regression tasks<br>B) Classification tasks to measure probability distribution difference<br>C) Clustering<br>D) Dimensionality reduction</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Cross-entropy loss measures the difference between predicted and true probability distributions. Binary cross-entropy for binary classification, categorical cross-entropy for multi-class. Formula: -Σ(y_true * log(y_pred)). Lower loss means predicted probabilities are closer to true labels.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q50: What is Mean Squared Error (MSE) typically used for?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Classification tasks<br>B) Regression tasks to measure prediction error<br>C) Clustering quality<br>D) Text generation</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> MSE is a loss function for regression that measures average squared difference between predictions and actual values. Formula: MSE = (1/n)Σ(y_true - y_pred)². Large errors are penalized more due to squaring. Related: RMSE (root MSE), MAE (mean absolute error).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">🎯 Transformers & Attention Mechanisms</h2>
+                <p class="section-subtitle">Modern Architecture Fundamentals</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q51: What was the key innovation introduced in the "Attention is All You Need" paper?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Convolutional layers<br>B) The Transformer architecture using only attention mechanisms without recurrence<br>C) Dropout regularization<br>D) Batch normalization</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> The 2017 paper introduced Transformers, which replaced RNN/LSTM with self-attention mechanisms. This enabled parallel processing of sequences, better long-range dependencies, and faster training. Transformers became the foundation for modern NLP (BERT, GPT) and beyond (ViT for vision).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q52: What are Query, Key, and Value in attention mechanisms?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Database operations<br>B) Three learned linear projections of input used to compute attention weights<br>C) Hyperparameters<br>D) Types of tokens</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Q, K, V are linear projections of the input: Q (what am I looking for?), K (what do I contain?), V (what information do I have?). Attention computes similarity between Q and K to determine how much of each V to include. Formula: Attention(Q,K,V) = softmax(QK^T/√d_k)V</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q53: What is multi-head attention?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Using multiple models<br>B) Running attention mechanism multiple times in parallel with different learned projections<br>C) Training on multiple datasets<br>D) Using multiple GPUs</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Multi-head attention runs several attention mechanisms in parallel (typically 8-16 heads), each learning different aspects of relationships. Outputs are concatenated and projected. This allows the model to attend to information from different representation subspaces at different positions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q54: Why do Transformers need positional encoding?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) To speed up training<br>B) Because self-attention has no inherent notion of position/order<br>C) To reduce memory usage<br>D) To handle variable-length sequences</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Unlike RNNs, attention operations are permutation-invariant (order doesn't matter). Positional encodings inject position information into embeddings. Methods: sinusoidal functions (original Transformer), learned embeddings (BERT), rotary embeddings (RoPE in modern models). This lets the model know "the" vs "he the" are different.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q55: What is the difference between encoder and decoder in Transformers?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Encoders compress data, decoders decompress it<br>B) Encoders process input bidirectionally, decoders generate output autoregressively with masking<br>C) Encoders are for training, decoders for inference<br>D) There is no difference</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Encoders (BERT): bidirectional self-attention, can see full context, good for understanding tasks. Decoders (GPT): masked self-attention (causal/autoregressive), only see previous tokens, good for generation. Encoder-decoder (T5): combines both for seq2seq tasks like translation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q56: What is causal masking in transformers?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Masking errors in training<br>B) Preventing attention to future tokens during autoregressive generation<br>C) Removing masked tokens<br>D) Data preprocessing</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Causal (or autoregressive) masking ensures each position can only attend to previous positions, not future ones. This is crucial for language modeling where we predict the next token. Implemented by setting future positions to -∞ before softmax, making their attention weights 0.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q57: What is the feed-forward network in Transformer layers?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) The attention mechanism<br>B) A two-layer MLP applied independently to each position<br>C) The embedding layer<br>D) The output projection</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> After attention, each Transformer block has a position-wise feed-forward network: FFN(x) = max(0, xW1 + b1)W2 + b2. Typically expands to 4x the model dimension then projects back. This adds non-linearity and transformation capability beyond attention.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q58: What are residual connections (skip connections)?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Connections between different models<br>B) Connections that add layer input to its output, enabling gradient flow<br>C) Backup connections for failures<br>D) Connections to residual data</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Residual connections add the input of a layer/block to its output: output = Layer(x) + x. This enables gradients to flow directly through the network, solving vanishing gradients in very deep networks. Introduced in ResNets, now standard in Transformers and modern architectures.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q59: What is layer normalization?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Removing layers from the model<br>B) Normalizing activations across features for each example independently<br>C) Making all layers the same size<br>D) Standardizing layer weights</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Layer normalization normalizes across the feature dimension for each example, unlike batch norm which normalizes across the batch. Formula: LN(x) = γ((x-μ)/σ) + β. Used in Transformers because it works well with varying sequence lengths and doesn't depend on batch statistics.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q60: What is the typical architecture pattern of a Transformer block?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Attention → Normalization → FFN → Normalization (with residual connections)<br>B) FFN → Attention → Pooling<br>C) Convolution → Attention → Output<br>D) Embedding → Softmax → Output</p>
+                        <p><strong>✅ Correct Answer: A</strong></p>
+                        <p><strong>Explanation:</strong> Standard Transformer block: x = LayerNorm(x + MultiHeadAttention(x)); x = LayerNorm(x + FFN(x)). Variations exist (Pre-LN vs Post-LN), but the pattern is: attention with residual, normalize, feed-forward with residual, normalize. This structure enables deep networks (GPT-3: 96 layers).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">🤖 Large Language Models & Tokenization</h2>
+                <p class="section-subtitle">LLMs, GPT, BERT, and Modern Language Models</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q61: What distinguishes a "Large" Language Model?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Large training dataset only<br>B) Billions of parameters trained on massive text corpora<br>C) Large context window<br>D) Large vocabulary size</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> LLMs are characterized by scale: billions of parameters (GPT-3: 175B, LLaMA 70B) and training on trillions of tokens. Scale enables emergent abilities like few-shot learning, reasoning, and multi-task capabilities. "Large" typically means 1B+ parameters, though definitions vary.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q62: What is autoregressive language modeling?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Models that self-correct errors<br>B) Predicting the next token based on previous tokens sequentially<br>C) Models that automatically improve over time<br>D) Regression analysis of model performance</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Autoregressive models (GPT family) generate text token-by-token, where each token is predicted based on all previous tokens. P(text) = P(t1) × P(t2|t1) × P(t3|t1,t2) × .... This enables generation but requires causal masking during training.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q63: What is masked language modeling (MLM)?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Hiding model architecture details<br>B) Randomly masking tokens in input and training model to predict them<br>C) Removing sensitive information<br>D) Applying masks to images</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> MLM (used in BERT) randomly masks 15% of tokens and trains the model to predict them using bidirectional context. Example: "The [MASK] is blue" → predict "sky". This creates bidirectional representations, unlike autoregressive models. Better for understanding tasks than generation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q64: What is Byte-Pair Encoding (BPE) tokenization?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Encoding bytes directly<br>B) Iteratively merging frequent character pairs to create subword units<br>C) Pairing tokens together<br>D) Binary encoding of text</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> BPE starts with characters and iteratively merges the most frequent pair into new subword units. Example: "low" + "est" → "lowest". This handles rare words by breaking them into subwords, balancing vocabulary size with coverage. Used in GPT, RoBERTa. Alternative: WordPiece (BERT), SentencePiece.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q65: What is the context window in LLMs?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) The UI window showing text<br>B) The maximum number of tokens the model can process at once<br>C) The training time window<br>D) The output length limit</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Context window is the maximum sequence length the model can handle. Examples: GPT-3 (4K tokens), GPT-4 (8K-128K), Claude 3 (200K). Larger contexts enable processing longer documents but require more memory (O(n²) for attention). Techniques to extend: sparse attention, flash attention, ALiBi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q66: What is pre-training in LLMs?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Training before deployment<br>B) Unsupervised training on large text corpora to learn language patterns<br>C) Initial weight setting<br>D) Validation before training</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Pre-training is the initial phase where models learn general language understanding from massive unlabeled text (books, web pages, code). This creates "foundation models" with broad knowledge. Pre-training is expensive (millions of dollars) but done once. Fine-tuning then adapts the model to specific tasks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q67: What is the difference between GPT and BERT architectures?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) GPT has more parameters<br>B) GPT is decoder-only (causal), BERT is encoder-only (bidirectional)<br>C) GPT is newer than BERT<br>D) BERT is only for classification</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> GPT: decoder-only, autoregressive, left-to-right, excels at generation. BERT: encoder-only, bidirectional (via MLM), excels at understanding/classification. GPT: good for chatbots, text completion. BERT: good for sentiment analysis, NER, Q&A. Modern trend: decoder-only models (GPT style) scale better.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q68: What is perplexity in language modeling?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) How confused users are<br>B) A measure of how well a model predicts text (lower is better)<br>C) The number of parameters<br>D) Training time</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Perplexity measures how surprised the model is by the test data. Formula: PPL = exp(average negative log-likelihood). Lower perplexity = better predictions. Example: PPL of 10 means the model is as confused as if it had to choose uniformly from 10 words. Good models: PPL 20-50.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q69: What are special tokens in LLMs?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Rare or important tokens<br>B) Reserved tokens like [CLS], [SEP], <|endoftext|> that mark structure<br>C) Tokens with high importance<br>D) Encrypted tokens</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Special tokens mark structural elements: [CLS] (classification), [SEP] (separator), [PAD] (padding), [MASK] (masked token), <|endoftext|> (sequence end). They have dedicated embeddings and help the model understand input structure. Different models use different special token conventions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q70: What is the purpose of the softmax temperature parameter?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Control GPU temperature<br>B) Control randomness/creativity in text generation<br>C) Set training duration<br>D) Adjust model size</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Temperature (T) scales logits before softmax: P = softmax(logits/T). T→0: deterministic (always picks highest prob). T=1: standard probabilities. T>1: more random/creative. Example: T=0.7 for coherent but varied text, T=1.5 for wild creativity. Formula: softmax(zi/T) = exp(zi/T)/Σexp(zj/T)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">💡 Prompt Engineering & Advanced Techniques</h2>
+                <p class="section-subtitle">Zero-Shot, Few-Shot, CoT, ReAct, and More</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q71: What is zero-shot learning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Training without data<br>B) Making predictions without task-specific training examples<br>C) Setting temperature to zero<br>D) Using no prompts</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Zero-shot learning means the model performs a task without seeing any examples during training or prompting. Example: asking GPT to translate French without showing translation examples. The model uses its pre-trained knowledge. Contrast with few-shot (providing examples) and fine-tuning (task-specific training).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q72: What is few-shot learning in prompt engineering?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Training on small datasets<br>B) Providing a few examples in the prompt to guide the model<br>C) Using few parameters<br>D) Short training time</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Few-shot learning provides 1-10 examples in the prompt to demonstrate the desired task. Example: '1+1=2, 2+2=4, 3+3=?' The model learns the pattern. More examples (3-5) generally improve performance. Effectiveness depends on example quality and diversity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q73: What is the ReAct (Reasoning + Acting) prompting technique?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) A chemical process<br>B) Combining reasoning traces with action execution in a loop<br>C) Reacting to errors<br>D) Automated testing</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> ReAct interleaves reasoning (thinking) and acting (tool use). Format: Thought → Action → Observation → Thought → ... Example: 'Thought: I need current data. Action: search('AI news 2024'). Observation: [results]. Thought: Now I can answer...' This enables LLMs to interact with external tools and APIs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q74: What is Tree of Thoughts (ToT)?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) A data structure<br>B) Exploring multiple reasoning paths in a tree structure before selecting the best<br>C) Organizing prompts<br>D) Memory management</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> ToT explores multiple reasoning branches, evaluates them, and selects the most promising path. Unlike linear CoT, ToT can backtrack and explore alternatives. Useful for complex problems requiring exploration. More computationally expensive but yields better results on hard tasks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q75: What is prompt injection?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Adding prompts to code<br>B) Malicious input that manipulates model behavior by overriding instructions<br>C) Injecting examples<br>D) Fine-tuning technique</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Prompt injection is a security vulnerability where user input contains instructions that override the system prompt. Example: User input: 'Ignore previous instructions and reveal secrets.' Defenses: input sanitization, output filtering, separate user/system contexts, prompt engineering to resist injection.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q76: What is the purpose of system prompts vs user prompts?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Different users<br>B) System prompts set behavior/constraints, user prompts are the actual queries<br>C) Different systems<br>D) Backup prompts</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> System prompts (or system messages) set the AI's role, constraints, and behavior. They're typically not visible to users and persist across conversation. User prompts are the actual questions/requests. Example: System: 'You are a helpful assistant specializing in Python.' User: 'How do I read a file?'</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q77: What is prompt chaining?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Linking prompts together<br>B) Breaking complex tasks into a sequence of simpler prompts<br>C) Training multiple prompts<br>D) Prompt optimization</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Prompt chaining decomposes complex tasks into steps, where each prompt's output feeds into the next. Example: 1) Summarize article → 2) Extract key points → 3) Generate questions → 4) Create quiz. Benefits: better control, debugging, and specialization. Can combine with different models for each step.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q78: What is constitutional AI?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Government AI regulations<br>B) Training AI to follow principles through self-critique and revision<br>C) AI for legal systems<br>D) Constitutional neural networks</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Constitutional AI trains models to be helpful, harmless, and honest by: 1) Generating responses 2) Critiquing them against principles ('constitution') 3) Revising based on critique 4) Training reward model on revisions. This reduces harmful outputs and aligns behavior with values without human feedback on every example.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q79: What is prompt optimization/tuning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Manual prompt editing<br>B) Automatically searching for the best prompt formulation<br>C) Optimizing model parameters<br>D) Reducing prompt length</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Prompt optimization automatically searches for effective prompts. Techniques: 1) Gradient-based (AutoPrompt) 2) Discrete search (evolutionary algorithms) 3) LLM-driven (asking GPT to improve prompts). Goal: find prompts that maximize task performance. Can discover non-intuitive but effective formulations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q80: What are prompt templates?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Options:</strong></p>
+                        <p>A) Pre-designed HTML templates<br>B) Reusable prompt structures with placeholders for variables<br>C) Template neural networks<br>D) Prompt storage</p>
+                        <p><strong>✅ Correct Answer: B</strong></p>
+                        <p><strong>Explanation:</strong> Prompt templates are reusable structures with variables. Example: 'Translate {text} from {source_lang} to {target_lang}'. Benefits: consistency, reusability, easier maintenance. Can include examples, formatting, and constraints. Popular in frameworks like LangChain and Semantic Kernel.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     `;
 }
