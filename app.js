@@ -1395,164 +1395,704 @@ function generateQuizzesPage() {
     return `
         <div class="hero" style="background: var(--gradient-purple);">
             <div class="hero-content">
-                <h1>🎯 Quizzes</h1>
-                <p>Test your knowledge with interactive quizzes covering all GenAI concepts.</p>
+                <h1>🎯 Comprehensive GenAI Quizzes</h1>
+                <p>Test your knowledge with detailed questions and comprehensive explanations covering all GenAI concepts.</p>
             </div>
         </div>
 
-        <div class="section-header">
-            <h2 class="section-title">Available Quizzes</h2>
-            <p class="section-subtitle">Track your progress and identify knowledge gaps</p>
-        </div>
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <div class="section-header">
+                <h2 class="section-title">🌱 Beginner Level Questions</h2>
+                <p class="section-subtitle">Fundamentals of AI, ML, and GenAI</p>
+            </div>
 
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-icon">🌱</div>
-                <h3 class="card-title">Beginner Quiz</h3>
-                <p class="card-description">Test your understanding of AI fundamentals, neural networks, and basic GenAI concepts.</p>
-                <div class="card-footer">
-                    <div class="card-meta">
-                        <span>30 questions</span>
-                        <span>45 min</span>
+            <div class="accordion active">
+                <button class="accordion-header">
+                    <span>Q1: What is the primary difference between supervised and unsupervised learning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: Supervised learning uses labeled data, while unsupervised learning uses unlabeled data.</strong></p>
+                        <p><strong>Explanation:</strong></p>
+                        <ul>
+                            <li><strong>Supervised Learning:</strong> Training data includes both inputs and correct outputs (labels). Examples: classification, regression. Use cases: spam detection, price prediction.</li>
+                            <li><strong>Unsupervised Learning:</strong> Training data has only inputs, no labels. The model finds patterns independently. Examples: clustering, dimensionality reduction. Use cases: customer segmentation, anomaly detection.</li>
+                        </ul>
+                        <p><strong>Key Difference:</strong> Supervised = teacher guiding learning. Unsupervised = self-directed pattern discovery.</p>
                     </div>
-                    <span class="card-badge badge-beginner">Beginner</span>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-icon">🚀</div>
-                <h3 class="card-title">Intermediate Quiz</h3>
-                <p class="card-description">Challenge yourself with questions on RAG, prompt engineering, fine-tuning, and LangChain.</p>
-                <div class="card-footer">
-                    <div class="card-meta">
-                        <span>40 questions</span>
-                        <span>60 min</span>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q2: In a neural network, what is the purpose of an activation function?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: To introduce non-linearity into the network, enabling it to learn complex patterns.</strong></p>
+                        <p><strong>Explanation:</strong> Without activation functions, neural networks would only learn linear relationships, no matter how many layers. Activation functions allow networks to approximate any function.</p>
+                        <p><strong>Common activation functions:</strong></p>
+                        <ul>
+                            <li><strong>ReLU (Rectified Linear Unit):</strong> f(x) = max(0, x). Most popular, fast, reduces vanishing gradient.</li>
+                            <li><strong>Sigmoid:</strong> f(x) = 1/(1+e^-x). Output between 0 and 1, used for binary classification.</li>
+                            <li><strong>Tanh:</strong> f(x) = (e^x - e^-x)/(e^x + e^-x). Output between -1 and 1.</li>
+                            <li><strong>Softmax:</strong> Converts logits to probabilities for multi-class classification.</li>
+                        </ul>
                     </div>
-                    <span class="card-badge badge-intermediate">Intermediate</span>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-icon">⚡</div>
-                <h3 class="card-title">Advanced Quiz</h3>
-                <p class="card-description">Master level questions on RLHF, model optimization, inference, and production deployment.</p>
-                <div class="card-footer">
-                    <div class="card-meta">
-                        <span>35 questions</span>
-                        <span>60 min</span>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q3: What does "generative" mean in Generative AI?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: The AI can generate new content (text, images, audio, etc.) rather than just analyzing existing data.</strong></p>
+                        <p><strong>Key characteristics:</strong></p>
+                        <ul>
+                            <li>Learns the underlying distribution of training data</li>
+                            <li>Creates novel outputs similar to training data but not copied</li>
+                            <li>Can sample infinite variations from learned patterns</li>
+                        </ul>
+                        <p><strong>Examples:</strong></p>
+                        <ul>
+                            <li>Text: GPT generating articles, code, poetry</li>
+                            <li>Images: DALL-E, Midjourney creating art from descriptions</li>
+                            <li>Audio: Voice synthesis, music generation</li>
+                            <li>Video: AI-generated videos and animations</li>
+                        </ul>
+                        <p><strong>Contrast with Discriminative AI:</strong> Which only classifies or predicts (e.g., "Is this spam?" vs "Write an email").</p>
                     </div>
-                    <span class="card-badge badge-advanced">Advanced</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-header mt-4">
-            <h2 class="section-title">Topic-Specific Quizzes</h2>
-            <p class="section-subtitle">Deep dive into specific areas</p>
-        </div>
-
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-icon">💬</div>
-                <h3 class="card-title">LLMs & Transformers</h3>
-                <p class="card-description">Architecture, attention mechanisms, positional encodings, and modern LLM developments.</p>
-                <div class="card-footer">
-                    <span class="card-badge badge-intermediate">20 questions</span>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-icon">🎨</div>
-                <h3 class="card-title">Image Generation</h3>
-                <p class="card-description">Diffusion models, GANs, VAEs, and text-to-image generation techniques.</p>
-                <div class="card-footer">
-                    <span class="card-badge badge-intermediate">15 questions</span>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q4: What is a token in the context of Large Language Models?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: A token is a unit of text (word, subword, or character) that the model processes.</strong></p>
+                        <p><strong>Details:</strong></p>
+                        <ul>
+                            <li>Most LLMs use <strong>subword tokenization</strong> (BPE, WordPiece)</li>
+                            <li>Common words = single token (e.g., "the", "cat")</li>
+                            <li>Uncommon words = multiple tokens (e.g., "tokenization" might be "token" + "ization")</li>
+                            <li>Average: ~1 token ≈ 0.75 words in English</li>
+                        </ul>
+                        <p><strong>Why it matters:</strong></p>
+                        <ul>
+                            <li>API costs are based on token count</li>
+                            <li>Context windows measured in tokens (GPT-4: 128K tokens)</li>
+                            <li>Model processes tokens, not words</li>
+                        </ul>
+                        <p><strong>Example:</strong> "I love GenAI!" = ~4 tokens ["I", " love", " Gen", "AI", "!"]</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-icon">🔍</div>
-                <h3 class="card-title">RAG Systems</h3>
-                <p class="card-description">Retrieval strategies, vector databases, embeddings, and chunking techniques.</p>
-                <div class="card-footer">
-                    <span class="card-badge badge-intermediate">15 questions</span>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q5: What is the purpose of embeddings in NLP?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: To represent words or text as dense vectors that capture semantic meaning.</strong></p>
+                        <p><strong>Key benefits:</strong></p>
+                        <ul>
+                            <li><strong>Semantic similarity:</strong> Similar words have similar vectors (king ≈ queen)</li>
+                            <li><strong>Mathematical operations:</strong> Can do vector arithmetic (king - man + woman ≈ queen)</li>
+                            <li><strong>Dimensionality reduction:</strong> From millions of possible words to hundreds of dimensions</li>
+                            <li><strong>Model input:</strong> Neural networks require numeric input, not text</li>
+                        </ul>
+                        <p><strong>Popular embedding models:</strong></p>
+                        <ul>
+                            <li>Word2Vec (2013) - Word-level embeddings</li>
+                            <li>GloVe (2014) - Global vectors</li>
+                            <li>BERT embeddings (2018) - Contextual embeddings</li>
+                            <li>OpenAI text-embedding-ada-002 (2022) - Modern, high-quality</li>
+                        </ul>
+                        <p><strong>Use cases:</strong> Search, recommendation, clustering, classification</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-icon">⚙️</div>
-                <h3 class="card-title">Prompt Engineering</h3>
-                <p class="card-description">Zero-shot, few-shot, chain-of-thought, and advanced prompting strategies.</p>
-                <div class="card-footer">
-                    <span class="card-badge badge-beginner">15 questions</span>
+            <div class="section-header mt-4">
+                <h2 class="section-title">🚀 Intermediate Level Questions</h2>
+                <p class="section-subtitle">RAG, Prompt Engineering, Fine-Tuning</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q6: In a Transformer model, what is the self-attention mechanism calculating?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: The relevance of each word to every other word in the sequence.</strong></p>
+                        <p><strong>Self-attention formula:</strong> Attention(Q,K,V) = softmax(QK^T / √d_k)V</p>
+                        <p><strong>Components:</strong></p>
+                        <ul>
+                            <li><strong>Q (Query):</strong> "What am I looking for?"</li>
+                            <li><strong>K (Key):</strong> "What do I contain?"</li>
+                            <li><strong>V (Value):</strong> "What do I actually represent?"</li>
+                            <li><strong>d_k:</strong> Dimension of keys (scaling factor to prevent large dot products)</li>
+                        </ul>
+                        <p><strong>Process:</strong></p>
+                        <ol>
+                            <li>Compute query-key similarity (QK^T) for all pairs</li>
+                            <li>Scale by √d_k to normalize</li>
+                            <li>Apply softmax to get attention weights (probabilities)</li>
+                            <li>Weighted sum of values based on attention weights</li>
+                        </ol>
+                        <p><strong>Result:</strong> Each word's representation incorporates information from all relevant words in the sequence.</p>
+                        <p><strong>Example:</strong> In "The cat sat on the mat", when processing "cat", attention might focus heavily on "sat" (verb) and "mat" (location).</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-icon">🎯</div>
-                <h3 class="card-title">Fine-Tuning & RLHF</h3>
-                <p class="card-description">Training strategies, LoRA, QLoRA, reward models, and alignment techniques.</p>
-                <div class="card-footer">
-                    <span class="card-badge badge-advanced">20 questions</span>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q7: What is the primary advantage of RAG (Retrieval-Augmented Generation) over fine-tuning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: RAG can access up-to-date information without retraining the model.</strong></p>
+                        <p><strong>Comparison:</strong></p>
+                        <table style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+                            <tr style="background: var(--bg-secondary);">
+                                <th style="padding: 0.5rem; border: 1px solid var(--border-color);">Aspect</th>
+                                <th style="padding: 0.5rem; border: 1px solid var(--border-color);">RAG</th>
+                                <th style="padding: 0.5rem; border: 1px solid var(--border-color);">Fine-Tuning</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);"><strong>Knowledge Updates</strong></td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Instant (add new docs)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Requires retraining</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);"><strong>Source Citation</strong></td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Yes, can cite docs</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">No citations</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);"><strong>Hallucination</strong></td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Reduced (grounded)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Can hallucinate</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);"><strong>Cost</strong></td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Higher per query</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Higher upfront</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);"><strong>Best For</strong></td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Knowledge retrieval</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">Style/format/behavior</td>
+                            </tr>
+                        </table>
+                        <p><strong>Best practice:</strong> Use both together - fine-tune for consistent style, RAG for factual knowledge.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-icon">🛡️</div>
-                <h3 class="card-title">AI Safety & Ethics</h3>
-                <p class="card-description">Bias, fairness, alignment, red-teaming, and responsible AI practices.</p>
-                <div class="card-footer">
-                    <span class="card-badge badge-intermediate">15 questions</span>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q8: What is Chain-of-Thought (CoT) prompting and when should you use it?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: CoT prompts the model to show its reasoning steps before giving the final answer.</strong></p>
+                        <p><strong>Basic example:</strong></p>
+                        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Without CoT: "What is 15% of 80?"
+With CoT: "Let's think step by step:
+1. 15% means 15/100 = 0.15
+2. Multiply: 80 × 0.15
+3. Result: 12"</pre>
+                        <p><strong>When to use:</strong></p>
+                        <ul>
+                            <li><strong>Math problems:</strong> Multi-step calculations</li>
+                            <li><strong>Logic puzzles:</strong> Require sequential reasoning</li>
+                            <li><strong>Complex analysis:</strong> Breaking down problems</li>
+                            <li><strong>Debugging:</strong> Understanding model's thought process</li>
+                        </ul>
+                        <p><strong>Variants:</strong></p>
+                        <ul>
+                            <li><strong>Zero-shot CoT:</strong> Just add "Let's think step by step"</li>
+                            <li><strong>Few-shot CoT:</strong> Show examples with reasoning</li>
+                            <li><strong>Self-consistency:</strong> Sample multiple reasoning paths, take majority vote</li>
+                        </ul>
+                        <p><strong>Research findings:</strong> CoT improves accuracy by 20-50% on complex reasoning tasks (Wei et al., 2022).</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="section-header mt-4">
-            <h2 class="section-title">Quiz Format</h2>
-        </div>
-
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-icon">📝</div>
-                <h3 class="card-title">Multiple Choice</h3>
-                <p class="card-description">Single correct answer with detailed explanations for each option.</p>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q9: What is the purpose of the softmax function in neural networks?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: To convert logits (raw model outputs) into probabilities that sum to 1.</strong></p>
+                        <p><strong>Formula:</strong> softmax(x_i) = e^(x_i) / Σ(e^(x_j))</p>
+                        <p><strong>Properties:</strong></p>
+                        <ul>
+                            <li>Output range: (0, 1) for each class</li>
+                            <li>Sum of all outputs: exactly 1.0</li>
+                            <li>Preserves order: larger logits → higher probabilities</li>
+                            <li>Differentiable: can backpropagate gradients</li>
+                        </ul>
+                        <p><strong>Example:</strong></p>
+                        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Logits: [2.0, 1.0, 0.1]
+After softmax: [0.659, 0.242, 0.099]
+Sum: 1.0</pre>
+                        <p><strong>Use cases:</strong></p>
+                        <ul>
+                            <li>Multi-class classification (final layer)</li>
+                            <li>Attention mechanisms (weighting)</li>
+                            <li>Language modeling (next token prediction)</li>
+                        </ul>
+                        <p><strong>Temperature parameter:</strong> Can control randomness by dividing logits before softmax. Lower temp = more confident, higher temp = more random.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="card">
-                <div class="card-icon">☑️</div>
-                <h3 class="card-title">Multi-Select</h3>
-                <p class="card-description">Multiple correct answers to test comprehensive understanding.</p>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q10: What is the difference between semantic search and keyword search?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: Semantic search understands meaning and context, while keyword search matches exact words.</strong></p>
+                        <p><strong>Comparison:</strong></p>
+                        <ul>
+                            <li><strong>Keyword Search:</strong>
+                                <ul>
+                                    <li>Matches exact words/phrases</li>
+                                    <li>Fast, simple algorithms (inverted index)</li>
+                                    <li>Misses synonyms (search "car" won't find "automobile")</li>
+                                    <li>Examples: Ctrl+F, basic SQL queries</li>
+                                </ul>
+                            </li>
+                            <li><strong>Semantic Search:</strong>
+                                <ul>
+                                    <li>Understands meaning and intent</li>
+                                    <li>Uses embeddings + vector similarity</li>
+                                    <li>Finds conceptually similar content</li>
+                                    <li>Examples: Google Search, RAG systems</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p><strong>Example:</strong></p>
+                        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Query: "reduce hallucinations in LLMs"
+
+Keyword: Only finds docs with exact phrase
+Semantic: Finds docs about:
+  - "minimize false information in AI"
+  - "improving LLM factuality"
+  - "grounding language models"</pre>
+                        <p><strong>Implementation:</strong> Embedding model → vector database → cosine similarity</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="card">
-                <div class="card-icon">✅</div>
-                <h3 class="card-title">True/False</h3>
-                <p class="card-description">Quick checks for fundamental concepts and common misconceptions.</p>
+            <div class="section-header mt-4">
+                <h2 class="section-title">⚡ Advanced Level Questions</h2>
+                <p class="section-subtitle">RLHF, Optimization, Production Systems</p>
             </div>
 
-            <div class="card">
-                <div class="card-icon">💻</div>
-                <h3 class="card-title">Code Analysis</h3>
-                <p class="card-description">Analyze code snippets and identify correct implementations or bugs.</p>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q11: Explain the three phases of RLHF (Reinforcement Learning from Human Feedback)</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: RLHF has three phases: Supervised Fine-Tuning (SFT), Reward Model Training, and RL Optimization.</strong></p>
+                        <p><strong>Phase 1: Supervised Fine-Tuning (SFT)</strong></p>
+                        <ul>
+                            <li>Start with pre-trained base model</li>
+                            <li>Fine-tune on high-quality human demonstrations</li>
+                            <li>Goal: Model learns to follow instructions</li>
+                            <li>Output: SFT model (better than base, but not aligned)</li>
+                        </ul>
+                        <p><strong>Phase 2: Reward Model Training</strong></p>
+                        <ul>
+                            <li>Generate multiple outputs for same prompt</li>
+                            <li>Humans rank outputs (best to worst)</li>
+                            <li>Train reward model to predict human preferences</li>
+                            <li>Output: Reward model that scores any response</li>
+                        </ul>
+                        <p><strong>Phase 3: RL Optimization (PPO)</strong></p>
+                        <ul>
+                            <li>Use reward model as reward function</li>
+                            <li>Fine-tune SFT model with RL (typically PPO algorithm)</li>
+                            <li>Model learns to maximize reward (human preferences)</li>
+                            <li>Add KL penalty to prevent drift from SFT model</li>
+                            <li>Output: Final aligned model (e.g., ChatGPT, Claude)</li>
+                        </ul>
+                        <p><strong>Why RLHF works:</strong> Captures nuanced human preferences that are hard to specify in rules. Models learn helpfulness, harmlessness, honesty.</p>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="section-header mt-4">
-            <h2 class="section-title">Coming Soon</h2>
-        </div>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q12: What is LoRA (Low-Rank Adaptation) and why is it more efficient than full fine-tuning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: LoRA adds small trainable matrices to frozen model weights, reducing trainable parameters by 10,000x.</strong></p>
+                        <p><strong>Key idea:</strong></p>
+                        <p>Instead of updating weight matrix W directly, LoRA adds a low-rank decomposition:</p>
+                        <p>W' = W + BA</p>
+                        <p>Where B and A are much smaller matrices (rank r << model dimension)</p>
+                        <p><strong>Example:</strong></p>
+                        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Original weight: W = 4096 × 4096 = 16.7M parameters
+LoRA: B = 4096 × 8, A = 8 × 4096 = 65K parameters
+Reduction: 256x fewer parameters!</pre>
+                        <p><strong>Benefits:</strong></p>
+                        <ul>
+                            <li><strong>Memory efficient:</strong> Can fine-tune 65B model on 48GB GPU</li>
+                            <li><strong>Fast training:</strong> Fewer params = faster convergence</li>
+                            <li><strong>Modular:</strong> Swap different LoRA adapters for different tasks</li>
+                            <li><strong>No inference overhead:</strong> Can merge BA into W for deployment</li>
+                            <li><strong>Storage:</strong> Store multiple adapters instead of full models</li>
+                        </ul>
+                        <p><strong>Typical hyperparameters:</strong></p>
+                        <ul>
+                            <li>Rank r: 4-64 (8 is common)</li>
+                            <li>Alpha: 16-32 (scaling factor)</li>
+                            <li>Target modules: Usually attention weights (Q, K, V, O)</li>
+                        </ul>
+                        <p><strong>Trade-off:</strong> Slightly lower capacity than full fine-tuning, but 95-98% of the performance for 1% of the cost.</p>
+                    </div>
+                </div>
+            </div>
 
-        <div style="max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--card-bg); border-radius: var(--border-radius-lg); border: 1px solid var(--border-color);">
-            <p style="text-align: center; margin-bottom: 1rem;">🚀 Interactive quizzes are currently in development!</p>
-            <p style="text-align: center; color: var(--text-secondary);">Features coming soon:</p>
-            <ul style="max-width: 500px; margin: 1.5rem auto; color: var(--text-secondary);">
-                <li>Real-time scoring and feedback</li>
-                <li>Progress tracking across all quizzes</li>
-                <li>Personalized recommendations</li>
-                <li>Leaderboards and achievements</li>
-                <li>Quiz history and review mode</li>
-                <li>Custom quiz creation</li>
-            </ul>
-            <p style="text-align: center; color: var(--text-secondary); font-style: italic;">In the meantime, test your knowledge by completing the concepts and checking your understanding!</p>
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q13: What is the purpose of KV caching in transformer inference?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: KV caching stores previously computed key and value matrices to avoid redundant computation during autoregressive generation.</strong></p>
+                        <p><strong>Problem without caching:</strong></p>
+                        <p>When generating token by token, transformers recompute attention for all previous tokens every time. This is wasteful because previous tokens don't change.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>Cache the Key (K) and Value (V) matrices from previous tokens. For new token, only compute new K and V, concatenate with cache.</p>
+                        <p><strong>Speedup example:</strong></p>
+                        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Without cache:
+  Token 1: Compute for 1 token
+  Token 2: Compute for 2 tokens (wasteful!)
+  Token 3: Compute for 3 tokens (very wasteful!)
+  ...
+  Token 100: Compute for 100 tokens
+  Total: O(n²) computations
+
+With cache:
+  Token 1: Compute + cache
+  Token 2: Use cache + compute new
+  Token 3: Use cache + compute new
+  ...
+  Total: O(n) computations</pre>
+                        <p><strong>Trade-offs:</strong></p>
+                        <ul>
+                            <li><strong>Memory:</strong> Stores 2 × seq_len × num_layers × hidden_dim values</li>
+                            <li><strong>Speed:</strong> 2-10x faster generation</li>
+                            <li><strong>Batch size:</strong> Larger cache means smaller batch size (GPU memory limit)</li>
+                        </ul>
+                        <p><strong>Optimization:</strong> Multi-query attention (MQA) and grouped-query attention (GQA) reduce KV cache size by sharing K/V across attention heads.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q14: How does Flash Attention improve transformer efficiency?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: Flash Attention optimizes memory access patterns to reduce GPU memory I/O, achieving 2-4x speedup.</strong></p>
+                        <p><strong>Standard attention problem:</strong></p>
+                        <ul>
+                            <li>Computes full attention matrix: O(n²) memory</li>
+                            <li>Multiple reads/writes to slow GPU HBM (High Bandwidth Memory)</li>
+                            <li>For long sequences (n=8K), attention matrix = 8K×8K = 256MB per head</li>
+                        </ul>
+                        <p><strong>Flash Attention solution:</strong></p>
+                        <ul>
+                            <li><strong>Tiling:</strong> Break computation into blocks that fit in fast SRAM</li>
+                            <li><strong>Fused operations:</strong> Combine softmax + matrix multiply in single kernel</li>
+                            <li><strong>Recomputation:</strong> Recompute attention in backward pass instead of storing</li>
+                            <li><strong>Online softmax:</strong> Compute softmax incrementally without materializing full matrix</li>
+                        </ul>
+                        <p><strong>Results:</strong></p>
+                        <ul>
+                            <li>Training: 2-4x faster, 10-20x less memory</li>
+                            <li>Longer sequences possible (8K → 64K tokens)</li>
+                            <li>No approximation - exact attention computation</li>
+                        </ul>
+                        <p><strong>Impact:</strong></p>
+                        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">GPT-3 (175B) training:
+Standard: ~$12M
+Flash Attention: ~$4-5M savings
+
+Longer context models possible:
+  GPT-4: 128K context
+  Claude 3: 200K context</pre>
+                        <p><strong>Adoption:</strong> Now standard in PyTorch 2.0+ (torch.nn.functional.scaled_dot_product_attention)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q15: What is quantization and how does it reduce model size?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: Quantization reduces the precision of model weights (e.g., from 32-bit to 8-bit or 4-bit), decreasing memory and increasing speed.</strong></p>
+                        <p><strong>Precision levels:</strong></p>
+                        <table style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+                            <tr style="background: var(--bg-secondary);">
+                                <th style="padding: 0.5rem; border: 1px solid var(--border-color);">Precision</th>
+                                <th style="padding: 0.5rem; border: 1px solid var(--border-color);">Bits</th>
+                                <th style="padding: 0.5rem; border: 1px solid var(--border-color);">Memory (7B model)</th>
+                                <th style="padding: 0.5rem; border: 1px solid var(--border-color);">Quality</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">FP32 (Full)</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">32</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">28 GB</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">100%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">FP16/BF16</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">16</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">14 GB</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">~99.5%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">INT8</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">8</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">7 GB</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">~98%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">INT4</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">4</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">3.5 GB</td>
+                                <td style="padding: 0.5rem; border: 1px solid var(--border-color);">~95%</td>
+                            </tr>
+                        </table>
+                        <p><strong>Methods:</strong></p>
+                        <ul>
+                            <li><strong>Post-Training Quantization (PTQ):</strong> Quantize trained model. Fast, simple, slight quality loss.</li>
+                            <li><strong>Quantization-Aware Training (QAT):</strong> Train with quantization in loop. Better quality, slower.</li>
+                            <li><strong>GPTQ:</strong> Advanced PTQ for LLMs, minimal quality loss</li>
+                            <li><strong>GGML/GGUF:</strong> Format for quantized models (llama.cpp)</li>
+                        </ul>
+                        <p><strong>Benefits:</strong></p>
+                        <ul>
+                            <li>4x-8x memory reduction</li>
+                            <li>2x-4x faster inference (integer ops faster than float)</li>
+                            <li>Run larger models on consumer hardware</li>
+                            <li>Example: LLaMA 70B (FP16: 140GB) → (4-bit: 35GB) fits on single GPU</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">📝 Practice Test</h2>
+                <p class="section-subtitle">Mixed difficulty - Test your overall knowledge</p>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q16: True or False: Temperature of 0.0 means the model will always generate the same output for the same input.</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: True (mostly, with caveats)</strong></p>
+                        <p><strong>Explanation:</strong> At temperature 0.0, the model uses greedy decoding - always picking the highest probability token. For the same input and seed, output will be identical.</p>
+                        <p><strong>Caveats:</strong></p>
+                        <ul>
+                            <li>Some APIs add small randomness even at temp=0</li>
+                            <li>Floating point precision can cause tiny variations</li>
+                            <li>Different API versions might have different behavior</li>
+                        </ul>
+                        <p><strong>Temperature scale:</strong></p>
+                        <ul>
+                            <li><strong>0.0:</strong> Deterministic, focused, repetitive</li>
+                            <li><strong>0.3-0.7:</strong> Balanced creativity and coherence</li>
+                            <li><strong>1.0:</strong> Full probability distribution</li>
+                            <li><strong>1.5+:</strong> Highly random, creative but often incoherent</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q17: Which of these are valid strategies to reduce LLM hallucinations? (Select all that apply)</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answers: All of the following are valid strategies:</strong></p>
+                        <ul>
+                            <li>✅ <strong>Use RAG to ground responses in retrieved documents</strong></li>
+                            <li>✅ <strong>Lower the temperature parameter</strong></li>
+                            <li>✅ <strong>Add explicit instructions to say "I don't know" when uncertain</strong></li>
+                            <li>✅ <strong>Use citation requirements in prompts</strong></li>
+                            <li>✅ <strong>Fine-tune on high-quality, factual data</strong></li>
+                            <li>✅ <strong>Implement verification/fact-checking steps</strong></li>
+                            <li>✅ <strong>Use constrained generation with structured outputs</strong></li>
+                        </ul>
+                        <p><strong>Most effective:</strong> RAG + Lower temperature + Explicit instructions</p>
+                        <p><strong>Additional techniques:</strong></p>
+                        <ul>
+                            <li>Self-consistency: Generate multiple responses, check agreement</li>
+                            <li>Constitutional AI: Self-critique and revision</li>
+                            <li>Ensemble methods: Use multiple models, cross-verify</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q18: What is the main advantage of Mixture of Experts (MoE) architecture?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: MoE allows scaling to trillions of parameters while keeping inference costs similar to smaller models.</strong></p>
+                        <p><strong>How it works:</strong></p>
+                        <ul>
+                            <li>Model has multiple "expert" sub-networks</li>
+                            <li>Router/gating network decides which experts to activate</li>
+                            <li>Only 2-4 experts active per token (sparse activation)</li>
+                            <li>Rest of experts remain dormant</li>
+                        </ul>
+                        <p><strong>Example:</strong></p>
+                        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Mixtral 8x7B:
+  Total parameters: 47B (8 experts × 7B each)
+  Active per token: ~13B (2 experts active)
+  Performance: Similar to dense 30-40B model
+  Cost: Similar to 13B model</pre>
+                        <p><strong>Benefits:</strong></p>
+                        <ul>
+                            <li><strong>Efficiency:</strong> High capacity, low compute</li>
+                            <li><strong>Specialization:</strong> Experts learn different skills (code, math, languages)</li>
+                            <li><strong>Scaling:</strong> Add more experts without proportional cost increase</li>
+                        </ul>
+                        <p><strong>Challenges:</strong></p>
+                        <ul>
+                            <li>Load balancing: Ensure all experts are used</li>
+                            <li>Training complexity: Router needs careful tuning</li>
+                            <li>Memory: All experts must fit in memory even if inactive</li>
+                        </ul>
+                        <p><strong>Examples:</strong> GPT-4 (rumored), Mixtral 8x7B, Switch Transformer</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q19: In vector databases, what is the significance of the similarity metric (cosine vs euclidean)?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: Different metrics measure different aspects of similarity - cosine measures direction, euclidean measures distance.</strong></p>
+                        <p><strong>Cosine Similarity:</strong></p>
+                        <ul>
+                            <li><strong>Formula:</strong> cos(θ) = (A·B) / (||A|| ||B||)</li>
+                            <li><strong>Range:</strong> -1 to 1 (higher is more similar)</li>
+                            <li><strong>Measures:</strong> Angle between vectors (direction)</li>
+                            <li><strong>Magnitude invariant:</strong> [1,2,3] and [10,20,30] are identical</li>
+                            <li><strong>Best for:</strong> Text embeddings, semantic similarity</li>
+                        </ul>
+                        <p><strong>Euclidean Distance:</strong></p>
+                        <ul>
+                            <li><strong>Formula:</strong> sqrt(Σ(A_i - B_i)²)</li>
+                            <li><strong>Range:</strong> 0 to ∞ (lower is more similar)</li>
+                            <li><strong>Measures:</strong> Straight-line distance</li>
+                            <li><strong>Magnitude sensitive:</strong> [1,2,3] ≠ [10,20,30]</li>
+                            <li><strong>Best for:</strong> Image features, when magnitude matters</li>
+                        </ul>
+                        <p><strong>Example:</strong></p>
+                        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Vectors: A = [1, 0], B = [2, 0], C = [0, 1]
+
+Cosine similarity:
+  A vs B: 1.0 (same direction!)
+  A vs C: 0.0 (perpendicular)
+
+Euclidean distance:
+  A vs B: 1.0 (different magnitude)
+  A vs C: 1.41 (far apart)</pre>
+                        <p><strong>For LLM embeddings:</strong> Always use cosine - embedding models are trained to encode meaning in direction, not magnitude.</p>
+                        <p><strong>Other metrics:</strong> Dot product (cosine without normalization), Manhattan distance</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Q20: What is catastrophic forgetting in the context of fine-tuning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Answer: When fine-tuning on specific data causes the model to forget previously learned general knowledge.</strong></p>
+                        <p><strong>Example scenario:</strong></p>
+                        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Base model: Good at general knowledge
+↓ Fine-tune on medical data
+Fine-tuned model: Great at medical topics
+                    Bad at everything else! (forgot general knowledge)</pre>
+                        <p><strong>Why it happens:</strong></p>
+                        <ul>
+                            <li>Neural networks optimize for current training data</li>
+                            <li>Weights shift to fit new distribution</li>
+                            <li>Old knowledge is overwritten</li>
+                        </ul>
+                        <p><strong>Prevention strategies:</strong></p>
+                        <ul>
+                            <li><strong>LoRA:</strong> Only train small adapters, keep base frozen</li>
+                            <li><strong>Elastic Weight Consolidation (EWC):</strong> Penalize changes to important weights</li>
+                            <li><strong>Progressive Neural Networks:</strong> Add new capacity for new tasks</li>
+                            <li><strong>Replay:</strong> Mix in samples from original training data</li>
+                            <li><strong>Lower learning rate:</strong> Smaller weight updates</li>
+                            <li><strong>Fewer epochs:</strong> Don't overtrain on narrow data</li>
+                        </ul>
+                        <p><strong>Detection:</strong></p>
+                        <ul>
+                            <li>Evaluate on diverse benchmark before/after fine-tuning</li>
+                            <li>Check performance on general tasks</li>
+                            <li>Monitor perplexity on held-out general corpus</li>
+                        </ul>
+                        <p><strong>Trade-off:</strong> Some forgetting is acceptable if fine-tuned performance is much better for target task.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     `;
 }
@@ -2080,6 +2620,529 @@ function generateInterviewPage() {
         </div>
 
         <div class="section-header mt-4">
+            <h2 class="section-title">Model Architecture & Training</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>What is the vanishing gradient problem and how do modern architectures address it?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Problem:</strong> In deep networks, gradients become exponentially smaller in earlier layers, preventing learning.</p>
+                    <p><strong>Causes:</strong></p>
+                    <ul>
+                        <li>Activation functions (sigmoid, tanh) squash outputs</li>
+                        <li>Chain rule multiplies many small derivatives</li>
+                        <li>Earlier layers receive negligible updates</li>
+                    </ul>
+                    <p><strong>Solutions:</strong></p>
+                    <ul>
+                        <li><strong>ReLU activation:</strong> Gradient is 1 for positive inputs</li>
+                        <li><strong>Residual connections (ResNet):</strong> Skip connections allow gradients to flow directly</li>
+                        <li><strong>Layer normalization:</strong> Stabilizes gradient magnitudes</li>
+                        <li><strong>Careful initialization:</strong> Xavier/He initialization</li>
+                        <li><strong>Gradient clipping:</strong> Prevent exploding gradients</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Explain the difference between batch, mini-batch, and stochastic gradient descent</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Batch Gradient Descent:</strong></p>
+                    <ul>
+                        <li>Compute gradient using entire dataset</li>
+                        <li>Pros: Stable convergence, exact gradient</li>
+                        <li>Cons: Slow for large datasets, high memory</li>
+                    </ul>
+                    <p><strong>Stochastic Gradient Descent (SGD):</strong></p>
+                    <ul>
+                        <li>Update after each single example</li>
+                        <li>Pros: Fast updates, can escape local minima</li>
+                        <li>Cons: Noisy, unstable convergence</li>
+                    </ul>
+                    <p><strong>Mini-Batch Gradient Descent:</strong></p>
+                    <ul>
+                        <li>Update using small batches (32-512 examples)</li>
+                        <li>Pros: Balance of speed and stability, GPU-efficient</li>
+                        <li>Cons: Requires tuning batch size</li>
+                        <li><strong>Most common in practice</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>What is dropout and why is it effective for regularization?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Dropout:</strong> Randomly "drop" (set to zero) neurons during training with probability p (typically 0.5).</p>
+                    <p><strong>Why it works:</strong></p>
+                    <ul>
+                        <li>Forces network to not rely on specific neurons</li>
+                        <li>Creates ensemble effect (training many sub-networks)</li>
+                        <li>Prevents co-adaptation of features</li>
+                        <li>Acts as strong regularizer</li>
+                    </ul>
+                    <p><strong>Implementation:</strong></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Training: randomly zero neurons with prob p
+Testing: use all neurons, scale by (1-p)</pre>
+                    <p><strong>Important:</strong> Only use during training, not inference!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>What is teacher forcing in sequence-to-sequence models?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Teacher Forcing:</strong> During training, feed the true previous token as input, not the model's prediction.</p>
+                    <p><strong>Example (translation):</strong></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Input: "Hello" → Target: "Hola"
+
+With teacher forcing:
+  Step 1: Input <START> → Predict "H"
+  Step 2: Input "H" (true) → Predict "o"
+  Step 3: Input "o" (true) → Predict "l"
+
+Without teacher forcing:
+  Step 2: Input "H" (predicted) → Predict...
+  Errors compound!</pre>
+                    <p><strong>Benefits:</strong> Faster training, more stable</p>
+                    <p><strong>Drawback:</strong> Train/test mismatch (exposure bias)</p>
+                    <p><strong>Solution:</strong> Scheduled sampling - gradually reduce teacher forcing</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Evaluation & Metrics</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>How do you evaluate the quality of a generative language model?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Automatic Metrics:</strong></p>
+                    <ul>
+                        <li><strong>Perplexity:</strong> How "surprised" is the model? Lower is better. PPL = exp(cross-entropy)</li>
+                        <li><strong>BLEU:</strong> N-gram overlap with reference (translation, summarization)</li>
+                        <li><strong>ROUGE:</strong> Recall-focused, good for summarization</li>
+                        <li><strong>BERTScore:</strong> Semantic similarity using embeddings</li>
+                    </ul>
+                    <p><strong>Human Evaluation:</strong></p>
+                    <ul>
+                        <li>Fluency: Is text grammatical and natural?</li>
+                        <li>Coherence: Is it logically consistent?</li>
+                        <li>Factuality: Is information accurate?</li>
+                        <li>Relevance: Does it answer the prompt?</li>
+                    </ul>
+                    <p><strong>Task-Specific:</strong></p>
+                    <ul>
+                        <li>Benchmarks: MMLU, HumanEval, TruthfulQA</li>
+                        <li>A/B testing with users</li>
+                        <li>Win-rate against baseline</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>What is the difference between precision, recall, and F1 score?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Precision:</strong> Of all predicted positives, how many are correct?</p>
+                    <p>Precision = TP / (TP + FP)</p>
+                    <p><strong>Recall:</strong> Of all actual positives, how many did we find?</p>
+                    <p>Recall = TP / (TP + FN)</p>
+                    <p><strong>F1 Score:</strong> Harmonic mean of precision and recall</p>
+                    <p>F1 = 2 × (Precision × Recall) / (Precision + Recall)</p>
+                    <p><strong>Example:</strong></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Spam detection (100 emails):
+  90 legitimate, 10 spam
+  Model predicts 8 spam: 6 correct, 2 wrong
+
+Precision = 6/8 = 75% (of flagged, 75% were spam)
+Recall = 6/10 = 60% (caught 60% of spam)
+F1 = 67%</pre>
+                    <p><strong>Trade-off:</strong> Increasing one often decreases the other</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Production & Deployment</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>How would you monitor an LLM application in production?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Performance Metrics:</strong></p>
+                    <ul>
+                        <li>Latency (p50, p95, p99)</li>
+                        <li>Throughput (requests/second)</li>
+                        <li>Error rate</li>
+                        <li>Availability/uptime</li>
+                    </ul>
+                    <p><strong>Quality Metrics:</strong></p>
+                    <ul>
+                        <li>User feedback (thumbs up/down)</li>
+                        <li>Task completion rate</li>
+                        <li>Conversation length distribution</li>
+                        <li>Refusal/fallback rate</li>
+                    </ul>
+                    <p><strong>Cost Metrics:</strong></p>
+                    <ul>
+                        <li>Token usage (input/output)</li>
+                        <li>API costs per user/session</li>
+                        <li>Infrastructure costs</li>
+                    </ul>
+                    <p><strong>Safety Metrics:</strong></p>
+                    <ul>
+                        <li>Content filter triggers</li>
+                        <li>Toxic output detection</li>
+                        <li>PII leakage detection</li>
+                        <li>Prompt injection attempts</li>
+                    </ul>
+                    <p><strong>Tools:</strong> DataDog, Langfuse, LangSmith, Weights & Biases</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Explain the difference between online and offline evaluation</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Offline Evaluation:</strong></p>
+                    <ul>
+                        <li>Test on static dataset before deployment</li>
+                        <li>Metrics: BLEU, perplexity, accuracy</li>
+                        <li>Fast, cheap, repeatable</li>
+                        <li>Limitation: May not reflect real user behavior</li>
+                    </ul>
+                    <p><strong>Online Evaluation:</strong></p>
+                    <ul>
+                        <li>Measure on real users in production</li>
+                        <li>Metrics: Click-through rate, task completion, user feedback</li>
+                        <li>Reflects actual performance</li>
+                        <li>Challenges: Slow, expensive, requires traffic</li>
+                    </ul>
+                    <p><strong>Best Practice:</strong></p>
+                    <ol>
+                        <li>Offline evaluation for rapid iteration</li>
+                        <li>A/B test promising candidates online</li>
+                        <li>Monitor metrics continuously</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>How would you handle rate limiting and retries for LLM APIs?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Rate Limiting Strategies:</strong></p>
+                    <ul>
+                        <li><strong>Token bucket:</strong> Allow bursts but maintain average rate</li>
+                        <li><strong>Sliding window:</strong> Count requests in rolling time window</li>
+                        <li><strong>User/tenant quotas:</strong> Fair allocation</li>
+                    </ul>
+                    <p><strong>Retry Logic:</strong></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Exponential backoff with jitter:
+  Attempt 1: 0s
+  Attempt 2: 2s + random(0-1s)
+  Attempt 3: 4s + random(0-2s)
+  Attempt 4: 8s + random(0-4s)
+  Max retries: 5</pre>
+                    <p><strong>Error Handling:</strong></p>
+                    <ul>
+                        <li><strong>429 (Rate Limit):</strong> Retry with backoff</li>
+                        <li><strong>500/503 (Server Error):</strong> Retry with backoff</li>
+                        <li><strong>400 (Bad Request):</strong> Don't retry, fix request</li>
+                        <li><strong>401/403 (Auth):</strong> Don't retry, check credentials</li>
+                    </ul>
+                    <p><strong>Circuit Breaker:</strong> Stop trying if service is consistently failing</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Multimodal & Advanced Topics</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>How do vision-language models like GPT-4V work?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Architecture:</strong></p>
+                    <ol>
+                        <li><strong>Vision Encoder:</strong> CNN or ViT (Vision Transformer) processes image → visual features</li>
+                        <li><strong>Projection Layer:</strong> Maps visual features to text embedding space</li>
+                        <li><strong>Language Model:</strong> Processes both visual and text tokens together</li>
+                    </ol>
+                    <p><strong>Training Approach:</strong></p>
+                    <ul>
+                        <li><strong>Stage 1:</strong> Image-text pairs (captions) - learn alignment</li>
+                        <li><strong>Stage 2:</strong> Instruction tuning with visual tasks</li>
+                        <li><strong>Stage 3:</strong> RLHF for safety and helpfulness</li>
+                    </ul>
+                    <p><strong>Capabilities:</strong></p>
+                    <ul>
+                        <li>Image description and analysis</li>
+                        <li>Visual question answering</li>
+                        <li>OCR and document understanding</li>
+                        <li>Visual reasoning</li>
+                    </ul>
+                    <p><strong>Examples:</strong> GPT-4V, Claude 3, Gemini Vision, LLaVA</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>What are diffusion models and how do they generate images?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Core Idea:</strong> Learn to reverse a process that gradually adds noise to data.</p>
+                    <p><strong>Forward Process (Training):</strong></p>
+                    <ol>
+                        <li>Start with real image</li>
+                        <li>Gradually add Gaussian noise over T steps</li>
+                        <li>End with pure noise</li>
+                    </ol>
+                    <p><strong>Reverse Process (Generation):</strong></p>
+                    <ol>
+                        <li>Start with random noise</li>
+                        <li>Neural network predicts and removes noise at each step</li>
+                        <li>After T steps, get clean image</li>
+                    </ol>
+                    <p><strong>Text Conditioning:</strong></p>
+                    <ul>
+                        <li>Text prompt encoded to embeddings</li>
+                        <li>Cross-attention layers condition noise prediction on text</li>
+                        <li>Classifier-free guidance for better prompt following</li>
+                    </ul>
+                    <p><strong>Advantages over GANs:</strong></p>
+                    <ul>
+                        <li>More stable training</li>
+                        <li>Better mode coverage (diversity)</li>
+                        <li>Higher quality results</li>
+                    </ul>
+                    <p><strong>Examples:</strong> Stable Diffusion, DALL-E 2, Imagen, Midjourney</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Explain the concept of few-shot learning in LLMs</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Definition:</strong> Ability to perform tasks with just a few examples in the prompt, without parameter updates.</p>
+                    <p><strong>Example:</strong></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Sentiment classification:
+
+Review: "Amazing product!" → Positive
+Review: "Terrible experience" → Negative
+Review: "Just okay, nothing special" → Neutral
+
+Review: "Best purchase ever!" → ???
+Model: Positive</pre>
+                    <p><strong>Why it works:</strong></p>
+                    <ul>
+                        <li>Pre-training on diverse tasks teaches meta-learning</li>
+                        <li>Model learns to recognize patterns from examples</li>
+                        <li>In-context learning without weight updates</li>
+                    </ul>
+                    <p><strong>Variants:</strong></p>
+                    <ul>
+                        <li><strong>Zero-shot:</strong> No examples (just instructions)</li>
+                        <li><strong>One-shot:</strong> Single example</li>
+                        <li><strong>Few-shot:</strong> 2-10 examples</li>
+                        <li><strong>Many-shot:</strong> 10+ examples (if context allows)</li>
+                    </ul>
+                    <p><strong>Performance:</strong> Generally improves with more examples, plateaus around 5-10</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Behavioral & Scenario Questions</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>You notice your RAG system returns irrelevant documents. How do you debug?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Systematic Debugging Approach:</strong></p>
+                    <p><strong>1. Check Retrieval Quality</strong></p>
+                    <ul>
+                        <li>Inspect actual retrieved documents for sample queries</li>
+                        <li>Check similarity scores - are they too low?</li>
+                        <li>Test with known relevant documents - do they rank high?</li>
+                    </ul>
+                    <p><strong>2. Examine Embeddings</strong></p>
+                    <ul>
+                        <li>Are embeddings generated correctly?</li>
+                        <li>Same embedding model for indexing and querying?</li>
+                        <li>Try different embedding models (ada-002, instructor, e5)</li>
+                    </ul>
+                    <p><strong>3. Analyze Chunking</strong></p>
+                    <ul>
+                        <li>Chunks too large (lose precision) or too small (lose context)?</li>
+                        <li>Try different chunk sizes (256, 512, 1024 tokens)</li>
+                        <li>Add overlap between chunks</li>
+                        <li>Use semantic chunking instead of fixed size</li>
+                    </ul>
+                    <p><strong>4. Improve Query Processing</strong></p>
+                    <ul>
+                        <li>Rewrite user query for better matching</li>
+                        <li>Generate multiple query variations (hypothetical documents)</li>
+                        <li>Add query expansion</li>
+                    </ul>
+                    <p><strong>5. Hybrid Search</strong></p>
+                    <ul>
+                        <li>Combine semantic + keyword search</li>
+                        <li>Use BM25 + vector search</li>
+                        <li>Re-ranking with cross-encoder</li>
+                    </ul>
+                    <p><strong>6. Evaluation</strong></p>
+                    <ul>
+                        <li>Build test set of queries with known relevant docs</li>
+                        <li>Measure recall@K, MRR (mean reciprocal rank)</li>
+                        <li>A/B test improvements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>How would you design a content moderation system for an LLM application?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Multi-Layer Defense:</strong></p>
+                    <p><strong>Layer 1: Input Filtering</strong></p>
+                    <ul>
+                        <li>OpenAI Moderation API for harmful content</li>
+                        <li>Prompt injection detection (keyword matching, classifiers)</li>
+                        <li>PII detection and masking</li>
+                        <li>Rate limiting per user</li>
+                    </ul>
+                    <p><strong>Layer 2: Model-Level Safety</strong></p>
+                    <ul>
+                        <li>System prompts with safety guidelines</li>
+                        <li>Constitutional AI self-critique</li>
+                        <li>Refusal training for harmful requests</li>
+                    </ul>
+                    <p><strong>Layer 3: Output Filtering</strong></p>
+                    <ul>
+                        <li>Toxicity classifier on responses</li>
+                        <li>Fact-checking for factual claims</li>
+                        <li>PII detection in outputs</li>
+                        <li>Copyright detection</li>
+                    </ul>
+                    <p><strong>Layer 4: Human Review</strong></p>
+                    <ul>
+                        <li>Flag edge cases for review</li>
+                        <li>User reporting mechanism</li>
+                        <li>Feedback loop to improve filters</li>
+                    </ul>
+                    <p><strong>Monitoring:</strong></p>
+                    <ul>
+                        <li>Dashboard for filter trigger rates</li>
+                        <li>False positive/negative tracking</li>
+                        <li>Adversarial testing (red teaming)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Your fine-tuned model is overfitting. What would you do?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Diagnosis:</strong> Training loss decreasing, validation loss increasing or plateauing</p>
+                    <p><strong>Solutions (in order of priority):</strong></p>
+                    <p><strong>1. Get More Data</strong></p>
+                    <ul>
+                        <li>Most effective solution</li>
+                        <li>Data augmentation if collecting more is hard</li>
+                        <li>Synthetic data generation</li>
+                    </ul>
+                    <p><strong>2. Regularization</strong></p>
+                    <ul>
+                        <li>Increase weight decay</li>
+                        <li>Add dropout</li>
+                        <li>Use LoRA instead of full fine-tuning (implicit regularization)</li>
+                    </ul>
+                    <p><strong>3. Reduce Model Capacity</strong></p>
+                    <ul>
+                        <li>Use smaller model</li>
+                        <li>Lower LoRA rank</li>
+                        <li>Freeze more layers</li>
+                    </ul>
+                    <p><strong>4. Training Adjustments</strong></p>
+                    <ul>
+                        <li>Early stopping based on validation loss</li>
+                        <li>Lower learning rate</li>
+                        <li>Fewer training epochs</li>
+                        <li>Smaller batch size</li>
+                    </ul>
+                    <p><strong>5. Ensemble Methods</strong></p>
+                    <ul>
+                        <li>Train multiple models with different random seeds</li>
+                        <li>Average predictions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
             <h2 class="section-title">Coding Challenges</h2>
         </div>
 
@@ -2100,7 +3163,7 @@ def get_embedding(text):
         model="text-embedding-ada-002",
         input=text
     )
-    return response['data'][0]['embedding']
+    return response['data'][0']['embedding']
 
 def cosine_similarity(a, b):
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
@@ -2119,6 +3182,205 @@ def semantic_search(query, documents, top_k=5):
     # Get top-K
     top_indices = np.argsort(similarities)[-top_k:][::-1]
     return [(documents[i], similarities[i]) for i in top_indices]</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Build a simple RAG pipeline with caching</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Create a RAG system with embedding cache to reduce API calls.</p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>import openai
+import json
+from pathlib import Path
+
+class RAGSystem:
+    def __init__(self, cache_file="embeddings_cache.json"):
+        self.cache_file = cache_file
+        self.cache = self._load_cache()
+
+    def _load_cache(self):
+        if Path(self.cache_file).exists():
+            with open(self.cache_file) as f:
+                return json.load(f)
+        return {}
+
+    def _save_cache(self):
+        with open(self.cache_file, 'w') as f:
+            json.dump(self.cache, f)
+
+    def get_embedding(self, text):
+        if text in self.cache:
+            return self.cache[text]
+
+        response = openai.Embedding.create(
+            model="text-embedding-ada-002",
+            input=text
+        )
+        embedding = response['data'][0]['embedding']
+        self.cache[text] = embedding
+        self._save_cache()
+        return embedding
+
+    def retrieve(self, query, documents, top_k=3):
+        query_emb = self.get_embedding(query)
+        doc_embs = [self.get_embedding(doc) for doc in documents]
+
+        similarities = [
+            np.dot(query_emb, doc_emb) /
+            (np.linalg.norm(query_emb) * np.linalg.norm(doc_emb))
+            for doc_emb in doc_embs
+        ]
+
+        top_idx = np.argsort(similarities)[-top_k:][::-1]
+        return [documents[i] for i in top_idx]
+
+    def generate(self, query, context):
+        prompt = f"Context: {context}\n\nQuestion: {query}\n\nAnswer:"
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return response.choices[0].message.content
+
+    def query(self, question, documents):
+        # Retrieve relevant docs
+        relevant_docs = self.retrieve(question, documents)
+        context = "\n".join(relevant_docs)
+
+        # Generate answer
+        answer = self.generate(question, context)
+        return answer, relevant_docs</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Implement retry logic with exponential backoff</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Create a robust API caller that handles rate limits and transient failures.</p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>import time
+import random
+from functools import wraps
+
+def retry_with_backoff(max_retries=5, base_delay=1, max_delay=60):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_retries):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    # Don't retry on certain errors
+                    if hasattr(e, 'status_code'):
+                        if e.status_code in [400, 401, 403, 404]:
+                            raise  # Don't retry client errors
+
+                    if attempt == max_retries - 1:
+                        raise  # Last attempt, give up
+
+                    # Calculate backoff with jitter
+                    delay = min(base_delay * (2 ** attempt), max_delay)
+                    jitter = random.uniform(0, delay * 0.1)
+                    sleep_time = delay + jitter
+
+                    print(f"Attempt {attempt + 1} failed: {e}")
+                    print(f"Retrying in {sleep_time:.2f}s...")
+                    time.sleep(sleep_time)
+
+            raise Exception(f"Failed after {max_retries} attempts")
+        return wrapper
+    return decorator
+
+# Usage
+@retry_with_backoff(max_retries=5)
+def call_llm_api(prompt):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return response.choices[0].message.content
+
+# Call with automatic retries
+result = call_llm_api("What is AI?")</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Estimation & Trade-off Questions</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Estimate the cost to serve 1 million requests with GPT-4</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Assumptions:</strong></p>
+                    <ul>
+                        <li>GPT-4: $0.03/1K input tokens, $0.06/1K output tokens</li>
+                        <li>Average input: 1,000 tokens (~750 words)</li>
+                        <li>Average output: 500 tokens (~375 words)</li>
+                    </ul>
+                    <p><strong>Calculation:</strong></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">Per request:
+  Input cost: 1,000 tokens × $0.03/1K = $0.03
+  Output cost: 500 tokens × $0.06/1K = $0.03
+  Total: $0.06 per request
+
+1 million requests:
+  Cost: 1,000,000 × $0.06 = $60,000</pre>
+                    <p><strong>Optimization strategies:</strong></p>
+                    <ul>
+                        <li>Use GPT-3.5 where possible: ~10x cheaper (~$6,000)</li>
+                        <li>Caching: 30% cache hit = $42,000 (30% savings)</li>
+                        <li>Prompt compression: 500 token input = $45,000 (25% savings)</li>
+                        <li>Combined: Could reduce to ~$20,000-30,000</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Compare hosting your own LLM vs using API (cost analysis)</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Scenario:</strong> 10M requests/month, avg 1K tokens in+out</p>
+                    <p><strong>Option 1: OpenAI API (GPT-3.5)</strong></p>
+                    <ul>
+                        <li>Cost: $0.002/1K tokens = $20,000/month</li>
+                        <li>Pros: Zero setup, scales instantly, always updated</li>
+                        <li>Cons: Per-token costs, data sent to third party</li>
+                    </ul>
+                    <p><strong>Option 2: Self-Hosted (LLaMA 2 70B)</strong></p>
+                    <ul>
+                        <li>Hardware: 4× A100 GPUs = $10,000/month (cloud)</li>
+                        <li>Engineering: $15,000/month (1 engineer)</li>
+                        <li>Inference stack: $2,000/month</li>
+                        <li>Total: $27,000/month</li>
+                        <li>Pros: Data privacy, customization, no per-token cost</li>
+                        <li>Cons: Maintenance, updates, scaling complexity</li>
+                    </ul>
+                    <p><strong>Break-even:</strong> ~15M requests/month</p>
+                    <p><strong>Recommendation:</strong></p>
+                    <ul>
+                        <li>Low volume (<5M/mo): Use API</li>
+                        <li>High volume (>20M/mo): Consider self-hosting</li>
+                        <li>Sensitive data: Self-host regardless of cost</li>
+                    </ul>
                 </div>
             </div>
         </div>
