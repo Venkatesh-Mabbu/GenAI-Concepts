@@ -744,23 +744,123 @@ function generateRoadmapPage() {
             </div>
         </div>
         <div style="max-width: 900px; margin: 0 auto;">
-            <div class="accordion active" onclick="toggleAccordion(this)">
+            <div class="accordion active">
                 <button class="accordion-header">
-                    <span>🌱 Phase 1: Fundamentals (Beginner)</span>
+                    <span>🌱 Phase 1: Fundamentals (Weeks 1-6)</span>
                     <span class="accordion-icon">▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-body">
-                        <p><strong>Duration:</strong> 4-6 weeks</p>
-                        <p>Build a strong foundation in AI, machine learning, and neural networks.</p>
+                        <p><strong>Goal:</strong> Build a strong foundation in AI, ML, and neural networks</p>
+                        <h4>Core Topics:</h4>
                         <ul>
-                            <li>What is Artificial Intelligence?</li>
-                            <li>Introduction to Machine Learning</li>
-                            <li>Neural Networks Fundamentals</li>
-                            <li>What is Generative AI?</li>
-                            <li>Large Language Models</li>
+                            <li>✅ What is Artificial Intelligence?</li>
+                            <li>✅ Introduction to Machine Learning</li>
+                            <li>✅ Neural Networks Fundamentals</li>
+                            <li>✅ What is Generative AI?</li>
+                            <li>✅ Large Language Models (LLMs)</li>
+                            <li>✅ Transfer Learning</li>
+                            <li>✅ Fine-Tuning</li>
+                            <li>✅ Embeddings and Tokenization</li>
+                            <li>✅ Attention Mechanisms</li>
+                            <li>✅ Prompt Engineering Basics</li>
                         </ul>
+                        <p><strong>Recommended Path:</strong> Complete all 30 Beginner concepts → Practice with exercises → Build first simple project</p>
                     </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>🚀 Phase 2: Intermediate Skills (Weeks 7-14)</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Goal:</strong> Master advanced prompting, RAG, and specialized architectures</p>
+                        <h4>Core Topics:</h4>
+                        <ul>
+                            <li>✅ Advanced Prompt Engineering</li>
+                            <li>✅ Chain-of-Thought Prompting</li>
+                            <li>✅ Retrieval-Augmented Generation (RAG)</li>
+                            <li>✅ Vector Databases</li>
+                            <li>✅ LangChain Fundamentals</li>
+                            <li>✅ Fine-tuning vs Prompt Engineering</li>
+                            <li>✅ LoRA & Parameter-Efficient Tuning</li>
+                            <li>✅ Multi-Modal Models</li>
+                            <li>✅ Stable Diffusion & Image Generation</li>
+                            <li>✅ Model Evaluation Metrics</li>
+                        </ul>
+                        <p><strong>Recommended Projects:</strong> Build a RAG chatbot → Create text-to-image app → Fine-tune a small model</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>⚡ Phase 3: Advanced Mastery (Weeks 15-24)</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Goal:</strong> Deep expertise in RLHF, optimization, and production deployment</p>
+                        <h4>Core Topics:</h4>
+                        <ul>
+                            <li>✅ Reinforcement Learning from Human Feedback (RLHF)</li>
+                            <li>✅ Constitutional AI</li>
+                            <li>✅ Mixture of Experts (MoE)</li>
+                            <li>✅ Flash Attention & Optimization</li>
+                            <li>✅ Multi-Agent Systems</li>
+                            <li>✅ Tool Use & Function Calling</li>
+                            <li>✅ Model Interpretability</li>
+                            <li>✅ Bias Detection & Mitigation</li>
+                            <li>✅ Model Serving at Scale</li>
+                            <li>✅ Inference Optimization</li>
+                        </ul>
+                        <p><strong>Recommended Projects:</strong> Build autonomous agent → Implement RLHF pipeline → Deploy production system</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>🎯 Phase 4: Specialization (Weeks 25+)</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Goal:</strong> Choose your specialization and become an expert</p>
+                        <h4>Specialization Tracks:</h4>
+                        <ul>
+                            <li><strong>🤖 LLM Engineering:</strong> Focus on prompt engineering, RAG, agents, fine-tuning</li>
+                            <li><strong>🎨 Generative Media:</strong> Specialize in images, video, audio generation</li>
+                            <li><strong>🏗️ ML Infrastructure:</strong> Model serving, optimization, deployment at scale</li>
+                            <li><strong>🔬 Research:</strong> Novel architectures, alignment, interpretability</li>
+                            <li><strong>🛡️ AI Safety:</strong> Red-teaming, bias detection, robustness, ethics</li>
+                        </ul>
+                        <p><strong>Next Steps:</strong> Contribute to open source → Publish research → Build startup → Join AI company</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 3rem;">
+                <h2 class="section-title">Learning Tips</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">📝</div>
+                    <h3 class="card-title">Hands-On Practice</h3>
+                    <p class="card-description">Build projects while learning. Theory alone isn't enough—code every day!</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔄</div>
+                    <h3 class="card-title">Iterate & Experiment</h3>
+                    <p class="card-description">Try different approaches, fail fast, learn from mistakes.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3 class="card-title">Join Communities</h3>
+                    <p class="card-description">Learn with others, share knowledge, get help when stuck.</p>
                 </div>
             </div>
         </div>
@@ -772,12 +872,119 @@ function generateTutorialsPage() {
         <div class="hero" style="background: var(--gradient-blue);">
             <div class="hero-content">
                 <h1>📚 Tutorials</h1>
-                <p>Step-by-step tutorials with hands-on code examples.</p>
+                <p>Step-by-step tutorials with hands-on code examples to build real GenAI applications.</p>
             </div>
         </div>
+
         <div class="section-header">
-            <h2 class="section-title">Coming Soon</h2>
-            <p class="section-subtitle">Comprehensive tutorials are being developed...</p>
+            <h2 class="section-title">Beginner Tutorials</h2>
+            <p class="section-subtitle">Start with the fundamentals</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🤖</div>
+                <h3 class="card-title">Building Your First Chatbot</h3>
+                <p class="card-description">Create a simple chatbot using OpenAI API with Python. Learn about API calls, prompt design, and conversation context.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-beginner">45 min</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3 class="card-title">Prompt Engineering 101</h3>
+                <p class="card-description">Master the art of writing effective prompts. Covers zero-shot, few-shot, and chain-of-thought techniques with examples.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-beginner">30 min</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3 class="card-title">Text-to-Image Generation</h3>
+                <p class="card-description">Generate images using Stable Diffusion API. Learn about prompts, negative prompts, and parameter tuning.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-beginner">40 min</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Intermediate Tutorials</h2>
+            <p class="section-subtitle">Build production-ready applications</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h3 class="card-title">Building a RAG System</h3>
+                <p class="card-description">Create a Retrieval-Augmented Generation chatbot that answers questions from your documents using LangChain and vector databases.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">90 min</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3 class="card-title">Fine-Tuning a Language Model</h3>
+                <p class="card-description">Fine-tune GPT-2 or LLaMA on custom data. Learn about datasets, training loops, and evaluation metrics.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">120 min</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔗</div>
+                <h3 class="card-title">LangChain Agents</h3>
+                <p class="card-description">Build autonomous agents that can use tools, search the web, and perform multi-step reasoning tasks.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">75 min</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">Vector Database Integration</h3>
+                <p class="card-description">Set up Pinecone, Weaviate, or ChromaDB for semantic search. Covers embeddings, indexing, and retrieval strategies.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">60 min</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Advanced Tutorials</h2>
+            <p class="section-subtitle">Master cutting-edge techniques</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">RLHF Pipeline</h3>
+                <p class="card-description">Implement Reinforcement Learning from Human Feedback to align models with human preferences using reward models.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-advanced">180 min</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h3 class="card-title">Model Optimization & Deployment</h3>
+                <p class="card-description">Optimize models with quantization, pruning, and distillation. Deploy with FastAPI, Docker, and Kubernetes.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-advanced">150 min</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3 class="card-title">Multi-Agent Systems</h3>
+                <p class="card-description">Build systems where multiple AI agents collaborate to solve complex tasks using AutoGen or CrewAI frameworks.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-advanced">120 min</span>
+                </div>
+            </div>
         </div>
     `;
 }
@@ -787,11 +994,214 @@ function generateExercisesPage() {
         <div class="hero" style="background: var(--gradient-green);">
             <div class="hero-content">
                 <h1>💪 Exercises</h1>
-                <p>Practice your skills with hands-on exercises.</p>
+                <p>Practice your skills with hands-on coding exercises and challenges.</p>
             </div>
         </div>
+
         <div class="section-header">
-            <h2 class="section-title">Coming Soon</h2>
+            <h2 class="section-title">Beginner Exercises</h2>
+            <p class="section-subtitle">Build foundational skills</p>
+        </div>
+
+        <div class="accordion active">
+            <button class="accordion-header">
+                <span>🎯 Exercise 1: API Integration</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Connect to OpenAI API and generate text completions</p>
+                    <p><strong>Skills:</strong> API authentication, error handling, response parsing</p>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Set up API key securely using environment variables</li>
+                        <li>Create a function that takes a prompt and returns completion</li>
+                        <li>Handle rate limiting and API errors gracefully</li>
+                        <li>Add retry logic for failed requests</li>
+                    </ul>
+                    <p><strong>Bonus:</strong> Add streaming response support for real-time output</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>📝 Exercise 2: Prompt Templates</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Create reusable prompt templates for different use cases</p>
+                    <p><strong>Skills:</strong> Prompt engineering, template design, variable interpolation</p>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Build templates for: summarization, translation, Q&A, code generation</li>
+                        <li>Support variable substitution in templates</li>
+                        <li>Add validation for required template variables</li>
+                        <li>Create a template library with 10+ reusable prompts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>🔤 Exercise 3: Token Counter</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Build a token counting utility using tiktoken</p>
+                    <p><strong>Skills:</strong> Tokenization, cost estimation</p>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Count tokens for different model encodings (GPT-3.5, GPT-4)</li>
+                        <li>Estimate API costs based on token count</li>
+                        <li>Truncate text to fit within token limits</li>
+                        <li>Create a CLI tool for token counting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Intermediate Exercises</h2>
+            <p class="section-subtitle">Apply advanced concepts</p>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>🔍 Exercise 4: Semantic Search Engine</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Build a semantic search engine using embeddings</p>
+                    <p><strong>Skills:</strong> Embeddings, vector similarity, indexing</p>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Load a dataset of documents (Wikipedia, papers, etc.)</li>
+                        <li>Generate embeddings for all documents</li>
+                        <li>Implement cosine similarity search</li>
+                        <li>Return top-K most relevant results for queries</li>
+                        <li>Add caching for improved performance</li>
+                    </ul>
+                    <p><strong>Bonus:</strong> Use FAISS or Annoy for efficient similarity search</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>📚 Exercise 5: Document Q&A System</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Create a RAG system that answers questions from uploaded PDFs</p>
+                    <p><strong>Skills:</strong> RAG, document parsing, chunking strategies</p>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Parse PDF documents and extract text</li>
+                        <li>Chunk documents into manageable segments</li>
+                        <li>Store chunks in a vector database</li>
+                        <li>Retrieve relevant chunks for user queries</li>
+                        <li>Generate answers using retrieved context</li>
+                        <li>Cite sources in the response</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>🎨 Exercise 6: Image Generation Pipeline</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Build an automated image generation and editing pipeline</p>
+                    <p><strong>Skills:</strong> Diffusion models, prompt engineering, image processing</p>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Generate images from text prompts using Stable Diffusion</li>
+                        <li>Support different styles and aspect ratios</li>
+                        <li>Implement img2img for image editing</li>
+                        <li>Add inpainting capabilities</li>
+                        <li>Create batch processing for multiple images</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Advanced Exercises</h2>
+            <p class="section-subtitle">Master production-grade systems</p>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>🤖 Exercise 7: Autonomous Research Agent</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Build an agent that autonomously researches topics</p>
+                    <p><strong>Skills:</strong> Agent frameworks, tool use, multi-step reasoning</p>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Implement ReAct or similar reasoning framework</li>
+                        <li>Give agent access to: web search, Wikipedia, calculator, code execution</li>
+                        <li>Break down complex queries into sub-tasks</li>
+                        <li>Synthesize findings into comprehensive reports</li>
+                        <li>Add memory for multi-turn conversations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>⚡ Exercise 8: Model Fine-Tuning</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Fine-tune a model for domain-specific tasks</p>
+                    <p><strong>Skills:</strong> Training loops, LoRA, evaluation</p>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Prepare and clean a custom dataset</li>
+                        <li>Implement LoRA for parameter-efficient tuning</li>
+                        <li>Set up training pipeline with logging</li>
+                        <li>Monitor metrics: loss, perplexity, accuracy</li>
+                        <li>Evaluate on held-out test set</li>
+                        <li>Compare fine-tuned vs base model performance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>🛡️ Exercise 9: AI Safety & Red Teaming</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Build tools to test LLM safety and robustness</p>
+                    <p><strong>Skills:</strong> Prompt injection detection, content filtering, adversarial testing</p>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Create automated tests for common vulnerabilities</li>
+                        <li>Implement prompt injection detection</li>
+                        <li>Build content moderation filters</li>
+                        <li>Test for bias in model outputs</li>
+                        <li>Generate adversarial examples</li>
+                        <li>Measure model robustness metrics</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     `;
 }
@@ -801,11 +1211,182 @@ function generateProjectsPage() {
         <div class="hero" style="background: var(--gradient-orange);">
             <div class="hero-content">
                 <h1>📁 Projects</h1>
-                <p>Real-world projects to build your portfolio.</p>
+                <p>Real-world projects to showcase your GenAI skills and build your portfolio.</p>
             </div>
         </div>
+
         <div class="section-header">
-            <h2 class="section-title">Coming Soon</h2>
+            <h2 class="section-title">Beginner Projects</h2>
+            <p class="section-subtitle">Perfect for getting started</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3 class="card-title">AI Chatbot with Memory</h3>
+                <p class="card-description">Build a conversational AI that remembers past interactions. Features: context management, personality customization, web interface.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-beginner">Week 1-2</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h3 class="card-title">Content Generator</h3>
+                <p class="card-description">Create a tool that generates blog posts, social media captions, and marketing copy. Includes templates and tone controls.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-beginner">Week 1</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔄</div>
+                <h3 class="card-title">Text Summarizer</h3>
+                <p class="card-description">Summarize long articles, PDFs, and documents. Support multiple summary lengths and extractive vs abstractive methods.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-beginner">Week 1</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🌍</div>
+                <h3 class="card-title">Language Translator</h3>
+                <p class="card-description">Build a translator supporting 50+ languages with context awareness and formality control. Add speech input/output.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-beginner">Week 1-2</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">✍️</div>
+                <h3 class="card-title">Writing Assistant</h3>
+                <p class="card-description">Create an assistant that helps with grammar, style, clarity, and tone. Include plagiarism detection and citation generation.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-beginner">Week 2</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Intermediate Projects</h2>
+            <p class="section-subtitle">Challenge yourself with these</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h3 class="card-title">Personal Knowledge Base</h3>
+                <p class="card-description">RAG system for your documents. Upload files, ask questions, get answers with citations. Includes semantic search and chat interface.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">Week 2-3</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3 class="card-title">AI Art Studio</h3>
+                <p class="card-description">Full-featured image generation app with text-to-image, img2img, inpainting, and style transfer. Gallery and prompt library.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">Week 3-4</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3 class="card-title">Code Review Assistant</h3>
+                <p class="card-description">Automated code reviewer that checks for bugs, suggests improvements, and writes tests. GitHub integration for PR reviews.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">Week 2-3</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📧</div>
+                <h3 class="card-title">Email Assistant</h3>
+                <p class="card-description">Smart email management: auto-categorization, draft responses, priority inbox, meeting extraction. Gmail/Outlook integration.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">Week 3</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h3 class="card-title">Research Paper Analyzer</h3>
+                <p class="card-description">Upload scientific papers, extract key findings, generate summaries, and find related work. Citation graph visualization.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">Week 2-3</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3 class="card-title">Meeting Assistant</h3>
+                <p class="card-description">Transcribe meetings, generate summaries, extract action items, and create follow-up emails. Zoom/Teams integration.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">Week 3</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Advanced Projects</h2>
+            <p class="section-subtitle">Production-grade applications</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🤖</div>
+                <h3 class="card-title">Multi-Agent System</h3>
+                <p class="card-description">Build a team of AI agents that collaborate: researcher, writer, editor, fact-checker. Orchestrate complex workflows.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-advanced">Week 4-6</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">Custom Model Training Platform</h3>
+                <p class="card-description">End-to-end platform: data preparation, model training with LoRA/QLoRA, evaluation, deployment. Web-based interface.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-advanced">Week 6-8</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🏢</div>
+                <h3 class="card-title">Enterprise RAG System</h3>
+                <p class="card-description">Production RAG with authentication, multi-tenancy, analytics, admin dashboard. Supports multiple data sources and LLMs.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-advanced">Week 5-7</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎬</div>
+                <h3 class="card-title">AI Video Generator</h3>
+                <p class="card-description">Generate videos from text: script writing, voiceover synthesis, image/video generation, editing. Export to MP4.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-advanced">Week 6-8</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h3 class="card-title">AI Security Platform</h3>
+                <p class="card-description">Red-teaming tool: prompt injection detection, jailbreak testing, bias analysis, content moderation. Dashboard with metrics.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-advanced">Week 4-5</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <h3 class="card-title">AI Mobile App</h3>
+                <p class="card-description">Full-stack mobile app with on-device models, cloud integration, offline mode. React Native + Edge ML deployment.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-advanced">Week 7-10</span>
+                </div>
+            </div>
         </div>
     `;
 }
@@ -815,11 +1396,163 @@ function generateQuizzesPage() {
         <div class="hero" style="background: var(--gradient-purple);">
             <div class="hero-content">
                 <h1>🎯 Quizzes</h1>
-                <p>Test your knowledge with interactive quizzes.</p>
+                <p>Test your knowledge with interactive quizzes covering all GenAI concepts.</p>
             </div>
         </div>
+
         <div class="section-header">
+            <h2 class="section-title">Available Quizzes</h2>
+            <p class="section-subtitle">Track your progress and identify knowledge gaps</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🌱</div>
+                <h3 class="card-title">Beginner Quiz</h3>
+                <p class="card-description">Test your understanding of AI fundamentals, neural networks, and basic GenAI concepts.</p>
+                <div class="card-footer">
+                    <div class="card-meta">
+                        <span>30 questions</span>
+                        <span>45 min</span>
+                    </div>
+                    <span class="card-badge badge-beginner">Beginner</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h3 class="card-title">Intermediate Quiz</h3>
+                <p class="card-description">Challenge yourself with questions on RAG, prompt engineering, fine-tuning, and LangChain.</p>
+                <div class="card-footer">
+                    <div class="card-meta">
+                        <span>40 questions</span>
+                        <span>60 min</span>
+                    </div>
+                    <span class="card-badge badge-intermediate">Intermediate</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3 class="card-title">Advanced Quiz</h3>
+                <p class="card-description">Master level questions on RLHF, model optimization, inference, and production deployment.</p>
+                <div class="card-footer">
+                    <div class="card-meta">
+                        <span>35 questions</span>
+                        <span>60 min</span>
+                    </div>
+                    <span class="card-badge badge-advanced">Advanced</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Topic-Specific Quizzes</h2>
+            <p class="section-subtitle">Deep dive into specific areas</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3 class="card-title">LLMs & Transformers</h3>
+                <p class="card-description">Architecture, attention mechanisms, positional encodings, and modern LLM developments.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">20 questions</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3 class="card-title">Image Generation</h3>
+                <p class="card-description">Diffusion models, GANs, VAEs, and text-to-image generation techniques.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">15 questions</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h3 class="card-title">RAG Systems</h3>
+                <p class="card-description">Retrieval strategies, vector databases, embeddings, and chunking techniques.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">15 questions</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h3 class="card-title">Prompt Engineering</h3>
+                <p class="card-description">Zero-shot, few-shot, chain-of-thought, and advanced prompting strategies.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-beginner">15 questions</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">Fine-Tuning & RLHF</h3>
+                <p class="card-description">Training strategies, LoRA, QLoRA, reward models, and alignment techniques.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-advanced">20 questions</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🛡️</div>
+                <h3 class="card-title">AI Safety & Ethics</h3>
+                <p class="card-description">Bias, fairness, alignment, red-teaming, and responsible AI practices.</p>
+                <div class="card-footer">
+                    <span class="card-badge badge-intermediate">15 questions</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Quiz Format</h2>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h3 class="card-title">Multiple Choice</h3>
+                <p class="card-description">Single correct answer with detailed explanations for each option.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">☑️</div>
+                <h3 class="card-title">Multi-Select</h3>
+                <p class="card-description">Multiple correct answers to test comprehensive understanding.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">✅</div>
+                <h3 class="card-title">True/False</h3>
+                <p class="card-description">Quick checks for fundamental concepts and common misconceptions.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3 class="card-title">Code Analysis</h3>
+                <p class="card-description">Analyze code snippets and identify correct implementations or bugs.</p>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
             <h2 class="section-title">Coming Soon</h2>
+        </div>
+
+        <div style="max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--card-bg); border-radius: var(--border-radius-lg); border: 1px solid var(--border-color);">
+            <p style="text-align: center; margin-bottom: 1rem;">🚀 Interactive quizzes are currently in development!</p>
+            <p style="text-align: center; color: var(--text-secondary);">Features coming soon:</p>
+            <ul style="max-width: 500px; margin: 1.5rem auto; color: var(--text-secondary);">
+                <li>Real-time scoring and feedback</li>
+                <li>Progress tracking across all quizzes</li>
+                <li>Personalized recommendations</li>
+                <li>Leaderboards and achievements</li>
+                <li>Quiz history and review mode</li>
+                <li>Custom quiz creation</li>
+            </ul>
+            <p style="text-align: center; color: var(--text-secondary); font-style: italic;">In the meantime, test your knowledge by completing the concepts and checking your understanding!</p>
         </div>
     `;
 }
@@ -853,11 +1586,279 @@ function generateInterviewPage() {
         <div class="hero" style="background: var(--gradient-purple);">
             <div class="hero-content">
                 <h1>💼 Interview Preparation</h1>
-                <p>Prepare for your GenAI interviews with curated questions.</p>
+                <p>Ace your GenAI interviews with curated questions and comprehensive answers.</p>
             </div>
         </div>
+
         <div class="section-header">
-            <h2 class="section-title">Coming Soon</h2>
+            <h2 class="section-title">Fundamental Concepts</h2>
+        </div>
+
+        <div class="accordion active">
+            <button class="accordion-header">
+                <span>What is the difference between discriminative and generative models?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Answer:</strong></p>
+                    <p><strong>Discriminative models</strong> learn the boundary between classes. They model P(Y|X) - the probability of label Y given input X. Examples: logistic regression, SVMs, most CNNs for classification.</p>
+                    <p><strong>Generative models</strong> learn the distribution of data itself. They model P(X) or P(X|Y) and can create new samples. Examples: GANs, VAEs, diffusion models, LLMs.</p>
+                    <p><strong>Key difference:</strong> Discriminative models answer "what is this?", generative models answer "what could this be?"</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Explain how transformers work and why they're important for GenAI</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Answer:</strong></p>
+                    <p>Transformers use self-attention mechanisms to process sequences in parallel (unlike RNNs which are sequential). Key components:</p>
+                    <ul>
+                        <li><strong>Self-Attention:</strong> Computes relationships between all tokens simultaneously</li>
+                        <li><strong>Multi-Head Attention:</strong> Multiple attention mechanisms learn different relationships</li>
+                        <li><strong>Positional Encodings:</strong> Add position information since attention is permutation-invariant</li>
+                        <li><strong>Feed-Forward Networks:</strong> Process attended representations</li>
+                    </ul>
+                    <p><strong>Why important:</strong> Transformers scale better than RNNs, capture long-range dependencies, and parallelize training. They're the foundation of GPT, BERT, T5, and most modern LLMs.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>What is attention mechanism and how does it improve neural networks?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Answer:</strong></p>
+                    <p>Attention allows models to focus on relevant parts of input when producing output. Instead of compressing all information into a fixed vector, attention computes weighted combinations based on relevance.</p>
+                    <p><strong>Benefits:</strong></p>
+                    <ul>
+                        <li>Handles variable-length sequences better</li>
+                        <li>Captures long-range dependencies</li>
+                        <li>Provides interpretability (can visualize what model attends to)</li>
+                        <li>Improves performance on translation, summarization, QA</li>
+                    </ul>
+                    <p><strong>Formula:</strong> Attention(Q,K,V) = softmax(QK^T/√d_k)V</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">LLM & Prompt Engineering</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>What are different prompting strategies and when to use each?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Zero-shot:</strong> Direct instruction without examples. Use for simple tasks or when examples aren't available.</p>
+                    <p><strong>Few-shot:</strong> Provide 2-5 examples in prompt. Use when you want specific format or style.</p>
+                    <p><strong>Chain-of-Thought (CoT):</strong> Include reasoning steps. Use for complex reasoning, math, logic problems.</p>
+                    <p><strong>ReAct:</strong> Reasoning + Acting. Use for multi-step tasks requiring tool use.</p>
+                    <p><strong>Self-consistency:</strong> Sample multiple outputs, take majority. Use when accuracy is critical.</p>
+                    <p><strong>Tree-of-Thoughts:</strong> Explore multiple reasoning paths. Use for strategic planning tasks.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>How would you reduce hallucinations in LLM outputs?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Strategies:</strong></p>
+                    <ul>
+                        <li><strong>RAG:</strong> Ground responses in retrieved documents</li>
+                        <li><strong>Lower temperature:</strong> Reduce randomness in sampling</li>
+                        <li><strong>Clear instructions:</strong> "Only use provided context", "Say 'I don't know' if unsure"</li>
+                        <li><strong>Verification prompts:</strong> Ask model to verify its own claims</li>
+                        <li><strong>Fine-tuning:</strong> Train on high-quality, factual data</li>
+                        <li><strong>Constrained generation:</strong> Use structured output formats</li>
+                        <li><strong>Citation requirements:</strong> Force model to cite sources</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">RAG & Vector Databases</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Explain RAG architecture and its components</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>RAG (Retrieval-Augmented Generation)</strong> combines retrieval with generation:</p>
+                    <p><strong>Components:</strong></p>
+                    <ol>
+                        <li><strong>Document Processing:</strong> Chunk documents into manageable pieces</li>
+                        <li><strong>Embedding Generation:</strong> Convert chunks to vectors using embedding models</li>
+                        <li><strong>Vector Storage:</strong> Store embeddings in vector database (Pinecone, Weaviate, ChromaDB)</li>
+                        <li><strong>Retrieval:</strong> Find most relevant chunks using similarity search</li>
+                        <li><strong>Augmentation:</strong> Add retrieved context to prompt</li>
+                        <li><strong>Generation:</strong> LLM generates answer using context</li>
+                    </ol>
+                    <p><strong>Benefits:</strong> Reduces hallucinations, provides sources, allows knowledge updates without retraining</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>What are different chunking strategies and their trade-offs?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Fixed-size chunks:</strong> Split by character/token count. Simple but may break context.</p>
+                    <p><strong>Sentence-based:</strong> Split on sentence boundaries. Preserves meaning but variable size.</p>
+                    <p><strong>Paragraph-based:</strong> Natural semantic units. Good for structured documents.</p>
+                    <p><strong>Semantic chunking:</strong> Split based on topic changes. Best quality but computationally expensive.</p>
+                    <p><strong>Sliding window:</strong> Overlapping chunks. Prevents context loss but increases storage.</p>
+                    <p><strong>Considerations:</strong> Chunk size affects retrieval precision (smaller = more precise, larger = more context)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Fine-Tuning & Training</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>When should you fine-tune vs use prompt engineering?</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Use Prompt Engineering when:</strong></p>
+                    <ul>
+                        <li>You need quick results</li>
+                        <li>Task is straightforward</li>
+                        <li>Limited training data available</li>
+                        <li>Requirements change frequently</li>
+                        <li>Base model performs reasonably well</li>
+                    </ul>
+                    <p><strong>Use Fine-Tuning when:</strong></p>
+                    <ul>
+                        <li>Consistent style/format needed across many outputs</li>
+                        <li>Domain-specific knowledge required</li>
+                        <li>Reducing latency (smaller fine-tuned model vs large base model)</li>
+                        <li>Cost optimization for high-volume usage</li>
+                        <li>You have quality training data (1000+ examples)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Explain LoRA and why it's effective</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>LoRA (Low-Rank Adaptation)</strong> is parameter-efficient fine-tuning:</p>
+                    <p><strong>How it works:</strong> Instead of updating all model weights, LoRA adds small trainable matrices (adapters) to existing layers. It decomposes weight updates into low-rank matrices: ΔW = AB where A and B are much smaller.</p>
+                    <p><strong>Benefits:</strong></p>
+                    <ul>
+                        <li>Reduces trainable parameters by 10,000x</li>
+                        <li>Lower memory usage (can fine-tune on consumer GPUs)</li>
+                        <li>Faster training</li>
+                        <li>Multiple adapters can be swapped for different tasks</li>
+                        <li>No additional inference latency</li>
+                    </ul>
+                    <p><strong>Use cases:</strong> Domain adaptation, instruction tuning, personalization</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">System Design</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Design a production RAG system for customer support</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Requirements:</strong> Handle 10K daily queries, sub-2s latency, multi-tenant, cost-effective</p>
+                    <p><strong>Architecture:</strong></p>
+                    <ul>
+                        <li><strong>Frontend:</strong> React chat interface with WebSocket for streaming</li>
+                        <li><strong>API Gateway:</strong> Rate limiting, auth, routing</li>
+                        <li><strong>Query Processing:</strong> Intent detection, query rewriting</li>
+                        <li><strong>Retrieval:</strong> Pinecone for vector search with metadata filtering</li>
+                        <li><strong>Re-ranking:</strong> Cross-encoder to improve relevance</li>
+                        <li><strong>Generation:</strong> GPT-4 via Azure OpenAI (fallback to GPT-3.5)</li>
+                        <li><strong>Caching:</strong> Redis for common queries</li>
+                        <li><strong>Monitoring:</strong> Log queries, latency, feedback</li>
+                        <li><strong>Data pipeline:</strong> Automated ingestion of new docs</li>
+                    </ul>
+                    <p><strong>Optimizations:</strong> Semantic caching, batch processing, query routing by complexity</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Coding Challenges</h2>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Implement semantic search with embeddings</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Task:</strong> Given a corpus of documents and a query, return top-K most relevant documents.</p>
+                    <p><strong>Approach:</strong></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>import openai
+import numpy as np
+
+def get_embedding(text):
+    response = openai.Embedding.create(
+        model="text-embedding-ada-002",
+        input=text
+    )
+    return response['data'][0]['embedding']
+
+def cosine_similarity(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
+def semantic_search(query, documents, top_k=5):
+    # Get embeddings
+    query_emb = get_embedding(query)
+    doc_embs = [get_embedding(doc) for doc in documents]
+
+    # Calculate similarities
+    similarities = [
+        cosine_similarity(query_emb, doc_emb)
+        for doc_emb in doc_embs
+    ]
+
+    # Get top-K
+    top_indices = np.argsort(similarities)[-top_k:][::-1]
+    return [(documents[i], similarities[i]) for i in top_indices]</code></pre>
+                </div>
+            </div>
         </div>
     `;
 }
@@ -867,11 +1868,334 @@ function generateGlossaryPage() {
         <div class="hero">
             <div class="hero-content">
                 <h1>📖 GenAI Glossary</h1>
-                <p>Quick reference guide to AI and ML terminology.</p>
+                <p>Comprehensive reference guide to AI, ML, and Generative AI terminology.</p>
             </div>
         </div>
-        <div class="section-header">
-            <h2 class="section-title">Coming Soon</h2>
+
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <div class="section-header">
+                <h2 class="section-title">A</h2>
+            </div>
+
+            <div class="accordion active">
+                <button class="accordion-header">
+                    <span><strong>Attention Mechanism</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        A neural network component that allows models to focus on relevant parts of input when producing output. Computes weighted combinations of input representations based on their relevance to the current processing step.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Autoregressive Model</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        A model that generates sequences one token at a time, conditioning each new token on previously generated tokens. Examples: GPT models, which predict next word based on previous context.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">B-C</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>BERT (Bidirectional Encoder Representations from Transformers)</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        A transformer-based model that learns bidirectional context by training on masked language modeling. Unlike GPT, BERT sees context from both directions, making it excellent for understanding tasks but not generation.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Chain-of-Thought (CoT)</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        A prompting technique where you include intermediate reasoning steps in the prompt to help the model solve complex problems. Improves performance on math, logic, and multi-step reasoning tasks.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Constitutional AI</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        An AI alignment approach where models are trained to follow a set of principles or "constitution". Uses self-critique and revision to align behavior with specified values without extensive human feedback.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">D-E</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Diffusion Models</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Generative models that learn to gradually denoise random noise into structured data. Used in Stable Diffusion, DALL-E 2, Midjourney. Work by learning to reverse a diffusion process that adds noise to data.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Embeddings</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Dense vector representations of data (text, images, etc.) that capture semantic meaning. Similar items have similar embeddings. Used for search, recommendation, clustering, and as input to neural networks.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">F-G</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Few-Shot Learning</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Ability to learn from a small number of examples (typically 2-5) provided in the prompt. LLMs can adapt to new tasks just from examples without parameter updates.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Fine-Tuning</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Further training a pre-trained model on specific data or tasks. Adapts the model's weights to perform better on domain-specific tasks while retaining general knowledge.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>GAN (Generative Adversarial Network)</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        A generative model with two networks: generator creates samples, discriminator tries to distinguish real from fake. They compete, improving until generator creates realistic samples.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">H-L</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Hallucination</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        When a language model generates false or nonsensical information presented as fact. Caused by model generating plausible-sounding text without factual grounding. Major challenge in LLM applications.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>LangChain</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        A framework for developing applications with LLMs. Provides abstractions for prompts, chains (sequences of operations), agents (autonomous decision-makers), and memory management.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>LLM (Large Language Model)</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Neural networks with billions of parameters trained on massive text corpora. Can understand and generate human-like text, translate, answer questions, write code, and perform many language tasks. Examples: GPT-4, Claude, PaLM, LLaMA.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>LoRA (Low-Rank Adaptation)</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Parameter-efficient fine-tuning method that adds small trainable matrices to frozen pre-trained weights. Dramatically reduces memory and compute requirements while maintaining performance.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">M-P</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Mixture of Experts (MoE)</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Architecture where multiple "expert" networks specialize in different aspects of the data. A gating mechanism routes inputs to relevant experts. Allows scaling to trillions of parameters efficiently.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Prompt Engineering</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        The practice of designing effective prompts to get desired outputs from LLMs. Includes techniques like few-shot learning, chain-of-thought, role-playing, and structured instructions.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">Q-R</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Quantization</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Reducing precision of model weights (e.g., from 32-bit to 8-bit or 4-bit) to reduce memory and speed up inference. Modern quantization methods maintain most of the model's performance.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>RAG (Retrieval-Augmented Generation)</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Technique that retrieves relevant documents and includes them in the prompt context before generation. Reduces hallucinations, grounds responses in facts, and allows knowledge updates without retraining.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>RLHF (Reinforcement Learning from Human Feedback)</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Training method that uses human preferences to align model behavior. Humans rank model outputs, a reward model learns from rankings, then RL fine-tunes the model to maximize reward. Used in ChatGPT, Claude.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">S-T</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Temperature</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Sampling parameter controlling randomness in text generation. Lower temperature (0-0.7) = more focused and deterministic. Higher temperature (0.8-1.5) = more creative and random.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Tokenization</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Breaking text into smaller units (tokens) that models process. Tokens can be words, subwords, or characters. Most LLMs use subword tokenization (BPE, WordPiece) to handle rare words efficiently.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Transformer</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Neural architecture based on self-attention mechanisms. Processes sequences in parallel (unlike RNNs). Foundation of modern LLMs. Introduced in "Attention is All You Need" paper (2017).
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">V-Z</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Vector Database</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Database optimized for storing and querying high-dimensional vectors (embeddings). Supports fast similarity search. Examples: Pinecone, Weaviate, Milvus, ChromaDB. Essential for RAG systems.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span><strong>Zero-Shot Learning</strong></span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Ability to perform tasks without any examples, just from instructions. Modern LLMs excel at zero-shot tasks due to their broad pre-training. Example: "Translate to French:" without showing translation examples.
+                    </div>
+                </div>
+            </div>
         </div>
     `;
 }
@@ -881,11 +2205,284 @@ function generatePlaygroundPage() {
         <div class="hero" style="background: var(--gradient-ocean);">
             <div class="hero-content">
                 <h1>💻 Code Playground</h1>
-                <p>Interactive coding environment for experimenting with GenAI.</p>
+                <p>Interactive coding environment for experimenting with GenAI APIs and concepts.</p>
             </div>
         </div>
+
         <div class="section-header">
-            <h2 class="section-title">Coming Soon</h2>
+            <h2 class="section-title">Quick Start Playgrounds</h2>
+            <p class="section-subtitle">Try GenAI APIs directly in your browser</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🤖</div>
+                <h3 class="card-title">OpenAI Playground</h3>
+                <p class="card-description">Experiment with GPT models, adjust parameters like temperature and top-p, and compare different models side by side.</p>
+                <div class="card-footer">
+                    <a href="https://platform.openai.com/playground" target="_blank" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
+                        Launch Playground →
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3 class="card-title">Stable Diffusion</h3>
+                <p class="card-description">Generate images from text prompts. Try different samplers, CFG scales, and steps to see how they affect output.</p>
+                <div class="card-footer">
+                    <a href="https://stablediffusionweb.com/" target="_blank" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
+                        Try It Out →
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔗</div>
+                <h3 class="card-title">LangChain Templates</h3>
+                <p class="card-description">Explore pre-built LangChain templates for RAG, agents, chatbots, and more. Clone and customize for your projects.</p>
+                <div class="card-footer">
+                    <a href="https://github.com/langchain-ai/langchain/tree/master/templates" target="_blank" class="btn btn-primary" style="display: inline-block; text-decoration: none;">
+                        View Templates →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">Code Examples</h2>
+            <p class="section-subtitle">Copy and run these examples locally</p>
+        </div>
+
+        <div class="accordion active">
+            <button class="accordion-header">
+                <span>🔥 Basic OpenAI Chat Completion</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Install:</strong> <code>pip install openai</code></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>import openai
+import os
+
+# Set your API key
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Create a chat completion
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Explain quantum computing in simple terms."}
+    ],
+    temperature=0.7,
+    max_tokens=500
+)
+
+print(response.choices[0].message.content)</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>📚 Simple RAG with LangChain</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Install:</strong> <code>pip install langchain openai chromadb</code></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>from langchain.document_loaders import TextLoader
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
+from langchain.chains import RetrievalQA
+from langchain.llms import OpenAI
+
+# Load documents
+loader = TextLoader("document.txt")
+documents = loader.load()
+
+# Create embeddings and vector store
+embeddings = OpenAIEmbeddings()
+vectorstore = Chroma.from_documents(documents, embeddings)
+
+# Create QA chain
+qa_chain = RetrievalQA.from_chain_type(
+    llm=OpenAI(temperature=0),
+    retriever=vectorstore.as_retriever()
+)
+
+# Ask questions
+result = qa_chain.run("What is the main topic of the document?")
+print(result)</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>🎨 Text-to-Image with Diffusers</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Install:</strong> <code>pip install diffusers transformers torch</code></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>from diffusers import StableDiffusionPipeline
+import torch
+
+# Load model
+pipe = StableDiffusionPipeline.from_pretrained(
+    "stabilityai/stable-diffusion-2-1",
+    torch_dtype=torch.float16
+)
+pipe = pipe.to("cuda")
+
+# Generate image
+prompt = "a serene mountain landscape at sunset, oil painting style"
+image = pipe(
+    prompt,
+    num_inference_steps=50,
+    guidance_scale=7.5
+).images[0]
+
+image.save("output.png")</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>🔍 Semantic Search with Embeddings</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Install:</strong> <code>pip install openai numpy</code></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>import openai
+import numpy as np
+
+def get_embedding(text, model="text-embedding-ada-002"):
+    response = openai.Embedding.create(input=[text], model=model)
+    return response['data'][0]['embedding']
+
+def cosine_similarity(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
+# Example documents
+documents = [
+    "Python is a programming language",
+    "Machine learning uses algorithms",
+    "Neural networks are inspired by the brain"
+]
+
+# Get embeddings
+doc_embeddings = [get_embedding(doc) for doc in documents]
+
+# Search query
+query = "What is Python?"
+query_embedding = get_embedding(query)
+
+# Find most similar
+similarities = [
+    cosine_similarity(query_embedding, doc_emb)
+    for doc_emb in doc_embeddings
+]
+
+best_match_idx = np.argmax(similarities)
+print(f"Best match: {documents[best_match_idx]}")
+print(f"Similarity: {similarities[best_match_idx]:.4f}")</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>🤖 LangChain Agent with Tools</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p><strong>Install:</strong> <code>pip install langchain openai</code></p>
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>from langchain.agents import initialize_agent, Tool
+from langchain.agents import AgentType
+from langchain.llms import OpenAI
+
+# Define tools
+def search_tool(query):
+    return f"Search results for: {query}"
+
+def calculator_tool(expression):
+    try:
+        return str(eval(expression))
+    except:
+        return "Error in calculation"
+
+tools = [
+    Tool(
+        name="Search",
+        func=search_tool,
+        description="Useful for searching information"
+    ),
+    Tool(
+        name="Calculator",
+        func=calculator_tool,
+        description="Useful for math calculations"
+    )
+]
+
+# Initialize agent
+llm = OpenAI(temperature=0)
+agent = initialize_agent(
+    tools,
+    llm,
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    verbose=True
+)
+
+# Run agent
+result = agent.run("What is 25 * 17 + 42?")
+print(result)</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header mt-4">
+            <h2 class="section-title">External Playgrounds</h2>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">☁️</div>
+                <h3 class="card-title">Google Colab</h3>
+                <p class="card-description">Free Jupyter notebooks with GPU/TPU access. Perfect for running ML experiments without local setup.</p>
+                <div class="card-footer">
+                    <a href="https://colab.research.google.com/" target="_blank" class="btn btn-secondary" style="display: inline-block; text-decoration: none;">
+                        Open Colab →
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🤗</div>
+                <h3 class="card-title">Hugging Face Spaces</h3>
+                <p class="card-description">Try thousands of ML demos and models directly in browser. Create and share your own apps.</p>
+                <div class="card-footer">
+                    <a href="https://huggingface.co/spaces" target="_blank" class="btn btn-secondary" style="display: inline-block; text-decoration: none;">
+                        Explore Spaces →
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📓</div>
+                <h3 class="card-title">Kaggle Notebooks</h3>
+                <p class="card-description">Free compute with access to datasets, competitions, and a community of data scientists.</p>
+                <div class="card-footer">
+                    <a href="https://www.kaggle.com/code" target="_blank" class="btn btn-secondary" style="display: inline-block; text-decoration: none;">
+                        Go to Kaggle →
+                    </a>
+                </div>
+            </div>
         </div>
     `;
 }
