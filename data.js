@@ -4214,11 +4214,1420 @@ But: GPT-4 is much more capable!
             <p>Model parameters indicate capacity but don't tell the whole story. Consider your specific needs: accuracy requirements, latency constraints, budget, and infrastructure. Often, a well-fine-tuned smaller model outperforms a generic larger one for specific tasks. The key is matching model size to your actual needs, not just choosing the biggest available.</p>
         `
     },
-    { id: 'b16', title: 'Supervised vs Unsupervised Learning', icon: '📚', description: 'Different approaches to teaching AI systems.', readTime: '13 min' },
-    { id: 'b17', title: 'Data Preprocessing', icon: '🧹', description: 'Preparing data for AI training and inference.', readTime: '14 min' },
-    { id: 'b18', title: 'Overfitting and Underfitting', icon: '⚖️', description: 'Finding the right balance in model complexity.', readTime: '13 min' },
-    { id: 'b19', title: 'Gradient Descent', icon: '⛰️', description: 'The fundamental optimization algorithm in AI.', readTime: '15 min' },
-    { id: 'b20', title: 'Backpropagation', icon: '🔙', description: 'How neural networks learn from their mistakes.', readTime: '16 min' },
+    {
+        id: 'b16',
+        title: 'Supervised vs Unsupervised Learning',
+        icon: '📚',
+        description: 'Different approaches to teaching AI systems.',
+        readTime: '13 min',
+        level: 'Beginner',
+        content: `
+            <h2>Supervised vs Unsupervised Learning</h2>
+            <p>Machine learning algorithms can be categorized by how they learn from data. The two main paradigms are supervised and unsupervised learning, each suited for different types of problems.</p>
+
+            <h3>Supervised Learning</h3>
+            <p>In supervised learning, the algorithm learns from labeled training data. Each example comes with the correct answer (label), and the model learns to predict labels for new, unseen data.</p>
+
+            <h4>Key Characteristics:</h4>
+            <ul>
+                <li><strong>Labeled Data:</strong> Each input has a corresponding output/label</li>
+                <li><strong>Clear Objective:</strong> Predict the correct label</li>
+                <li><strong>Performance Metric:</strong> Accuracy, precision, recall, etc.</li>
+                <li><strong>Feedback:</strong> Model knows when it's wrong</li>
+            </ul>
+
+            <h4>Types of Supervised Learning:</h4>
+
+            <h5>1. Classification</h5>
+            <p>Predict discrete categories:</p>
+            <pre><code>
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+
+# Example: Email spam detection
+X = email_features  # Features: word frequencies, sender info, etc.
+y = labels  # 0 = not spam, 1 = spam
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Train classifier
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
+
+# Predict
+predictions = model.predict(X_test)
+accuracy = model.score(X_test, y_test)
+print(f"Accuracy: {accuracy:.2%}")
+            </code></pre>
+
+            <h5>2. Regression</h5>
+            <p>Predict continuous values:</p>
+            <pre><code>
+from sklearn.linear_model import LinearRegression
+
+# Example: House price prediction
+X = house_features  # Size, bedrooms, location, etc.
+y = prices  # Actual prices
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict price for new house
+new_house = [[2000, 3, 2, 0.5]]  # 2000 sqft, 3 bed, 2 bath, 0.5 miles from city
+predicted_price = model.predict(new_house)
+            </code></pre>
+
+            <h4>Common Supervised Algorithms:</h4>
+            <ul>
+                <li><strong>Linear/Logistic Regression:</strong> Simple, interpretable</li>
+                <li><strong>Decision Trees:</strong> Easy to understand, handles non-linear relationships</li>
+                <li><strong>Random Forests:</strong> Ensemble of trees, robust</li>
+                <li><strong>Support Vector Machines:</strong> Effective in high dimensions</li>
+                <li><strong>Neural Networks:</strong> Powerful for complex patterns</li>
+                <li><strong>Gradient Boosting (XGBoost):</strong> Often wins competitions</li>
+            </ul>
+
+            <h3>Unsupervised Learning</h3>
+            <p>The algorithm learns patterns from unlabeled data. No correct answers are provided—the model must find structure on its own.</p>
+
+            <h4>Key Characteristics:</h4>
+            <ul>
+                <li><strong>Unlabeled Data:</strong> Only inputs, no outputs</li>
+                <li><strong>Find Patterns:</strong> Discover hidden structure</li>
+                <li><strong>No Direct Feedback:</strong> Model doesn't know if it's "right"</li>
+                <li><strong>Exploratory:</strong> Used for data understanding</li>
+            </ul>
+
+            <h4>Types of Unsupervised Learning:</h4>
+
+            <h5>1. Clustering</h5>
+            <p>Group similar data points:</p>
+            <pre><code>
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+# Example: Customer segmentation
+X = customer_data  # Purchase history, demographics, etc.
+
+# Find 4 customer segments
+kmeans = KMeans(n_clusters=4, random_state=42)
+clusters = kmeans.fit_predict(X)
+
+# Visualize clusters
+plt.scatter(X[:, 0], X[:, 1], c=clusters, cmap='viridis')
+plt.scatter(kmeans.cluster_centers_[:, 0],
+           kmeans.cluster_centers_[:, 1],
+           marker='x', s=200, c='red')
+plt.title('Customer Segments')
+plt.show()
+            </code></pre>
+
+            <h5>2. Dimensionality Reduction</h5>
+            <p>Reduce features while preserving information:</p>
+            <pre><code>
+from sklearn.decomposition import PCA
+
+# Reduce 100 features to 10
+pca = PCA(n_components=10)
+X_reduced = pca.fit_transform(X)
+
+# How much variance retained?
+print(f"Variance explained: {pca.explained_variance_ratio_.sum():.2%}")
+            </code></pre>
+
+            <h5>3. Anomaly Detection</h5>
+            <p>Find unusual patterns:</p>
+            <pre><code>
+from sklearn.ensemble import IsolationForest
+
+# Detect fraudulent transactions
+detector = IsolationForest(contamination=0.01)  # Expect 1% anomalies
+detector.fit(transaction_data)
+
+# -1 for anomalies, 1 for normal
+predictions = detector.predict(new_transactions)
+            </code></pre>
+
+            <h4>Common Unsupervised Algorithms:</h4>
+            <ul>
+                <li><strong>K-Means:</strong> Fast, simple clustering</li>
+                <li><strong>Hierarchical Clustering:</strong> Creates tree of clusters</li>
+                <li><strong>DBSCAN:</strong> Density-based, finds arbitrary shapes</li>
+                <li><strong>PCA:</strong> Linear dimensionality reduction</li>
+                <li><strong>t-SNE/UMAP:</strong> Visualization of high-dim data</li>
+                <li><strong>Autoencoders:</strong> Neural network for compression</li>
+            </ul>
+
+            <h3>Comparison Table</h3>
+            <pre><code>
+Aspect              | Supervised          | Unsupervised
+--------------------|---------------------|------------------
+Data                | Labeled             | Unlabeled
+Goal                | Predict labels      | Find patterns
+Feedback            | Yes (labels)        | No
+Accuracy measure    | Clear metrics       | Subjective
+Complexity          | Moderate            | Higher
+Common uses         | Classification      | Clustering
+                    | Regression          | Dimensionality reduction
+Examples            | Spam detection      | Customer segmentation
+                    | Price prediction    | Anomaly detection
+            </code></pre>
+
+            <h3>Semi-Supervised Learning</h3>
+            <p>Combines both approaches—uses small amount of labeled data with large amount of unlabeled data:</p>
+            <pre><code>
+from sklearn.semi_supervised import LabelPropagation
+
+# Small labeled set + large unlabeled set
+X_labeled = features[:100]
+y_labeled = labels[:100]
+X_unlabeled = features[100:]
+y_unlabeled = [-1] * len(X_unlabeled)  # -1 = unknown
+
+# Combine
+X = np.vstack([X_labeled, X_unlabeled])
+y = np.concatenate([y_labeled, y_unlabeled])
+
+# Train semi-supervised model
+model = LabelPropagation()
+model.fit(X, y)
+            </code></pre>
+
+            <h3>When to Use Each</h3>
+
+            <h4>Use Supervised Learning When:</h4>
+            <ul>
+                <li>You have labeled training data</li>
+                <li>The task has clear correct answers</li>
+                <li>You need to predict specific outcomes</li>
+                <li>Performance can be measured objectively</li>
+            </ul>
+
+            <h4>Use Unsupervised Learning When:</h4>
+            <ul>
+                <li>Data is unlabeled (common in real world)</li>
+                <li>You want to explore data structure</li>
+                <li>Looking for hidden patterns or groups</li>
+                <li>Labeling is expensive or impractical</li>
+            </ul>
+
+            <h3>Real-World Examples</h3>
+
+            <h4>Supervised:</h4>
+            <ul>
+                <li>Email spam filtering (labeled spam/not spam)</li>
+                <li>Medical diagnosis (symptoms → disease)</li>
+                <li>Stock price prediction (historical data → future price)</li>
+                <li>Image recognition (image → object label)</li>
+            </ul>
+
+            <h4>Unsupervised:</h4>
+            <ul>
+                <li>Customer segmentation (find natural groups)</li>
+                <li>Recommendation systems (find similar items/users)</li>
+                <li>Anomaly detection (fraud, system failures)</li>
+                <li>Topic modeling (discover themes in documents)</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Supervised learning is powerful when you have labeled data and clear objectives. Unsupervised learning shines when exploring unlabeled data or finding hidden structure. Many real-world systems use both—unsupervised learning for data exploration and feature engineering, followed by supervised learning for prediction tasks.</p>
+        `
+    },
+    {
+        id: 'b17',
+        title: 'Data Preprocessing',
+        icon: '🧹',
+        description: 'Preparing data for AI training and inference.',
+        readTime: '14 min',
+        level: 'Beginner',
+        content: `
+            <h2>Data Preprocessing: Cleaning for AI</h2>
+            <p>Raw data is messy. Data preprocessing transforms raw data into clean, formatted inputs that machine learning models can effectively learn from. It's often 70-80% of the total AI development effort.</p>
+
+            <h3>Why Preprocessing Matters</h3>
+            <ul>
+                <li><strong>Garbage In, Garbage Out:</strong> Poor data = poor models</li>
+                <li><strong>Model Compatibility:</strong> Algorithms expect specific formats</li>
+                <li><strong>Performance:</strong> Clean data = better accuracy</li>
+                <li><strong>Training Stability:</strong> Proper scaling prevents issues</li>
+            </ul>
+
+            <h3>Common Data Issues</h3>
+            <pre><code>
+# Typical messy dataset
+import pandas as pd
+
+df = pd.DataFrame({
+    'age': [25, 30, None, 45, 200],  # Missing value, outlier
+    'income': ['50K', '60K', '45K', '80K', ''],  # String format, missing
+    'city': ['NYC', 'nyc', 'New York', 'LA', None]  # Inconsistent, missing
+})
+            </code></pre>
+
+            <h3>Core Preprocessing Steps</h3>
+
+            <h4>1. Handling Missing Data</h4>
+            <pre><code>
+import pandas as pd
+import numpy as np
+
+# Check for missing values
+print(df.isnull().sum())
+
+# Strategy 1: Remove rows with missing data
+df_clean = df.dropna()
+
+# Strategy 2: Fill with mean/median/mode
+df['age'].fillna(df['age'].median(), inplace=True)
+df['city'].fillna(df['city'].mode()[0], inplace=True)
+
+# Strategy 3: Forward/backward fill (time series)
+df['price'].fillna(method='ffill', inplace=True)
+
+# Strategy 4: Indicator for missingness
+df['age_missing'] = df['age'].isnull().astype(int)
+            </code></pre>
+
+            <h4>2. Handling Outliers</h4>
+            <pre><code>
+# Detect outliers using IQR method
+Q1 = df['income'].quantile(0.25)
+Q3 = df['income'].quantile(0.75)
+IQR = Q3 - Q1
+
+# Define outlier bounds
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+
+# Remove outliers
+df_no_outliers = df[(df['income'] >= lower_bound) &
+                    (df['income'] <= upper_bound)]
+
+# Or cap outliers
+df['income_capped'] = df['income'].clip(lower=lower_bound, upper=upper_bound)
+            </code></pre>
+
+            <h4>3. Feature Scaling</h4>
+            <p>Different features often have different scales. Scaling ensures fair treatment:</p>
+
+            <h5>Standardization (Z-score normalization):</h5>
+            <pre><code>
+from sklearn.preprocessing import StandardScaler
+
+# Mean = 0, Std = 1
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Example: age=30, income=50000
+# After: age_scaled=-0.5, income_scaled=1.2
+            </code></pre>
+
+            <h5>Min-Max Normalization:</h5>
+            <pre><code>
+from sklearn.preprocessing import MinMaxScaler
+
+# Scale to [0, 1] range
+scaler = MinMaxScaler()
+X_normalized = scaler.fit_transform(X)
+
+# Good for neural networks
+            </code></pre>
+
+            <h5>Robust Scaling:</h5>
+            <pre><code>
+from sklearn.preprocessing import RobustScaler
+
+# Uses median and IQR, robust to outliers
+scaler = RobustScaler()
+X_robust = scaler.fit_transform(X)
+            </code></pre>
+
+            <h4>4. Encoding Categorical Variables</h4>
+
+            <h5>Label Encoding (ordinal):</h5>
+            <pre><code>
+from sklearn.preprocessing import LabelEncoder
+
+# For ordinal categories: low, medium, high
+encoder = LabelEncoder()
+df['size_encoded'] = encoder.fit_transform(df['size'])
+# low=0, medium=1, high=2
+            </code></pre>
+
+            <h5>One-Hot Encoding (nominal):</h5>
+            <pre><code>
+# For non-ordinal categories: red, blue, green
+df_encoded = pd.get_dummies(df, columns=['color'])
+# Creates: color_red, color_blue, color_green (0 or 1)
+
+# Or with sklearn
+from sklearn.preprocessing import OneHotEncoder
+encoder = OneHotEncoder(sparse=False)
+color_encoded = encoder.fit_transform(df[['color']])
+            </code></pre>
+
+            <h5>Target Encoding:</h5>
+            <pre><code>
+# Encode based on target mean (for high cardinality)
+category_means = df.groupby('city')['target'].mean()
+df['city_encoded'] = df['city'].map(category_means)
+            </code></pre>
+
+            <h4>5. Feature Engineering</h4>
+            <pre><code>
+# Create new features from existing ones
+df['age_group'] = pd.cut(df['age'], bins=[0, 18, 35, 50, 100],
+                         labels=['child', 'young', 'middle', 'senior'])
+
+df['income_per_person'] = df['household_income'] / df['household_size']
+
+# Datetime features
+df['date'] = pd.to_datetime(df['date'])
+df['day_of_week'] = df['date'].dt.dayofweek
+df['month'] = df['date'].dt.month
+df['is_weekend'] = df['day_of_week'].isin([5, 6]).astype(int)
+
+# Interaction features
+df['price_per_sqft'] = df['price'] / df['square_feet']
+            </code></pre>
+
+            <h4>6. Text Preprocessing</h4>
+            <pre><code>
+import re
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+
+def preprocess_text(text):
+    # Lowercase
+    text = text.lower()
+
+    # Remove special characters
+    text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
+
+    # Remove extra whitespace
+    text = ' '.join(text.split())
+
+    # Remove stopwords
+    stop_words = set(stopwords.words('english'))
+    words = [w for w in text.split() if w not in stop_words]
+
+    # Stemming
+    stemmer = PorterStemmer()
+    words = [stemmer.stem(w) for w in words]
+
+    return ' '.join(words)
+
+df['text_clean'] = df['text'].apply(preprocess_text)
+            </code></pre>
+
+            <h3>Complete Preprocessing Pipeline</h3>
+            <pre><code>
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+
+# Define preprocessing for numeric and categorical features
+numeric_features = ['age', 'income', 'score']
+categorical_features = ['city', 'gender', 'category']
+
+numeric_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', StandardScaler())
+])
+
+categorical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
+    ('onehot', OneHotEncoder(handle_unknown='ignore'))
+])
+
+# Combine transformers
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numeric_transformer, numeric_features),
+        ('cat', categorical_transformer, categorical_features)
+    ])
+
+# Use in a complete pipeline
+from sklearn.ensemble import RandomForestClassifier
+
+full_pipeline = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('classifier', RandomForestClassifier())
+])
+
+# Fit and predict in one go!
+full_pipeline.fit(X_train, y_train)
+predictions = full_pipeline.predict(X_test)
+            </code></pre>
+
+            <h3>Data Splitting</h3>
+            <pre><code>
+from sklearn.model_selection import train_test_split
+
+# Basic split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Stratified split (preserve class distribution)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, stratify=y, random_state=42
+)
+
+# Three-way split
+X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3)
+X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5)
+# Result: 70% train, 15% validation, 15% test
+            </code></pre>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li><strong>Fit on Train, Transform on Test:</strong> Prevent data leakage
+                    <pre><code>
+scaler.fit(X_train)  # Only fit on training data
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)  # Use same scaler
+                    </code></pre>
+                </li>
+                <li><strong>Handle Class Imbalance:</strong>
+                    <pre><code>
+from imblearn.over_sampling import SMOTE
+
+smote = SMOTE()
+X_resampled, y_resampled = smote.fit_resample(X_train, y_train)
+                    </code></pre>
+                </li>
+                <li><strong>Check for Data Leakage:</strong> Target information shouldn't appear in features</li>
+                <li><strong>Document Transformations:</strong> Save preprocessing steps for deployment</li>
+            </ol>
+
+            <h3>Common Mistakes</h3>
+            <ul>
+                <li>Scaling before splitting (data leakage)</li>
+                <li>Dropping too much data when handling missing values</li>
+                <li>Not handling outliers appropriately</li>
+                <li>Forgetting to encode categorical variables</li>
+                <li>Using different preprocessing for train and test</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Data preprocessing is crucial for model success. Clean, properly formatted data leads to better, more reliable models. Always validate your preprocessing steps, watch for data leakage, and maintain consistent transformations across training and deployment.</p>
+        `
+    },
+    {
+        id: 'b18',
+        title: 'Overfitting and Underfitting',
+        icon: '⚖️',
+        description: 'Finding the right balance in model complexity.',
+        readTime: '12 min',
+        level: 'Beginner',
+        content: `
+            <h2>Overfitting and Underfitting: The Goldilocks Problem</h2>
+            <p>Every machine learning model faces a fundamental trade-off: too simple (underfitting) or too complex (overfitting). Finding the right balance is key to building models that generalize well to new data.</p>
+
+            <h3>Underfitting: Too Simple</h3>
+            <p>The model is too simple to capture the underlying patterns in the data.</p>
+
+            <h4>Symptoms:</h4>
+            <ul>
+                <li>Low accuracy on training data</li>
+                <li>Low accuracy on test data</li>
+                <li>Model too simplistic for the problem</li>
+                <li>High bias</li>
+            </ul>
+
+            <h4>Example:</h4>
+            <pre><code>
+# Using linear model for non-linear data
+from sklearn.linear_model import LinearRegression
+
+# Data has quadratic relationship
+X = np.linspace(0, 10, 100).reshape(-1, 1)
+y = X**2 + noise
+
+model = LinearRegression()
+model.fit(X, y)
+# Will perform poorly - can't capture curve!
+
+Train R²: 0.65  # Poor
+Test R²:  0.63  # Poor
+            </code></pre>
+
+            <h3>Overfitting: Too Complex</h3>
+            <p>The model learns the training data too well, including noise and outliers, failing to generalize.</p>
+
+            <h4>Symptoms:</h4>
+            <ul>
+                <li>High accuracy on training data</li>
+                <li>Low accuracy on test data</li>
+                <li>Large gap between train and test performance</li>
+                <li>High variance</li>
+            </ul>
+
+            <h4>Example:</h4>
+            <pre><code>
+from sklearn.tree import DecisionTreeClassifier
+
+# Very deep tree memorizes training data
+model = DecisionTreeClassifier(max_depth=None)  # No limit!
+model.fit(X_train, y_train)
+
+Train Accuracy: 100%  # Perfect on training
+Test Accuracy:  72%   # Poor on new data - overfitting!
+            </code></pre>
+
+            <h3>The Perfect Balance</h3>
+            <p>Good fit captures true patterns without memorizing noise:</p>
+            <pre><code>
+# Just right
+model = DecisionTreeClassifier(max_depth=5)
+model.fit(X_train, y_train)
+
+Train Accuracy: 88%
+Test Accuracy:  85%  # Small gap - good generalization!
+            </code></pre>
+
+            <h3>Visualizing the Problem</h3>
+            <pre><code>
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate data
+X = np.linspace(0, 10, 50)
+y_true = np.sin(X)
+y = y_true + np.random.normal(0, 0.3, 50)  # Add noise
+
+# Underfitting: degree 1 polynomial
+model_underfit = np.polyfit(X, y, 1)
+
+# Good fit: degree 3 polynomial
+model_good = np.polyfit(X, y, 3)
+
+# Overfitting: degree 15 polynomial
+model_overfit = np.polyfit(X, y, 15)
+
+# Plot all three
+plt.figure(figsize=(15, 4))
+
+plt.subplot(131)
+plt.scatter(X, y, alpha=0.5)
+plt.plot(X, np.polyval(model_underfit, X), 'r', label='Underfit')
+plt.title('Underfitting (Too Simple)')
+
+plt.subplot(132)
+plt.scatter(X, y, alpha=0.5)
+plt.plot(X, np.polyval(model_good, X), 'g', label='Good Fit')
+plt.title('Good Fit (Just Right)')
+
+plt.subplot(133)
+plt.scatter(X, y, alpha=0.5)
+plt.plot(X, np.polyval(model_overfit, X), 'orange', label='Overfit')
+plt.title('Overfitting (Too Complex)')
+
+plt.show()
+            </code></pre>
+
+            <h3>Bias-Variance Tradeoff</h3>
+            <pre><code>
+Total Error = Bias² + Variance + Irreducible Error
+
+Bias:     Error from wrong assumptions (underfitting)
+Variance: Error from sensitivity to training data (overfitting)
+
+High Bias, Low Variance:  Underfitting
+Low Bias, High Variance:  Overfitting
+Low Bias, Low Variance:   Perfect! (our goal)
+            </code></pre>
+
+            <h3>Detecting Overfitting/Underfitting</h3>
+
+            <h4>Learning Curves:</h4>
+            <pre><code>
+from sklearn.model_selection import learning_curve
+
+train_sizes, train_scores, test_scores = learning_curve(
+    model, X, y, cv=5, n_jobs=-1,
+    train_sizes=np.linspace(0.1, 1.0, 10)
+)
+
+plt.plot(train_sizes, train_scores.mean(axis=1), label='Training score')
+plt.plot(train_sizes, test_scores.mean(axis=1), label='Test score')
+plt.xlabel('Training examples')
+plt.ylabel('Score')
+plt.legend()
+
+# Interpretation:
+# - Large gap = overfitting
+# - Both low = underfitting
+# - Converging = good
+            </code></pre>
+
+            <h4>Validation Curve:</h4>
+            <pre><code>
+from sklearn.model_selection import validation_curve
+
+param_range = [1, 2, 3, 5, 7, 10, 15, 20]
+train_scores, test_scores = validation_curve(
+    DecisionTreeClassifier(), X, y,
+    param_name="max_depth",
+    param_range=param_range,
+    cv=5
+)
+
+plt.plot(param_range, train_scores.mean(axis=1), label='Training')
+plt.plot(param_range, test_scores.mean(axis=1), label='Validation')
+plt.xlabel('Max Depth')
+plt.ylabel('Accuracy')
+plt.legend()
+
+# Sweet spot: where validation peaks
+            </code></pre>
+
+            <h3>Preventing Overfitting</h3>
+
+            <h4>1. More Training Data</h4>
+            <pre><code>
+# More data helps model generalize
+# But: expensive to collect
+            </code></pre>
+
+            <h4>2. Regularization</h4>
+            <pre><code>
+from sklearn.linear_model import Ridge, Lasso
+
+# L2 regularization (Ridge)
+model = Ridge(alpha=1.0)  # Penalty on large weights
+
+# L1 regularization (Lasso)
+model = Lasso(alpha=0.1)  # Can zero out features
+
+# Elastic Net (combines L1 + L2)
+from sklearn.linear_model import ElasticNet
+model = ElasticNet(alpha=0.1, l1_ratio=0.5)
+            </code></pre>
+
+            <h4>3. Dropout (Neural Networks)</h4>
+            <pre><code>
+import tensorflow as tf
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dropout(0.5),  # Randomly drop 50% of neurons
+    tf.keras.layers.Dense(64, activation='relu'),
+    tf.keras.layers.Dropout(0.3),
+    tf.keras.layers.Dense(10, activation='softmax')
+])
+            </code></pre>
+
+            <h4>4. Cross-Validation</h4>
+            <pre><code>
+from sklearn.model_selection import cross_val_score
+
+# 5-fold cross-validation
+scores = cross_val_score(model, X, y, cv=5)
+print(f"CV Scores: {scores}")
+print(f"Mean: {scores.mean():.3f} (+/- {scores.std():.3f})")
+
+# More reliable than single train/test split
+            </code></pre>
+
+            <h4>5. Early Stopping</h4>
+            <pre><code>
+# For iterative models (neural networks, gradient boosting)
+from tensorflow.keras.callbacks import EarlyStopping
+
+early_stop = EarlyStopping(
+    monitor='val_loss',
+    patience=5,  # Stop if no improvement for 5 epochs
+    restore_best_weights=True
+)
+
+model.fit(X_train, y_train,
+         validation_split=0.2,
+         epochs=100,
+         callbacks=[early_stop])
+            </code></pre>
+
+            <h4>6. Reduce Model Complexity</h4>
+            <pre><code>
+# Decision Trees
+model = DecisionTreeClassifier(
+    max_depth=5,           # Limit depth
+    min_samples_split=20,  # Require minimum samples to split
+    min_samples_leaf=10    # Minimum samples in leaf
+)
+
+# Random Forest
+model = RandomForestClassifier(
+    n_estimators=100,
+    max_features='sqrt',  # Use subset of features
+    max_depth=10
+)
+            </code></pre>
+
+            <h3>Fixing Underfitting</h3>
+            <ul>
+                <li><strong>Add Features:</strong> Include more relevant information</li>
+                <li><strong>Polynomial Features:</strong> Capture non-linear relationships</li>
+                <li><strong>Reduce Regularization:</strong> Lower alpha values</li>
+                <li><strong>Increase Model Complexity:</strong> Deeper trees, more layers</li>
+                <li><strong>Train Longer:</strong> More epochs/iterations</li>
+            </ul>
+
+            <h4>Example:</h4>
+            <pre><code>
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+
+# Add polynomial features
+model = make_pipeline(
+    PolynomialFeatures(degree=3),
+    Ridge(alpha=1.0)
+)
+
+# Now can fit curved relationships!
+            </code></pre>
+
+            <h3>Practical Workflow</h3>
+            <pre><code>
+1. Start simple (baseline model)
+2. Check for underfitting:
+   - If train error high → Add complexity
+3. Check for overfitting:
+   - If test >> train error → Add regularization
+4. Use cross-validation for reliable estimates
+5. Plot learning curves to diagnose
+6. Iterate until good balance achieved
+            </code></pre>
+
+            <h3>Conclusion</h3>
+            <p>Overfitting and underfitting are fundamental challenges in machine learning. The key is finding the right model complexity for your data through techniques like cross-validation, regularization, and careful monitoring of training vs. test performance. Remember: a model that's 85% accurate on both train and test is better than one that's 100% on train but only 70% on test.</p>
+        `
+    },
+    {
+        id: 'b19',
+        title: 'Gradient Descent',
+        icon: '⛰️',
+        description: 'The fundamental optimization algorithm in AI.',
+        readTime: '13 min',
+        level: 'Beginner',
+        content: `
+            <h2>Gradient Descent: How AI Learns</h2>
+            <p>Gradient descent is the optimization algorithm that powers most machine learning. It's how neural networks adjust their weights to minimize error and improve performance.</p>
+
+            <h3>The Core Idea</h3>
+            <p>Imagine you're blindfolded on a mountain and want to reach the lowest valley. You feel the slope under your feet and take steps downhill. That's gradient descent!</p>
+
+            <h4>Mathematical Definition:</h4>
+            <pre><code>
+Goal: Minimize loss function L(θ)
+
+Update rule:
+θ_new = θ_old - α * ∇L(θ)
+
+Where:
+- θ = parameters (weights)
+- α = learning rate (step size)
+- ∇L = gradient (slope of loss)
+            </code></pre>
+
+            <h3>Simple Example</h3>
+            <pre><code>
+import numpy as np
+
+# Simple function: f(x) = x²
+# Minimum at x = 0
+
+x = 10  # Starting point
+learning_rate = 0.1
+iterations = 50
+
+history = [x]
+
+for i in range(iterations):
+    # Gradient of x² is 2x
+    gradient = 2 * x
+
+    # Update x
+    x = x - learning_rate * gradient
+    history.append(x)
+
+    print(f"Iteration {i+1}: x = {x:.4f}, f(x) = {x**2:.4f}")
+
+# Converges to x ≈ 0
+            </code></pre>
+
+            <h3>Gradient Descent in Linear Regression</h3>
+            <pre><code>
+# Goal: Find best-fit line y = mx + b
+
+def compute_cost(X, y, m, b):
+    """Calculate mean squared error"""
+    predictions = m * X + b
+    cost = np.mean((predictions - y) ** 2)
+    return cost
+
+def gradient_descent(X, y, learning_rate=0.01, epochs=1000):
+    m, b = 0, 0  # Initialize parameters
+    n = len(X)
+    costs = []
+
+    for epoch in range(epochs):
+        # Predictions
+        predictions = m * X + b
+
+        # Calculate gradients
+        dm = (2/n) * np.sum(X * (predictions - y))
+        db = (2/n) * np.sum(predictions - y)
+
+        # Update parameters
+        m = m - learning_rate * dm
+        b = b - learning_rate * db
+
+        # Track cost
+        cost = compute_cost(X, y, m, b)
+        costs.append(cost)
+
+        if epoch % 100 == 0:
+            print(f"Epoch {epoch}: Cost = {cost:.4f}, m = {m:.4f}, b = {b:.4f}")
+
+    return m, b, costs
+
+# Example usage
+X = np.array([1, 2, 3, 4, 5])
+y = np.array([2, 4, 6, 8, 10])
+
+m, b, costs = gradient_descent(X, y)
+print(f"Final: y = {m:.2f}x + {b:.2f}")
+            </code></pre>
+
+            <h3>Types of Gradient Descent</h3>
+
+            <h4>1. Batch Gradient Descent</h4>
+            <p>Uses entire dataset for each update:</p>
+            <pre><code>
+for epoch in range(epochs):
+    # Calculate gradient using ALL data
+    gradient = compute_gradient(X_all, y_all, weights)
+    weights = weights - learning_rate * gradient
+
+Pros: Stable, converges smoothly
+Cons: Slow for large datasets, expensive
+            </code></pre>
+
+            <h4>2. Stochastic Gradient Descent (SGD)</h4>
+            <p>Uses one sample at a time:</p>
+            <pre><code>
+for epoch in range(epochs):
+    for i in range(len(X)):
+        # Update using single example
+        gradient = compute_gradient(X[i], y[i], weights)
+        weights = weights - learning_rate * gradient
+
+Pros: Fast, can escape local minima
+Cons: Noisy updates, erratic convergence
+            </code></pre>
+
+            <h4>3. Mini-Batch Gradient Descent</h4>
+            <p>Best of both worlds - uses small batches:</p>
+            <pre><code>
+batch_size = 32
+
+for epoch in range(epochs):
+    # Shuffle data
+    indices = np.random.permutation(len(X))
+
+    for i in range(0, len(X), batch_size):
+        # Get batch
+        batch_indices = indices[i:i+batch_size]
+        X_batch = X[batch_indices]
+        y_batch = y[batch_indices]
+
+        # Update using batch
+        gradient = compute_gradient(X_batch, y_batch, weights)
+        weights = weights - learning_rate * gradient
+
+Pros: Fast, stable, parallelizable
+Cons: Requires tuning batch size
+Most commonly used in practice!
+            </code></pre>
+
+            <h3>Learning Rate: The Critical Hyperparameter</h3>
+
+            <h4>Too Small:</h4>
+            <pre><code>
+learning_rate = 0.0001
+# Takes forever to converge
+# Might get stuck in local minimum
+            </code></pre>
+
+            <h4>Too Large:</h4>
+            <pre><code>
+learning_rate = 1.0
+# Overshoots minimum
+# Diverges, loss increases!
+            </code></pre>
+
+            <h4>Just Right:</h4>
+            <pre><code>
+learning_rate = 0.01
+# Converges steadily
+# Reaches minimum efficiently
+            </code></pre>
+
+            <h4>Learning Rate Schedules:</h4>
+            <pre><code>
+# Decay over time
+def learning_rate_schedule(epoch):
+    initial_lr = 0.1
+    return initial_lr / (1 + epoch * 0.01)
+
+# Or step decay
+def step_decay(epoch):
+    initial_lr = 0.1
+    drop = 0.5
+    epochs_drop = 10
+    return initial_lr * (drop ** (epoch // epochs_drop))
+
+# Or exponential decay
+lr = initial_lr * np.exp(-decay_rate * epoch)
+            </code></pre>
+
+            <h3>Advanced Optimizers</h3>
+
+            <h4>Momentum</h4>
+            <p>Accelerates in consistent directions:</p>
+            <pre><code>
+# Standard momentum
+velocity = 0
+beta = 0.9
+
+for iteration in range(iterations):
+    gradient = compute_gradient()
+    velocity = beta * velocity + learning_rate * gradient
+    weights = weights - velocity
+
+# Smooths out oscillations, faster convergence
+            </code></pre>
+
+            <h4>RMSprop</h4>
+            <p>Adapts learning rate for each parameter:</p>
+            <pre><code>
+squared_grad = 0
+beta = 0.9
+epsilon = 1e-8
+
+for iteration in range(iterations):
+    gradient = compute_gradient()
+    squared_grad = beta * squared_grad + (1-beta) * gradient**2
+    weights = weights - learning_rate * gradient / (np.sqrt(squared_grad) + epsilon)
+
+# Good for non-stationary objectives
+            </code></pre>
+
+            <h4>Adam (Most Popular)</h4>
+            <p>Combines momentum + RMSprop:</p>
+            <pre><code>
+import torch.optim as optim
+
+# In PyTorch
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+for epoch in range(epochs):
+    optimizer.zero_grad()
+    loss = compute_loss()
+    loss.backward()
+    optimizer.step()
+
+# Adaptive learning rates
+# Works well for most problems
+# Often the default choice
+            </code></pre>
+
+            <h3>Visualizing Gradient Descent</h3>
+            <pre><code>
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Create loss landscape
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+X, Y = np.meshgrid(x, y)
+Z = X**2 + Y**2  # Simple bowl shape
+
+# Plot
+fig = plt.figure(figsize=(12, 5))
+
+# 3D surface
+ax1 = fig.add_subplot(121, projection='3d')
+ax1.plot_surface(X, Y, Z, alpha=0.6)
+ax1.set_title('Loss Landscape')
+
+# Contour with gradient descent path
+ax2 = fig.add_subplot(122)
+ax2.contour(X, Y, Z, levels=20)
+
+# Simulate gradient descent
+path_x, path_y = [4], [4]
+learning_rate = 0.1
+
+for _ in range(50):
+    grad_x = 2 * path_x[-1]
+    grad_y = 2 * path_y[-1]
+    path_x.append(path_x[-1] - learning_rate * grad_x)
+    path_y.append(path_y[-1] - learning_rate * grad_y)
+
+ax2.plot(path_x, path_y, 'r.-', linewidth=2)
+ax2.set_title('Gradient Descent Path')
+plt.show()
+            </code></pre>
+
+            <h3>Common Challenges</h3>
+
+            <h4>1. Local Minima</h4>
+            <ul>
+                <li>Non-convex functions have multiple minima</li>
+                <li>Can get stuck in suboptimal solution</li>
+                <li>Solutions: Momentum, random restarts, SGD noise</li>
+            </ul>
+
+            <h4>2. Saddle Points</h4>
+            <ul>
+                <li>Flat regions where gradient ≈ 0</li>
+                <li>Progress slows down significantly</li>
+                <li>Solutions: Momentum-based optimizers</li>
+            </ul>
+
+            <h4>3. Vanishing/Exploding Gradients</h4>
+            <ul>
+                <li>Deep networks: gradients become too small or too large</li>
+                <li>Solutions: Batch normalization, gradient clipping, ReLU activation</li>
+            </ul>
+
+            <h3>Practical Tips</h3>
+            <ol>
+                <li><strong>Start with Adam:</strong> Works well for most problems</li>
+                <li><strong>Monitor Loss:</strong> Should decrease over time</li>
+                <li><strong>Learning Rate Finder:</strong> Try multiple values, plot loss</li>
+                <li><strong>Batch Size:</strong> 32-256 typical range</li>
+                <li><strong>Early Stopping:</strong> Stop when validation loss stops improving</li>
+                <li><strong>Gradient Clipping:</strong> Prevent exploding gradients
+                    <pre><code>
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+                    </code></pre>
+                </li>
+            </ol>
+
+            <h3>Conclusion</h3>
+            <p>Gradient descent is the engine that powers machine learning. While the basic idea is simple—follow the slope downward—modern variants like Adam make it robust and efficient. Understanding gradient descent helps you diagnose training issues, choose appropriate optimizers, and tune hyperparameters effectively.</p>
+        `
+    },
+    {
+        id: 'b20',
+        title: 'Backpropagation',
+        icon: '🔙',
+        description: 'How neural networks learn from their mistakes.',
+        readTime: '14 min',
+        level: 'Beginner',
+        content: `
+            <h2>Backpropagation: Teaching Networks to Learn</h2>
+            <p>Backpropagation is the algorithm that makes deep learning possible. It efficiently calculates how each weight in a neural network should change to reduce error.</p>
+
+            <h3>The Challenge</h3>
+            <p>Neural networks have millions of parameters. How do we know which ones to adjust and by how much? Backpropagation solves this using the chain rule from calculus.</p>
+
+            <h3>Intuitive Understanding</h3>
+            <p>Think of it like finding who's responsible for a mistake in a large organization:</p>
+            <ol>
+                <li>Mistake happens at output (prediction error)</li>
+                <li>Trace back: which employees contributed?</li>
+                <li>Assign blame proportionally</li>
+                <li>Each person adjusts their behavior</li>
+            </ol>
+
+            <h3>Forward Pass</h3>
+            <p>First, data flows forward through the network:</p>
+            <pre><code>
+# Simple 2-layer network
+import numpy as np
+
+# Input
+x = np.array([1.0, 2.0])
+
+# Weights
+W1 = np.array([[0.5, 0.3], [0.2, 0.4]])  # Input to hidden
+W2 = np.array([[0.7], [0.6]])             # Hidden to output
+
+# Forward pass
+hidden = np.maximum(0, W1 @ x)  # ReLU activation
+output = W2.T @ hidden
+
+print(f"Prediction: {output}")
+print(f"True value: 5.0")
+print(f"Error: {output - 5.0}")
+            </code></pre>
+
+            <h3>Backward Pass</h3>
+            <p>Then, errors flow backward to update weights:</p>
+            <pre><code>
+# Calculate gradients
+target = 5.0
+error = output - target
+
+# Gradient of loss w.r.t. output
+dL_doutput = error
+
+# Gradient w.r.t. W2 (chain rule)
+dL_dW2 = dL_doutput * hidden
+
+# Gradient w.r.t. hidden layer
+dL_dhidden = dL_doutput * W2.T
+
+# Gradient w.r.t. W1 (considering ReLU)
+dL_dW1 = np.outer(dL_dhidden * (hidden > 0), x)
+
+# Update weights
+learning_rate = 0.01
+W2 -= learning_rate * dL_dW2
+W1 -= learning_rate * dL_dW1
+            </code></pre>
+
+            <h3>The Chain Rule</h3>
+            <p>Backpropagation applies the chain rule layer by layer:</p>
+            <pre><code>
+For loss L depending on weight w through intermediate z:
+
+L = f(z)
+z = g(w)
+
+Then:
+dL/dw = (dL/dz) * (dz/dw)
+
+For deeper networks:
+L = f₃(f₂(f₁(w)))
+
+dL/dw = (dL/df₃) * (df₃/df₂) * (df₂/df₁) * (df₁/dw)
+
+Each layer passes gradients to the previous layer!
+            </code></pre>
+
+            <h3>Complete Example</h3>
+            <pre><code>
+class SimpleNeuralNetwork:
+    def __init__(self, input_size, hidden_size, output_size):
+        # Initialize weights randomly
+        self.W1 = np.random.randn(hidden_size, input_size) * 0.01
+        self.b1 = np.zeros((hidden_size, 1))
+        self.W2 = np.random.randn(output_size, hidden_size) * 0.01
+        self.b2 = np.zeros((output_size, 1))
+
+    def sigmoid(self, z):
+        return 1 / (1 + np.exp(-z))
+
+    def sigmoid_derivative(self, z):
+        s = self.sigmoid(z)
+        return s * (1 - s)
+
+    def forward(self, X):
+        # Save intermediate values for backprop
+        self.z1 = self.W1 @ X + self.b1
+        self.a1 = self.sigmoid(self.z1)
+        self.z2 = self.W2 @ self.a1 + self.b2
+        self.a2 = self.sigmoid(self.z2)
+        return self.a2
+
+    def backward(self, X, y, output):
+        m = X.shape[1]  # Number of examples
+
+        # Output layer gradients
+        dz2 = output - y
+        dW2 = (1/m) * (dz2 @ self.a1.T)
+        db2 = (1/m) * np.sum(dz2, axis=1, keepdims=True)
+
+        # Hidden layer gradients
+        dz1 = (self.W2.T @ dz2) * self.sigmoid_derivative(self.z1)
+        dW1 = (1/m) * (dz1 @ X.T)
+        db1 = (1/m) * np.sum(dz1, axis=1, keepdims=True)
+
+        return dW1, db1, dW2, db2
+
+    def update_weights(self, dW1, db1, dW2, db2, learning_rate):
+        self.W1 -= learning_rate * dW1
+        self.b1 -= learning_rate * db1
+        self.W2 -= learning_rate * dW2
+        self.b2 -= learning_rate * db2
+
+    def train(self, X, y, epochs, learning_rate=0.1):
+        for epoch in range(epochs):
+            # Forward pass
+            output = self.forward(X)
+
+            # Compute loss
+            loss = np.mean((output - y) ** 2)
+
+            # Backward pass
+            dW1, db1, dW2, db2 = self.backward(X, y, output)
+
+            # Update weights
+            self.update_weights(dW1, db1, dW2, db2, learning_rate)
+
+            if epoch % 100 == 0:
+                print(f"Epoch {epoch}, Loss: {loss:.4f}")
+
+# Example usage
+X = np.array([[0, 0, 1, 1], [0, 1, 0, 1]])  # XOR inputs
+y = np.array([[0, 1, 1, 0]])                  # XOR outputs
+
+nn = SimpleNeuralNetwork(input_size=2, hidden_size=4, output_size=1)
+nn.train(X, y, epochs=1000)
+
+# Test
+predictions = nn.forward(X)
+print(f"Predictions: {predictions}")
+            </code></pre>
+
+            <h3>Automatic Differentiation</h3>
+            <p>Modern frameworks handle backprop automatically:</p>
+            <pre><code>
+import torch
+import torch.nn as nn
+
+# Define network
+model = nn.Sequential(
+    nn.Linear(2, 4),
+    nn.ReLU(),
+    nn.Linear(4, 1),
+    nn.Sigmoid()
+)
+
+# Loss and optimizer
+criterion = nn.MSELoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+
+# Training loop
+for epoch in range(1000):
+    # Forward pass
+    predictions = model(X_tensor)
+    loss = criterion(predictions, y_tensor)
+
+    # Backward pass (automatic!)
+    optimizer.zero_grad()  # Clear old gradients
+    loss.backward()        # Compute gradients
+    optimizer.step()       # Update weights
+
+    if epoch % 100 == 0:
+        print(f"Epoch {epoch}, Loss: {loss.item():.4f}")
+
+# PyTorch handles all the chain rule calculations!
+            </code></pre>
+
+            <h3>Computational Graph</h3>
+            <p>Framework builds a graph of operations:</p>
+            <pre><code>
+import torch
+
+x = torch.tensor(2.0, requires_grad=True)
+y = torch.tensor(3.0, requires_grad=True)
+
+# Forward: build computational graph
+z = x * y + y**2
+loss = z * 2
+
+# Backward: traverse graph in reverse
+loss.backward()
+
+print(f"dL/dx = {x.grad}")  # Derivative w.r.t. x
+print(f"dL/dy = {y.grad}")  # Derivative w.r.t. y
+
+# Graph tracks all operations for automatic differentiation
+            </code></pre>
+
+            <h3>Gradient Checking</h3>
+            <p>Verify backprop implementation:</p>
+            <pre><code>
+def numerical_gradient(f, x, epsilon=1e-5):
+    """Approximate gradient numerically"""
+    grad = np.zeros_like(x)
+
+    for i in range(len(x)):
+        x_plus = x.copy()
+        x_plus[i] += epsilon
+        x_minus = x.copy()
+        x_minus[i] -= epsilon
+
+        grad[i] = (f(x_plus) - f(x_minus)) / (2 * epsilon)
+
+    return grad
+
+# Compare analytical vs numerical gradients
+analytical_grad = backprop_gradient(X, y, weights)
+numerical_grad = numerical_gradient(lambda w: loss(X, y, w), weights)
+
+difference = np.linalg.norm(analytical_grad - numerical_grad)
+print(f"Gradient difference: {difference}")
+# Should be very small (< 1e-7)
+            </code></pre>
+
+            <h3>Common Issues</h3>
+
+            <h4>1. Vanishing Gradients</h4>
+            <pre><code>
+# Problem: Gradients become very small in deep networks
+# Sigmoid derivatives max at 0.25
+# After many layers: 0.25^10 ≈ 0.0000001
+
+Solutions:
+- Use ReLU instead of sigmoid
+- Batch normalization
+- Residual connections (skip connections)
+- Careful weight initialization
+            </code></pre>
+
+            <h4>2. Exploding Gradients</h4>
+            <pre><code>
+# Problem: Gradients become very large
+# Weights updated too much, training unstable
+
+Solutions:
+- Gradient clipping
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+
+- Lower learning rate
+- Batch normalization
+            </code></pre>
+
+            <h3>Modern Improvements</h3>
+
+            <h4>Batch Normalization:</h4>
+            <pre><code>
+# Normalizes activations, helps gradients flow
+model = nn.Sequential(
+    nn.Linear(784, 256),
+    nn.BatchNorm1d(256),  # Add batch norm
+    nn.ReLU(),
+    nn.Linear(256, 10)
+)
+            </code></pre>
+
+            <h4>Residual Connections:</h4>
+            <pre><code>
+# Skip connections allow gradients to flow directly
+class ResidualBlock(nn.Module):
+    def forward(self, x):
+        residual = x
+        out = self.conv1(x)
+        out = self.relu(out)
+        out = self.conv2(out)
+        out += residual  # Skip connection
+        out = self.relu(out)
+        return out
+            </code></pre>
+
+            <h3>Conclusion</h3>
+            <p>Backpropagation is the secret sauce of deep learning. By efficiently computing gradients using the chain rule, it enables networks with millions of parameters to learn complex patterns. Modern frameworks handle the math automatically, but understanding backpropagation helps you debug training issues, design better architectures, and appreciate why techniques like batch normalization and skip connections are so important.</p>
+        `
+    },
     { id: 'b21', title: 'Loss Functions', icon: '📉', description: 'Measuring and minimizing prediction errors.', readTime: '12 min' },
     { id: 'b22', title: 'Activation Functions', icon: '⚡', description: 'Adding non-linearity to neural networks.', readTime: '11 min' },
     { id: 'b23', title: 'Batch Normalization', icon: '📊', description: 'Stabilizing and accelerating neural network training.', readTime: '13 min' },
