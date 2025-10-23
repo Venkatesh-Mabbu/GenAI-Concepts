@@ -5628,21 +5628,2686 @@ class ResidualBlock(nn.Module):
             <p>Backpropagation is the secret sauce of deep learning. By efficiently computing gradients using the chain rule, it enables networks with millions of parameters to learn complex patterns. Modern frameworks handle the math automatically, but understanding backpropagation helps you debug training issues, design better architectures, and appreciate why techniques like batch normalization and skip connections are so important.</p>
         `
     },
-    { id: 'b21', title: 'Loss Functions', icon: '📉', description: 'Measuring and minimizing prediction errors.', readTime: '12 min' },
-    { id: 'b22', title: 'Activation Functions', icon: '⚡', description: 'Adding non-linearity to neural networks.', readTime: '11 min' },
-    { id: 'b23', title: 'Batch Normalization', icon: '📊', description: 'Stabilizing and accelerating neural network training.', readTime: '13 min' },
-    { id: 'b24', title: 'Dropout Regularization', icon: '🎲', description: 'Preventing overfitting through random deactivation.', readTime: '12 min' },
-    { id: 'b25', title: 'Convolutional Neural Networks', icon: '🖼️', description: 'Specialized architecture for image processing.', readTime: '17 min' },
-    { id: 'b26', title: 'Recurrent Neural Networks', icon: '🔁', description: 'Processing sequential data like text and time series.', readTime: '15 min' },
-    { id: 'b27', title: 'Image Classification', icon: '🏷️', description: 'Teaching AI to recognize and categorize images.', readTime: '14 min' },
-    { id: 'b28', title: 'Natural Language Processing', icon: '🗣️', description: 'Enabling AI to understand and generate human language.', readTime: '16 min' },
-    { id: 'b29', title: 'Sentiment Analysis', icon: '😊', description: 'Determining emotions and opinions in text.', readTime: '12 min' },
-    { id: 'b30', title: 'Named Entity Recognition', icon: '🏢', description: 'Identifying and classifying entities in text.', readTime: '13 min' }
-].map(concept => ({
-    ...concept,
-    level: 'Beginner',
-    content: `<h2>${concept.title}</h2><p>Comprehensive content for ${concept.title} coming soon. This concept covers ${concept.description.toLowerCase()}</p>`
-}));
+    {
+        id: 'b21',
+        title: 'Loss Functions',
+        icon: '📉',
+        description: 'Measuring and minimizing prediction errors.',
+        readTime: '12 min',
+        level: 'Beginner',
+        content: `
+            <h2>Loss Functions</h2>
+            <p>Loss functions are the mathematical compass that guides neural network training. They quantify how far off a model's predictions are from the actual values, providing a single number that the optimization algorithm tries to minimize. Choosing the right loss function is crucial—it directly impacts what patterns your model learns and how well it performs.</p>
+
+            <h3>What is a Loss Function?</h3>
+            <p>A loss function (also called cost function or objective function) measures the discrepancy between predicted values and actual target values. During training, the model adjusts its parameters to minimize this loss. Think of it as a GPS that tells you how far you are from your destination—the lower the loss, the closer you are to perfect predictions.</p>
+
+            <h3>Common Loss Functions for Regression</h3>
+            <p>Regression tasks predict continuous values (like house prices or temperatures). Here are the most popular loss functions:</p>
+
+            <h4>1. Mean Squared Error (MSE)</h4>
+            <p>MSE is the most common regression loss. It squares the differences between predictions and actual values, heavily penalizing large errors:</p>
+            <pre><code>
+import torch
+import torch.nn as nn
+
+# MSE Loss
+mse_loss = nn.MSELoss()
+
+predictions = torch.tensor([2.5, 3.8, 5.1])
+targets = torch.tensor([2.0, 4.0, 5.0])
+
+loss = mse_loss(predictions, targets)
+print(f"MSE Loss: {loss.item():.4f}")  # 0.07
+            </code></pre>
+
+            <h4>2. Mean Absolute Error (MAE)</h4>
+            <p>MAE measures the average absolute difference. It's less sensitive to outliers than MSE:</p>
+            <pre><code>
+mae_loss = nn.L1Loss()
+loss = mae_loss(predictions, targets)
+print(f"MAE Loss: {loss.item():.4f}")  # 0.2333
+            </code></pre>
+
+            <h4>3. Huber Loss</h4>
+            <p>Huber loss combines the best of MSE and MAE—quadratic for small errors, linear for large errors:</p>
+            <pre><code>
+huber_loss = nn.SmoothL1Loss()
+loss = huber_loss(predictions, targets)
+print(f"Huber Loss: {loss.item():.4f}")
+            </code></pre>
+
+            <h3>Common Loss Functions for Classification</h3>
+
+            <h4>1. Binary Cross-Entropy</h4>
+            <p>For binary classification (two classes), BCE measures the difference between predicted probabilities and actual labels:</p>
+            <pre><code>
+# Binary classification
+bce_loss = nn.BCELoss()
+
+predictions = torch.tensor([0.9, 0.2, 0.8, 0.3])
+targets = torch.tensor([1.0, 0.0, 1.0, 0.0])
+
+loss = bce_loss(predictions, targets)
+print(f"BCE Loss: {loss.item():.4f}")
+            </code></pre>
+
+            <h4>2. Cross-Entropy Loss</h4>
+            <p>For multi-class classification, cross-entropy is the standard choice. It combines softmax activation with negative log likelihood:</p>
+            <pre><code>
+# Multi-class classification
+ce_loss = nn.CrossEntropyLoss()
+
+# Raw logits (before softmax)
+logits = torch.tensor([[2.0, 1.0, 0.1],
+                       [0.5, 2.5, 0.3],
+                       [1.2, 0.8, 2.0]])
+targets = torch.tensor([0, 1, 2])  # Class indices
+
+loss = ce_loss(logits, targets)
+print(f"Cross-Entropy Loss: {loss.item():.4f}")
+            </code></pre>
+
+            <h3>Custom Loss Functions</h3>
+            <p>Sometimes you need specialized loss functions for specific tasks:</p>
+            <pre><code>
+# Custom weighted MSE loss
+class WeightedMSELoss(nn.Module):
+    def __init__(self, weights):
+        super().__init__()
+        self.weights = weights
+
+    def forward(self, predictions, targets):
+        squared_diff = (predictions - targets) ** 2
+        weighted_loss = squared_diff * self.weights
+        return weighted_loss.mean()
+
+# Example: Recent predictions matter more
+weights = torch.tensor([0.5, 0.7, 1.0, 1.3, 1.5])
+custom_loss = WeightedMSELoss(weights)
+
+predictions = torch.tensor([1.0, 2.0, 3.0, 4.0, 5.0])
+targets = torch.tensor([1.1, 2.2, 2.9, 4.1, 4.8])
+loss = custom_loss(predictions, targets)
+print(f"Weighted MSE: {loss.item():.4f}")
+            </code></pre>
+
+            <h3>Loss Functions in Practice</h3>
+            <p>Here's a complete training loop showing how loss functions drive learning:</p>
+            <pre><code>
+import torch.optim as optim
+
+# Simple neural network
+model = nn.Sequential(
+    nn.Linear(10, 50),
+    nn.ReLU(),
+    nn.Linear(50, 1)
+)
+
+criterion = nn.MSELoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+# Training loop
+for epoch in range(100):
+    # Forward pass
+    predictions = model(X_train)
+    loss = criterion(predictions, y_train)
+
+    # Backward pass
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+
+    if epoch % 10 == 0:
+        print(f"Epoch {epoch}, Loss: {loss.item():.4f}")
+            </code></pre>
+
+            <h3>Choosing the Right Loss Function</h3>
+            <ul>
+                <li><strong>Regression with outliers:</strong> Use MAE or Huber loss instead of MSE</li>
+                <li><strong>Binary classification:</strong> Use Binary Cross-Entropy</li>
+                <li><strong>Multi-class classification:</strong> Use Cross-Entropy Loss</li>
+                <li><strong>Imbalanced data:</strong> Use weighted loss functions to give more importance to rare classes</li>
+                <li><strong>Multiple objectives:</strong> Combine multiple loss functions with different weights</li>
+            </ul>
+
+            <h3>Common Pitfalls</h3>
+            <ul>
+                <li><strong>Wrong loss function:</strong> Using MSE for classification or cross-entropy for regression leads to poor results</li>
+                <li><strong>Ignoring data distribution:</strong> Not accounting for class imbalance or outliers</li>
+                <li><strong>Numerical instability:</strong> Some loss functions can produce NaN or infinity values with extreme predictions</li>
+                <li><strong>Loss doesn't match goal:</strong> Optimizing for MSE when you care about accuracy percentage</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Loss functions are the objective that drives all neural network learning. By converting complex prediction tasks into a single number to minimize, they enable gradient descent to systematically improve model performance. Understanding different loss functions helps you choose the right tool for your task, handle tricky data distributions, and design models that optimize for what really matters in your application.</p>
+        `
+    },
+    {
+        id: 'b22',
+        title: 'Activation Functions',
+        icon: '⚡',
+        description: 'Adding non-linearity to neural networks.',
+        readTime: '11 min',
+        level: 'Beginner',
+        content: `
+            <h2>Activation Functions</h2>
+            <p>Activation functions are the secret ingredient that gives neural networks their power. Without them, even a deep neural network would be equivalent to a simple linear model. Activation functions introduce non-linearity, enabling networks to learn complex patterns, curves, and decision boundaries that linear models cannot capture.</p>
+
+            <h3>Why Do We Need Activation Functions?</h3>
+            <p>A neural network layer performs two operations: a linear transformation (weighted sum) followed by a non-linear activation. Without the activation function, stacking multiple layers would still produce a linear transformation. Here's why that's a problem:</p>
+            <pre><code>
+# Without activation (purely linear)
+layer1 = W1 @ x + b1
+layer2 = W2 @ layer1 + b2
+
+# This is equivalent to a single linear layer:
+# layer2 = (W2 @ W1) @ x + (W2 @ b1 + b2)
+# = W_combined @ x + b_combined
+            </code></pre>
+            <p>Activation functions break this linearity, allowing networks to approximate any continuous function—a property called universal approximation.</p>
+
+            <h3>Common Activation Functions</h3>
+
+            <h4>1. ReLU (Rectified Linear Unit)</h4>
+            <p>ReLU is the most popular activation function in modern deep learning. It's simple: output the input if positive, zero otherwise.</p>
+            <pre><code>
+import torch
+import torch.nn as nn
+import numpy as np
+import matplotlib.pyplot as plt
+
+# ReLU: f(x) = max(0, x)
+relu = nn.ReLU()
+x = torch.linspace(-3, 3, 100)
+y = relu(x)
+
+# Manual implementation
+def relu_manual(x):
+    return torch.maximum(torch.tensor(0.0), x)
+
+# In a network
+model = nn.Sequential(
+    nn.Linear(10, 50),
+    nn.ReLU(),  # Activation after linear layer
+    nn.Linear(50, 20),
+    nn.ReLU(),
+    nn.Linear(20, 1)
+)
+            </code></pre>
+            <p><strong>Advantages:</strong> Computationally efficient, reduces vanishing gradient problem, promotes sparsity (many neurons output zero)</p>
+            <p><strong>Disadvantages:</strong> "Dying ReLU" problem where neurons can get stuck always outputting zero</p>
+
+            <h4>2. Leaky ReLU</h4>
+            <p>Leaky ReLU fixes the dying ReLU problem by allowing a small negative slope:</p>
+            <pre><code>
+# Leaky ReLU: f(x) = max(0.01x, x)
+leaky_relu = nn.LeakyReLU(negative_slope=0.01)
+
+# In a model
+model = nn.Sequential(
+    nn.Linear(10, 50),
+    nn.LeakyReLU(0.01),
+    nn.Linear(50, 1)
+)
+            </code></pre>
+
+            <h4>3. Sigmoid</h4>
+            <p>Sigmoid squashes values to the range (0, 1), making it useful for binary classification outputs:</p>
+            <pre><code>
+# Sigmoid: f(x) = 1 / (1 + e^(-x))
+sigmoid = nn.Sigmoid()
+
+# Binary classification output layer
+model = nn.Sequential(
+    nn.Linear(10, 50),
+    nn.ReLU(),
+    nn.Linear(50, 1),
+    nn.Sigmoid()  # Output between 0 and 1
+)
+
+# Example prediction
+x = torch.randn(5, 10)
+output = model(x)
+print(output)  # Values between 0 and 1
+            </code></pre>
+            <p><strong>Use case:</strong> Binary classification output, gates in LSTM networks</p>
+            <p><strong>Disadvantage:</strong> Vanishing gradient problem for very large or small inputs</p>
+
+            <h4>4. Tanh (Hyperbolic Tangent)</h4>
+            <p>Tanh is similar to sigmoid but outputs values in (-1, 1), making it zero-centered:</p>
+            <pre><code>
+# Tanh: f(x) = (e^x - e^(-x)) / (e^x + e^(-x))
+tanh = nn.Tanh()
+
+# Often used in RNNs
+rnn_cell = nn.RNNCell(input_size=10, hidden_size=20)
+# Internally uses tanh activation
+            </code></pre>
+
+            <h4>5. Softmax</h4>
+            <p>Softmax converts a vector of values into a probability distribution, used for multi-class classification:</p>
+            <pre><code>
+# Softmax: outputs sum to 1
+softmax = nn.Softmax(dim=1)
+
+# Multi-class classification
+logits = torch.tensor([[2.0, 1.0, 0.1],
+                       [0.5, 2.5, 0.3]])
+probabilities = softmax(logits)
+print(probabilities)
+# [[0.659, 0.242, 0.099],
+#  [0.186, 0.719, 0.095]]
+
+# Each row sums to 1
+print(probabilities.sum(dim=1))  # [1., 1.]
+            </code></pre>
+
+            <h4>6. GELU (Gaussian Error Linear Unit)</h4>
+            <p>GELU is used in modern transformers like BERT and GPT. It provides smooth, probabilistic activation:</p>
+            <pre><code>
+# GELU: used in transformers
+gelu = nn.GELU()
+
+# Transformer block example
+class TransformerFFN(nn.Module):
+    def __init__(self, d_model, d_ff):
+        super().__init__()
+        self.fc1 = nn.Linear(d_model, d_ff)
+        self.gelu = nn.GELU()
+        self.fc2 = nn.Linear(d_ff, d_model)
+
+    def forward(self, x):
+        x = self.fc1(x)
+        x = self.gelu(x)  # GELU activation
+        x = self.fc2(x)
+        return x
+            </code></pre>
+
+            <h3>Choosing the Right Activation Function</h3>
+            <ul>
+                <li><strong>Hidden layers:</strong> Start with ReLU or Leaky ReLU for most tasks</li>
+                <li><strong>Binary classification output:</strong> Use Sigmoid</li>
+                <li><strong>Multi-class classification output:</strong> Use Softmax</li>
+                <li><strong>Regression output:</strong> No activation (linear output)</li>
+                <li><strong>Transformers:</strong> Use GELU for better performance</li>
+                <li><strong>RNNs/LSTMs:</strong> Tanh for hidden states, Sigmoid for gates</li>
+            </ul>
+
+            <h3>Practical Example: Testing Different Activations</h3>
+            <pre><code>
+# Compare activations on the same task
+class ModelWithActivation(nn.Module):
+    def __init__(self, activation):
+        super().__init__()
+        self.fc1 = nn.Linear(10, 50)
+        self.activation = activation
+        self.fc2 = nn.Linear(50, 1)
+
+    def forward(self, x):
+        x = self.fc1(x)
+        x = self.activation(x)
+        x = self.fc2(x)
+        return x
+
+# Test different activations
+activations = {
+    'ReLU': nn.ReLU(),
+    'LeakyReLU': nn.LeakyReLU(0.01),
+    'Tanh': nn.Tanh(),
+    'GELU': nn.GELU()
+}
+
+for name, activation in activations.items():
+    model = ModelWithActivation(activation)
+    # Train and evaluate...
+    print(f"{name} activation trained")
+            </code></pre>
+
+            <h3>Common Pitfalls</h3>
+            <ul>
+                <li><strong>Using activation on output layer:</strong> Don't use ReLU on regression outputs that can be negative</li>
+                <li><strong>Vanishing gradients:</strong> Sigmoid and Tanh in deep networks can cause training to stall</li>
+                <li><strong>Exploding activations:</strong> Without normalization, activations can grow unbounded</li>
+                <li><strong>Wrong activation for task:</strong> Using Softmax for regression or no activation for classification</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Activation functions are fundamental to neural networks' ability to learn complex patterns. ReLU has become the default for hidden layers due to its simplicity and effectiveness, while specialized activations like GELU power state-of-the-art transformers. Understanding when and why to use each activation function is essential for building effective neural networks.</p>
+        `
+    },
+    {
+        id: 'b23',
+        title: 'Batch Normalization',
+        icon: '📊',
+        description: 'Stabilizing and accelerating neural network training.',
+        readTime: '13 min',
+        level: 'Beginner',
+        content: `
+            <h2>Batch Normalization</h2>
+            <p>Batch Normalization (BatchNorm) is one of the most impactful techniques in modern deep learning. Introduced in 2015, it addresses the problem of internal covariate shift—the phenomenon where the distribution of layer inputs changes during training, making learning slow and unstable. BatchNorm normalizes layer inputs, dramatically speeding up training and improving model performance.</p>
+
+            <h3>The Problem: Internal Covariate Shift</h3>
+            <p>As a neural network trains, the parameters of each layer constantly change. This causes the distribution of inputs to subsequent layers to shift, forcing those layers to continuously adapt to a moving target. This slows down training and requires careful initialization and small learning rates.</p>
+
+            <h3>How Batch Normalization Works</h3>
+            <p>BatchNorm normalizes the inputs of each layer to have mean 0 and variance 1, then applies learnable scale (gamma) and shift (beta) parameters:</p>
+            <pre><code>
+# Mathematical operation:
+# 1. Calculate batch statistics
+mean = x.mean(dim=0)
+variance = x.var(dim=0)
+
+# 2. Normalize
+x_normalized = (x - mean) / sqrt(variance + epsilon)
+
+# 3. Scale and shift (learnable parameters)
+y = gamma * x_normalized + beta
+            </code></pre>
+
+            <h3>Using Batch Normalization in PyTorch</h3>
+            <pre><code>
+import torch
+import torch.nn as nn
+
+# BatchNorm for different layer types
+class ConvNetWithBN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # Conv layers: normalize across channels
+        self.conv1 = nn.Conv2d(3, 64, kernel_size=3, padding=1)
+        self.bn1 = nn.BatchNorm2d(64)  # 64 channels
+
+        self.conv2 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
+        self.bn2 = nn.BatchNorm2d(128)
+
+        # Fully connected layers
+        self.fc1 = nn.Linear(128 * 8 * 8, 512)
+        self.bn3 = nn.BatchNorm1d(512)  # 1D for linear layers
+
+        self.fc2 = nn.Linear(512, 10)
+        self.relu = nn.ReLU()
+
+    def forward(self, x):
+        # Conv block: Conv -> BatchNorm -> Activation
+        x = self.conv1(x)
+        x = self.bn1(x)
+        x = self.relu(x)
+
+        x = self.conv2(x)
+        x = self.bn2(x)
+        x = self.relu(x)
+
+        # Flatten and FC layers
+        x = x.view(x.size(0), -1)
+        x = self.fc1(x)
+        x = self.bn3(x)
+        x = self.relu(x)
+
+        x = self.fc2(x)
+        return x
+
+model = ConvNetWithBN()
+print(model)
+            </code></pre>
+
+            <h3>BatchNorm Ordering: Before or After Activation?</h3>
+            <p>The original paper placed BatchNorm before activation (Conv → BN → ReLU), but both orderings work. The standard practice today:</p>
+            <pre><code>
+# Original paper: Conv -> BN -> Activation
+x = conv(x)
+x = batch_norm(x)
+x = relu(x)
+
+# Alternative: Conv -> Activation -> BN
+x = conv(x)
+x = relu(x)
+x = batch_norm(x)
+
+# Modern practice: use the original (Conv -> BN -> Activation)
+# It's become the standard and works well
+            </code></pre>
+
+            <h3>Training vs. Evaluation Mode</h3>
+            <p>BatchNorm behaves differently during training and evaluation:</p>
+            <pre><code>
+# During training: use batch statistics
+model.train()
+# BatchNorm calculates mean/var from current batch
+
+# During evaluation: use running statistics
+model.eval()
+# BatchNorm uses running mean/var computed during training
+
+# Complete example
+model = ConvNetWithBN()
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters())
+
+# Training loop
+model.train()  # Enable training mode
+for batch_x, batch_y in train_loader:
+    optimizer.zero_grad()
+    output = model(batch_x)  # Uses batch statistics
+    loss = criterion(output, batch_y)
+    loss.backward()
+    optimizer.step()
+
+# Evaluation
+model.eval()  # Enable evaluation mode
+with torch.no_grad():
+    for batch_x, batch_y in test_loader:
+        output = model(batch_x)  # Uses running statistics
+        # Calculate accuracy...
+            </code></pre>
+
+            <h3>Benefits of Batch Normalization</h3>
+            <ul>
+                <li><strong>Faster training:</strong> Allows higher learning rates, reducing training time by 2-10x</li>
+                <li><strong>Less sensitive to initialization:</strong> Reduces the importance of careful weight initialization</li>
+                <li><strong>Regularization effect:</strong> Adds slight noise (from batch statistics), reducing overfitting</li>
+                <li><strong>Higher learning rates:</strong> Stable gradients enable using larger learning rates</li>
+                <li><strong>Better gradient flow:</strong> Prevents gradients from vanishing or exploding</li>
+            </ul>
+
+            <h3>Practical Example: With vs. Without BatchNorm</h3>
+            <pre><code>
+# Without BatchNorm
+model_no_bn = nn.Sequential(
+    nn.Linear(784, 512),
+    nn.ReLU(),
+    nn.Linear(512, 256),
+    nn.ReLU(),
+    nn.Linear(256, 10)
+)
+
+# With BatchNorm
+model_with_bn = nn.Sequential(
+    nn.Linear(784, 512),
+    nn.BatchNorm1d(512),
+    nn.ReLU(),
+    nn.Linear(512, 256),
+    nn.BatchNorm1d(256),
+    nn.ReLU(),
+    nn.Linear(256, 10)
+)
+
+# Train both and compare:
+# - model_with_bn typically trains 2-3x faster
+# - achieves better final accuracy
+# - more stable training curves
+            </code></pre>
+
+            <h3>Variants and Alternatives</h3>
+
+            <h4>Layer Normalization</h4>
+            <p>Used in transformers and RNNs where batch statistics aren't suitable:</p>
+            <pre><code>
+# LayerNorm: normalize across features instead of batch
+layer_norm = nn.LayerNorm(512)
+
+# Used in transformers
+class TransformerLayer(nn.Module):
+    def __init__(self, d_model):
+        super().__init__()
+        self.norm1 = nn.LayerNorm(d_model)
+        self.norm2 = nn.LayerNorm(d_model)
+        # attention and feedforward layers...
+            </code></pre>
+
+            <h4>Group Normalization</h4>
+            <p>Works well with small batch sizes:</p>
+            <pre><code>
+# Group Norm: divide channels into groups
+group_norm = nn.GroupNorm(num_groups=32, num_channels=128)
+            </code></pre>
+
+            <h3>Common Pitfalls</h3>
+            <ul>
+                <li><strong>Wrong mode:</strong> Forgetting to call model.eval() during testing leads to unstable results</li>
+                <li><strong>Small batches:</strong> BatchNorm works poorly with batch size < 8; use GroupNorm instead</li>
+                <li><strong>Incompatible tasks:</strong> BatchNorm can hurt performance in RL, GANs, and online learning</li>
+                <li><strong>Placement:</strong> Putting BatchNorm after activation reduces its effectiveness</li>
+            </ul>
+
+            <h3>When to Use Batch Normalization</h3>
+            <ul>
+                <li><strong>Use:</strong> Deep CNNs for image classification, detection, segmentation</li>
+                <li><strong>Use:</strong> Training very deep networks (ResNet, DenseNet)</li>
+                <li><strong>Use:</strong> When you want to use higher learning rates</li>
+                <li><strong>Avoid:</strong> RNNs and transformers (use LayerNorm instead)</li>
+                <li><strong>Avoid:</strong> Batch size < 8 (use GroupNorm instead)</li>
+                <li><strong>Avoid:</strong> GANs discriminator (can cause instability)</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Batch Normalization is a cornerstone of modern deep learning. By normalizing layer inputs, it stabilizes training, enables higher learning rates, and acts as a mild regularizer. While it's not a silver bullet—some domains like transformers prefer LayerNorm—it remains the go-to normalization technique for convolutional networks and has fundamentally changed how we train deep models.</p>
+        `
+    },
+    {
+        id: 'b24',
+        title: 'Dropout Regularization',
+        icon: '🎲',
+        description: 'Preventing overfitting through random deactivation.',
+        readTime: '12 min',
+        level: 'Beginner',
+        content: `
+            <h2>Dropout Regularization</h2>
+            <p>Dropout is an elegantly simple yet powerful technique for preventing overfitting in neural networks. Introduced in 2012, dropout randomly "drops out" (sets to zero) a fraction of neurons during training, forcing the network to learn robust features that work even when some neurons are missing. It's like training an ensemble of many subnetworks simultaneously.</p>
+
+            <h3>The Problem: Overfitting</h3>
+            <p>Neural networks, especially deep ones, have millions of parameters. This enormous capacity allows them to memorize training data perfectly, including noise and irrelevant patterns. The result: 99% training accuracy, but poor performance on new data. Dropout helps by preventing neurons from co-adapting too much to specific training examples.</p>
+
+            <h3>How Dropout Works</h3>
+            <p>During training, dropout randomly sets a fraction (typically 50%) of neuron activations to zero. During inference, all neurons are active but scaled by the dropout probability:</p>
+            <pre><code>
+# Training time
+# For each forward pass:
+mask = (torch.rand(neurons.shape) > dropout_rate).float()
+neurons = neurons * mask
+
+# Inference time
+# No dropout, but scale by (1 - dropout_rate)
+neurons = neurons * (1 - dropout_rate)
+
+# Modern frameworks use "inverted dropout" to avoid scaling at inference:
+# Training: neurons = neurons * mask / (1 - dropout_rate)
+# Inference: neurons = neurons (no scaling needed)
+            </code></pre>
+
+            <h3>Using Dropout in PyTorch</h3>
+            <pre><code>
+import torch
+import torch.nn as nn
+
+class ModelWithDropout(nn.Module):
+    def __init__(self, dropout_rate=0.5):
+        super().__init__()
+        self.fc1 = nn.Linear(784, 512)
+        self.dropout1 = nn.Dropout(p=dropout_rate)
+
+        self.fc2 = nn.Linear(512, 256)
+        self.dropout2 = nn.Dropout(p=dropout_rate)
+
+        self.fc3 = nn.Linear(256, 128)
+        self.dropout3 = nn.Dropout(p=dropout_rate)
+
+        self.fc4 = nn.Linear(128, 10)
+        self.relu = nn.ReLU()
+
+    def forward(self, x):
+        x = x.view(-1, 784)
+
+        x = self.fc1(x)
+        x = self.relu(x)
+        x = self.dropout1(x)  # Apply dropout after activation
+
+        x = self.fc2(x)
+        x = self.relu(x)
+        x = self.dropout2(x)
+
+        x = self.fc3(x)
+        x = self.relu(x)
+        x = self.dropout3(x)
+
+        x = self.fc4(x)  # No dropout on output layer
+        return x
+
+model = ModelWithDropout(dropout_rate=0.5)
+            </code></pre>
+
+            <h3>Training vs. Evaluation Mode</h3>
+            <p>Dropout must be disabled during evaluation. PyTorch handles this automatically:</p>
+            <pre><code>
+model = ModelWithDropout()
+
+# Training: dropout is active
+model.train()
+output = model(x_train)  # Random neurons dropped
+
+# Evaluation: dropout is disabled
+model.eval()
+output = model(x_test)  # All neurons active
+
+# Complete training loop
+for epoch in range(num_epochs):
+    # Training phase
+    model.train()
+    for batch_x, batch_y in train_loader:
+        optimizer.zero_grad()
+        predictions = model(batch_x)
+        loss = criterion(predictions, batch_y)
+        loss.backward()
+        optimizer.step()
+
+    # Validation phase
+    model.eval()
+    with torch.no_grad():
+        for batch_x, batch_y in val_loader:
+            predictions = model(batch_x)
+            val_loss = criterion(predictions, batch_y)
+            </code></pre>
+
+            <h3>Dropout Rates: How Much to Drop?</h3>
+            <ul>
+                <li><strong>0.5 (50%):</strong> Standard for fully connected layers, proven effective</li>
+                <li><strong>0.2-0.3:</strong> For convolutional layers (CNNs usually need less dropout)</li>
+                <li><strong>0.1-0.2:</strong> For input layers (be conservative with input)</li>
+                <li><strong>0.0:</strong> Output layer (never apply dropout to final predictions)</li>
+            </ul>
+
+            <pre><code>
+class ConvNetWithDropout(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # Convolutional layers
+        self.conv1 = nn.Conv2d(3, 64, 3, padding=1)
+        self.conv2 = nn.Conv2d(64, 128, 3, padding=1)
+        self.dropout_conv = nn.Dropout2d(p=0.25)  # 2D dropout for conv layers
+
+        # Fully connected layers
+        self.fc1 = nn.Linear(128 * 8 * 8, 512)
+        self.dropout_fc1 = nn.Dropout(p=0.5)
+
+        self.fc2 = nn.Linear(512, 256)
+        self.dropout_fc2 = nn.Dropout(p=0.5)
+
+        self.fc3 = nn.Linear(256, 10)
+        # No dropout on output layer
+
+    def forward(self, x):
+        x = F.relu(self.conv1(x))
+        x = F.relu(self.conv2(x))
+        x = self.dropout_conv(x)  # Spatial dropout
+
+        x = x.view(x.size(0), -1)
+
+        x = F.relu(self.fc1(x))
+        x = self.dropout_fc1(x)
+
+        x = F.relu(self.fc2(x))
+        x = self.dropout_fc2(x)
+
+        x = self.fc3(x)
+        return x
+            </code></pre>
+
+            <h3>Dropout Variants</h3>
+
+            <h4>1. Spatial Dropout (Dropout2d)</h4>
+            <p>For convolutional layers, drops entire feature maps instead of individual pixels:</p>
+            <pre><code>
+# Regular Dropout: drops individual pixels
+dropout_regular = nn.Dropout(p=0.5)
+
+# Spatial Dropout: drops entire channels
+dropout_spatial = nn.Dropout2d(p=0.25)
+
+# For feature maps of shape (batch, channels, height, width)
+# Dropout2d drops entire channels, preserving spatial coherence
+            </code></pre>
+
+            <h4>2. DropConnect</h4>
+            <p>Instead of dropping activations, DropConnect drops weights:</p>
+            <pre><code>
+# Standard dropout: zeros activations
+# DropConnect: zeros weights during forward pass
+# Not built-in to PyTorch, but can be implemented manually
+            </code></pre>
+
+            <h3>Combining Dropout with Other Techniques</h3>
+            <pre><code>
+class ModernDeepNetwork(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # Combine BatchNorm and Dropout
+        self.fc1 = nn.Linear(784, 512)
+        self.bn1 = nn.BatchNorm1d(512)
+        self.dropout1 = nn.Dropout(0.3)
+
+        self.fc2 = nn.Linear(512, 256)
+        self.bn2 = nn.BatchNorm1d(256)
+        self.dropout2 = nn.Dropout(0.3)
+
+        self.fc3 = nn.Linear(256, 10)
+
+    def forward(self, x):
+        # Order: Linear -> BatchNorm -> Activation -> Dropout
+        x = self.fc1(x)
+        x = self.bn1(x)
+        x = F.relu(x)
+        x = self.dropout1(x)
+
+        x = self.fc2(x)
+        x = self.bn2(x)
+        x = F.relu(x)
+        x = self.dropout2(x)
+
+        x = self.fc3(x)
+        return x
+            </code></pre>
+
+            <h3>Practical Comparison: With vs. Without Dropout</h3>
+            <pre><code>
+# Experiment: Train on small dataset
+train_size = 1000  # Small dataset to encourage overfitting
+
+# Model without dropout
+model_no_dropout = nn.Sequential(
+    nn.Linear(784, 512), nn.ReLU(),
+    nn.Linear(512, 256), nn.ReLU(),
+    nn.Linear(256, 10)
+)
+
+# Model with dropout
+model_with_dropout = nn.Sequential(
+    nn.Linear(784, 512), nn.ReLU(), nn.Dropout(0.5),
+    nn.Linear(512, 256), nn.ReLU(), nn.Dropout(0.5),
+    nn.Linear(256, 10)
+)
+
+# Typical results:
+# No dropout:  train_acc=99%, val_acc=85% (overfitting!)
+# With dropout: train_acc=95%, val_acc=92% (better generalization)
+            </code></pre>
+
+            <h3>When to Use Dropout</h3>
+            <ul>
+                <li><strong>Use when:</strong> Model overfits (high train accuracy, low val accuracy)</li>
+                <li><strong>Use when:</strong> Limited training data</li>
+                <li><strong>Use when:</strong> Building large fully-connected networks</li>
+                <li><strong>Consider alternatives:</strong> Modern CNNs often use BatchNorm instead</li>
+                <li><strong>Avoid:</strong> Very small networks (might underfit)</li>
+                <li><strong>Avoid:</strong> When training data is already abundant and diverse</li>
+            </ul>
+
+            <h3>Common Pitfalls</h3>
+            <ul>
+                <li><strong>Forgetting model.eval():</strong> Leaving dropout active during testing gives inconsistent predictions</li>
+                <li><strong>Too much dropout:</strong> High dropout rates (>0.7) can prevent learning entirely</li>
+                <li><strong>Dropout on output:</strong> Never apply dropout to the final prediction layer</li>
+                <li><strong>Using with BatchNorm:</strong> When combined, often need lower dropout rates (0.2-0.3)</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Dropout is a simple yet effective regularization technique that prevents overfitting by training an ensemble of subnetworks. While modern architectures like ResNet rely more on BatchNorm, dropout remains valuable for fully-connected layers, small datasets, and situations where overfitting is a concern. The key is using it correctly: apply it during training, disable it during evaluation, and tune the dropout rate to your specific task.</p>
+        `
+    },
+    {
+        id: 'b25',
+        title: 'Convolutional Neural Networks',
+        icon: '🖼️',
+        description: 'Specialized architecture for image processing.',
+        readTime: '17 min',
+        level: 'Beginner',
+        content: `
+            <h2>Convolutional Neural Networks (CNNs)</h2>
+            <p>Convolutional Neural Networks revolutionized computer vision. By using convolution operations that preserve spatial relationships, CNNs can efficiently learn hierarchical visual features—from edges and textures in early layers to complex objects and scenes in deeper layers. This makes them the foundation of modern image classification, object detection, and image generation systems.</p>
+
+            <h3>Why CNNs for Images?</h3>
+            <p>Traditional fully-connected networks struggle with images for three reasons:</p>
+            <ul>
+                <li><strong>Too many parameters:</strong> A 224×224 RGB image has 150,528 pixels. A single hidden layer with 1000 neurons needs 150 million parameters!</li>
+                <li><strong>Ignore spatial structure:</strong> Images have strong local patterns (edges, textures). Flattening destroys this spatial information.</li>
+                <li><strong>No translation invariance:</strong> A cat in the top-left requires different weights than a cat in the bottom-right.</li>
+            </ul>
+            <p>CNNs solve all three problems using convolutional layers, parameter sharing, and local receptive fields.</p>
+
+            <h3>Core Concept: Convolution Operation</h3>
+            <p>A convolution applies a small filter (kernel) across the input, computing dot products at each position:</p>
+            <pre><code>
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+# Simple convolution example
+# Input: (batch=1, channels=1, height=5, width=5)
+input_image = torch.randn(1, 1, 5, 5)
+
+# Convolution layer: 1 input channel, 16 output channels, 3x3 kernel
+conv = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, padding=1)
+
+# Forward pass
+output = conv(input_image)
+print(output.shape)  # torch.Size([1, 16, 5, 5])
+
+# Each of the 16 filters learns different features (edges, textures, etc.)
+            </code></pre>
+
+            <h3>Building a Complete CNN</h3>
+            <p>A typical CNN architecture consists of repeated blocks of convolution, activation, and pooling layers:</p>
+            <pre><code>
+class SimpleCNN(nn.Module):
+    def __init__(self, num_classes=10):
+        super().__init__()
+
+        # Convolutional layers
+        # Input: 3 channels (RGB), output: 32 channels
+        self.conv1 = nn.Conv2d(3, 32, kernel_size=3, padding=1)
+        self.bn1 = nn.BatchNorm2d(32)
+
+        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
+        self.bn2 = nn.BatchNorm2d(64)
+
+        self.conv3 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
+        self.bn3 = nn.BatchNorm2d(128)
+
+        # Pooling layer
+        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
+
+        # Fully connected layers
+        # After 3 pooling layers: 32x32 -> 16x16 -> 8x8 -> 4x4
+        self.fc1 = nn.Linear(128 * 4 * 4, 512)
+        self.dropout = nn.Dropout(0.5)
+        self.fc2 = nn.Linear(512, num_classes)
+
+    def forward(self, x):
+        # Conv block 1: Conv -> BN -> ReLU -> Pool
+        x = self.conv1(x)  # (batch, 32, 32, 32)
+        x = self.bn1(x)
+        x = F.relu(x)
+        x = self.pool(x)   # (batch, 32, 16, 16)
+
+        # Conv block 2
+        x = self.conv2(x)  # (batch, 64, 16, 16)
+        x = self.bn2(x)
+        x = F.relu(x)
+        x = self.pool(x)   # (batch, 64, 8, 8)
+
+        # Conv block 3
+        x = self.conv3(x)  # (batch, 128, 8, 8)
+        x = self.bn3(x)
+        x = F.relu(x)
+        x = self.pool(x)   # (batch, 128, 4, 4)
+
+        # Flatten and fully connected
+        x = x.view(x.size(0), -1)  # (batch, 128*4*4)
+        x = self.fc1(x)
+        x = F.relu(x)
+        x = self.dropout(x)
+        x = self.fc2(x)
+
+        return x
+
+# Create model
+model = SimpleCNN(num_classes=10)
+
+# Test with random input (batch of 4 images, 3 channels, 32x32)
+input_batch = torch.randn(4, 3, 32, 32)
+output = model(input_batch)
+print(output.shape)  # torch.Size([4, 10])
+            </code></pre>
+
+            <h3>Key CNN Components</h3>
+
+            <h4>1. Convolutional Layers</h4>
+            <pre><code>
+# Important parameters:
+# - in_channels: number of input channels (3 for RGB)
+# - out_channels: number of filters (learned features)
+# - kernel_size: size of the convolution filter (3x3, 5x5, etc.)
+# - stride: step size (default=1)
+# - padding: add zeros around borders to preserve size
+
+conv = nn.Conv2d(
+    in_channels=64,
+    out_channels=128,
+    kernel_size=3,
+    stride=1,
+    padding=1  # "same" padding: output size = input size
+)
+            </code></pre>
+
+            <h4>2. Pooling Layers</h4>
+            <p>Pooling reduces spatial dimensions, making the network more efficient and translation-invariant:</p>
+            <pre><code>
+# Max Pooling: takes maximum value in each window
+max_pool = nn.MaxPool2d(kernel_size=2, stride=2)
+# Input (32x32) -> Output (16x16)
+
+# Average Pooling: takes average value
+avg_pool = nn.AvgPool2d(kernel_size=2, stride=2)
+
+# Adaptive Pooling: output size is fixed regardless of input
+adaptive_pool = nn.AdaptiveAvgPool2d((7, 7))
+# Any input size -> Output (7x7)
+            </code></pre>
+
+            <h4>3. Padding Strategies</h4>
+            <pre><code>
+# No padding: output shrinks
+conv_valid = nn.Conv2d(3, 64, kernel_size=3, padding=0)
+# Input 32x32 -> Output 30x30
+
+# Same padding: output size preserved
+conv_same = nn.Conv2d(3, 64, kernel_size=3, padding=1)
+# Input 32x32 -> Output 32x32
+
+# Calculate padding for "same" convolution:
+# padding = (kernel_size - 1) // 2
+# For kernel_size=3: padding=1
+# For kernel_size=5: padding=2
+            </code></pre>
+
+            <h3>Famous CNN Architectures</h3>
+
+            <h4>VGG-style (Deep Uniform Architecture)</h4>
+            <pre><code>
+class VGGBlock(nn.Module):
+    def __init__(self, in_channels, out_channels, num_convs):
+        super().__init__()
+        layers = []
+        for i in range(num_convs):
+            layers.extend([
+                nn.Conv2d(in_channels if i == 0 else out_channels,
+                         out_channels, kernel_size=3, padding=1),
+                nn.BatchNorm2d(out_channels),
+                nn.ReLU(inplace=True)
+            ])
+        layers.append(nn.MaxPool2d(kernel_size=2, stride=2))
+        self.block = nn.Sequential(*layers)
+
+    def forward(self, x):
+        return self.block(x)
+
+class VGGNet(nn.Module):
+    def __init__(self, num_classes=1000):
+        super().__init__()
+        self.features = nn.Sequential(
+            VGGBlock(3, 64, 2),    # 64 channels, 2 conv layers
+            VGGBlock(64, 128, 2),   # 128 channels, 2 conv layers
+            VGGBlock(128, 256, 3),  # 256 channels, 3 conv layers
+            VGGBlock(256, 512, 3),
+            VGGBlock(512, 512, 3)
+        )
+        self.classifier = nn.Sequential(
+            nn.Linear(512 * 7 * 7, 4096),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(4096, 4096),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(4096, num_classes)
+        )
+            </code></pre>
+
+            <h4>ResNet-style (Residual Connections)</h4>
+            <pre><code>
+class ResidualBlock(nn.Module):
+    def __init__(self, channels):
+        super().__init__()
+        self.conv1 = nn.Conv2d(channels, channels, 3, padding=1)
+        self.bn1 = nn.BatchNorm2d(channels)
+        self.conv2 = nn.Conv2d(channels, channels, 3, padding=1)
+        self.bn2 = nn.BatchNorm2d(channels)
+
+    def forward(self, x):
+        residual = x  # Save input
+
+        out = F.relu(self.bn1(self.conv1(x)))
+        out = self.bn2(self.conv2(out))
+
+        out += residual  # Skip connection
+        out = F.relu(out)
+        return out
+            </code></pre>
+
+            <h3>Training a CNN: Complete Example</h3>
+            <pre><code>
+import torchvision
+import torchvision.transforms as transforms
+from torch.utils.data import DataLoader
+
+# Data preparation
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+])
+
+train_dataset = torchvision.datasets.CIFAR10(
+    root='./data', train=True, download=True, transform=transform
+)
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+
+# Model, loss, optimizer
+model = SimpleCNN(num_classes=10)
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+# Training loop
+model.train()
+for epoch in range(10):
+    running_loss = 0.0
+    for i, (images, labels) in enumerate(train_loader):
+        # Forward pass
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+
+        # Backward pass
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        running_loss += loss.item()
+
+        if i % 100 == 99:
+            print(f'Epoch [{epoch+1}], Step [{i+1}], Loss: {running_loss/100:.4f}')
+            running_loss = 0.0
+            </code></pre>
+
+            <h3>Common Pitfalls</h3>
+            <ul>
+                <li><strong>Wrong input shape:</strong> CNN expects (batch, channels, height, width), not (batch, height, width, channels)</li>
+                <li><strong>Dimension mismatch:</strong> Forgetting to calculate flatten size correctly before fully connected layers</li>
+                <li><strong>Too many parameters:</strong> Using large kernels or too many channels early on</li>
+                <li><strong>No data augmentation:</strong> CNNs benefit hugely from augmentation (flips, rotations, crops)</li>
+            </ul>
+
+            <h3>Best Practices</h3>
+            <ul>
+                <li>Start with small 3×3 filters (like VGG and ResNet)</li>
+                <li>Use BatchNorm after conv layers for faster, more stable training</li>
+                <li>Increase channels as spatial dimensions decrease</li>
+                <li>Use adaptive pooling before final FC layer for flexible input sizes</li>
+                <li>Apply data augmentation during training</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Convolutional Neural Networks are the backbone of computer vision. By exploiting spatial structure through convolutions, parameter sharing, and hierarchical feature learning, CNNs achieve superhuman performance on image tasks. Modern architectures like ResNet and EfficientNet build on these foundations with skip connections, attention mechanisms, and careful scaling—but the core principles of convolution, pooling, and spatial feature extraction remain central to their success.</p>
+        `
+    },
+    {
+        id: 'b26',
+        title: 'Recurrent Neural Networks',
+        icon: '🔁',
+        description: 'Processing sequential data like text and time series.',
+        readTime: '15 min',
+        level: 'Beginner',
+        content: `
+            <h2>Recurrent Neural Networks (RNNs)</h2>
+            <p>Recurrent Neural Networks are designed to process sequential data where order matters—like sentences, time series, or videos. Unlike feedforward networks that treat each input independently, RNNs maintain an internal "memory" that captures information from previous time steps. This makes them ideal for tasks like language modeling, machine translation, and speech recognition.</p>
+
+            <h3>Why RNNs for Sequences?</h3>
+            <p>Standard neural networks have two critical limitations for sequential data:</p>
+            <ul>
+                <li><strong>Fixed input size:</strong> They require a predetermined input length, but sentences can vary wildly in length.</li>
+                <li><strong>No memory:</strong> They process each input independently, forgetting everything about previous inputs.</li>
+            </ul>
+            <p>RNNs solve these problems by processing inputs one step at a time and maintaining a hidden state that acts as memory.</p>
+
+            <h3>How RNNs Work</h3>
+            <p>At each time step, an RNN takes the current input and the previous hidden state, and produces a new hidden state:</p>
+            <pre><code>
+# RNN operation at each time step:
+h_t = tanh(W_hh @ h_{t-1} + W_xh @ x_t + b_h)
+y_t = W_hy @ h_t + b_y
+
+# Where:
+# h_t: hidden state at time t (memory)
+# x_t: input at time t
+# y_t: output at time t
+# W_hh, W_xh, W_hy: weight matrices
+            </code></pre>
+
+            <h3>Simple RNN in PyTorch</h3>
+            <pre><code>
+import torch
+import torch.nn as nn
+
+# Using PyTorch's built-in RNN
+class SimpleRNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super().__init__()
+        self.hidden_size = hidden_size
+
+        # RNN layer
+        self.rnn = nn.RNN(
+            input_size=input_size,
+            hidden_size=hidden_size,
+            num_layers=1,
+            batch_first=True  # Input shape: (batch, seq_len, features)
+        )
+
+        # Output layer
+        self.fc = nn.Linear(hidden_size, output_size)
+
+    def forward(self, x):
+        # x shape: (batch_size, seq_len, input_size)
+
+        # RNN forward pass
+        # output shape: (batch_size, seq_len, hidden_size)
+        # hidden shape: (num_layers, batch_size, hidden_size)
+        output, hidden = self.rnn(x)
+
+        # Use the last time step's output
+        last_output = output[:, -1, :]  # (batch_size, hidden_size)
+
+        # Final prediction
+        prediction = self.fc(last_output)  # (batch_size, output_size)
+        return prediction
+
+# Example usage
+model = SimpleRNN(input_size=10, hidden_size=128, output_size=5)
+
+# Batch of 32 sequences, each 20 steps long, with 10 features
+input_seq = torch.randn(32, 20, 10)
+output = model(input_seq)
+print(output.shape)  # torch.Size([32, 5])
+            </code></pre>
+
+            <h3>Implementing RNN from Scratch</h3>
+            <p>Understanding the mechanics helps debug and customize RNNs:</p>
+            <pre><code>
+class RNNFromScratch(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super().__init__()
+        self.hidden_size = hidden_size
+
+        # Weight matrices
+        self.W_xh = nn.Linear(input_size, hidden_size)
+        self.W_hh = nn.Linear(hidden_size, hidden_size)
+        self.W_hy = nn.Linear(hidden_size, output_size)
+
+    def forward(self, x):
+        batch_size, seq_len, _ = x.shape
+
+        # Initialize hidden state with zeros
+        h_t = torch.zeros(batch_size, self.hidden_size)
+
+        # Process sequence step by step
+        for t in range(seq_len):
+            x_t = x[:, t, :]  # Input at time t
+
+            # RNN cell computation
+            h_t = torch.tanh(self.W_xh(x_t) + self.W_hh(h_t))
+
+        # Output based on final hidden state
+        output = self.W_hy(h_t)
+        return output
+            </code></pre>
+
+            <h3>Bidirectional RNNs</h3>
+            <p>Process sequences in both directions to capture future context:</p>
+            <pre><code>
+class BidirectionalRNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super().__init__()
+        self.rnn = nn.RNN(
+            input_size,
+            hidden_size,
+            bidirectional=True,  # Forward and backward
+            batch_first=True
+        )
+        # Hidden size doubles: forward + backward
+        self.fc = nn.Linear(hidden_size * 2, output_size)
+
+    def forward(self, x):
+        output, hidden = self.rnn(x)
+        # output contains both forward and backward hidden states
+        last_output = output[:, -1, :]
+        return self.fc(last_output)
+            </code></pre>
+
+            <h3>Applications: Sentiment Analysis</h3>
+            <pre><code>
+# Sentiment classification: positive/negative movie reviews
+class SentimentRNN(nn.Module):
+    def __init__(self, vocab_size, embedding_dim, hidden_size):
+        super().__init__()
+        # Embedding layer: convert word indices to vectors
+        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+
+        # RNN layer
+        self.rnn = nn.RNN(embedding_dim, hidden_size, batch_first=True)
+
+        # Classification layer
+        self.fc = nn.Linear(hidden_size, 1)  # Binary: 0=negative, 1=positive
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x):
+        # x: (batch_size, seq_len) - word indices
+
+        # Convert words to embeddings
+        embedded = self.embedding(x)  # (batch_size, seq_len, embedding_dim)
+
+        # Process with RNN
+        output, hidden = self.rnn(embedded)
+
+        # Use last hidden state
+        last_hidden = hidden[-1]  # (batch_size, hidden_size)
+
+        # Classify
+        prediction = self.fc(last_hidden)
+        prediction = self.sigmoid(prediction)  # (batch_size, 1)
+
+        return prediction
+
+# Example training
+model = SentimentRNN(vocab_size=10000, embedding_dim=100, hidden_size=256)
+criterion = nn.BCELoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+# Training loop
+model.train()
+for reviews, labels in data_loader:
+    # reviews: (batch_size, seq_len)
+    # labels: (batch_size, 1)
+
+    optimizer.zero_grad()
+    predictions = model(reviews)
+    loss = criterion(predictions, labels)
+    loss.backward()
+    optimizer.step()
+            </code></pre>
+
+            <h3>The Vanishing Gradient Problem</h3>
+            <p>Basic RNNs struggle with long sequences because gradients vanish during backpropagation through time. Consider a 50-step sequence:</p>
+            <pre><code>
+# Gradient at step 1 depends on:
+# step 50 -> 49 -> 48 -> ... -> 2 -> 1
+
+# Each step multiplies by derivative of tanh (< 1)
+# After 50 steps: gradient ≈ (0.25)^50 ≈ 0 (vanishes!)
+
+# This makes it hard to learn long-term dependencies
+            </code></pre>
+
+            <p>This is why LSTMs and GRUs were invented—they use gating mechanisms to preserve gradients over longer sequences.</p>
+
+            <h3>When to Use RNNs</h3>
+            <ul>
+                <li><strong>Short sequences:</strong> RNNs work well for sequences < 30 steps</li>
+                <li><strong>Simple patterns:</strong> When you don't need to remember information from 100+ steps ago</li>
+                <li><strong>Quick prototyping:</strong> RNNs are simpler to understand and implement</li>
+                <li><strong>Resource-constrained:</strong> RNNs are more memory-efficient than LSTMs/Transformers</li>
+            </ul>
+
+            <h3>When to Use Alternatives</h3>
+            <ul>
+                <li><strong>Long sequences:</strong> Use LSTM or GRU for sequences > 50 steps</li>
+                <li><strong>Long-term dependencies:</strong> Need to remember info from 100+ steps ago</li>
+                <li><strong>Parallel processing:</strong> Use Transformers (can process all steps simultaneously)</li>
+                <li><strong>State-of-the-art:</strong> Transformers dominate most NLP tasks</li>
+            </ul>
+
+            <h3>Common Pitfalls</h3>
+            <ul>
+                <li><strong>Exploding gradients:</strong> Use gradient clipping: <code>nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)</code></li>
+                <li><strong>Wrong input shape:</strong> RNN expects (batch, seq_len, features) with batch_first=True</li>
+                <li><strong>Forgetting hidden state:</strong> For stateful RNNs, need to manually pass hidden state between batches</li>
+                <li><strong>Using for long sequences:</strong> Switch to LSTM/GRU for sequences > 30-50 steps</li>
+            </ul>
+
+            <h3>Practical Tips</h3>
+            <ul>
+                <li>Always use gradient clipping to prevent exploding gradients</li>
+                <li>Start with bidirectional RNNs for better context understanding</li>
+                <li>Use pre-trained word embeddings (Word2Vec, GloVe) instead of training from scratch</li>
+                <li>Consider LSTM or GRU instead of vanilla RNN for most real-world tasks</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>RNNs introduced the fundamental concept of processing sequences with memory, enabling neural networks to handle variable-length inputs and maintain context. While vanilla RNNs have limitations (vanishing gradients, slow training), they paved the way for LSTMs, GRUs, and ultimately Transformers. Understanding RNNs is essential for grasping sequential models and provides the foundation for more advanced architectures.</p>
+        `
+    },
+    {
+        id: 'b27',
+        title: 'Image Classification',
+        icon: '🏷️',
+        description: 'Teaching AI to recognize and categorize images.',
+        readTime: '14 min',
+        level: 'Beginner',
+        content: `
+            <h2>Image Classification</h2>
+            <p>Image classification is the task of assigning a label to an entire image from a predefined set of categories. It's one of the most fundamental computer vision tasks—from identifying cats vs. dogs to diagnosing diseases from medical scans. Modern deep learning models achieve superhuman accuracy on many image classification tasks, powering everything from photo organization to autonomous vehicles.</p>
+
+            <h3>The Image Classification Pipeline</h3>
+            <p>A typical image classification system consists of several stages:</p>
+            <ol>
+                <li><strong>Data Collection:</strong> Gather labeled images</li>
+                <li><strong>Preprocessing:</strong> Resize, normalize, augment images</li>
+                <li><strong>Model Architecture:</strong> Design or choose a CNN</li>
+                <li><strong>Training:</strong> Optimize model on training data</li>
+                <li><strong>Evaluation:</strong> Test on unseen data</li>
+                <li><strong>Deployment:</strong> Serve model in production</li>
+            </ol>
+
+            <h3>Building a Complete Image Classifier</h3>
+            <pre><code>
+import torch
+import torch.nn as nn
+import torchvision
+import torchvision.transforms as transforms
+from torch.utils.data import DataLoader
+
+# 1. Data Preparation
+transform_train = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465),
+                         (0.2023, 0.1994, 0.2010))
+])
+
+transform_test = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465),
+                         (0.2023, 0.1994, 0.2010))
+])
+
+# Load CIFAR-10 dataset
+train_dataset = torchvision.datasets.CIFAR10(
+    root='./data', train=True, download=True, transform=transform_train
+)
+test_dataset = torchvision.datasets.CIFAR10(
+    root='./data', train=False, download=True, transform=transform_test
+)
+
+train_loader = DataLoader(train_dataset, batch_size=128, shuffle=True, num_workers=2)
+test_loader = DataLoader(test_dataset, batch_size=100, shuffle=False, num_workers=2)
+
+# 2. Model Architecture
+class ImageClassifier(nn.Module):
+    def __init__(self, num_classes=10):
+        super().__init__()
+        self.features = nn.Sequential(
+            # Block 1
+            nn.Conv2d(3, 64, kernel_size=3, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(64, 64, kernel_size=3, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+
+            # Block 2
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.BatchNorm2d(128),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(128, 128, kernel_size=3, padding=1),
+            nn.BatchNorm2d(128),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+
+            # Block 3
+            nn.Conv2d(128, 256, kernel_size=3, padding=1),
+            nn.BatchNorm2d(256),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(256, 256, kernel_size=3, padding=1),
+            nn.BatchNorm2d(256),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+        )
+
+        self.classifier = nn.Sequential(
+            nn.Dropout(0.5),
+            nn.Linear(256 * 4 * 4, 512),
+            nn.ReLU(inplace=True),
+            nn.Dropout(0.5),
+            nn.Linear(512, num_classes)
+        )
+
+    def forward(self, x):
+        x = self.features(x)
+        x = x.view(x.size(0), -1)
+        x = self.classifier(x)
+        return x
+
+# 3. Training
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model = ImageClassifier(num_classes=10).to(device)
+
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
+
+def train_epoch(model, loader, criterion, optimizer, device):
+    model.train()
+    running_loss = 0.0
+    correct = 0
+    total = 0
+
+    for images, labels in loader:
+        images, labels = images.to(device), labels.to(device)
+
+        # Forward pass
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+
+        # Backward pass
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        # Statistics
+        running_loss += loss.item()
+        _, predicted = outputs.max(1)
+        total += labels.size(0)
+        correct += predicted.eq(labels).sum().item()
+
+    epoch_loss = running_loss / len(loader)
+    epoch_acc = 100. * correct / total
+    return epoch_loss, epoch_acc
+
+# 4. Evaluation
+def evaluate(model, loader, criterion, device):
+    model.eval()
+    running_loss = 0.0
+    correct = 0
+    total = 0
+
+    with torch.no_grad():
+        for images, labels in loader:
+            images, labels = images.to(device), labels.to(device)
+
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+
+            running_loss += loss.item()
+            _, predicted = outputs.max(1)
+            total += labels.size(0)
+            correct += predicted.eq(labels).sum().item()
+
+    test_loss = running_loss / len(loader)
+    test_acc = 100. * correct / total
+    return test_loss, test_acc
+
+# Training loop
+num_epochs = 100
+best_acc = 0
+
+for epoch in range(num_epochs):
+    train_loss, train_acc = train_epoch(model, train_loader, criterion, optimizer, device)
+    test_loss, test_acc = evaluate(model, test_loader, criterion, device)
+    scheduler.step()
+
+    print(f'Epoch [{epoch+1}/{num_epochs}]')
+    print(f'Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.2f}%')
+    print(f'Test Loss: {test_loss:.4f}, Test Acc: {test_acc:.2f}%')
+
+    # Save best model
+    if test_acc > best_acc:
+        best_acc = test_acc
+        torch.save(model.state_dict(), 'best_model.pth')
+            </code></pre>
+
+            <h3>Data Augmentation: Critical for Performance</h3>
+            <p>Data augmentation artificially increases dataset size and prevents overfitting:</p>
+            <pre><code>
+# Comprehensive augmentation pipeline
+transform_augmented = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip(p=0.5),
+    transforms.RandomRotation(15),
+    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2),
+    transforms.RandomAffine(0, translate=(0.1, 0.1)),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+    transforms.RandomErasing(p=0.5)
+])
+            </code></pre>
+
+            <h3>Using Pre-trained Models (Transfer Learning)</h3>
+            <p>For most tasks, use pre-trained models instead of training from scratch:</p>
+            <pre><code>
+import torchvision.models as models
+
+# Load pre-trained ResNet18
+model = models.resnet18(pretrained=True)
+
+# Freeze all layers
+for param in model.parameters():
+    param.requires_grad = False
+
+# Replace final layer for your task
+num_features = model.fc.in_features
+model.fc = nn.Linear(num_features, 10)  # 10 classes
+
+# Only train the final layer
+optimizer = torch.optim.Adam(model.fc.parameters(), lr=0.001)
+
+# Or fine-tune entire network with small learning rate
+for param in model.parameters():
+    param.requires_grad = True
+optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
+            </code></pre>
+
+            <h3>Inference and Prediction</h3>
+            <pre><code>
+# Load trained model
+model = ImageClassifier(num_classes=10)
+model.load_state_dict(torch.load('best_model.pth'))
+model.eval()
+model.to(device)
+
+# Classify a single image
+from PIL import Image
+
+def predict_image(image_path, model, transform, classes, device):
+    # Load and preprocess image
+    image = Image.open(image_path)
+    image = transform(image).unsqueeze(0)  # Add batch dimension
+    image = image.to(device)
+
+    # Predict
+    with torch.no_grad():
+        output = model(image)
+        probabilities = torch.softmax(output, dim=1)
+        confidence, predicted = probabilities.max(1)
+
+    predicted_class = classes[predicted.item()]
+    confidence_score = confidence.item() * 100
+
+    return predicted_class, confidence_score
+
+# CIFAR-10 classes
+classes = ['airplane', 'automobile', 'bird', 'cat', 'deer',
+           'dog', 'frog', 'horse', 'ship', 'truck']
+
+predicted_class, confidence = predict_image('test_image.jpg', model, transform_test, classes, device)
+print(f'Prediction: {predicted_class} (confidence: {confidence:.2f}%)')
+            </code></pre>
+
+            <h3>Evaluation Metrics</h3>
+            <pre><code>
+from sklearn.metrics import classification_report, confusion_matrix
+import numpy as np
+
+def detailed_evaluation(model, loader, classes, device):
+    model.eval()
+    all_predictions = []
+    all_labels = []
+
+    with torch.no_grad():
+        for images, labels in loader:
+            images = images.to(device)
+            outputs = model(images)
+            _, predicted = outputs.max(1)
+
+            all_predictions.extend(predicted.cpu().numpy())
+            all_labels.extend(labels.numpy())
+
+    # Classification report
+    print(classification_report(all_labels, all_predictions, target_names=classes))
+
+    # Confusion matrix
+    cm = confusion_matrix(all_labels, all_predictions)
+    print("\nConfusion Matrix:")
+    print(cm)
+
+    # Per-class accuracy
+    for i, class_name in enumerate(classes):
+        class_correct = cm[i, i]
+        class_total = cm[i].sum()
+        accuracy = 100. * class_correct / class_total
+        print(f'{class_name}: {accuracy:.2f}%')
+            </code></pre>
+
+            <h3>Common Challenges and Solutions</h3>
+            <ul>
+                <li><strong>Imbalanced classes:</strong> Use weighted loss or oversample minority classes</li>
+                <li><strong>Small dataset:</strong> Use aggressive data augmentation and transfer learning</li>
+                <li><strong>Overfitting:</strong> Add dropout, use regularization, increase data augmentation</li>
+                <li><strong>Poor accuracy:</strong> Try larger models, better augmentation, longer training</li>
+                <li><strong>Slow training:</strong> Use mixed precision training, larger batch sizes, multiple GPUs</li>
+            </ul>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li>Always split data into train/validation/test sets</li>
+                <li>Use data augmentation during training only</li>
+                <li>Start with pre-trained models (transfer learning)</li>
+                <li>Monitor training and validation metrics to detect overfitting</li>
+                <li>Save checkpoints and use early stopping</li>
+                <li>Test on multiple images before deployment</li>
+                <li>Use ensemble methods for critical applications</li>
+            </ol>
+
+            <h3>Conclusion</h3>
+            <p>Image classification is the gateway to computer vision. Modern CNNs combined with transfer learning enable solving most classification tasks with limited data and compute. The key to success: quality data, appropriate augmentation, choosing the right architecture (usually pre-trained), and careful evaluation. Master these fundamentals, and you're ready to tackle more complex vision tasks like object detection, segmentation, and generative models.</p>
+        `
+    },
+    {
+        id: 'b28',
+        title: 'Natural Language Processing',
+        icon: '🗣️',
+        description: 'Enabling AI to understand and generate human language.',
+        readTime: '16 min',
+        level: 'Beginner',
+        content: `
+            <h2>Natural Language Processing (NLP)</h2>
+            <p>Natural Language Processing enables computers to understand, interpret, and generate human language. From autocomplete and translation to chatbots and content generation, NLP powers many of the AI applications we use daily. Modern deep learning has revolutionized NLP, enabling systems that can read, write, and converse with near-human fluency.</p>
+
+            <h3>Core NLP Tasks</h3>
+            <ul>
+                <li><strong>Classification:</strong> Sentiment analysis, spam detection, topic classification</li>
+                <li><strong>Sequence Labeling:</strong> Named entity recognition, part-of-speech tagging</li>
+                <li><strong>Sequence-to-Sequence:</strong> Machine translation, summarization, question answering</li>
+                <li><strong>Generation:</strong> Text completion, chatbots, story generation</li>
+            </ul>
+
+            <h3>Text Preprocessing: From Strings to Tensors</h3>
+            <p>Neural networks work with numbers, so we must convert text to numerical representations:</p>
+            <pre><code>
+import torch
+from collections import Counter
+
+# Sample corpus
+texts = [
+    "I love machine learning",
+    "Machine learning is amazing",
+    "I love deep learning"
+]
+
+# 1. Tokenization: split text into words
+def tokenize(text):
+    return text.lower().split()
+
+tokenized_texts = [tokenize(text) for text in texts]
+print(tokenized_texts)
+# [['i', 'love', 'machine', 'learning'],
+#  ['machine', 'learning', 'is', 'amazing'],
+#  ['i', 'love', 'deep', 'learning']]
+
+# 2. Build vocabulary
+all_words = [word for text in tokenized_texts for word in text]
+vocab = {'<PAD>': 0, '<UNK>': 1}  # Special tokens
+for i, word in enumerate(set(all_words), start=2):
+    vocab[word] = i
+
+print(f"Vocabulary size: {len(vocab)}")
+print(vocab)
+
+# 3. Convert words to indices
+def text_to_indices(text, vocab, max_len=10):
+    indices = [vocab.get(word, vocab['<UNK>']) for word in tokenize(text)]
+    # Pad to max_len
+    if len(indices) < max_len:
+        indices += [vocab['<PAD>']] * (max_len - len(indices))
+    else:
+        indices = indices[:max_len]
+    return indices
+
+indexed_texts = [text_to_indices(text, vocab) for text in texts]
+print(indexed_texts)
+            </code></pre>
+
+            <h3>Word Embeddings: Semantic Representations</h3>
+            <p>Instead of one-hot encoding (sparse, no meaning), use dense embeddings that capture semantic relationships:</p>
+            <pre><code>
+import torch.nn as nn
+
+# Embedding layer
+vocab_size = len(vocab)
+embedding_dim = 100
+
+embedding = nn.Embedding(vocab_size, embedding_dim)
+
+# Convert word index to dense vector
+word_idx = torch.tensor([vocab['learning']])
+word_vector = embedding(word_idx)
+print(word_vector.shape)  # torch.Size([1, 100])
+
+# Similar words have similar embeddings (after training)
+# e.g., embedding('king') - embedding('man') + embedding('woman') ≈ embedding('queen')
+            </code></pre>
+
+            <h3>Text Classification with RNN</h3>
+            <pre><code>
+class TextClassifier(nn.Module):
+    def __init__(self, vocab_size, embedding_dim, hidden_dim, output_dim, n_layers=2, dropout=0.5):
+        super().__init__()
+
+        # Embedding layer
+        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+
+        # LSTM for sequence processing
+        self.lstm = nn.LSTM(
+            embedding_dim,
+            hidden_dim,
+            num_layers=n_layers,
+            bidirectional=True,
+            dropout=dropout,
+            batch_first=True
+        )
+
+        # Classification layers
+        self.dropout = nn.Dropout(dropout)
+        self.fc = nn.Linear(hidden_dim * 2, output_dim)  # *2 for bidirectional
+
+    def forward(self, text):
+        # text: (batch_size, seq_len)
+
+        # Embed words
+        embedded = self.embedding(text)  # (batch, seq_len, embedding_dim)
+        embedded = self.dropout(embedded)
+
+        # LSTM processing
+        output, (hidden, cell) = self.lstm(embedded)
+        # output: (batch, seq_len, hidden_dim * 2)
+
+        # Concatenate final forward and backward hidden states
+        hidden = torch.cat((hidden[-2,:,:], hidden[-1,:,:]), dim=1)
+        # hidden: (batch, hidden_dim * 2)
+
+        hidden = self.dropout(hidden)
+        prediction = self.fc(hidden)
+
+        return prediction
+
+# Example: Sentiment classification
+model = TextClassifier(
+    vocab_size=10000,
+    embedding_dim=100,
+    hidden_dim=256,
+    output_dim=2,  # Binary: positive/negative
+    n_layers=2,
+    dropout=0.5
+)
+
+# Training
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+model.train()
+for epoch in range(10):
+    for batch_text, batch_labels in train_loader:
+        optimizer.zero_grad()
+        predictions = model(batch_text)
+        loss = criterion(predictions, batch_labels)
+        loss.backward()
+        optimizer.step()
+            </code></pre>
+
+            <h3>Using Pre-trained Transformers (Modern Approach)</h3>
+            <p>Modern NLP uses transformer-based models like BERT, which are pre-trained on massive text corpora:</p>
+            <pre><code>
+from transformers import BertTokenizer, BertForSequenceClassification
+import torch
+
+# Load pre-trained BERT
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
+
+# Tokenize text
+text = "This movie is absolutely amazing!"
+inputs = tokenizer(
+    text,
+    return_tensors='pt',
+    padding=True,
+    truncation=True,
+    max_length=512
+)
+
+# Inference
+model.eval()
+with torch.no_grad():
+    outputs = model(**inputs)
+    logits = outputs.logits
+    predicted_class = torch.argmax(logits, dim=1)
+    probabilities = torch.softmax(logits, dim=1)
+
+print(f"Predicted class: {predicted_class.item()}")
+print(f"Probabilities: {probabilities}")
+            </code></pre>
+
+            <h3>Fine-tuning BERT for Your Task</h3>
+            <pre><code>
+from transformers import AdamW, get_linear_schedule_with_warmup
+
+# Prepare model
+model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
+
+# Optimizer with different learning rates for different layers
+optimizer = AdamW([
+    {'params': model.bert.parameters(), 'lr': 2e-5},  # Smaller LR for pre-trained layers
+    {'params': model.classifier.parameters(), 'lr': 1e-4}  # Larger LR for new layer
+], lr=2e-5)
+
+# Learning rate scheduler
+total_steps = len(train_loader) * num_epochs
+scheduler = get_linear_schedule_with_warmup(
+    optimizer,
+    num_warmup_steps=total_steps // 10,
+    num_training_steps=total_steps
+)
+
+# Training loop
+model.train()
+for epoch in range(num_epochs):
+    for batch in train_loader:
+        # batch contains: input_ids, attention_mask, labels
+
+        optimizer.zero_grad()
+
+        outputs = model(
+            input_ids=batch['input_ids'],
+            attention_mask=batch['attention_mask'],
+            labels=batch['labels']
+        )
+
+        loss = outputs.loss
+        loss.backward()
+
+        # Gradient clipping to prevent exploding gradients
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+
+        optimizer.step()
+        scheduler.step()
+
+    print(f'Epoch {epoch+1}, Loss: {loss.item():.4f}')
+            </code></pre>
+
+            <h3>Named Entity Recognition (NER)</h3>
+            <p>Identify and classify entities in text (people, organizations, locations):</p>
+            <pre><code>
+from transformers import pipeline
+
+# Load pre-trained NER model
+ner_pipeline = pipeline("ner", model="dbmdz/bert-large-cased-finetuned-conll03-english")
+
+# Extract entities
+text = "Apple Inc. was founded by Steve Jobs in Cupertino, California."
+entities = ner_pipeline(text)
+
+for entity in entities:
+    print(f"{entity['word']}: {entity['entity']} (confidence: {entity['score']:.2f})")
+
+# Output:
+# Apple: B-ORG (confidence: 0.99)
+# Inc: I-ORG (confidence: 0.99)
+# Steve: B-PER (confidence: 0.99)
+# Jobs: I-PER (confidence: 0.99)
+# Cupertino: B-LOC (confidence: 0.99)
+# California: B-LOC (confidence: 0.99)
+            </code></pre>
+
+            <h3>Text Generation</h3>
+            <pre><code>
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+# Load GPT-2
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained('gpt2')
+
+# Generate text
+prompt = "The future of artificial intelligence is"
+input_ids = tokenizer.encode(prompt, return_tensors='pt')
+
+# Generate with various strategies
+output = model.generate(
+    input_ids,
+    max_length=100,
+    num_return_sequences=3,
+    temperature=0.8,  # Controls randomness
+    top_k=50,  # Sample from top 50 tokens
+    top_p=0.95,  # Nucleus sampling
+    do_sample=True
+)
+
+# Decode generated texts
+for i, generated_sequence in enumerate(output):
+    text = tokenizer.decode(generated_sequence, skip_special_tokens=True)
+    print(f"\nGeneration {i+1}:")
+    print(text)
+            </code></pre>
+
+            <h3>Common NLP Challenges</h3>
+            <ul>
+                <li><strong>Ambiguity:</strong> Words have multiple meanings depending on context</li>
+                <li><strong>Context:</strong> Meaning depends on surrounding words and broader context</li>
+                <li><strong>Sarcasm/Irony:</strong> Literal meaning differs from intended meaning</li>
+                <li><strong>Domain-specific language:</strong> Medical, legal, technical jargon</li>
+                <li><strong>Multilingual:</strong> Different languages have different grammar and structure</li>
+            </ul>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li><strong>Start with pre-trained models:</strong> BERT, RoBERTa, GPT for most tasks</li>
+                <li><strong>Use appropriate tokenizers:</strong> Match tokenizer to model</li>
+                <li><strong>Handle special tokens:</strong> [CLS], [SEP], [PAD], [UNK]</li>
+                <li><strong>Batch similar lengths:</strong> Minimize padding for efficiency</li>
+                <li><strong>Monitor GPU memory:</strong> Transformers are memory-intensive</li>
+                <li><strong>Use mixed precision:</strong> Speed up training with fp16</li>
+                <li><strong>Evaluate carefully:</strong> Use task-appropriate metrics (F1, BLEU, ROUGE)</li>
+            </ol>
+
+            <h3>Popular NLP Libraries</h3>
+            <pre><code>
+# Hugging Face Transformers: Pre-trained models
+from transformers import pipeline, AutoModel, AutoTokenizer
+
+# spaCy: Industrial-strength NLP
+import spacy
+nlp = spacy.load("en_core_web_sm")
+doc = nlp("Apple is looking at buying U.K. startup for $1 billion")
+
+# NLTK: Traditional NLP toolkit
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+
+# Gensim: Topic modeling and word embeddings
+from gensim.models import Word2Vec
+            </code></pre>
+
+            <h3>Conclusion</h3>
+            <p>NLP has been transformed by deep learning, especially transformers like BERT and GPT. For most tasks, using pre-trained models through Hugging Face Transformers is the best starting point—they provide state-of-the-art performance with minimal code. Understanding the fundamentals (tokenization, embeddings, sequence models) helps you customize and debug these models for your specific needs.</p>
+        `
+    },
+    {
+        id: 'b29',
+        title: 'Sentiment Analysis',
+        icon: '😊',
+        description: 'Determining emotions and opinions in text.',
+        readTime: '12 min',
+        level: 'Beginner',
+        content: `
+            <h2>Sentiment Analysis</h2>
+            <p>Sentiment analysis (also called opinion mining) is the task of determining the emotional tone or opinion expressed in text. Is a movie review positive or negative? Is a tweet happy, angry, or neutral? From analyzing customer feedback to monitoring brand reputation on social media, sentiment analysis is one of the most practical NLP applications.</p>
+
+            <h3>Types of Sentiment Analysis</h3>
+            <ul>
+                <li><strong>Binary:</strong> Positive vs. Negative</li>
+                <li><strong>Multi-class:</strong> Positive, Negative, Neutral</li>
+                <li><strong>Fine-grained:</strong> Very Positive, Positive, Neutral, Negative, Very Negative</li>
+                <li><strong>Aspect-based:</strong> Sentiment about specific aspects (e.g., "food was great, service was terrible")</li>
+                <li><strong>Emotion detection:</strong> Joy, Sadness, Anger, Fear, Surprise</li>
+            </ul>
+
+            <h3>Quick Start: Using Pre-trained Models</h3>
+            <pre><code>
+from transformers import pipeline
+
+# Load sentiment analysis pipeline
+sentiment_analyzer = pipeline("sentiment-analysis")
+
+# Analyze single text
+result = sentiment_analyzer("I absolutely loved this movie!")
+print(result)
+# [{'label': 'POSITIVE', 'score': 0.9998}]
+
+# Analyze multiple texts
+texts = [
+    "This product is amazing!",
+    "Terrible experience, would not recommend.",
+    "It's okay, nothing special."
+]
+
+results = sentiment_analyzer(texts)
+for text, result in zip(texts, results):
+    print(f"Text: {text}")
+    print(f"Sentiment: {result['label']} (confidence: {result['score']:.2%})\n")
+            </code></pre>
+
+            <h3>Building a Sentiment Classifier from Scratch</h3>
+            <pre><code>
+import torch
+import torch.nn as nn
+from torch.utils.data import Dataset, DataLoader
+
+# Custom dataset
+class SentimentDataset(Dataset):
+    def __init__(self, texts, labels, tokenizer, max_len=128):
+        self.texts = texts
+        self.labels = labels
+        self.tokenizer = tokenizer
+        self.max_len = max_len
+
+    def __len__(self):
+        return len(self.texts)
+
+    def __getitem__(self, idx):
+        text = str(self.texts[idx])
+        label = self.labels[idx]
+
+        encoding = self.tokenizer.encode_plus(
+            text,
+            add_special_tokens=True,
+            max_length=self.max_len,
+            padding='max_length',
+            truncation=True,
+            return_attention_mask=True,
+            return_tensors='pt'
+        )
+
+        return {
+            'input_ids': encoding['input_ids'].flatten(),
+            'attention_mask': encoding['attention_mask'].flatten(),
+            'label': torch.tensor(label, dtype=torch.long)
+        }
+
+# Simple LSTM-based classifier
+class SentimentLSTM(nn.Module):
+    def __init__(self, vocab_size, embedding_dim, hidden_dim, output_dim, n_layers=2, dropout=0.5):
+        super().__init__()
+        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+        self.lstm = nn.LSTM(
+            embedding_dim,
+            hidden_dim,
+            num_layers=n_layers,
+            bidirectional=True,
+            dropout=dropout,
+            batch_first=True
+        )
+        self.dropout = nn.Dropout(dropout)
+        self.fc = nn.Linear(hidden_dim * 2, output_dim)
+
+    def forward(self, input_ids, attention_mask):
+        embedded = self.dropout(self.embedding(input_ids))
+        output, (hidden, cell) = self.lstm(embedded)
+
+        # Concatenate final forward and backward hidden states
+        hidden = self.dropout(torch.cat((hidden[-2,:,:], hidden[-1,:,:]), dim=1))
+        prediction = self.fc(hidden)
+
+        return prediction
+
+# Training function
+def train_epoch(model, data_loader, criterion, optimizer, device):
+    model.train()
+    total_loss = 0
+    correct = 0
+    total = 0
+
+    for batch in data_loader:
+        input_ids = batch['input_ids'].to(device)
+        attention_mask = batch['attention_mask'].to(device)
+        labels = batch['label'].to(device)
+
+        optimizer.zero_grad()
+
+        outputs = model(input_ids, attention_mask)
+        loss = criterion(outputs, labels)
+
+        loss.backward()
+        optimizer.step()
+
+        total_loss += loss.item()
+        _, predicted = torch.max(outputs, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+    return total_loss / len(data_loader), 100 * correct / total
+            </code></pre>
+
+            <h3>Fine-tuning BERT for Sentiment Analysis</h3>
+            <pre><code>
+from transformers import BertTokenizer, BertForSequenceClassification, AdamW
+
+# Load pre-trained BERT
+model_name = 'bert-base-uncased'
+tokenizer = BertTokenizer.from_pretrained(model_name)
+model = BertForSequenceClassification.from_pretrained(model_name, num_labels=2)
+
+# Prepare data
+train_texts = [
+    "I love this product!",
+    "This is the worst purchase ever.",
+    "Pretty good overall.",
+    # ... more examples
+]
+train_labels = [1, 0, 1]  # 1=positive, 0=negative
+
+# Create dataset and dataloader
+train_dataset = SentimentDataset(train_texts, train_labels, tokenizer)
+train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
+
+# Setup training
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model.to(device)
+
+optimizer = AdamW(model.parameters(), lr=2e-5)
+criterion = nn.CrossEntropyLoss()
+
+# Training loop
+num_epochs = 3
+for epoch in range(num_epochs):
+    model.train()
+    total_loss = 0
+
+    for batch in train_loader:
+        input_ids = batch['input_ids'].to(device)
+        attention_mask = batch['attention_mask'].to(device)
+        labels = batch['label'].to(device)
+
+        optimizer.zero_grad()
+
+        outputs = model(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            labels=labels
+        )
+
+        loss = outputs.loss
+        total_loss += loss.item()
+
+        loss.backward()
+        optimizer.step()
+
+    avg_loss = total_loss / len(train_loader)
+    print(f'Epoch {epoch+1}/{num_epochs}, Loss: {avg_loss:.4f}')
+
+# Save model
+model.save_pretrained('./sentiment_model')
+tokenizer.save_pretrained('./sentiment_model')
+            </code></pre>
+
+            <h3>Real-world Application: Social Media Monitoring</h3>
+            <pre><code>
+# Analyze tweets about a brand
+tweets = [
+    "Just tried the new @BrandX product. Absolutely amazing! #love",
+    "@BrandX customer service is terrible. Been waiting for 2 hours!",
+    "Meh, @BrandX is okay. Nothing special.",
+    "OMG @BrandX just made my day! Best purchase ever!",
+    "@BrandX quality has really gone downhill lately :("
+]
+
+# Load model
+sentiment_analyzer = pipeline("sentiment-analysis", model="./sentiment_model")
+
+# Analyze and aggregate
+positive = 0
+negative = 0
+neutral = 0
+
+for tweet in tweets:
+    result = sentiment_analyzer(tweet)[0]
+    sentiment = result['label']
+    score = result['score']
+
+    print(f"Tweet: {tweet}")
+    print(f"Sentiment: {sentiment} ({score:.2%})\n")
+
+    if sentiment == 'POSITIVE':
+        positive += 1
+    elif sentiment == 'NEGATIVE':
+        negative += 1
+    else:
+        neutral += 1
+
+# Summary
+total = len(tweets)
+print(f"\n=== Sentiment Summary ===")
+print(f"Positive: {positive}/{total} ({100*positive/total:.1f}%)")
+print(f"Negative: {negative}/{total} ({100*negative/total:.1f}%)")
+print(f"Neutral: {neutral}/{total} ({100*neutral/total:.1f}%)")
+            </code></pre>
+
+            <h3>Handling Challenges in Sentiment Analysis</h3>
+
+            <h4>1. Sarcasm and Irony</h4>
+            <pre><code>
+# Sarcasm is hard for models to detect
+text = "Oh great, another bug. Just what I needed."
+# Literally positive words ("great"), but actually negative
+
+# Solution: Use models fine-tuned on sarcasm datasets
+# Or add context features (punctuation, emoji, capitalization)
+            </code></pre>
+
+            <h4>2. Negation</h4>
+            <pre><code>
+# "not good" vs "good" should have opposite sentiments
+texts = [
+    "This movie is good",
+    "This movie is not good",
+    "This movie is not bad"
+]
+
+# Modern transformers handle this well due to attention mechanism
+# LSTM/RNN may struggle without careful preprocessing
+            </code></pre>
+
+            <h4>3. Aspect-based Sentiment</h4>
+            <pre><code>
+# Extract sentiment about different aspects
+review = "The food was excellent but the service was terrible."
+
+# Need to identify:
+# - Aspect: "food" -> Sentiment: Positive
+# - Aspect: "service" -> Sentiment: Negative
+
+# Use specialized aspect-based sentiment models
+from transformers import pipeline
+
+aspect_analyzer = pipeline("text-classification",
+                           model="yangheng/deberta-v3-base-absa")
+            </code></pre>
+
+            <h3>Evaluation Metrics</h3>
+            <pre><code>
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
+
+def evaluate_sentiment_model(model, test_loader, device):
+    model.eval()
+    all_predictions = []
+    all_labels = []
+
+    with torch.no_grad():
+        for batch in test_loader:
+            input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            labels = batch['label']
+
+            outputs = model(input_ids=input_ids, attention_mask=attention_mask)
+            predictions = torch.argmax(outputs.logits, dim=1).cpu()
+
+            all_predictions.extend(predictions.numpy())
+            all_labels.extend(labels.numpy())
+
+    # Calculate metrics
+    accuracy = accuracy_score(all_labels, all_predictions)
+    precision, recall, f1, _ = precision_recall_fscore_support(
+        all_labels, all_predictions, average='weighted'
+    )
+
+    print(f"Accuracy: {accuracy:.4f}")
+    print(f"Precision: {precision:.4f}")
+    print(f"Recall: {recall:.4f}")
+    print(f"F1 Score: {f1:.4f}")
+
+    # Confusion matrix
+    cm = confusion_matrix(all_labels, all_predictions)
+    print("\nConfusion Matrix:")
+    print(cm)
+            </code></pre>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li><strong>Use domain-specific models:</strong> Financial, medical, social media text differ significantly</li>
+                <li><strong>Handle class imbalance:</strong> Often more positive than negative examples</li>
+                <li><strong>Consider context:</strong> Same words mean different things in different domains</li>
+                <li><strong>Test on edge cases:</strong> Sarcasm, mixed sentiments, very short text</li>
+                <li><strong>Aggregate carefully:</strong> Average confidence scores, not just labels</li>
+                <li><strong>Update regularly:</strong> Language and sentiment expressions evolve</li>
+            </ol>
+
+            <h3>Common Pitfalls</h3>
+            <ul>
+                <li><strong>Ignoring neutral class:</strong> Not everything is clearly positive or negative</li>
+                <li><strong>Over-relying on keywords:</strong> "bad" in "not bad" is positive</li>
+                <li><strong>Missing context:</strong> "This movie is sick!" (positive slang vs. negative literal)</li>
+                <li><strong>Biased training data:</strong> Models learn dataset biases</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Sentiment analysis is one of the most practical NLP applications, with use cases ranging from customer feedback analysis to market research. Modern pre-trained transformers like BERT achieve impressive accuracy out-of-the-box, and fine-tuning on domain-specific data further improves performance. The key challenges—sarcasm, negation, and aspect-based sentiment—require careful model selection and sometimes specialized architectures, but the fundamentals remain: quality labeled data and appropriate model choice.</p>
+        `
+    },
+    {
+        id: 'b30',
+        title: 'Named Entity Recognition',
+        icon: '🏢',
+        description: 'Identifying and classifying entities in text.',
+        readTime: '13 min',
+        level: 'Beginner',
+        content: `
+            <h2>Named Entity Recognition (NER)</h2>
+            <p>Named Entity Recognition is the task of identifying and classifying named entities in text into predefined categories such as person names, organizations, locations, dates, quantities, and more. NER is a fundamental building block for information extraction, question answering, and knowledge graph construction.</p>
+
+            <h3>Common Entity Types</h3>
+            <ul>
+                <li><strong>PER (Person):</strong> Steve Jobs, Marie Curie, Barack Obama</li>
+                <li><strong>ORG (Organization):</strong> Apple Inc., United Nations, Microsoft</li>
+                <li><strong>LOC (Location):</strong> Paris, Mount Everest, California</li>
+                <li><strong>DATE:</strong> January 2024, Monday, next week</li>
+                <li><strong>TIME:</strong> 3:00 PM, midnight, dawn</li>
+                <li><strong>MONEY:</strong> $100, €50, £25</li>
+                <li><strong>PERCENT:</strong> 75%, 0.5%, one-third</li>
+                <li><strong>GPE (Geo-Political Entity):</strong> Countries, cities, states</li>
+            </ul>
+
+            <h3>Quick Start with Pre-trained Models</h3>
+            <pre><code>
+from transformers import pipeline
+
+# Load pre-trained NER model
+ner = pipeline("ner", model="dbmdz/bert-large-cased-finetuned-conll03-english", grouped_entities=True)
+
+# Extract entities
+text = """
+Apple Inc. was founded by Steve Jobs, Steve Wozniak, and Ronald Wayne
+in April 1976 in Cupertino, California. The company reached a market
+cap of $3 trillion in January 2022.
+"""
+
+entities = ner(text)
+
+for entity in entities:
+    print(f"{entity['word']}: {entity['entity_group']} (confidence: {entity['score']:.2%})")
+
+# Output:
+# Apple Inc.: ORG (confidence: 99%)
+# Steve Jobs: PER (confidence: 99%)
+# Steve Wozniak: PER (confidence: 99%)
+# Ronald Wayne: PER (confidence: 99%)
+# April 1976: DATE (confidence: 98%)
+# Cupertino: LOC (confidence: 99%)
+# California: LOC (confidence: 99%)
+# $3 trillion: MONEY (confidence: 97%)
+# January 2022: DATE (confidence: 98%)
+            </code></pre>
+
+            <h3>Understanding BIO Tagging</h3>
+            <p>NER uses BIO (Beginning, Inside, Outside) tagging scheme to handle multi-word entities:</p>
+            <pre><code>
+# Sentence: "Steve Jobs founded Apple Inc."
+# Tokens:   Steve  Jobs  founded  Apple  Inc.  .
+# Tags:     B-PER  I-PER O        B-ORG  I-ORG O
+
+# B-TAG: Beginning of an entity
+# I-TAG: Inside (continuation) of an entity
+# O: Outside (not an entity)
+
+# This allows identifying "Steve Jobs" as a single PERSON entity
+# and "Apple Inc." as a single ORGANIZATION entity
+            </code></pre>
+
+            <h3>Building a Custom NER Model</h3>
+            <pre><code>
+import torch
+import torch.nn as nn
+from transformers import BertTokenizerFast, BertForTokenClassification
+from torch.utils.data import Dataset, DataLoader
+
+# Custom NER dataset
+class NERDataset(Dataset):
+    def __init__(self, texts, tags, tokenizer, label2id, max_len=128):
+        self.texts = texts
+        self.tags = tags
+        self.tokenizer = tokenizer
+        self.label2id = label2id
+        self.max_len = max_len
+
+    def __len__(self):
+        return len(self.texts)
+
+    def __getitem__(self, idx):
+        text = self.texts[idx]
+        tags = self.tags[idx]
+
+        # Tokenize
+        encoding = self.tokenizer(
+            text.split(),
+            is_split_into_words=True,
+            padding='max_length',
+            truncation=True,
+            max_length=self.max_len,
+            return_tensors='pt'
+        )
+
+        # Align tags with tokenized words
+        labels = []
+        word_ids = encoding.word_ids(batch_index=0)
+        previous_word_idx = None
+
+        for word_idx in word_ids:
+            if word_idx is None:
+                labels.append(-100)  # Special token, ignore in loss
+            elif word_idx != previous_word_idx:
+                labels.append(self.label2id[tags[word_idx]])
+            else:
+                labels.append(-100)  # Subword token, ignore
+            previous_word_idx = word_idx
+
+        return {
+            'input_ids': encoding['input_ids'].flatten(),
+            'attention_mask': encoding['attention_mask'].flatten(),
+            'labels': torch.tensor(labels, dtype=torch.long)
+        }
+
+# Example data
+texts = [
+    ["Steve", "Jobs", "founded", "Apple", "Inc", "."],
+    ["Google", "is", "based", "in", "Mountain", "View", ",", "California", "."]
+]
+
+tags = [
+    ["B-PER", "I-PER", "O", "B-ORG", "I-ORG", "O"],
+    ["B-ORG", "O", "O", "O", "B-LOC", "I-LOC", "O", "B-LOC", "O"]
+]
+
+# Create label mappings
+unique_tags = list(set(tag for doc in tags for tag in doc))
+label2id = {tag: i for i, tag in enumerate(unique_tags)}
+id2label = {i: tag for tag, i in label2id.items()}
+
+# Load tokenizer and model
+tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')
+model = BertForTokenClassification.from_pretrained(
+    'bert-base-cased',
+    num_labels=len(label2id),
+    id2label=id2label,
+    label2id=label2id
+)
+
+# Create dataset and dataloader
+dataset = NERDataset(texts, tags, tokenizer, label2id)
+dataloader = DataLoader(dataset, batch_size=8, shuffle=True)
+
+# Training
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model.to(device)
+
+optimizer = torch.optim.AdamW(model.parameters(), lr=5e-5)
+
+model.train()
+for epoch in range(3):
+    total_loss = 0
+    for batch in dataloader:
+        input_ids = batch['input_ids'].to(device)
+        attention_mask = batch['attention_mask'].to(device)
+        labels = batch['labels'].to(device)
+
+        optimizer.zero_grad()
+
+        outputs = model(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            labels=labels
+        )
+
+        loss = outputs.loss
+        total_loss += loss.item()
+
+        loss.backward()
+        optimizer.step()
+
+    print(f'Epoch {epoch+1}, Loss: {total_loss/len(dataloader):.4f}')
+            </code></pre>
+
+            <h3>Inference and Entity Extraction</h3>
+            <pre><code>
+def predict_entities(text, model, tokenizer, id2label, device):
+    model.eval()
+
+    # Tokenize
+    inputs = tokenizer(
+        text.split(),
+        is_split_into_words=True,
+        return_tensors='pt',
+        padding=True,
+        truncation=True
+    ).to(device)
+
+    # Predict
+    with torch.no_grad():
+        outputs = model(**inputs)
+        predictions = torch.argmax(outputs.logits, dim=2)
+
+    # Decode predictions
+    tokens = tokenizer.convert_ids_to_tokens(inputs['input_ids'][0])
+    word_ids = inputs.word_ids(batch_index=0)
+
+    entities = []
+    current_entity = None
+    previous_word_idx = None
+
+    for i, (token, word_idx) in enumerate(zip(tokens, word_ids)):
+        if word_idx is None:
+            continue
+
+        if word_idx != previous_word_idx:
+            pred_label = id2label[predictions[0][i].item()]
+
+            if pred_label.startswith('B-'):
+                # Start of new entity
+                if current_entity:
+                    entities.append(current_entity)
+                current_entity = {
+                    'word': token,
+                    'entity': pred_label[2:],  # Remove 'B-' prefix
+                    'start': word_idx,
+                    'end': word_idx
+                }
+            elif pred_label.startswith('I-') and current_entity:
+                # Continuation of entity
+                current_entity['word'] += ' ' + token
+                current_entity['end'] = word_idx
+            else:
+                # Not an entity
+                if current_entity:
+                    entities.append(current_entity)
+                    current_entity = None
+
+            previous_word_idx = word_idx
+
+    if current_entity:
+        entities.append(current_entity)
+
+    return entities
+
+# Test
+text = "Elon Musk announced that Tesla will open a factory in Berlin, Germany."
+entities = predict_entities(text, model, tokenizer, id2label, device)
+
+for entity in entities:
+    print(f"{entity['word']}: {entity['entity']}")
+            </code></pre>
+
+            <h3>Using spaCy for NER</h3>
+            <p>spaCy provides production-ready NER with minimal code:</p>
+            <pre><code>
+import spacy
+
+# Load pre-trained model
+nlp = spacy.load("en_core_web_sm")
+
+# Process text
+text = "Microsoft was founded by Bill Gates and Paul Allen in Albuquerque, New Mexico in 1975."
+doc = nlp(text)
+
+# Extract entities
+for ent in doc.ents:
+    print(f"{ent.text:20} {ent.label_:10} {spacy.explain(ent.label_)}")
+
+# Output:
+# Microsoft            ORG        Companies, agencies, institutions
+# Bill Gates           PERSON     People, including fictional
+# Paul Allen           PERSON     People, including fictional
+# Albuquerque          GPE        Countries, cities, states
+# New Mexico           GPE        Countries, cities, states
+# 1975                 DATE       Absolute or relative dates or periods
+
+# Visualize entities (in Jupyter notebook)
+from spacy import displacy
+displacy.render(doc, style='ent', jupyter=True)
+            </code></pre>
+
+            <h3>Custom Entity Types with spaCy</h3>
+            <pre><code>
+# Train spaCy to recognize custom entities (e.g., PRODUCT)
+import spacy
+from spacy.training import Example
+
+# Training data
+TRAIN_DATA = [
+    ("I bought the new iPhone 15", {"entities": [(18, 28, "PRODUCT")]}),
+    ("The MacBook Pro is expensive", {"entities": [(4, 15, "PRODUCT")]}),
+    ("AirPods are great for workouts", {"entities": [(0, 7, "PRODUCT")]}),
+]
+
+# Load blank model
+nlp = spacy.blank("en")
+
+# Add NER pipeline
+ner = nlp.add_pipe("ner")
+
+# Add new label
+ner.add_label("PRODUCT")
+
+# Train
+optimizer = nlp.begin_training()
+for epoch in range(10):
+    for text, annotations in TRAIN_DATA:
+        doc = nlp.make_doc(text)
+        example = Example.from_dict(doc, annotations)
+        nlp.update([example], drop=0.5, sgd=optimizer)
+
+# Test
+doc = nlp("I love my new AirPods Max")
+for ent in doc.ents:
+    print(f"{ent.text}: {ent.label_}")
+            </code></pre>
+
+            <h3>Evaluation Metrics</h3>
+            <pre><code>
+from seqeval.metrics import classification_report, f1_score
+
+# True and predicted tags
+y_true = [
+    ['B-PER', 'I-PER', 'O', 'B-ORG', 'I-ORG'],
+    ['B-LOC', 'O', 'O', 'B-PER']
+]
+
+y_pred = [
+    ['B-PER', 'I-PER', 'O', 'B-ORG', 'O'],  # Missed I-ORG
+    ['B-LOC', 'O', 'O', 'B-LOC']  # Wrong entity type
+]
+
+# Entity-level F1 score
+f1 = f1_score(y_true, y_pred)
+print(f"Entity-level F1: {f1:.4f}")
+
+# Detailed report
+print(classification_report(y_true, y_pred))
+            </code></pre>
+
+            <h3>Real-world Applications</h3>
+            <ul>
+                <li><strong>Information Extraction:</strong> Extract structured data from documents</li>
+                <li><strong>Question Answering:</strong> Identify relevant entities in questions and passages</li>
+                <li><strong>Content Recommendation:</strong> Recommend articles based on mentioned entities</li>
+                <li><strong>Customer Support:</strong> Route tickets based on mentioned products or issues</li>
+                <li><strong>News Analysis:</strong> Track mentions of companies, people, locations</li>
+                <li><strong>Medical Records:</strong> Extract diseases, medications, procedures</li>
+            </ul>
+
+            <h3>Best Practices</h3>
+            <ol>
+                <li>Use domain-specific models when available (biomedical, legal, financial)</li>
+                <li>Consistent annotation guidelines are critical for training data quality</li>
+                <li>Handle entity boundaries carefully (especially for nested entities)</li>
+                <li>Post-process to merge subword tokens back into full words</li>
+                <li>Evaluate on entity-level metrics, not token-level</li>
+                <li>Consider entity linking to connect mentions to knowledge bases</li>
+            </ol>
+
+            <h3>Common Challenges</h3>
+            <ul>
+                <li><strong>Ambiguity:</strong> "Washington" could be a person or location</li>
+                <li><strong>Nested entities:</strong> "University of California, Berkeley" contains a location within an organization</li>
+                <li><strong>Emerging entities:</strong> New companies, people, products not in training data</li>
+                <li><strong>Domain adaptation:</strong> Models trained on news struggle with social media text</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Named Entity Recognition is a fundamental NLP task that enables extracting structured information from unstructured text. Modern transformer-based models like BERT achieve excellent performance out-of-the-box, and libraries like Hugging Face Transformers and spaCy make it easy to apply NER or train custom models. The key to success: quality annotated data, appropriate model selection for your domain, and careful evaluation using entity-level metrics.</p>
+        `
+    }
+];
 
 genAIConcepts.beginner.push(...additionalBeginnerConcepts);
 
