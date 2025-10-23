@@ -1565,15 +1565,277 @@ function generateFAQPage() {
                 <p>Find answers to common questions about Generative AI.</p>
             </div>
         </div>
+
         <div style="max-width: 900px; margin: 0 auto;">
-            <div class="accordion" onclick="toggleAccordion(this)">
+            <div class="section-header">
+                <h2 class="section-title">Getting Started</h2>
+            </div>
+
+            <div class="accordion active">
                 <button class="accordion-header">
                     <span>What is Generative AI?</span>
                     <span class="accordion-icon">▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-body">
-                        Generative AI refers to AI systems that can create new content like text, images, audio, and video rather than just analyzing existing data.
+                        Generative AI refers to AI systems that can create new content like text, images, audio, and video rather than just analyzing existing data. These models learn patterns from training data and use that knowledge to generate novel outputs. Examples include ChatGPT for text, Stable Diffusion for images, and Whisper for speech.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Do I need a background in AI/ML to learn GenAI?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Not necessarily! While understanding fundamentals helps, you can start with practical applications using APIs and frameworks like LangChain. Our beginner section covers all prerequisites. For deeper understanding (training models, architectures), ML background is helpful but can be learned along the way.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>What programming languages do I need to know?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <strong>Python</strong> is the primary language for GenAI. Most frameworks (PyTorch, TensorFlow, LangChain, Hugging Face) use Python. Basic knowledge of Python is sufficient to start. JavaScript/TypeScript is useful for building web applications that integrate GenAI APIs.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>How long does it take to learn GenAI?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <ul>
+                            <li><strong>Basic usage (API integration, prompting):</strong> 2-4 weeks</li>
+                            <li><strong>Intermediate (RAG, fine-tuning, agents):</strong> 2-3 months</li>
+                            <li><strong>Advanced (RLHF, optimization, research):</strong> 6-12 months</li>
+                        </ul>
+                        Timeline varies based on prior experience and time commitment. Consistent daily practice is key.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">Technical Questions</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>What's the difference between GPT-3.5, GPT-4, and Claude?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>GPT-3.5:</strong> Fast, cost-effective, good for simple tasks. Lower reasoning capability.</p>
+                        <p><strong>GPT-4:</strong> More capable reasoning, better at complex tasks, understands images, more expensive. Best for high-quality outputs.</p>
+                        <p><strong>Claude:</strong> Anthropic's model focused on safety and helpfulness. Long context (200K tokens in Claude 3), excellent at analysis and coding. Different strengths than GPT-4.</p>
+                        <p>Choice depends on use case: GPT-3.5 for bulk/simple tasks, GPT-4/Claude for quality-critical work.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>When should I use RAG vs fine-tuning?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Use RAG when:</strong></p>
+                        <ul>
+                            <li>You need up-to-date information (documents change frequently)</li>
+                            <li>You want to cite sources</li>
+                            <li>Knowledge base is large and dynamic</li>
+                            <li>Quick deployment is needed</li>
+                        </ul>
+                        <p><strong>Use Fine-tuning when:</strong></p>
+                        <ul>
+                            <li>You need specific style/format/tone consistently</li>
+                            <li>Domain-specific behavior required</li>
+                            <li>Reducing costs for high-volume usage</li>
+                            <li>Knowledge is static and well-defined</li>
+                        </ul>
+                        <p><strong>Best approach:</strong> Often use both together - fine-tune for style/format, RAG for knowledge.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>How do I reduce costs when using LLM APIs?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <ol>
+                            <li><strong>Use smaller models:</strong> GPT-3.5 instead of GPT-4 for simple tasks</li>
+                            <li><strong>Optimize prompts:</strong> Be concise, avoid repetition</li>
+                            <li><strong>Implement caching:</strong> Cache responses for common queries</li>
+                            <li><strong>Use streaming:</strong> Stop generation early if answer found</li>
+                            <li><strong>Batch requests:</strong> Process multiple items together</li>
+                            <li><strong>Set max_tokens:</strong> Limit response length appropriately</li>
+                            <li><strong>Use embeddings wisely:</strong> Cache embeddings, use efficient models</li>
+                            <li><strong>Consider self-hosting:</strong> For high volume, host open-source models</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Can I run LLMs locally on my computer?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Yes!</strong> Open-source models can run locally:</p>
+                        <p><strong>Small models (7B-13B parameters):</strong></p>
+                        <ul>
+                            <li>LLaMA 2, Mistral 7B, Phi-2</li>
+                            <li>Requirements: 16GB+ RAM, GPU helpful but not required</li>
+                            <li>Use: Ollama, llama.cpp, GPT4All</li>
+                        </ul>
+                        <p><strong>Larger models (30B-70B):</strong></p>
+                        <ul>
+                            <li>Better quality but need powerful GPU (24GB+ VRAM)</li>
+                            <li>Use quantization (4-bit/8-bit) to reduce memory</li>
+                        </ul>
+                        <p>Trade-off: Local models less capable than GPT-4 but free and private.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">Career & Applications</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>What jobs are available in GenAI?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <ul>
+                            <li><strong>Prompt Engineer:</strong> Design and optimize prompts for LLMs ($80-150K)</li>
+                            <li><strong>LLM Engineer:</strong> Build applications with LLMs, RAG systems ($120-200K)</li>
+                            <li><strong>ML Engineer:</strong> Fine-tune and deploy models ($130-220K)</li>
+                            <li><strong>Research Scientist:</strong> Develop new architectures and techniques ($150-300K)</li>
+                            <li><strong>AI Product Manager:</strong> Guide AI product strategy ($140-220K)</li>
+                            <li><strong>AI Safety Engineer:</strong> Ensure models are safe and aligned ($130-250K)</li>
+                        </ul>
+                        <p>Demand is high and growing rapidly. Many companies hiring across all experience levels.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>What are the most in-demand GenAI skills?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Hot skills in 2024:</strong></p>
+                        <ol>
+                            <li><strong>RAG systems:</strong> Building knowledge-grounded applications</li>
+                            <li><strong>LangChain/LlamaIndex:</strong> Application frameworks</li>
+                            <li><strong>Prompt engineering:</strong> Advanced prompting techniques</li>
+                            <li><strong>Vector databases:</strong> Pinecone, Weaviate, ChromaDB</li>
+                            <li><strong>Fine-tuning:</strong> LoRA, QLoRA, RLHF</li>
+                            <li><strong>Model deployment:</strong> Serving models at scale</li>
+                            <li><strong>Multi-modal models:</strong> Text, image, audio, video</li>
+                            <li><strong>AI agents:</strong> Autonomous reasoning systems</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Will GenAI replace my job?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>GenAI is more likely to <strong>augment</strong> rather than replace jobs. It's a tool that enhances productivity.</p>
+                        <p><strong>Jobs most affected:</strong> Repetitive writing, basic coding, data entry, simple analysis</p>
+                        <p><strong>Jobs least affected:</strong> Creative strategy, complex problem-solving, human interaction, leadership</p>
+                        <p><strong>Best approach:</strong> Learn to use GenAI tools in your field. People who use AI effectively will replace those who don't. Focus on skills that complement AI: creativity, critical thinking, domain expertise, emotional intelligence.</p>
+                        <p>The real opportunity: New jobs and industries are being created around GenAI.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mt-4">
+                <h2 class="section-title">Learning Resources</h2>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>What are the best resources to learn GenAI?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Courses:</strong></p>
+                        <ul>
+                            <li>DeepLearning.AI - ChatGPT Prompt Engineering, LangChain courses</li>
+                            <li>Fast.ai - Practical Deep Learning</li>
+                            <li>Hugging Face Course - Transformers and NLP</li>
+                        </ul>
+                        <p><strong>Platforms:</strong></p>
+                        <ul>
+                            <li>This website! (Comprehensive concepts and tutorials)</li>
+                            <li>Hugging Face - Models, datasets, demos</li>
+                            <li>OpenAI Cookbook - Practical examples</li>
+                            <li>LangChain docs - Application development</li>
+                        </ul>
+                        <p><strong>Communities:</strong></p>
+                        <ul>
+                            <li>r/LocalLLaMA, r/MachineLearning (Reddit)</li>
+                            <li>Hugging Face Discord</li>
+                            <li>LangChain Discord</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>How do I stay updated with GenAI developments?</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Newsletters:</strong></p>
+                        <ul>
+                            <li>The Batch (DeepLearning.AI)</li>
+                            <li>Import AI (Jack Clark)</li>
+                            <li>TLDR AI</li>
+                        </ul>
+                        <p><strong>Papers:</strong></p>
+                        <ul>
+                            <li>ArXiv - Latest research papers</li>
+                            <li>Papers With Code - Papers + implementations</li>
+                            <li>Hugging Face Papers - Curated important papers</li>
+                        </ul>
+                        <p><strong>Social:</strong></p>
+                        <ul>
+                            <li>Twitter/X - Follow researchers and practitioners</li>
+                            <li>LinkedIn - Company announcements, thought leadership</li>
+                            <li>YouTube - Two Minute Papers, Yannic Kilcher</li>
+                        </ul>
+                        <p>Field moves fast! Daily reading recommended (15-30 min/day).</p>
                     </div>
                 </div>
             </div>
