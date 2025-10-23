@@ -38,6 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('GenAI Academy Loaded ✓');
 });
 
+// Handle hash changes for browser navigation
+window.addEventListener('hashchange', () => {
+    const hash = window.location.hash.slice(1) || 'home';
+    navigateTo(hash);
+});
+
 // ===== STATE PERSISTENCE =====
 function loadState() {
     try {
