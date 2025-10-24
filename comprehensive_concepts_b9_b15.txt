@@ -1,0 +1,613 @@
+// COMPREHENSIVE CONTENT FOR CONCEPTS B9-B15
+// This file contains 2000+ word detailed content for each concept
+// To be integrated into data.js
+
+// B9: Fine-Tuning Models
+{
+    id: 'b9',
+    title: 'Fine-Tuning Models',
+    icon: '🎯',
+    description: 'Customizing pre-trained models for specific tasks and domains.',
+    readTime: '22 min',
+    level: 'Beginner',
+    content: `
+        <h2>Fine-Tuning Models: Customizing AI for Your Needs</h2>
+        <p>Fine-tuning is the process of taking a pre-trained model and adapting it to perform specific tasks or work with domain-specific data. It's one of the most practical techniques in modern AI, enabling developers to create customized, high-performing models without starting from scratch.</p>
+
+        <h3>What is Fine-Tuning?</h3>
+        <p>Fine-tuning involves taking a model that has already been trained on a large general dataset and continuing to train it on a smaller, more specific dataset. The model retains its general knowledge while learning task-specific or domain-specific patterns.</p>
+
+        <h4>The Key Difference from Training from Scratch:</h4>
+        <table style="width: 100%; border-collapse: collapse; margin: 2rem 0;">
+            <tr style="background: var(--bg-secondary);">
+                <th style="padding: 1rem; text-align: left;">Aspect</th>
+                <th style="padding: 1rem; text-align: left;">Training from Scratch</th>
+                <th style="padding: 1rem; text-align: left;">Fine-Tuning</th>
+            </tr>
+            <tr>
+                <td style="padding: 1rem;"><strong>Starting Point</strong></td>
+                <td style="padding: 1rem;">Random weights</td>
+                <td style="padding: 1rem;">Pre-trained weights</td>
+            </tr>
+            <tr>
+                <td style="padding: 1rem;"><strong>Data Required</strong></td>
+                <td style="padding: 1rem;">Millions of examples</td>
+                <td style="padding: 1rem;">Hundreds to thousands</td>
+            </tr>
+            <tr>
+                <td style="padding: 1rem;"><strong>Training Time</strong></td>
+                <td style="padding: 1rem;">Days to weeks</td>
+                <td style="padding: 1rem;">Hours to days</td>
+            </tr>
+            <tr>
+                <td style="padding: 1rem;"><strong>Compute Cost</strong></td>
+                <td style="padding: 1rem;">$10,000s - $millions</td>
+                <td style="padding: 1rem;">$10 - $1,000s</td>
+            </tr>
+            <tr>
+                <td style="padding: 1rem;"><strong>Expertise Needed</strong></td>
+                <td style="padding: 1rem;">Expert level</td>
+                <td style="padding: 1rem;">Intermediate</td>
+            </tr>
+        </table>
+
+        <h3>Why Fine-Tune?</h3>
+        <ul>
+            <li><strong>Domain Specificity:</strong> Adapt general models to specialized fields (medical, legal, financial)</li>
+            <li><strong>Task Adaptation:</strong> Customize for specific tasks (sentiment analysis, entity recognition)</li>
+            <li><strong>Improved Performance:</strong> Often outperforms general models on specific tasks</li>
+            <li><strong>Data Efficiency:</strong> Requires far less data than training from scratch</li>
+            <li><strong>Cost Effective:</strong> Saves compute resources and time</li>
+            <li><strong>Proprietary Knowledge:</strong> Incorporate your organization's unique data and expertise</li>
+        </ul>
+
+        <h3>Types of Fine-Tuning</h3>
+
+        <h4>1. Full Fine-Tuning</h4>
+        <p>Update all parameters in the model:</p>
+        <pre><code>
+from transformers import AutoModelForSequenceClassification, Trainer, TrainingArguments
+import torch
+
+# Load pre-trained model
+model = AutoModelForSequenceClassification.from_pretrained(
+    'bert-base-uncased',
+    num_labels=3  # e.g., positive, negative, neutral
+)
+
+# All parameters will be updated during training
+for param in model.parameters():
+    param.requires_grad = True
+
+# Set up training arguments
+training_args = TrainingArguments(
+    output_dir='./results',
+    num_train_epochs=3,
+    per_device_train_batch_size=8,
+    learning_rate=2e-5,  # Small learning rate important!
+    warmup_steps=500,
+    weight_decay=0.01,
+    logging_steps=100,
+    evaluation_strategy='epoch',
+    save_strategy='epoch',
+    load_best_model_at_end=True
+)
+
+# Create trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
+    compute_metrics=compute_metrics
+)
+
+# Fine-tune
+trainer.train()
+        </code></pre>
+
+        <p><strong>When to use:</strong> You have sufficient data (1000+ examples) and computational resources</p>
+        <p><strong>Advantages:</strong> Maximum performance, full adaptation to your task</p>
+        <p><strong>Disadvantages:</strong> More expensive, risk of overfitting, requires more data</p>
+
+        <h4>2. Parameter-Efficient Fine-Tuning (PEFT)</h4>
+        <p>Update only a small subset of parameters:</p>
+
+        <h5>LoRA (Low-Rank Adaptation)</h5>
+        <p>Adds trainable low-rank matrices to transformer layers:</p>
+        <pre><code>
+from peft import get_peft_model, LoraConfig, TaskType
+
+# Configure LoRA
+lora_config = LoraConfig(
+    task_type=TaskType.SEQ_CLS,
+    r=8,  # Rank of adaptation matrices
+    lora_alpha=32,
+    lora_dropout=0.1,
+    target_modules=['query', 'value']  # Which layers to adapt
+)
+
+# Apply LoRA to model
+model = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased')
+model = get_peft_model(model, lora_config)
+
+# Only 0.1% of parameters are trainable!
+model.print_trainable_parameters()
+# Output: trainable params: 294,912 || all params: 109,483,778 || trainable%: 0.27
+        </code></pre>
+
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            <li>Train 100x faster than full fine-tuning</li>
+            <li>Use 90% less memory</li>
+            <li>Store multiple adapted models efficiently</li>
+            <li>Prevents catastrophic forgetting</li>
+        </ul>
+
+        <h5>Adapter Layers</h5>
+        <p>Insert small trainable modules between frozen layers:</p>
+        <pre><code>
+from transformers import AutoModel
+from adapters import AdapterConfig
+
+model = AutoModel.from_pretrained('bert-base-uncased')
+
+# Add adapter
+adapter_config = AdapterConfig.load("pfeiffer")
+model.add_adapter("my_task", config=adapter_config)
+model.train_adapter("my_task")
+
+# Only adapter parameters are trainable
+        </code></pre>
+
+        <h4>3. Prompt Tuning</h4>
+        <p>Learn optimal "soft prompts" while keeping model frozen:</p>
+        <pre><code>
+from peft import get_peft_model, PromptTuningConfig, TaskType
+
+config = PromptTuningConfig(
+    task_type=TaskType.SEQ_CLS,
+    num_virtual_tokens=20,  # Length of soft prompt
+    prompt_tuning_init="TEXT",
+    prompt_tuning_init_text="Classify if this text is positive, negative, or neutral:"
+)
+
+model = get_peft_model(base_model, config)
+        </code></pre>
+
+        <h3>Complete Fine-Tuning Workflow</h3>
+
+        <h4>Step 1: Prepare Your Dataset</h4>
+        <pre><code>
+from datasets import Dataset
+import pandas as pd
+
+# Your custom data
+data = {
+    'text': [
+        'This product is amazing!',
+        'Terrible customer service',
+        'It works as expected',
+        # ... more examples
+    ],
+    'label': [2, 0, 1, ...]  # 0: negative, 1: neutral, 2: positive
+}
+
+df = pd.DataFrame(data)
+
+# Split into train/val/test
+train_df = df.sample(frac=0.8, random_state=42)
+temp_df = df.drop(train_df.index)
+val_df = temp_df.sample(frac=0.5, random_state=42)
+test_df = temp_df.drop(val_df.index)
+
+# Convert to Hugging Face datasets
+train_dataset = Dataset.from_pandas(train_df)
+val_dataset = Dataset.from_pandas(val_df)
+test_dataset = Dataset.from_pandas(test_df)
+        </code></pre>
+
+        <h4>Step 2: Tokenize Data</h4>
+        <pre><code>
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
+
+def tokenize_function(examples):
+    return tokenizer(
+        examples['text'],
+        padding='max_length',
+        truncation=True,
+        max_length=128
+    )
+
+# Tokenize all datasets
+train_dataset = train_dataset.map(tokenize_function, batched=True)
+val_dataset = val_dataset.map(tokenize_function, batched=True)
+test_dataset = test_dataset.map(tokenize_function, batched=True)
+
+# Set format for PyTorch
+train_dataset.set_format('torch', columns=['input_ids', 'attention_mask', 'label'])
+val_dataset.set_format('torch', columns=['input_ids', 'attention_mask', 'label'])
+        </code></pre>
+
+        <h4>Step 3: Define Metrics</h4>
+        <pre><code>
+from datasets import load_metric
+import numpy as np
+
+def compute_metrics(eval_pred):
+    load_accuracy = load_metric("accuracy")
+    load_f1 = load_metric("f1")
+
+    logits, labels = eval_pred
+    predictions = np.argmax(logits, axis=-1)
+
+    accuracy = load_accuracy.compute(predictions=predictions, references=labels)["accuracy"]
+    f1 = load_f1.compute(predictions=predictions, references=labels, average='weighted')["f1"]
+
+    return {"accuracy": accuracy, "f1": f1}
+        </code></pre>
+
+        <h4>Step 4: Configure and Train</h4>
+        <pre><code>
+from transformers import AutoModelForSequenceClassification, Trainer, TrainingArguments
+
+# Load model
+model = AutoModelForSequenceClassification.from_pretrained(
+    'bert-base-uncased',
+    num_labels=3
+)
+
+# Training arguments
+training_args = TrainingArguments(
+    output_dir='./sentiment-model',
+    num_train_epochs=3,
+    per_device_train_batch_size=16,
+    per_device_eval_batch_size=64,
+    warmup_steps=500,
+    weight_decay=0.01,
+    learning_rate=2e-5,
+    logging_dir='./logs',
+    logging_steps=10,
+    evaluation_strategy='steps',
+    eval_steps=100,
+    save_strategy='steps',
+    save_steps=100,
+    load_best_model_at_end=True,
+    metric_for_best_model='f1',
+    greater_is_better=True
+)
+
+# Create Trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=val_dataset,
+    compute_metrics=compute_metrics
+)
+
+# Train!
+trainer.train()
+        </code></pre>
+
+        <h4>Step 5: Evaluate and Save</h4>
+        <pre><code>
+# Evaluate on test set
+test_results = trainer.evaluate(test_dataset)
+print(f"Test Results: {test_results}")
+
+# Save model
+model.save_pretrained('./final-sentiment-model')
+tokenizer.save_pretrained('./final-sentiment-model')
+
+# Use for inference
+from transformers import pipeline
+
+classifier = pipeline('sentiment-analysis', model='./final-sentiment-model')
+result = classifier('This is a great product!')
+print(result)
+# [{'label': 'POSITIVE', 'score': 0.9876}]
+        </code></pre>
+
+        <h3>Fine-Tuning Vision Models</h3>
+
+        <h4>Using PyTorch and timm:</h4>
+        <pre><code>
+import timm
+import torch
+import torch.nn as nn
+from torch.utils.data import DataLoader
+from torchvision import transforms
+
+# Load pre-trained vision model
+model = timm.create_model('efficientnet_b0', pretrained=True, num_classes=10)
+
+# Option 1: Freeze all except final layer
+for param in model.parameters():
+    param.requires_grad = False
+model.classifier.weight.requires_grad = True
+model.classifier.bias.requires_grad = True
+
+# Option 2: Freeze only early layers
+for name, param in model.named_parameters():
+    if 'blocks.0' in name or 'blocks.1' in name:
+        param.requires_grad = False
+
+# Data transforms (important: match pre-training!)
+transform = transforms.Compose([
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                        std=[0.229, 0.224, 0.225])
+])
+
+# Training loop
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
+criterion = nn.CrossEntropyLoss()
+
+model.train()
+for epoch in range(10):
+    for images, labels in train_loader:
+        optimizer.zero_grad()
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        </code></pre>
+
+        <h3>Best Practices for Fine-Tuning</h3>
+
+        <h4>1. Learning Rate Selection</h4>
+        <pre><code>
+# Use learning rate finder
+from torch_lr_finder import LRFinder
+
+model = YourModel()
+optimizer = torch.optim.Adam(model.parameters())
+criterion = nn.CrossEntropyLoss()
+
+lr_finder = LRFinder(model, optimizer, criterion)
+lr_finder.range_test(train_loader, end_lr=1, num_iter=100)
+lr_finder.plot()  # Visual inspection
+lr_finder.reset()  # Reset model to initial state
+
+# Use suggested learning rate
+optimal_lr = 1e-4  # From plot
+optimizer = torch.optim.Adam(model.parameters(), lr=optimal_lr)
+        </code></pre>
+
+        <h4>2. Gradual Unfreezing</h4>
+        <pre><code>
+# Phase 1: Train only classifier
+for param in base_model.parameters():
+    param.requires_grad = False
+train(epochs=2)
+
+# Phase 2: Unfreeze top layers
+for param in base_model.layer4.parameters():
+    param.requires_grad = True
+train(epochs=2)
+
+# Phase 3: Unfreeze all
+for param in base_model.parameters():
+    param.requires_grad = True
+optimizer = Adam(model.parameters(), lr=1e-6)  # Lower LR!
+train(epochs=2)
+        </code></pre>
+
+        <h4>3. Discriminative Learning Rates</h4>
+        <p>Use different learning rates for different layers:</p>
+        <pre><code>
+optimizer = torch.optim.Adam([
+    {'params': model.base.layer1.parameters(), 'lr': 1e-6},
+    {'params': model.base.layer2.parameters(), 'lr': 5e-6},
+    {'params': model.base.layer3.parameters(), 'lr': 1e-5},
+    {'params': model.base.layer4.parameters(), 'lr': 5e-5},
+    {'params': model.classifier.parameters(), 'lr': 1e-4}
+])
+        </code></pre>
+
+        <h4>4. Data Augmentation</h4>
+        <p>Crucial when fine-tuning with limited data:</p>
+        <pre><code>
+from albumentations import (
+    Compose, RandomRotate90, Flip, Transpose,
+    ShiftScaleRotate, GridDistortion, ElasticTransform,
+    RandomBrightnessContrast, HueSaturationValue
+)
+
+transform = Compose([
+    RandomRotate90(),
+    Flip(),
+    Transpose(),
+    ShiftScaleRotate(shift_limit=0.0625, scale_limit=0.1, rotate_limit=45, p=0.5),
+    RandomBrightnessContrast(p=0.5),
+    HueSaturationValue(p=0.3)
+])
+        </code></pre>
+
+        <h4>5. Regularization Techniques</h4>
+        <pre><code>
+# Dropout
+model = nn.Sequential(
+    base_model,
+    nn.Dropout(0.5),
+    nn.Linear(512, num_classes)
+)
+
+# Weight decay (L2 regularization)
+optimizer = Adam(model.parameters(), lr=1e-4, weight_decay=1e-5)
+
+# Early stopping
+best_val_loss = float('inf')
+patience = 5
+patience_counter = 0
+
+for epoch in range(max_epochs):
+    val_loss = validate()
+    if val_loss < best_val_loss:
+        best_val_loss = val_loss
+        save_checkpoint()
+        patience_counter = 0
+    else:
+        patience_counter += 1
+        if patience_counter >= patience:
+            print("Early stopping triggered")
+            break
+        </code></pre>
+
+        <h3>Domain-Specific Fine-Tuning Examples</h3>
+
+        <h4>Medical Text Analysis</h4>
+        <pre><code>
+# Fine-tune BioBERT for medical entity recognition
+from transformers import AutoModelForTokenClassification
+
+model = AutoModelForTokenClassification.from_pretrained(
+    'dmis-lab/biobert-v1.1',
+    num_labels=9  # e.g., disease, symptom, medication, etc.
+)
+
+# Your medical dataset with entity annotations
+# Train on clinical notes, medical journals, etc.
+        </code></pre>
+
+        <h4>Code Generation</h4>
+        <pre><code>
+# Fine-tune CodeT5 for your programming language/framework
+from transformers import AutoModelForSeq2SeqLM
+
+model = AutoModelForSeq2SeqLM.from_pretrained('Salesforce/codet5-base')
+
+# Fine-tune on your codebase
+# Input: docstring/comment, Output: code implementation
+        </code></pre>
+
+        <h4>Financial Sentiment</h4>
+        <pre><code>
+# Fine-tune FinBERT for financial news sentiment
+model = AutoModelForSequenceClassification.from_pretrained(
+    'ProsusAI/finbert',
+    num_labels=3
+)
+
+# Train on financial news, earnings calls, analyst reports
+        </code></pre>
+
+        <h3>Monitoring Fine-Tuning Progress</h3>
+
+        <h4>Using Weights & Biases:</h4>
+        <pre><code>
+import wandb
+
+# Initialize
+wandb.init(project='my-finetuning', config=training_args)
+
+# Integrate with Trainer
+from transformers import TrainingArguments
+
+training_args = TrainingArguments(
+    ...
+    report_to='wandb',
+    logging_steps=10
+)
+
+# Trainer automatically logs to W&B
+trainer.train()
+        </code></pre>
+
+        <h4>Custom Logging:</h4>
+        <pre><code>
+# Log custom metrics
+for epoch in range(num_epochs):
+    train_loss = train_one_epoch()
+    val_metrics = evaluate()
+
+    wandb.log({
+        'epoch': epoch,
+        'train_loss': train_loss,
+        'val_loss': val_metrics['loss'],
+        'val_accuracy': val_metrics['accuracy'],
+        'val_f1': val_metrics['f1'],
+        'learning_rate': optimizer.param_groups[0]['lr']
+    })
+        </code></pre>
+
+        <h3>Common Pitfalls and Solutions</h3>
+
+        <ul>
+            <li><strong>Catastrophic Forgetting:</strong>
+                <ul>
+                    <li>Problem: Model forgets general knowledge</li>
+                    <li>Solution: Use lower learning rates, gradual unfreezing, or PEFT methods</li>
+                </ul>
+            </li>
+            <li><strong>Overfitting:</strong>
+                <ul>
+                    <li>Problem: High train accuracy, low validation accuracy</li>
+                    <li>Solution: More data augmentation, dropout, early stopping, reduce model capacity</li>
+                </ul>
+            </li>
+            <li><strong>Underfitting:</strong>
+                <ul>
+                    <li>Problem: Low accuracy on both train and validation</li>
+                    <li>Solution: Train longer, increase learning rate, unfreeze more layers</li>
+                </ul>
+            </li>
+            <li><strong>Slow Convergence:</strong>
+                <ul>
+                    <li>Problem: Loss decreases too slowly</li>
+                    <li>Solution: Increase learning rate, use warmup, check data preprocessing</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Cost Considerations</h3>
+
+        <h4>GPU Options:</h4>
+        <pre><code>
+# Local GPU
+# - NVIDIA RTX 3090/4090: $1,500-2,000
+# - Fine-tune small-medium models locally
+
+# Cloud GPU (rough costs per hour)
+# - Google Colab Pro: $10/month (limited GPU access)
+# - AWS p3.2xlarge (V100): ~$3/hour
+# - AWS g5.xlarge (A10G): ~$1/hour
+# - Lambda Labs (A100): ~$1.10/hour
+
+# Example calculation
+hours_needed = 5  # For fine-tuning
+cost_per_hour = 1.10
+total_cost = hours_needed * cost_per_hour
+# $5.50 for a fine-tuned model!
+        </code></pre>
+
+        <h3>Deployment After Fine-Tuning</h3>
+
+        <h4>Optimize for Inference:</h4>
+        <pre><code>
+# Convert to ONNX for faster inference
+from optimum.onnxruntime import ORTModelForSequenceClassification
+
+model = ORTModelForSequenceClassification.from_pretrained(
+    './my-finetuned-model',
+    from_transformers=True
+)
+
+# Quantize for smaller size and faster inference
+from transformers import AutoQuantizationConfig
+
+quantization_config = AutoQuantizationConfig.from_pretrained("int8")
+model = model.quantize(quantization_config)
+
+# 4x smaller model, 2-4x faster inference!
+        </code></pre>
+
+        <h3>Conclusion</h3>
+        <p>Fine-tuning is the most practical path to deploying AI in production for most use cases. It offers the perfect balance between performance, cost, and development time. Whether you're customizing a language model for your industry's terminology, adapting a vision model to your product catalog, or creating a specialized chatbot, fine-tuning is likely your best approach. The key is understanding the various techniques available, following best practices, and monitoring your model's performance carefully throughout the process.</p>
+    `,
+}
